@@ -17,8 +17,7 @@ Open the **Command Palette** and type `flow control` to see the list of availabl
 A basic dialog that guides the user through the process of merging two flows. 
 The flows must therefore have a common point of intersection such as a decision as shown in the example below.
 
-
-[demo merge flows](mergeflows.gif)])
+![merge flows demo](https://github.com/RubenHalman/Force-Flow-Control/blob/develop/mergeflows.gif)
 
 ### Rename Flows
 
@@ -27,4 +26,3 @@ Renames a selected flow changing the metadata locally.
 
 ## Contributing
 
-Please read our [Contributing guidelines](CONTRIBUTING.md).
