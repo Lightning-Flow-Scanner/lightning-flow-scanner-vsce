@@ -18,6 +18,7 @@ A basic dialog that guides the user through the process of merging two flows.
 The flows must therefore have a common point of intersection such as a decision as shown in the example below.
 
 
+[demo merge flows](mergeflows.gif)])
 
 ### Rename Flows
 
