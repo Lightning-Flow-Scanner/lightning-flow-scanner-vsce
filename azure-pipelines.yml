@@ -1,0 +1,20 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '13.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    yarn install
+    yarn && yarn compile
+    echo ">>> Compiled vscode-test"
+    cd sample
+    echo ">>> Run sample integration test"
+    yarn && yarn compile && yarn test
+  displayName: 'Run Tests'
