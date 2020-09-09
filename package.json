@@ -1,8 +1,13 @@
 {
-	"name": "sfdc-flowcontrol",
+	"name": "force-flow-control",
 	"displayName": "Flow Control",
 	"description": "",
 	"version": "0.0.1",
+	"publisher": "ForceFlowControl",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RubenHalman/Force-Flow-Control.git"
+	},
 	"engines": {
 		"vscode": "^1.47.0"
 	},
@@ -45,6 +50,7 @@
 		"mocha": "^7.2.0",
 		"sinon": "^9.0.3",
 		"typescript": "^3.8.3",
+		"vscode": "^1.1.37",
 		"vscode-test": "^1.4.0"
 	},
 	"dependencies": {
@@ -52,7 +58,7 @@
 		"mz": "^2.7.0",
 		"reflect-metadata": "^0.1.13",
 		"ts-mock-imports": "^1.3.0",
-		"vscode": "^1.1.37",
+		"vsce": "^1.79.5",
 		"xml2js": "^0.4.23"
 	}
 }

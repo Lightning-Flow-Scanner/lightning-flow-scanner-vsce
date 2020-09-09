@@ -1,67 +1,29 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+#  Development Support For Salesforce Flows
 
-# flowmerge README
+## Introduction
 
-This is the README for your extension "flowmerge". After writing up a brief description, we recommend including the following sections.
+**Force Flow Control** aims to add development support for Salesforce Flows, providing features such as _merge flows_ or _rename flows_, etc. 
 
-## Features
+## Installation
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+In Visual Studio Code, open the **Extensions** panel and search for **Force Flow Control**. Install the extension and you are ready to go!
 
-For example if there is an image subfolder under your extension project workspace:
+## Using the commands
 
-\!\[feature X\]\(images/feature-x.png\)
+Open the **Command Palette** and type `flow control` to see the list of available commands.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### Merge Flows
 
-## Requirements
+A basic dialog that guides the user through the process of merging two flows. 
+The flows must therefore have a common point of intersection such as a decision as shown in the example below.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Rename Flows
 
-For example:
+Renames a selected flow changing the metadata locally.
 
-This extension contributes the following settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+## Contributing
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Please read our [Contributing guidelines](CONTRIBUTING.md).
