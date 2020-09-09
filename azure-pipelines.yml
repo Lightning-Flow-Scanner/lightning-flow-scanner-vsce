@@ -18,6 +18,6 @@ steps:
     yarn && yarn compile
     echo ">>> Compilation complete"
     echo ">>> Run Tests"
-    yarn && yarn compile && yarn test
+    yarn && yarn test
     echo ">>> Tests complete"
   displayName: 'Run Tests'
