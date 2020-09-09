@@ -22,7 +22,3 @@ The flows must therefore have a common point of intersection such as a decision 
 ### Rename Flows
 
 Renames a selected flow changing the metadata locally.
-
-
-## Contributing
-
