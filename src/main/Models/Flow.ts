@@ -21,10 +21,10 @@ export = class Flow{
     }
 
     public nodes() : (FlowElement | FlowMetadata | FlowVariable)[]{
-        return this.preProcessFlowNodes(this.xmldata.Flow);
+        return this.preProcessFlowNodes(this.xmldata);
     }
 
-    private preProcessFlowNodes(flowXML) {
+    private preProcessFlowNodes(xml) {
         const mergeableVariables = ["variables", "constants"];
         const flowMetadata = [
             "description",
@@ -34,8 +34,9 @@ export = class Flow{
             "processType",
             "status",
         ];
-        const nameSpaceSymbol = "$";
         const allNodes = [];
+        delete xml.Flow.$;
+        const flowXML = xml.Flow;
         for (let nodeType in flowXML) {
             let nodes = flowXML[nodeType];
             if (flowMetadata.includes(nodeType)) {
@@ -50,8 +51,6 @@ export = class Flow{
                         new FlowVariable(node.name, nodeType, node)
                     );
                 }
-            } else if (nodeType === nameSpaceSymbol) {
-                continue;
             } else {
                 for (let node of nodes) {
                     allNodes.push(
