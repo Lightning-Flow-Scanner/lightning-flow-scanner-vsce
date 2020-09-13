@@ -1,0 +1,65 @@
+{
+	"name": "force-flow-control",
+	"displayName": "Flow Control",
+	"description": "Assists with tasks related to Salesforce Flow Metadata that can otherwise be time-consuming",
+	"version": "1.0.0",
+	"icon": "resources/images/flowcontrol.png",
+	"publisher": "ForceFlowControl",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RubenHalman/Force-Flow-Control.git"
+	},
+	"engines": {
+		"vscode": "^1.47.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:flowcontrol.merge",
+		"onCommand:flowcontrol.rename"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "flowcontrol.merge",
+				"title": "Merge Flows"
+			},
+			{
+				"command": "flowcontrol.rename",
+				"title": "Rename a Flow"
+			}
+		]
+	},
+	"scripts": {
+		"compile": "tsc || true",
+		"watch": "tsc -watch",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/mz": "^2.7.1",
+		"@types/node": "^13.11.0",
+		"@types/vscode": "^1.47.0",
+		"@types/xml2js": "^0.4.5",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.2.0",
+		"sinon": "^9.0.3",
+		"typescript": "^3.8.3",
+		"vscode": "^1.1.37",
+		"vscode-test": "^1.4.0"
+	},
+	"dependencies": {
+		"@types/sinon": "^9.0.4",
+		"mz": "^2.7.0",
+		"reflect-metadata": "^0.1.13",
+		"ts-mock-imports": "^1.3.0",
+		"vsce": "^1.79.5",
+		"xml2js": "^0.4.23"
+	}
+}
