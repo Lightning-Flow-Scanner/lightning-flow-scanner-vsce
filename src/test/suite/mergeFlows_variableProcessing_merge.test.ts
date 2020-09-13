@@ -20,14 +20,12 @@ describe("When merging two pre-defined flows that have a different variables",as
             label: 'main',
             path: 'anypath',
             xmldata : main,
-            description: 'main',
             detail: 'anypath'
         });
         mainFlow.flownumber = 1;
         secondaryFlow = new Flow({
             label: 'sec',
             path: 'anyotherpath',
-            description: 'sec',
             detail: 'anyotherpath',
             xmldata: mainwithaddvars
         });

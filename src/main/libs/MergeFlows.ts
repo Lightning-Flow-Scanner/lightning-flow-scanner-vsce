@@ -25,7 +25,6 @@ export class MergeFlows {
             label: "",
             path: "",
             detail: "",
-            description: "",
             xmldata: {
                 Flow: {
                     $: {xmlns: "http://soap.sforce.com/2006/04/metadata"},

@@ -4,7 +4,6 @@ import FlowElement = require("./FlowElement");
 
 export = class Flow{
 
-    public description:string;
     public detail:string;
     public label:string;
     public path:string;
@@ -16,7 +15,6 @@ export = class Flow{
         this.label = args.label;
         this.path = args.path;
         this.detail = args.detail ? args.detail : '';
-        this.description = args.description ? args.description : '';
         this.xmldata = args.xmldata;
     }
 
