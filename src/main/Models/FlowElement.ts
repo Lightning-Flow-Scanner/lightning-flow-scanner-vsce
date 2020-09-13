@@ -52,16 +52,26 @@ export = class FlowElement extends Node {
                 ),
             ];
         } else if (subtype === "actionCalls") {
-            return [new FlowElementConnector("connector", element.connector, {}),
-                new FlowElementConnector("connector", element.faultConnector, {})];
+            let connectors = [];
+            if(element.connector){
+                connectors.push(new FlowElementConnector("connector", element.connector, {}));
+            }
+            if(element.faultConnector){
+                connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
+            }
+            return connectors;
         } else if (subtype === "waits") {
             let connectors = [];
-            connectors.push(
-                new FlowElementConnector("defaultConnector", element.defaultConnector, {})
-            );
-            connectors.push(
-                new FlowElementConnector("faultConnector", element.faultConnector, {})
-            );
+            if(element.defaultConnector){
+                connectors.push(
+                    new FlowElementConnector("defaultConnector", element.defaultConnector, {})
+                );
+            }
+            if(element.faultConnector){
+                connectors.push(
+                    new FlowElementConnector("faultConnector", element.faultConnector, {})
+                );
+            }
             for (const waitEvent of element.waitEvents) {
                 if (waitEvent.connector) {
                     connectors.push(
@@ -74,17 +84,41 @@ export = class FlowElement extends Node {
             }
             return connectors;
         } else if (subtype === "recordCreates") {
-            return [new FlowElementConnector("connector", element.connector, {}),
-                new FlowElementConnector("faultConnector", element.faultConnector, {})];
+            let connectors = [];
+            if(element.connector){
+                connectors.push(new FlowElementConnector("connector", element.connector, {}));
+            }
+            if(element.faultConnector){
+                connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
+            }
+            return connectors;
         } else if (subtype === "recordDeletes") {
-            return [new FlowElementConnector("connector", element.connector, {}),
-                new FlowElementConnector("faultConnector", element.faultConnector, {})];
+            let connectors = [];
+            if(element.connector){
+                connectors.push(new FlowElementConnector("connector", element.connector, {}));
+            }
+            if(element.faultConnector){
+                connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
+            }
+            return connectors;
         } else if (subtype === "recordLookups") {
-            return [new FlowElementConnector("connector", element.connector, {}),
-                new FlowElementConnector("faultConnector", element.faultConnector, {})];
+            let connectors = [];
+            if(element.connector){
+                connectors.push(new FlowElementConnector("connector", element.connector, {}));
+            }
+            if(element.faultConnector){
+                connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
+            }
+            return connectors;
         } else if (subtype === "recordUpdates") {
-            return [new FlowElementConnector("connector", element.connector, {}),
-                new FlowElementConnector("faultConnector", element.faultConnector, {})];
+            let connectors = [];
+            if(element.connector){
+                connectors.push(new FlowElementConnector("connector", element.connector, {}));
+            }
+            if(element.faultConnector){
+                connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
+            }
+            return connectors;
         } else if (subtype === "subflows") {
             return [new FlowElementConnector("connector", element.connector, {})];
         }

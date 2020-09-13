@@ -7,6 +7,7 @@ import sinon = require("sinon");
 import main = require("./testfiles/main-example.json");
 import secondary = require("./testfiles/secondary-example.json");
 import Flow = require("../../main/Models/Flow");
+import {CleanFlow} from "../../main/libs/CleanFlow";
 
 describe("When merging two pre-defined flows that have a common node with a different connector, it should return a new flow based on User selection, regardless of the selection order", async function () {
     let mergeFlowsInstance: MergeFlows;
@@ -16,21 +17,19 @@ describe("When merging two pre-defined flows that have a common node with a diff
 
     before("Assume User selection is the count connector in order to link the selected flows", async function () {
         // ARRANGE
-        mainFlow = new Flow({
+        mainFlow = new CleanFlow().execute(new Flow({
             label: 'main',
             path: 'anypath',
             xmldata : main,
-            description: 'main',
             detail: 'anypath'
-        });
+        }));
         mainFlow.flownumber = 2;
-        secondaryFlow = new Flow({
+        secondaryFlow = new CleanFlow().execute(new Flow({
             label: 'sec',
             path: 'anyotherpath',
-            description: 'sec',
             detail: 'anyotherpath',
             xmldata: secondary
-        });
+        }));
         secondaryFlow.flownumber = 1;
         const showQuickPick = sinon.stub();
         showQuickPick.onCall(0).returns(
@@ -50,13 +49,13 @@ describe("When merging two pre-defined flows that have a common node with a diff
         );
 
         // ASSERT
-        const resultingFlow = mergedFlow.xmldata.Flow._;
+        const resultingFlow = mergedFlow.processedData.Flow;
         assert.strictEqual(resultingFlow.decisions[0].defaultConnector[0].targetReference[0],'count');
         assert.strictEqual(resultingFlow.decisions[0].rules.length, 2);
         const notZeroRule = resultingFlow.decisions[0].rules.find(rule => rule.name[0] === "notzero");
         assert.strictEqual(resultingFlow.variables.length,4);
         assert.strictEqual(notZeroRule.connector[0].targetReference[0],"loopovercoll");
-        assert.strictEqual(resultingFlow.status[0][0],'Draft');
+        assert.strictEqual(resultingFlow.status[0],'Draft');
 
     });
     after("restore dependencies", function () {
