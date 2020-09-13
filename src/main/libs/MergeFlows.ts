@@ -3,6 +3,7 @@ import FlowVariable = require("../Models/FlowVariable");
 import FlowElement = require("../Models/FlowElement");
 import Flow = require("../Models/Flow");
 import * as vscode from "vscode";
+import {BuildNewFlow} from "./BuildNewFlow";
 
 export class MergeFlows {
     private runningFlowNumber: number = 1;
@@ -15,63 +16,58 @@ export class MergeFlows {
 
         this.flows = flows;
         this.runningFlowNumber = selectedFlowNr;
+        const flowMetaData = this.processFlowMetadata(flows);
         const xmlNodes = this.preProcessFlows(flows);
-        const flowMetaData = this.processFlowMetadata(xmlNodes.filter(node => node instanceof FlowMetadata));
         const flowVariables = this.processVariables(xmlNodes.filter(node => node instanceof FlowVariable));
-
         const flowElements = await this.processFlowElements(xmlNodes.filter(node => node instanceof FlowElement));
 
-        return new Flow({
+        const newFlow = new Flow({
             label: "",
             path: "",
             detail: "",
-            description: "",
-            xmldata: {
-                Flow: {
-                    $: {xmlns: "http://soap.sforce.com/2006/04/metadata"},
-                    _: this.buildFlowJSON(
-                        [...flowMetaData, ...flowVariables, ...flowElements]
-                    ),
-                },
-            },
         });
+        newFlow.flowMetadata = flowMetaData;
+        newFlow.flowElements = flowElements;
+        newFlow.flowVariables = flowVariables;
+
+        return new BuildNewFlow().execute(newFlow);
     }
 
     private preProcessFlows(flows: Flow[]) {
-        const mainNodes = flows[0].nodes();
+        const mainNodes = [...flows[0].flowElements, ...flows[0].flowVariables];
         mainNodes.forEach(node => {
             node.flownumber = flows[0].flownumber;
         });
-        const secondaryNodes = flows[1].nodes();
+        const secondaryNodes = [...flows[1].flowElements, ...flows[1].flowVariables];
         secondaryNodes.forEach(node => {
             node.flownumber = flows[1].flownumber;
         });
         return [...mainNodes, ...secondaryNodes];
     }
 
-    private processFlowMetadata(nodes) {
-        const flowProcessMetadataValues = nodes.filter(node => "processMetadataValues" === node.subtype);
+    private processFlowMetadata(flows : Flow[]) {
+
         const result = [];
         if (
-            flowProcessMetadataValues[0].element[0].value[0].stringValue[0] !==
-            flowProcessMetadataValues[1].element[0].value[0].stringValue[0]
+            flows[0].flowMetadata.find(node => "processMetadataValues" === node.subtype).element.value[0].stringValue[0] !==
+            flows[1].flowMetadata.find(node => "processMetadataValues" === node.subtype).element.value[0].stringValue[0]
         ) {
             throw new Error("Flows can not have different Metadata Values");
         } else {
-            result.push(flowProcessMetadataValues[0]);
+            result.push(flows[0].flowMetadata.find(node => "processMetadataValues" === node.subtype));
         }
-        const flowProcessTypes = nodes.filter(node => "processType" === node.subtype);
-        if (flowProcessTypes[0].element[0] !== flowProcessTypes[1].element[0]) {
+        if (flows[0].flowMetadata.find(node => "processType" === node.subtype).element !== flows[1].flowMetadata.find(node => "processType" === node.subtype).element) {
             throw new Error("Flows can not have a different Process Type");
         } else {
-            result.push(flowProcessTypes[0]);
+            result.push(flows[0].flowMetadata.find(node => "processType" === node.subtype));
         }
-        const flowStatusses = nodes.filter(node => "status" === node.subtype);
-        let newStatus = Object.assign({}, flowStatusses[0]);
-        newStatus.element = ["Draft"];
+        const aStatus = flows[0].flowMetadata.find(node => "status" === node.subtype);
+        let newStatus = Object.assign({}, aStatus);
+        newStatus.element = "Draft";
         result.push(newStatus);
+
         for (let nodeType of ["description", "label", "interviewLabel"]) {
-            const nodesWithType = nodes.filter(node => nodeType === node.subtype);
+            const nodesWithType = [...flows[0].flowMetadata, ...flows[1].flowMetadata].filter(node => nodeType === node.subtype);
             let types = [];
             for (let node of nodesWithType) {
                 if (types.length === 0 || !types.includes(node.subtype)) {

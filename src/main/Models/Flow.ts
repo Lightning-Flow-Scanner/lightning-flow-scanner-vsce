@@ -2,56 +2,58 @@ import FlowMetadata = require("./FlowMetadata");
 import FlowVariable = require("./FlowVariable");
 import FlowElement = require("./FlowElement");
 
-export = class Flow{
+export = class Flow {
 
-    public description:string;
-    public detail:string;
-    public label:string;
-    public path:string;
-    public flownumber:number;
-    public xmldata:JSON;
+    public detail: string;
+    public label: string;
+    public path: string;
+    public flownumber: number;
+    public xmldata: JSON;
+    public flowVariables;
+    public flowMetadata;
+    public flowElements;
+    public unconnectElements;
+    public unusedVariables;
+    public processedData;
 
-    constructor(args){
-
+    constructor(args) {
         this.label = args.label;
         this.path = args.path;
         this.detail = args.detail ? args.detail : '';
-        this.description = args.description ? args.description : '';
         this.xmldata = args.xmldata;
     }
 
-    public nodes() : (FlowElement | FlowMetadata | FlowVariable)[]{
-        return this.preProcessFlowNodes(this.xmldata.Flow);
+    public nodes(): (FlowElement | FlowMetadata | FlowVariable)[] {
+        return this.preProcessFlowNodes(this.xmldata);
     }
 
-    private preProcessFlowNodes(flowXML) {
+    private preProcessFlowNodes(xml) {
         const mergeableVariables = ["variables", "constants"];
-        const flowMetadata = [
-            "description",
-            "interviewLabel",
-            "label",
+        const flowMetadata = ["description",
             "processMetadataValues",
             "processType",
-            "status",
+            "interviewLabel",
+            "label",
+            "status"
         ];
-        const nameSpaceSymbol = "$";
         const allNodes = [];
+        delete xml.Flow.$;
+        const flowXML = xml.Flow;
         for (let nodeType in flowXML) {
             let nodes = flowXML[nodeType];
             if (flowMetadata.includes(nodeType)) {
-                let metadataNode = new FlowMetadata(
-                    nodeType,
-                    flowXML[nodeType]
-                );
-                allNodes.push(metadataNode);
+                for (let node of nodes) {
+                    allNodes.push(new FlowMetadata(
+                        nodeType,
+                        node
+                    ));
+                }
             } else if (mergeableVariables.includes(nodeType)) {
                 for (let node of nodes) {
                     allNodes.push(
                         new FlowVariable(node.name, nodeType, node)
                     );
                 }
-            } else if (nodeType === nameSpaceSymbol) {
-                continue;
             } else {
                 for (let node of nodes) {
                     allNodes.push(

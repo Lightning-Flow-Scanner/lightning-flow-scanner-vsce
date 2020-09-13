@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/commands/CleanFlowCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/CleanFlowCommand.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/commands/MergeFlowsCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/MergeFlowsCommand.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/libs/RenameFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/RenameFlow.ts" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="b78626fd-b1a6-4375-af95-0c644d6430cd" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1hItLNPdnJdSmehahsBtAJf3Q1X" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;JSON&#10;Flow JS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/Models" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.TFVC" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/Models" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/suite/testfiles" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.compile">
+    <configuration default="true" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="compile" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="compile" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="watch" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.watch" />
+      <item itemvalue="npm.test" />
+      <item itemvalue="npm.compile" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="" />
+      <created>1599710376252</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1599710376252</updated>
+      <workItem from="1599710377537" duration="4432000" />
+      <workItem from="1599747434034" duration="224000" />
+      <workItem from="1599869126241" duration="840000" />
+      <workItem from="1599870001036" duration="12685000" />
+      <workItem from="1600011252953" duration="25692000" />
+      <workItem from="1600040355197" duration="6932000" />
+      <workItem from="1600086813848" duration="8276000" />
+      <workItem from="1600122558605" duration="8641000" />
+      <workItem from="1600153956078" duration="13109000" />
+    </task>
+    <task id="LOCAL-00001" summary="add rename demo gif">
+      <created>1599711088350</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1599711088350</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update readme">
+      <created>1599711272932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1599711272932</updated>
+    </task>
+    <task id="LOCAL-00003" summary="resolve path on select">
+      <created>1599719145895</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1599719145895</updated>
+    </task>
+    <task id="LOCAL-00004" summary="normalize instead of resolve">
+      <created>1599720639852</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1599720639852</updated>
+    </task>
+    <task id="LOCAL-00005" summary="windows quickfix">
+      <created>1599869860402</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1599869860403</updated>
+    </task>
+    <task id="LOCAL-00006" summary="initial commit">
+      <created>1599870389932</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1599870389932</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update readme">
+      <created>1599870444513</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1599870444513</updated>
+    </task>
+    <task id="LOCAL-00008" summary="preprocessing happens on flow creation when any label is present">
+      <created>1600012362288</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600012362288</updated>
+    </task>
+    <task id="LOCAL-00009" summary="initial version">
+      <created>1600012529867</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600012529867</updated>
+    </task>
+    <task id="LOCAL-00010" summary="initial version">
+      <created>1600012864364</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1600012864364</updated>
+    </task>
+    <task id="LOCAL-00011" summary="initial version">
+      <created>1600012911045</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1600012911045</updated>
+    </task>
+    <task id="LOCAL-00012" summary="initial version">
+      <created>1600016017704</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1600016017704</updated>
+    </task>
+    <task id="LOCAL-00013" summary="initial version">
+      <created>1600016098999</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1600016098999</updated>
+    </task>
+    <task id="LOCAL-00014" summary="rm interface">
+      <created>1600016499763</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1600016499763</updated>
+    </task>
+    <task id="LOCAL-00015" summary="initial version">
+      <created>1600016600015</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1600016600015</updated>
+    </task>
+    <task id="LOCAL-00016" summary="rm unused import">
+      <created>1600016795667</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1600016795667</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update readme">
+      <created>1600018535406</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1600018535406</updated>
+    </task>
+    <task id="LOCAL-00018" summary="update readme">
+      <created>1600018685684</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1600018685684</updated>
+    </task>
+    <task id="LOCAL-00019" summary="initial version">
+      <created>1600018905564</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1600018905564</updated>
+    </task>
+    <task id="LOCAL-00020" summary="initial version">
+      <created>1600019436428</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1600019436428</updated>
+    </task>
+    <task id="LOCAL-00021" summary="first version">
+      <created>1600019588731</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1600019588731</updated>
+    </task>
+    <task id="LOCAL-00022" summary="delete instead of skip">
+      <created>1600022426717</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1600022426717</updated>
+    </task>
+    <task id="LOCAL-00023" summary="cu">
+      <created>1600023131110</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1600023131110</updated>
+    </task>
+    <task id="LOCAL-00024" summary="add clean flow">
+      <created>1600040096007</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1600040096007</updated>
+    </task>
+    <task id="LOCAL-00025" summary="add clean flow">
+      <created>1600047296459</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1600047296459</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add workspace">
+      <created>1600087011790</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1600087011790</updated>
+    </task>
+    <task id="LOCAL-00027" summary="clean flow tests">
+      <created>1600091073570</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1600091073570</updated>
+    </task>
+    <task id="LOCAL-00028" summary="implement build and save class">
+      <created>1600096507110</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1600096507110</updated>
+    </task>
+    <task id="LOCAL-00029" summary="build flow metadata">
+      <created>1600134069278</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1600134069278</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix xml structure">
+      <created>1600161435945</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1600161435945</updated>
+    </task>
+    <task id="LOCAL-00031" summary="update name on name set when saving flow">
+      <created>1600162459954</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1600162459954</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fix rename flow">
+      <created>1600164145173</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1600164145173</updated>
+    </task>
+    <task id="LOCAL-00033" summary="implement clean flow in merge flows">
+      <created>1600168300351</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1600168300351</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix rename">
+      <created>1600170163622</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1600170163622</updated>
+    </task>
+    <task id="LOCAL-00035" summary="implement cleanflow in merge flows">
+      <created>1600172173957</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1600172173957</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add rename demo gif" />
+    <MESSAGE value="resolve path on select" />
+    <MESSAGE value="normalize instead of resolve" />
+    <MESSAGE value="windows quickfix" />
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="preprocessing happens on flow creation when any label is present" />
+    <MESSAGE value="rm interface" />
+    <MESSAGE value="rm unused import" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="initial version" />
+    <MESSAGE value="first version" />
+    <MESSAGE value="delete instead of skip" />
+    <MESSAGE value="cu" />
+    <MESSAGE value="add clean flow" />
+    <MESSAGE value="add workspace" />
+    <MESSAGE value="clean flow tests" />
+    <MESSAGE value="implement build and save class" />
+    <MESSAGE value="build flow metadata" />
+    <MESSAGE value="fix xml structure" />
+    <MESSAGE value="update name on name set when saving flow" />
+    <MESSAGE value="fix rename flow" />
+    <MESSAGE value="implement clean flow in merge flows" />
+    <MESSAGE value="fix rename" />
+    <MESSAGE value="implement cleanflow in merge flows" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement cleanflow in merge flows" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/out/test/suite/mergeFlows_decision_fullmerge_inverse.test.js</url>
+          <line>58</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/commands/CleanFlowCommand.ts</url>
+          <line>21</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
