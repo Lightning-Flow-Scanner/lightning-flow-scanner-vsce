@@ -6,7 +6,7 @@ import * as vscode from "vscode";
 
 export class CleanFlow {
 
-    public execute(flow) {
+    public execute(flow: Flow) {
         const flowNodes = flow.nodes();
         const flowElements: FlowElement[] = flowNodes.filter(node => node instanceof FlowElement);
         const flowMetadata: FlowMetadata[] = flowNodes.filter(node => node instanceof FlowMetadata);
@@ -22,6 +22,7 @@ export class CleanFlow {
             }
         }
         const flowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && processedVariableReferences.includes(node.name));
+        const unusedFlowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && unusedVariableReferences.includes(node.name));
         flowString = null;
 
         let indexesToProcess = [this.findStart(flowElements)];
@@ -72,14 +73,15 @@ export class CleanFlow {
             }
         }
 
-        //todo move
-        vscode.window.showInformationMessage(`${unconnectedElementIndexes.length} Elements and ${unusedVariableReferences.length} Variables have been removed as they were not being used.`);
+        //todo move up
+        // vscode.window.showInformationMessage(`${unconnectedElementIndexes.length} Elements and ${unusedVariableReferences.length} Variables have been removed as they were not being used.`);
 
         const cleanedFlow = Object.assign({}, flow);
         cleanedFlow.flowVariables = flowVariables;
-        cleanedFlow.flowMetadata = flowVariables;
-        cleanedFlow.flowElements = flowVariables;
+        cleanedFlow.flowMetadata = flowMetadata;
+        cleanedFlow.flowElements = processedElements;
         cleanedFlow.unconnectElements = unconnectedElements;
+        cleanedFlow.unusedVariables = unusedFlowVariables;
         return cleanedFlow;
     }
 

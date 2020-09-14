@@ -23,6 +23,8 @@ describe("When there are any unconnected nodes",async function () {
         let result = new CleanFlow().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(result.xmldata.Flow.assignments.length,2);
+        assert.strictEqual(result.flowElements.length,6);
+        assert.strictEqual(result.flowVariables.length,3);
+        assert.strictEqual(result.unusedVariables.length,1);
     });
 });

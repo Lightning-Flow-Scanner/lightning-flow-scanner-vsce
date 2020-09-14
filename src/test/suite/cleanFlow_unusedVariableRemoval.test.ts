@@ -23,6 +23,7 @@ describe("When there are any unused variables",async function () {
         let result = new CleanFlow().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(result.xmldata.Flow.variables.length,3);
+        assert.strictEqual(result.flowVariables.length,3);
+        assert.strictEqual(result.unusedVariables.length,2);
     });
 });

@@ -1,28 +1,35 @@
 import * as vscode from "vscode";
+import Flow = require("../Models/Flow");
+import FlowElement = require("../Models/FlowElement");
+import FlowMetadata = require("../Models/FlowMetadata");
+import FlowVariable = require("../Models/FlowVariable");
 
 export class BuildNewFlow {
 
-
-    constructor(){
+    constructor() {
 
     }
 
-    public async execute(flow) {
+    public execute(flow: Flow) {
         const newFlow = Object.assign({}, flow);
-        newFlow.processeddata = {'Flow': this.buildFlowJSON([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements])};
+        newFlow.processeddata = this.buildFlow([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements]);
+        return newFlow;
     }
 
-
-    private buildFlowJSON(nodesToMerge) {
-        let flowJson = {};
-        for (let node of nodesToMerge.filter(node => node instanceof FlowElement || node instanceof FlowVariable)) {
-            if (flowJson[node.subtype] !== undefined) {
-                flowJson[node.subtype].push(node.element);
-            } else {
-                flowJson[node.subtype] = [node.element];
-            }
+    private buildFlow(nodesToMerge) {
+        let res = {};
+        for (const nodeToMerge of nodesToMerge) {
+            let subtype = nodeToMerge.subtype;
+            const nodesOfType = nodesToMerge.filter(node => subtype === node.subtype);
+            res = this.convertFlowNodes(res, nodesOfType, subtype);
         }
-        return flowJson;
+        return {'Flow': res};
     }
+
+    private convertFlowNodes(obj, nodesToMerge, key) {
+        obj[key] = nodesToMerge;
+        return obj;
+    };
+
 
 }

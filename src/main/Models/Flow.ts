@@ -9,6 +9,12 @@ export = class Flow{
     public path:string;
     public flownumber:number;
     public xmldata:JSON;
+    public flowVariables;
+    public flowMetadata;
+    public flowElements;
+    public unconnectElements;
+    public unusedVariables;
+    public processeddata;
 
     constructor(args){
 
