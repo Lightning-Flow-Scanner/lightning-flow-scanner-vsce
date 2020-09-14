@@ -1,28 +1,18 @@
 import * as vscode from "vscode";
 import { SelectAFlow } from "../libs/SelectAFlow";
 import { RenameFlow } from "../libs/RenameFlow";
+import { BaseCommand } from "./BaseCommand";
 
-export class RenameFlowCommand {
-
-  private rootPath;
+export class RenameFlowCommand extends BaseCommand{
 
   constructor(
   ) {
-    this.rootPath = this.getRootPath();
+    super();
   }
 
   public async execute() {
-    const selectedFlow = await new SelectAFlow('Select a Flow to rename:').execute(this.rootPath);
+    const selectedFlow = await new SelectAFlow('Select a Flow to rename:', false).execute(this.getRootPath());
     const renamedFlow = await new RenameFlow().execute(this.rootPath, selectedFlow);
-  }
-
-  private getRootPath() {
-    if (!vscode.workspace.getWorkspaceFolder) {
-      vscode.window.showErrorMessage("Open a Project Folder first!");
-      return undefined;
-    } else {
-      return vscode.workspace.getWorkspaceFolder;
-    }
   }
 
 }

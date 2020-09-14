@@ -2,16 +2,18 @@ import * as fs from "mz/fs";
 import * as vscode from "vscode";
 import { XMLParser } from "./XMLParser";
 import Flow = require("../Models/Flow");
+import {CleanFlow} from "./CleanFlow";
+
 //todo use path
 
 export class SelectAFlow {
 
     private message;
+    private preprocess = false;
 
-    constructor(message){
-        if(message){
+    constructor(message, preprocess){
             this.message = message;
-        }
+            this.preprocess = preprocess;
     }
 
     public async execute(rootPath: vscode.Uri | undefined) {
@@ -35,12 +37,22 @@ export class SelectAFlow {
         }
         const parsedContent = await new XMLParser().execute(await fs.readFile(tp));
 
-        return new Flow(
-            {
-                'label': parsedContent.Flow.label,
-                'path': tp,
-                'xmldata' : parsedContent
-            }
-        )
+        if(this.preprocess){
+            return new CleanFlow().execute(new Flow(
+                {
+                    'label': parsedContent.Flow.label,
+                    'path': tp,
+                    'xmldata' : parsedContent
+                }
+            ));
+        } else {
+            return new Flow(
+                {
+                    'label': parsedContent.Flow.label,
+                    'path': tp,
+                    'xmldata' : parsedContent
+                }
+            );
+        }
     }
 }

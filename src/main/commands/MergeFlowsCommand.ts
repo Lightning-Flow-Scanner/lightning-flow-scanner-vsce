@@ -3,27 +3,20 @@ import {MergeFlows} from "../libs/MergeFlows";
 import * as vscode from "vscode";
 import {SelectAFlow} from "../libs/SelectAFlow";
 import {RenameFlow} from "../libs/RenameFlow";
+import { BaseCommand } from "./BaseCommand";
 
-export class MergeFlowsCommand {
+export class MergeFlowsCommand extends BaseCommand{
 
-    private readonly rootPath: undefined | vscode.WorkspaceFolder;
+    private rootPath;
 
     constructor() {
-        this.rootPath = this.getRootPath();
-    }
-
-    private getRootPath() {
-        if (!vscode.workspace.getWorkspaceFolder) {
-            vscode.window.showErrorMessage("Open a Project Folder first!");
-            return undefined;
-        } else {
-            return vscode.workspace.getWorkspaceFolder;
-        }
+        super();
     }
 
     public async execute() {
-        const aFlow = await new SelectAFlow('Select a Flow').execute(this.rootPath);
-        const aSecondFlow = await new SelectAFlow('Select another Flow').execute(this.rootPath);
+        this.rootPath = this.getRootPath();
+        const aFlow = await new SelectAFlow('Select a Flow', true).execute(this.rootPath);
+        const aSecondFlow = await new SelectAFlow('Select another Flow', true).execute(this.rootPath);
 
         aFlow.flownumber = 1;
         aSecondFlow.flownumber = 2;

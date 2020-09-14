@@ -21,6 +21,7 @@ export class MergeFlows {
 
         const flowElements = await this.processFlowElements(xmlNodes.filter(node => node instanceof FlowElement));
 
+        //todo replace by build new flow
         return new Flow({
             label: "",
             path: "",

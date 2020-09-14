@@ -15,9 +15,7 @@ export class CleanFlow {
         let unusedVariableReferences = [];
         let processedVariableReferences = [];
         for (const variableName of flowNodes.filter(node => node instanceof FlowVariable).map(variable => variable.name)) {
-            const indexes = [...flowString.matchAll(new RegExp(variableName, 'gi'))].map(a => a.index);
-            console.log(indexes);
-            if (indexes.length === 1) {
+            if ([...flowString.matchAll(new RegExp(variableName, 'gi'))].map(a => a.index).length === 1) {
                 unusedVariableReferences.push(variableName);
             } else {
                 processedVariableReferences.push(variableName);
@@ -58,45 +56,37 @@ export class CleanFlow {
                 for (const index of flowElements.keys()) {
                     if (!processedElementIndexes.includes(index)) {
                         unconnectedElementIndexes.push(index);
+                        unconnectedElementIndexes.push(index);
                     }
                 }
             }
         } while ((processedElementIndexes.length + unconnectedElementIndexes.length) < flowElements.length);
+
         const processedElements = [];
+        const unconnectedElements = [];
         for (const [index, element] of flowElements.entries()) {
             if (processedElementIndexes.includes(index)) {
                 processedElements.push(element);
+            } else if(unconnectedElementIndexes.includes(index)){
+                unconnectedElements.push(element);
             }
         }
 
-        vscode.window.showInformationMessage(`A total of ${unconnectedElementIndexes.length} Elements and ${unusedVariableReferences.length} Variables were unused and have been removed`);
-        return new Flow(
-            {
-                'label': flow.label,
-                'path': flow.path,
-                'xmldata': {
-                    'Flow': this.buildFlowJSON([...flowMetadata, ...flowVariables, ...processedElements])
-                },
-            }
-        );
+        //todo move
+        vscode.window.showInformationMessage(`${unconnectedElementIndexes.length} Elements and ${unusedVariableReferences.length} Variables have been removed as they were not being used.`);
+
+        const cleanedFlow = Object.assign({}, flow);
+        cleanedFlow.flowVariables = flowVariables;
+        cleanedFlow.flowMetadata = flowVariables;
+        cleanedFlow.flowElements = flowVariables;
+        cleanedFlow.unconnectElements = unconnectedElements;
+        return cleanedFlow;
     }
 
     private findStart(nodes) {
         return nodes.findIndex((n) => {
             return n.subtype === "start";
         });
-    }
-
-    private buildFlowJSON(nodesToMerge) {
-        let flowJson = {};
-        for (let node of nodesToMerge) {
-            if (flowJson[node.subtype] !== undefined) {
-                flowJson[node.subtype].push(node.element);
-            } else {
-                flowJson[node.subtype] = [node.element];
-            }
-        }
-        return flowJson;
     }
 
 }

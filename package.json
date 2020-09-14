@@ -17,7 +17,8 @@
 	],
 	"activationEvents": [
 		"onCommand:flowcontrol.merge",
-		"onCommand:flowcontrol.rename"
+		"onCommand:flowcontrol.rename",
+		"onCommand:flowcontrol.clean"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -29,6 +30,10 @@
 			{
 				"command": "flowcontrol.rename",
 				"title": "Rename a Flow"
+			},
+			{
+				"command": "flowcontrol.clean",
+				"title": "Clean a Flow"
 			}
 		]
 	},
