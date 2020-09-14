@@ -14,7 +14,7 @@ export = class Flow{
     public flowElements;
     public unconnectElements;
     public unusedVariables;
-    public processeddata;
+    public processedData;
 
     constructor(args){
 
@@ -44,11 +44,13 @@ export = class Flow{
         for (let nodeType in flowXML) {
             let nodes = flowXML[nodeType];
             if (flowMetadata.includes(nodeType)) {
-                let metadataNode = new FlowMetadata(
-                    nodeType,
-                    flowXML[nodeType]
-                );
-                allNodes.push(metadataNode);
+                if(nodeType !== "label" && nodeType !=="interviewLabel" && nodeType !== "status"){
+                    let metadataNode = new FlowMetadata(
+                        nodeType,
+                        flowXML[nodeType]
+                    );
+                    allNodes.push(metadataNode);
+                }
             } else if (mergeableVariables.includes(nodeType)) {
                 for (let node of nodes) {
                     allNodes.push(

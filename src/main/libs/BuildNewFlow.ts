@@ -4,6 +4,9 @@ import FlowElement = require("../Models/FlowElement");
 import FlowMetadata = require("../Models/FlowMetadata");
 import FlowVariable = require("../Models/FlowVariable");
 
+const xml2js = require("xml2js");
+import * as fs from "mz/fs";
+
 export class BuildNewFlow {
 
     constructor() {
@@ -12,7 +15,8 @@ export class BuildNewFlow {
 
     public execute(flow: Flow) {
         const newFlow = Object.assign({}, flow);
-        newFlow.processeddata = this.buildFlow([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements]);
+        newFlow.processedData = this.buildFlow([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements]);
+        // newFlow.processedData = this.buildFlow([...newFlow.flowVariables, ...newFlow.flowElements]);
         return newFlow;
     }
 
@@ -26,10 +30,9 @@ export class BuildNewFlow {
         return {'Flow': res};
     }
 
-    private convertFlowNodes(obj, nodesToMerge, key) {
-        obj[key] = nodesToMerge;
+    private convertFlowNodes(obj, nodes, key) {
+        obj[key] = nodes.map(node => node.element);
         return obj;
     };
-
 
 }

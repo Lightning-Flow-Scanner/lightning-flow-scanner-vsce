@@ -73,9 +73,6 @@ export class CleanFlow {
             }
         }
 
-        //todo move up
-        // vscode.window.showInformationMessage(`${unconnectedElementIndexes.length} Elements and ${unusedVariableReferences.length} Variables have been removed as they were not being used.`);
-
         const cleanedFlow = Object.assign({}, flow);
         cleanedFlow.flowVariables = flowVariables;
         cleanedFlow.flowMetadata = flowMetadata;
