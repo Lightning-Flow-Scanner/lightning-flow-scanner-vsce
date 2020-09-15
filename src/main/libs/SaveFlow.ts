@@ -1,20 +1,20 @@
 import * as vscode from "vscode";
 import * as fs from "mz/fs";
 import Flow = require("../Models/Flow");
+
 const xml2js = require("xml2js");
 
 export class SaveFlow {
 
     private workspacePath;
 
-    constructor(workspacePath: vscode.Uri){
+    constructor(workspacePath: vscode.Uri) {
         this.workspacePath = workspacePath;
     }
 
     public async execute(flow: Flow) {
 
         // todo use flow path to overwrite by default
-
         const saveResult = await
             vscode.window.showSaveDialog({
                 defaultUri: this.workspacePath,
@@ -22,7 +22,6 @@ export class SaveFlow {
                     'Flow': ['.flow-meta']
                 }
             });
-
         let splitPath = saveResult?.path.split("/");
         let setPath = splitPath?.pop();
         let index;
@@ -33,24 +32,17 @@ export class SaveFlow {
         }
         const chosenName = setPath.slice(0, index);
         flow.path = splitPath.join("/") + "/" + chosenName + '.flow-meta.xml';
-        // let flowMetadata = flow.processedData.Flow._ ? flow.processedData.Flow._ : flow.processedData.Flow;
+        flow.processedData.Flow.status = "Draft";
+        flow.processedData.Flow.label = chosenName;
+        flow.processedData.Flow.interviewLabel = chosenName + ' {!$Flow.CurrentDateTime}';
 
-        // todo fix name
-        // const flowStatusses = flow.processedData.Flow.filter(node => "status" === node.subtype);
-        // let newStatus = Object.assign({}, flowStatusses[0]);
-        // newStatus.element = ["Draft"];
-        // result.push(newStatus);
-
-
-        // flow.processedData.Flow['label'] = [chosenName];
-        // flowMetadata.interviewLabel = chosenName + ' {!$Flow.CurrentDateTime}';
         return await this.writeFlow(flow);
     }
 
     private async writeFlow(flow) {
         const xml = new xml2js.Builder().buildObject(flow.processedData);
         let path = flow.path;
-        if(path.startsWith("/C:")){
+        if (path.startsWith("/C:")) {
             path = path.substring(3, path.length);
             path = path.replace("..", ".");
         }
