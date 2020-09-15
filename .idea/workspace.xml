@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/libs/SaveFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/SaveFlow.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.compile">
+  <component name="RunManager" selected="npm.test">
     <configuration default="true" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -133,7 +134,7 @@
       <workItem from="1600040355197" duration="6932000" />
       <workItem from="1600086813848" duration="8276000" />
       <workItem from="1600122558605" duration="8641000" />
-      <workItem from="1600153956078" duration="3689000" />
+      <workItem from="1600153956078" duration="5122000" />
     </task>
     <task id="LOCAL-00001" summary="add rename demo gif">
       <created>1599711088350</created>
@@ -345,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600161435945</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="update name on name set when saving flow">
+      <created>1600162459954</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1600162459954</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +402,8 @@
     <MESSAGE value="implement build and save class" />
     <MESSAGE value="build flow metadata" />
     <MESSAGE value="fix xml structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix xml structure" />
+    <MESSAGE value="update name on name set when saving flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="update name on name set when saving flow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -32,10 +32,8 @@ export class SaveFlow {
         }
         const chosenName = setPath.slice(0, index);
         flow.path = splitPath.join("/") + "/" + chosenName + '.flow-meta.xml';
-        flow.processedData.Flow.status = "Draft";
         flow.processedData.Flow.label = chosenName;
         flow.processedData.Flow.interviewLabel = chosenName + ' {!$Flow.CurrentDateTime}';
-
         return await this.writeFlow(flow);
     }
 
