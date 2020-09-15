@@ -29,8 +29,7 @@ export = class Flow {
 
     private preProcessFlowNodes(xml) {
         const mergeableVariables = ["variables", "constants"];
-        const flowMetadata = [
-            "description",
+        const flowMetadata = ["description",
             "processMetadataValues",
             "processType",
             "interviewLabel",
@@ -43,11 +42,12 @@ export = class Flow {
         for (let nodeType in flowXML) {
             let nodes = flowXML[nodeType];
             if (flowMetadata.includes(nodeType)) {
-                let metadataNode = new FlowMetadata(
-                    nodeType,
-                    flowXML[nodeType]
-                );
-                allNodes.push(metadataNode);
+                for (let node of nodes) {
+                    allNodes.push(new FlowMetadata(
+                        nodeType,
+                        node
+                    ));
+                }
             } else if (mergeableVariables.includes(nodeType)) {
                 for (let node of nodes) {
                     allNodes.push(

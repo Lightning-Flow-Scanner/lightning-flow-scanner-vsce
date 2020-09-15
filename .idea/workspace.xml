@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="add clean flow">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="implement build and save class">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Models/Flow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Models/Flow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/libs/BuildNewFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/BuildNewFlow.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +40,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JSON&#10;Flow JS" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT&#10;JSON&#10;Flow JS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/Models" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -48,6 +50,9 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/Models" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/suite/testfiles" />
     </key>
@@ -127,7 +132,9 @@
       <workItem from="1599870001036" duration="12685000" />
       <workItem from="1600011252953" duration="25692000" />
       <workItem from="1600040355197" duration="6932000" />
-      <workItem from="1600086813848" duration="186000" />
+      <workItem from="1600086813848" duration="8276000" />
+      <workItem from="1600122558605" duration="8641000" />
+      <workItem from="1600153956078" duration="2766000" />
     </task>
     <task id="LOCAL-00001" summary="add rename demo gif">
       <created>1599711088350</created>
@@ -304,11 +311,49 @@
       <option name="project" value="LOCAL" />
       <updated>1600047296459</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add workspace">
+      <created>1600087011790</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1600087011790</updated>
+    </task>
+    <task id="LOCAL-00027" summary="clean flow tests">
+      <created>1600091073570</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1600091073570</updated>
+    </task>
+    <task id="LOCAL-00028" summary="implement build and save class">
+      <created>1600096507110</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1600096507110</updated>
+    </task>
+    <task id="LOCAL-00029" summary="build flow metadata">
+      <created>1600134069278</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1600134069278</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -338,7 +383,11 @@
     <MESSAGE value="delete instead of skip" />
     <MESSAGE value="cu" />
     <MESSAGE value="add clean flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="add clean flow" />
+    <MESSAGE value="add workspace" />
+    <MESSAGE value="clean flow tests" />
+    <MESSAGE value="implement build and save class" />
+    <MESSAGE value="build flow metadata" />
+    <option name="LAST_COMMIT_MESSAGE" value="build flow metadata" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -350,63 +399,53 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/CleanFlow.ts</url>
-          <line>20</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/CleanFlow.ts</url>
-          <line>82</line>
+          <line>80</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/CleanFlow.ts</url>
-          <line>18</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/CleanFlow.ts</url>
-          <line>24</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/test/suite/cleanFlow_unconnectedElementRemoval.test.ts</url>
-          <line>26</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/commands/CleanFlowCommand.ts</url>
-          <line>12</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
           <line>17</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
           <line>18</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
           <line>19</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
           <line>40</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
           <line>44</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
+        <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
           <line>48</line>
           <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/test/suite/cleanFlow_unusedVariableRemoval.test.ts</url>
+          <line>25</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/libs/RenameFlow.ts</url>
+          <line>28</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/Models/Flow.ts</url>
+          <line>64</line>
+          <option name="timeStamp" value="93" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
