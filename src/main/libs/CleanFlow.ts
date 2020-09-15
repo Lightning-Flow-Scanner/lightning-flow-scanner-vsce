@@ -8,9 +8,6 @@ export class CleanFlow {
 
     public execute(flow: Flow) {
         const flowNodes = flow.nodes();
-        const flowElements: FlowElement[] = flowNodes.filter(node => node instanceof FlowElement);
-        const flowMetadata: FlowMetadata[] = flowNodes.filter(node => node instanceof FlowMetadata);
-
         let flowString = JSON.stringify(flow.xmldata);
         let unusedVariableReferences = [];
         let processedVariableReferences = [];
@@ -23,6 +20,8 @@ export class CleanFlow {
         }
         const flowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && processedVariableReferences.includes(node.name));
         const unusedFlowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && unusedVariableReferences.includes(node.name));
+        const flowElements: FlowElement[] = flowNodes.filter(node => node instanceof FlowElement);
+        const flowMetadata: FlowMetadata[] = flowNodes.filter(node => node instanceof FlowMetadata);
         flowString = null;
 
         let indexesToProcess = [this.findStart(flowElements)];

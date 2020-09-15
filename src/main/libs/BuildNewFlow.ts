@@ -15,8 +15,9 @@ export class BuildNewFlow {
 
     public execute(flow: Flow) {
         const newFlow = Object.assign({}, flow);
-        newFlow.processedData = this.buildFlow([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements]);
-        // newFlow.processedData = this.buildFlow([...newFlow.flowVariables, ...newFlow.flowElements]);
+        //todo
+        // newFlow.processedData = this.buildFlow([...newFlow.flowMetadata.filter(node => 'label' === node.subtype), ...newFlow.flowVariables, ...newFlow.flowElements]);
+        newFlow.processedData = this.buildFlow([...newFlow.flowVariables, ...newFlow.flowElements]);
         return newFlow;
     }
 

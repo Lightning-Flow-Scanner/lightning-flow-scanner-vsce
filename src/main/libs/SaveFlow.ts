@@ -14,7 +14,7 @@ export class SaveFlow {
     public async execute(flow: Flow) {
 
         // todo use flow path to overwrite by default
-        
+
         const saveResult = await
             vscode.window.showSaveDialog({
                 defaultUri: this.workspacePath,
@@ -31,13 +31,18 @@ export class SaveFlow {
         } else if (setPath.includes('.flow-meta')) {
             index = setPath.indexOf('.flow-meta');
         }
-        const chosenName = setPath.slice(0, index) + "";
+        const chosenName = setPath.slice(0, index);
         flow.path = splitPath.join("/") + "/" + chosenName + '.flow-meta.xml';
-
-        let flowMetadata = flow.processedData.Flow._ ? flow.processedData.Flow._ : flow.processedData.Flow;
+        // let flowMetadata = flow.processedData.Flow._ ? flow.processedData.Flow._ : flow.processedData.Flow;
 
         // todo fix name
-        // flowMetadata.label = chosenName;
+        // const flowStatusses = flow.processedData.Flow.filter(node => "status" === node.subtype);
+        // let newStatus = Object.assign({}, flowStatusses[0]);
+        // newStatus.element = ["Draft"];
+        // result.push(newStatus);
+
+
+        // flow.processedData.Flow['label'] = [chosenName];
         // flowMetadata.interviewLabel = chosenName + ' {!$Flow.CurrentDateTime}';
         return await this.writeFlow(flow);
     }
