@@ -4,6 +4,8 @@ import * as vscode from "vscode";
 import {SelectAFlow} from "../libs/SelectAFlow";
 import {RenameFlow} from "../libs/RenameFlow";
 import { BaseCommand } from "./BaseCommand";
+import {CleanFlow} from "../libs/CleanFlow";
+import {SaveFlow} from "../libs/SaveFlow";
 
 export class MergeFlowsCommand extends BaseCommand{
 
@@ -15,8 +17,8 @@ export class MergeFlowsCommand extends BaseCommand{
 
     public async execute() {
         this.rootPath = this.getRootPath();
-        const aFlow = await new SelectAFlow('Select a Flow', true).execute(this.rootPath);
-        const aSecondFlow = await new SelectAFlow('Select another Flow', true).execute(this.rootPath);
+        const aFlow = new CleanFlow().execute(await new SelectAFlow('Select a Flow').execute(this.rootPath));
+        const aSecondFlow = new CleanFlow().execute(await new SelectAFlow('Select another Flow').execute(this.rootPath));
 
         aFlow.flownumber = 1;
         aSecondFlow.flownumber = 2;
@@ -29,7 +31,7 @@ export class MergeFlowsCommand extends BaseCommand{
             [aFlow, aSecondFlow],
             selectedFlowNumber
         );
-        const renamedFlow = await new RenameFlow().execute(this.rootPath, mergedFlow);
+        const renamedFlow = await new SaveFlow(this.rootPath).execute(mergedFlow);
     }
 
     private async chooseStartingFlow(flows) {
