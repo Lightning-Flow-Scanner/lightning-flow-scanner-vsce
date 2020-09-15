@@ -3,6 +3,7 @@ import FlowVariable = require("../Models/FlowVariable");
 import FlowElement = require("../Models/FlowElement");
 import Flow = require("../Models/Flow");
 import * as vscode from "vscode";
+import {BuildNewFlow} from "./BuildNewFlow";
 
 export class MergeFlows {
     private runningFlowNumber: number = 1;
@@ -18,23 +19,18 @@ export class MergeFlows {
         const flowMetaData = this.processFlowMetadata(flows);
         const xmlNodes = this.preProcessFlows(flows);
         const flowVariables = this.processVariables(xmlNodes.filter(node => node instanceof FlowVariable));
-
         const flowElements = await this.processFlowElements(xmlNodes.filter(node => node instanceof FlowElement));
 
-        //todo replace by build new flow
-        return new Flow({
+        const newFlow = new Flow({
             label: "",
             path: "",
             detail: "",
-            xmldata: {
-                Flow: {
-                    $: {xmlns: "http://soap.sforce.com/2006/04/metadata"},
-                    _: this.buildFlowJSON(
-                        [...flowMetaData, ...flowVariables, ...flowElements]
-                    ),
-                },
-            },
         });
+        newFlow.flowMetadata = flowMetaData;
+        newFlow.flowElements = flowElements;
+        newFlow.flowVariables = flowVariables;
+
+        return new BuildNewFlow().execute(newFlow);
     }
 
     private preProcessFlows(flows: Flow[]) {
@@ -50,11 +46,6 @@ export class MergeFlows {
     }
 
     private processFlowMetadata(flows : Flow[]) {
-
-        let test = flows[0].flowMetadata.find(node => "processMetadataValues" === node.subtype);
-        test = flows[0].flowMetadata.find(node => "processMetadataValues" === node.subtype).element;
-        test = flows[0].flowMetadata.find(node => "processMetadataValues" === node.subtype).element;
-        test = flows[0].flowMetadata.find(node => "processMetadataValues" === node.subtype).element.value[0].stringValue[0];
 
         const result = [];
         if (

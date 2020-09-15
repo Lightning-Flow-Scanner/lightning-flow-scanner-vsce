@@ -51,7 +51,7 @@ describe("When merging two pre-defined flows that have a common node with a diff
         );
 
         // ASSERT
-        const resultingFlow = mergedFlow.xmldata.Flow._;
+        const resultingFlow = mergedFlow.processedData.Flow;
         assert.strictEqual(resultingFlow.decisions[0].defaultConnector[0].targetReference[0],'count');
         assert.strictEqual(resultingFlow.decisions[0].rules.length, 2);
         const notZeroRule = resultingFlow.decisions[0].rules.find(rule => rule.name[0] === "notzero");

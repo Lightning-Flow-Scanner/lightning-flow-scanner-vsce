@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/libs/RenameFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/RenameFlow.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Models/FlowElement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Models/FlowElement.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/libs/MergeFlows.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/MergeFlows.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge_inverse.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge_inverse.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_noDefaultConnector.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_noDefaultConnector.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_skipmerge.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_skipmerge.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_splitmerge.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_splitmerge.test.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +139,7 @@
       <workItem from="1600040355197" duration="6932000" />
       <workItem from="1600086813848" duration="8276000" />
       <workItem from="1600122558605" duration="8641000" />
-      <workItem from="1600153956078" duration="10495000" />
+      <workItem from="1600153956078" duration="12269000" />
     </task>
     <task id="LOCAL-00001" summary="add rename demo gif">
       <created>1599711088350</created>
@@ -367,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600168300351</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="fix rename">
+      <created>1600170163622</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1600170163622</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -419,95 +431,17 @@
     <MESSAGE value="update name on name set when saving flow" />
     <MESSAGE value="fix rename flow" />
     <MESSAGE value="implement clean flow in merge flows" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement clean flow in merge flows" />
+    <MESSAGE value="fix rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix rename" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/CleanFlow.ts</url>
-          <line>26</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/CleanFlow.ts</url>
-          <line>80</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>48</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/test/suite/cleanFlow_unusedVariableRemoval.test.ts</url>
-          <line>25</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/RenameFlow.ts</url>
-          <line>5</line>
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>19</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>67</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>60</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/out/main/libs/MergeFlows.js</url>
-          <line>56</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/out/main/libs/MergeFlows.js</url>
-          <line>57</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>53</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>54</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="111" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>55</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
-          <line>56</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/libs/MergeFlows.ts</url>
+          <url>file://$PROJECT_DIR$/out/test/suite/mergeFlows_decision_fullmerge_inverse.test.js</url>
           <line>58</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="114" />
+          <option name="timeStamp" value="115" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
