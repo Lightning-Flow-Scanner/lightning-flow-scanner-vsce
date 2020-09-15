@@ -1,5 +1,4 @@
 import Flow = require("../Models/Flow");
-const xml2js = require("xml2js");
 
 export class RenameFlow {
 
