@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="78597d40-db59-46c9-bcbe-2297c92b129d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/commands/MergeFlowsCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/MergeFlowsCommand.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/libs/MergeFlows.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/MergeFlows.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge_inverse.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_fullmerge_inverse.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_noDefaultConnector.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_noDefaultConnector.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_skipmerge.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_skipmerge.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_splitmerge.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/suite/mergeFlows_decision_splitmerge.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/suite/mergeFlows_variableProcessing_merge.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/commands/RenameFlowCommand.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/libs/RenameFlow.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/libs/RenameFlow.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.test">
+  <component name="RunManager" selected="npm.compile">
     <configuration default="true" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -140,7 +134,7 @@
       <workItem from="1600040355197" duration="6932000" />
       <workItem from="1600086813848" duration="8276000" />
       <workItem from="1600122558605" duration="8641000" />
-      <workItem from="1600153956078" duration="9170000" />
+      <workItem from="1600153956078" duration="10495000" />
     </task>
     <task id="LOCAL-00001" summary="add rename demo gif">
       <created>1599711088350</created>
@@ -366,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600164145173</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="implement clean flow in merge flows">
+      <created>1600168300351</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1600168300351</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +418,8 @@
     <MESSAGE value="fix xml structure" />
     <MESSAGE value="update name on name set when saving flow" />
     <MESSAGE value="fix rename flow" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix rename flow" />
+    <MESSAGE value="implement clean flow in merge flows" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement clean flow in merge flows" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -444,7 +446,7 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/main/libs/RenameFlow.ts</url>
-          <line>28</line>
+          <line>5</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
