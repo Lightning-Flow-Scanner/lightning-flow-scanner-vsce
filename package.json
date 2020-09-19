@@ -2,7 +2,7 @@
 	"name": "force-flow-control",
 	"displayName": "Flow Control",
 	"description": "Assists you when working with Salesforce Flows",
-	"version": "1.0.0",
+	"version": "1.4.0",
 	"icon": "resources/images/flowcontrol.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
