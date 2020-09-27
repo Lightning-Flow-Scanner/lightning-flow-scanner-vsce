@@ -8,3 +8,4 @@ docs/**
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md
+azure-pipelines.yml
