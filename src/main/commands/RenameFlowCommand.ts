@@ -13,8 +13,7 @@ export class RenameFlowCommand extends BaseCommand{
   }
 
   public async execute() {
-    const workspacePath = this.getRootPath();
-    const selectedFlow: Flow = await new SelectAFlow('Select a Flow to rename:').execute(workspacePath);
+    const selectedFlow: Flow = await new SelectAFlow('Select a Flow to rename:').execute(this.rootPath);
     const renamedFlow: Flow = new RenameFlow().execute(selectedFlow);
     const result = await new SaveFlow(this.rootPath).execute(renamedFlow);
     if(result && vscode.Uri.parse(renamedFlow.path)){

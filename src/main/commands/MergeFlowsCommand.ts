@@ -9,14 +9,11 @@ import Flow = require("../Models/Flow");
 
 export class MergeFlowsCommand extends BaseCommand{
 
-    private rootPath;
-
     constructor() {
         super();
     }
 
     public async execute() {
-        this.rootPath = this.getRootPath();
         const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select a Flow').execute(this.rootPath));
         const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select another Flow').execute(this.rootPath));
         aFlow.flownumber = 1;
