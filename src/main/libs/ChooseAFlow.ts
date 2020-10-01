@@ -9,7 +9,7 @@ export class ChooseAFlow {
       matchOnDetail: false,
       matchOnDescription: true,
       canPickMany: false,
-      placeHolder: "Which Flow should be used as starting point?",
+      placeHolder: "Which Flow should be used as a starting point?",
     };
   }
 
@@ -26,7 +26,7 @@ export class ChooseAFlow {
     }
     let selection = await vscode.window.showQuickPick(flowDisplayOptions, this.options);
     if (!selection) {
-      vscode.window.showInformationMessage("Which Flow should be used as starting point?");
+      vscode.window.showInformationMessage("Which Flow should be used as a starting point?");
       return;
     }
     return selection.flownumber;

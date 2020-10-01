@@ -2,12 +2,13 @@ import * as fs from "mz/fs";
 import * as vscode from "vscode";
 import {XMLParser} from "./XMLParser";
 import Flow = require("../Models/Flow");
+const path = require('path');
 
 export class SelectAFlow {
 
-    private message;
+    private message: string;
 
-    constructor(message) {
+    constructor(message: string) {
         this.message = message;
     }
 
@@ -25,16 +26,12 @@ export class SelectAFlow {
         return new Flow(await this.parseFlow(selectedFlowFile[0].path));
     }
 
-    private async parseFlow(apath) {
-        let tp = apath;
-        if (tp.startsWith("/C:")) {
-            tp = tp.substring(3, tp.length);
-        }
-        const parsedContent = await new XMLParser().execute(await fs.readFile(tp));
+    private async parseFlow(aPath) {
+        const parsedContent = await new XMLParser().execute(await fs.readFile(path.resolve(aPath)));
         return new Flow(
             {
                 'label': parsedContent.Flow.label,
-                'path': tp,
+                'path': aPath,
                 'xmldata': parsedContent
             }
         );

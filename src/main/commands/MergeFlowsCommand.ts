@@ -26,7 +26,7 @@ export class MergeFlowsCommand extends BaseCommand{
             [aFlow, aSecondFlow],
             selectedFlowNumber
         );
-        const result = await new SaveFlow(this.rootPath).execute(mergedFlow);
+        const result : Boolean = await new SaveFlow().execute(mergedFlow, this.rootPath);
         if(result && vscode.Uri.parse(mergedFlow.path)){
             vscode.workspace.openTextDocument(vscode.Uri.parse(mergedFlow.path)).then(doc => {
                 vscode.window.showTextDocument(doc);
