@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "mz/fs";
 import Flow = require("../Models/Flow");
+import { strict } from "assert";
 const path = require('path');
 const xml2js = require("xml2js");
 
@@ -10,15 +11,19 @@ export class SaveFlow {
         const saveResult = await vscode.window.showSaveDialog({
                 defaultUri: defaultPath,
                 filters: {
-                    'Flow': ['flow-meta.xml']
+                    'Flow': ['.flow-meta.xml']
                 }
         });
-        let baseName = path.basename(saveResult.path, '.xml');
-        baseName = baseName.substr(0, baseName.lastIndexOf('.'));
+        let baseName = path.basename(saveResult?.path, '.xml');
+        let pathToWrite : String | undefined = saveResult?.fsPath;
+        if(baseName.lastIndexOf('.') > -1){
+            baseName = baseName.substr(0, baseName.lastIndexOf('.'));
+        } else {
+            pathToWrite = saveResult?.fsPath.replace(".xml", ".flow-meta.xml");
+        }
         flow.processedData.Flow.label = baseName;
-        flow.path = saveResult.fsPath;
         flow.processedData.Flow.interviewLabel = baseName + ' {!$Flow.CurrentDateTime}';
-        return await this.writeFlow(flow, saveResult.fsPath);
+        return await this.writeFlow(flow, pathToWrite);
     }
 
     private async writeFlow(flow, pathToWrite) {
