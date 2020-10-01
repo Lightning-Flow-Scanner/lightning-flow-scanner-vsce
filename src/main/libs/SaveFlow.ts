@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "mz/fs";
 import Flow = require("../Models/Flow");
-import { strict } from "assert";
 const path = require('path');
 const xml2js = require("xml2js");
 
