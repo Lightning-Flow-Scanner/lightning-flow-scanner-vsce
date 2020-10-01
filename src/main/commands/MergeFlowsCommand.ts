@@ -9,14 +9,11 @@ import Flow = require("../Models/Flow");
 
 export class MergeFlowsCommand extends BaseCommand{
 
-    private rootPath;
-
     constructor() {
         super();
     }
 
     public async execute() {
-        this.rootPath = this.getRootPath();
         const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select a Flow').execute(this.rootPath));
         const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select another Flow').execute(this.rootPath));
         aFlow.flownumber = 1;
@@ -29,7 +26,7 @@ export class MergeFlowsCommand extends BaseCommand{
             [aFlow, aSecondFlow],
             selectedFlowNumber
         );
-        const result = await new SaveFlow(this.rootPath).execute(mergedFlow);
+        const result : Boolean = await new SaveFlow().execute(mergedFlow, this.rootPath);
         if(result && vscode.Uri.parse(mergedFlow.path)){
             vscode.workspace.openTextDocument(vscode.Uri.parse(mergedFlow.path)).then(doc => {
                 vscode.window.showTextDocument(doc);
