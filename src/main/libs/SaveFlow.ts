@@ -10,7 +10,7 @@ export class SaveFlow {
         const saveResult = await vscode.window.showSaveDialog({
                 defaultUri: defaultPath,
                 filters: {
-                    'Flow': ['.flow-meta.xml']
+                    'Flow': ['flow-meta.xml']
                 }
         });
         let baseName = path.basename(saveResult?.path, '.xml');
