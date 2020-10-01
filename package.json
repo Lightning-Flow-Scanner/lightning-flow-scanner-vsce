@@ -1,8 +1,8 @@
 {
 	"name": "force-flow-control",
-	"displayName": "Flow Control",
-	"description": "Assists you when working with Salesforce Flows",
-	"version": "1.4.0",
+	"displayName": "Force Flow Control",
+	"description": "Makes working with Salesforce Flows Metadata a breeze",
+	"version": "1.5.0",
 	"icon": "resources/images/flowcontrol.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
