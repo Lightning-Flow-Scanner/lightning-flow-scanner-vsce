@@ -13,12 +13,12 @@ export class SaveFlow {
                     'Flow': ['flow-meta.xml']
                 }
         });
-        const chosenPath = path.resolve(saveResult.path);
-        const newPath = path.join(path.dirname(chosenPath), path.basename(chosenPath, path.extname(chosenPath)) + '.flow-meta.xml');
-        flow.processedData.Flow.label = path.basename(chosenPath);
-        flow.path = newPath.fsPath;
-        flow.processedData.Flow.interviewLabel = path.basename(chosenPath) + ' {!$Flow.CurrentDateTime}';
-        return await this.writeFlow(flow, newPath);
+        let baseName = path.basename(saveResult.path, '.xml');
+        baseName = baseName.substr(0, baseName.lastIndexOf('.'));
+        flow.processedData.Flow.label = baseName;
+        flow.path = saveResult.fsPath;
+        flow.processedData.Flow.interviewLabel = baseName + ' {!$Flow.CurrentDateTime}';
+        return await this.writeFlow(flow, saveResult.fsPath);
     }
 
     private async writeFlow(flow, pathToWrite) {

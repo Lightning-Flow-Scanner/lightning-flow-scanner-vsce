@@ -19,8 +19,9 @@ export class CleanFlowCommand extends BaseCommand{
         vscode.window.showInformationMessage(`${cleanedFlow.unconnectElements.length} elements and ${cleanedFlow.unusedVariables.length} variables have been removed.`);
         const buildFlow = new BuildNewFlow().execute(cleanedFlow);
         const result: Boolean = await new SaveFlow().execute(buildFlow, this.rootPath);
-        if(result && vscode.Uri.parse(buildFlow.path)){
-            vscode.workspace.openTextDocument(vscode.Uri.parse(buildFlow.path)).then(doc => {
+        if(result){
+            let createdFileUri = vscode.Uri.parse(buildFlow.path);
+            vscode.workspace.openTextDocument(createdFileUri).then(doc => {
                 vscode.window.showTextDocument(doc);
             });
         }

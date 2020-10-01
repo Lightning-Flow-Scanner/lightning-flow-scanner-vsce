@@ -2,6 +2,7 @@ import * as fs from "mz/fs";
 import * as vscode from "vscode";
 import {XMLParser} from "./XMLParser";
 import Flow = require("../Models/Flow");
+import { PathLike } from "mz/fs";
 const path = require('path');
 
 export class SelectAFlow {
@@ -23,11 +24,12 @@ export class SelectAFlow {
                 'Flow': ['flow-meta.xml']
             }
         });
-        return new Flow(await this.parseFlow(selectedFlowFile[0].path));
+        return new Flow(await this.parseFlow(selectedFlowFile[0]));
     }
 
-    private async parseFlow(aPath) {
-        const parsedContent = await new XMLParser().execute(await fs.readFile(path.resolve(aPath)));
+    private async parseFlow(selectedUri: vscode.Uri) {
+        let aPath = path.normalize(selectedUri.fsPath);
+        const parsedContent = await new XMLParser().execute(await fs.readFile(aPath));
         return new Flow(
             {
                 'label': parsedContent.Flow.label,
