@@ -1,13 +1,13 @@
 {
-	"name": "force-flow-control",
-	"displayName": "Force Flow Control",
+	"name": "salesforce-flow-control",
+	"displayName": "Salesforce Flow Control",
 	"description": "Makes working with Salesforce Flows Metadata a breeze",
 	"version": "1.7.0",
-	"icon": "resources/images/flowcontrol.png",
+	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/RubenHalman/Force-Flow-Control.git"
+		"url": "https://github.com/RubenHalman/Salesforce-Flow-Control.git"
 	},
 	"engines": {
 		"vscode": "^1.47.0"
