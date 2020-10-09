@@ -7,7 +7,7 @@
 	"publisher": "ForceFlowControl",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/RubenHalman/Salesforce-Flow-Control.git"
+		"url": "https://github.com/Force-Config-Control/Salesforce-Flow-Control.git"
 	},
 	"engines": {
 		"vscode": "^1.47.0"

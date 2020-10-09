@@ -14,16 +14,16 @@ Open the **Command Palette** and type `flow` to see the list of available comman
 
 Remove unused elements and variables from a Flow.
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Salesforce-Flow-Control/master/docs/demomerge.gif)](https://raw.githubusercontent.com/RubenHalman/Salesforce-Flow-Control/master/docs/democlean.gif)
+![merge flows demo(https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demomerge.gif)](https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/democlean.gif)
 
 ### Merge Flows
 
 Merge two Flows:
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Salesforce-Flow-Control/master/docs/demomerge.gif)](https://raw.githubusercontent.com/RubenHalman/Salesforce-Flow-Control/master/docs/demomerge.gif)
+![merge flows demo(https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demomerge.gif)](https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demomerge.gif)
 
 ### Rename Flow
 
 Rename a Flow:
 
-![rename a flow demo(https://raw.githubusercontent.com/RubenHalman/Salesforce-Flow-Control/master/docs/demorename.gif)](https://raw.githubusercontent.com/RubenHalman/Salesforce-Flow-Control/master/docs/demorename.gif)
+![rename a flow demo(https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demorename.gif)](https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demorename.gif)
