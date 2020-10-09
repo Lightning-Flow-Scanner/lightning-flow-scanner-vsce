@@ -2,7 +2,7 @@
 	"name": "salesforce-flow-control",
 	"displayName": "Salesforce Flow Control",
 	"description": "Makes working with Salesforce Flows Metadata a breeze",
-	"version": "1.8.0",
+	"version": "1.9.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
