@@ -6,6 +6,7 @@ import { BaseCommand } from "./BaseCommand";
 import {CleanFlow} from "../libs/CleanFlow";
 import {SaveFlow} from "../libs/SaveFlow";
 import Flow = require("../Models/Flow");
+const path = require('path');
 
 export class MergeFlowsCommand extends BaseCommand{
 
@@ -14,8 +15,8 @@ export class MergeFlowsCommand extends BaseCommand{
     }
 
     public async execute() {
-        const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select a Flow').execute(this.rootPath));
-        const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select another Flow').execute(this.rootPath));
+        const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select A Flow').execute(this.rootPath));
+        const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select Another Flow').execute(vscode.Uri.parse(path.dirname(aFlow.path))));
         aFlow.flownumber = 1;
         aSecondFlow.flownumber = 2;
         const selectedFlowNumber: number = await this.chooseStartingFlow([
