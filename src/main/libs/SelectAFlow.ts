@@ -8,22 +8,24 @@ export class SelectAFlow {
 
     private message: string;
 
-    constructor(message: string) {
+    constructor(rootPath: vscode.Uri, message: string) {
         this.message = message;
     }
 
-    public async execute(rootPath: vscode.Uri | undefined) {
+    public async execute(flowUri : vscode.Uri) {
         vscode.window.showInformationMessage(this.message);
+
+        // todo add while loop
         const selectedFlowFile = await vscode.window.showOpenDialog({
             canSelectFiles: true,
             canSelectFolders: false,
             canSelectMany: false,
-            defaultUri: rootPath,
+            defaultUri: flowUri,
             filters: {
                 'Flow': ['flow-meta.xml']
             }
         });
-        return new Flow(await this.parseFlow(selectedFlowFile[0]));
+        return this.parseFlow(selectedFlowFile[0]);
     }
 
     private async parseFlow(selectedUri: vscode.Uri) {
@@ -32,7 +34,7 @@ export class SelectAFlow {
         return new Flow(
             {
                 'label': parsedContent.Flow.label,
-                'path': aPath,
+                'uri': selectedUri,
                 'xmldata': parsedContent
             }
         );
