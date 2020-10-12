@@ -23,7 +23,7 @@ export class MergeFlows {
 
         const newFlow = new Flow({
             label: "",
-            path: "",
+            flowUri: undefined,
             detail: "",
         });
         newFlow.flowMetadata = flowMetaData;
@@ -65,7 +65,6 @@ export class MergeFlows {
         let newStatus = Object.assign({}, aStatus);
         newStatus.element = "Draft";
         result.push(newStatus);
-
         for (let nodeType of ["description", "label", "interviewLabel"]) {
             const nodesWithType = [...flows[0].flowMetadata, ...flows[1].flowMetadata].filter(node => nodeType === node.subtype);
             let types = [];

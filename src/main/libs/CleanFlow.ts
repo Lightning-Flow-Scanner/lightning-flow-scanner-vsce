@@ -2,17 +2,16 @@ import Flow = require("../Models/Flow");
 import FlowElement = require("../Models/FlowElement");
 import FlowMetadata = require("../Models/FlowMetadata");
 import FlowVariable = require("../Models/FlowVariable");
-import * as vscode from "vscode";
+import Node = require("../Models/Node");
 
 export class CleanFlow {
 
     public execute(flow: Flow) {
+        let unusedVariableReferences: string[] = [];
+        let processedVariableReferences: string[] = [];
         const flowNodes = flow.nodes();
-        let flowString = JSON.stringify(flow.xmldata);
-        let unusedVariableReferences = [];
-        let processedVariableReferences = [];
         for (const variableName of flowNodes.filter(node => node instanceof FlowVariable).map(variable => variable.name)) {
-            if ([...flowString.matchAll(new RegExp(variableName, 'gi'))].map(a => a.index).length === 1) {
+            if ([...JSON.stringify(flow.xmldata).matchAll(new RegExp(variableName, 'gi'))].map(a => a.index).length === 1) {
                 unusedVariableReferences.push(variableName);
             } else {
                 processedVariableReferences.push(variableName);
@@ -22,17 +21,16 @@ export class CleanFlow {
         const unusedFlowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && unusedVariableReferences.includes(node.name));
         const flowElements: FlowElement[] = flowNodes.filter(node => node instanceof FlowElement);
         const flowMetadata: FlowMetadata[] = flowNodes.filter(node => node instanceof FlowMetadata);
-        flowString = null;
 
         let indexesToProcess = [this.findStart(flowElements)];
-        const processedElementIndexes = [];
-        const unconnectedElementIndexes = [];
+        const processedElementIndexes: number[] = [];
+        const unconnectedElementIndexes: number[]  = [];
         do {
             indexesToProcess = indexesToProcess.filter(index => !processedElementIndexes.includes(index));
             if (indexesToProcess.length > 0) {
                 for (const [index, element] of flowElements.entries()) {
                     if (indexesToProcess.includes(index)) {
-                        let references = [];
+                        let references: string[] = [];
                         if (element.connectors && element.connectors.length > 0) {
                             for (let connector of element.connectors) {
                                 if (connector.reference) {
@@ -81,7 +79,7 @@ export class CleanFlow {
         return cleanedFlow;
     }
 
-    private findStart(nodes) {
+    private findStart(nodes: Node[]) {
         return nodes.findIndex((n) => {
             return n.subtype === "start";
         });

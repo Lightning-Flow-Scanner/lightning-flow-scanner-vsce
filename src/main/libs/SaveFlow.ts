@@ -6,18 +6,21 @@ const xml2js = require("xml2js");
 
 export class SaveFlow {
 
-    public async execute(flow: Flow, defaultPath: vscode.Uri) {
-        const saveResult = await vscode.window.showSaveDialog({
-                defaultUri: defaultPath,
+    public async execute(flow: Flow, defaultUri: vscode.Uri) {
+        let saveResult;
+        do {
+            saveResult = await vscode.window.showSaveDialog({
+                defaultUri,
                 filters: {
                     'Flow': ['flow-meta.xml']
                 }
         });
+        } while (!saveResult);
         let baseName = path.basename(saveResult?.path, '.xml');
         let pathToWrite : String | undefined = saveResult?.fsPath;
         if(baseName.lastIndexOf('.') > -1){
             baseName = baseName.substr(0, baseName.lastIndexOf('.'));
-        } else {
+        } else if(!baseName.includes("flow-meta")) {
             pathToWrite = saveResult?.fsPath.replace(".xml", ".flow-meta.xml");
         }
         flow.processedData.Flow.label = baseName;

@@ -1,12 +1,14 @@
 import FlowMetadata = require("./FlowMetadata");
 import FlowVariable = require("./FlowVariable");
 import FlowElement = require("./FlowElement");
+import {Uri} from "vscode";
 
 export = class Flow {
 
     public detail: string;
     public label: string;
     public path: string;
+    public flowUri: Uri;
     public flownumber: number;
     public xmldata: JSON;
     public flowVariables;
@@ -17,8 +19,11 @@ export = class Flow {
     public processedData;
 
     constructor(args) {
+        this.flowUri = args.uri;
+        if(args.uri){
+            this.path = args.uri.fsPath;
+        }
         this.label = args.label;
-        this.path = args.path;
         this.detail = args.detail ? args.detail : '';
         this.xmldata = args.xmldata;
     }

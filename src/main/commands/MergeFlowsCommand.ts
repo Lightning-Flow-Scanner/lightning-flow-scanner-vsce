@@ -6,6 +6,7 @@ import { BaseCommand } from "./BaseCommand";
 import {CleanFlow} from "../libs/CleanFlow";
 import {SaveFlow} from "../libs/SaveFlow";
 import Flow = require("../Models/Flow");
+const path = require('path');
 
 export class MergeFlowsCommand extends BaseCommand{
 
@@ -14,8 +15,9 @@ export class MergeFlowsCommand extends BaseCommand{
     }
 
     public async execute() {
-        const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select a Flow').execute(this.rootPath));
-        const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow('Select another Flow').execute(this.rootPath));
+        const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow(this.rootPath, 'Select A Flow').execute(this.rootPath));
+        const basePath = vscode.Uri.file(path.dirname(aFlow.flowUri.path));
+        const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow(this.rootPath, 'Select Another Flow').execute(basePath));
         aFlow.flownumber = 1;
         aSecondFlow.flownumber = 2;
         const selectedFlowNumber: number = await this.chooseStartingFlow([
@@ -26,9 +28,9 @@ export class MergeFlowsCommand extends BaseCommand{
             [aFlow, aSecondFlow],
             selectedFlowNumber
         );
-        const result : Boolean = await new SaveFlow().execute(mergedFlow, this.rootPath);
-        if(result && vscode.Uri.parse(mergedFlow.path)){
-            vscode.workspace.openTextDocument(vscode.Uri.parse(mergedFlow.path)).then(doc => {
+        const result : Boolean = await new SaveFlow().execute(mergedFlow, basePath);
+        if(result && mergedFlow.path){
+            vscode.workspace.openTextDocument(mergedFlow.flowUri).then(doc => {
                 vscode.window.showTextDocument(doc);
             });
         }

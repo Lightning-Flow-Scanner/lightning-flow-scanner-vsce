@@ -2,10 +2,11 @@ import * as vscode from "vscode";
 import { SelectAFlow } from "../libs/SelectAFlow";
 import { RenameFlow } from "../libs/RenameFlow";
 import { BaseCommand } from "./BaseCommand";
-import {SaveFlow} from "../libs/SaveFlow";
+import { SaveFlow } from "../libs/SaveFlow";
 import Flow = require("../Models/Flow");
+const path = require('path');
 
-export class RenameFlowCommand extends BaseCommand{
+export class RenameFlowCommand extends BaseCommand {
 
   constructor(
   ) {
@@ -13,14 +14,15 @@ export class RenameFlowCommand extends BaseCommand{
   }
 
   public async execute() {
-    const selectedFlow: Flow = await new SelectAFlow('Select a Flow to rename:').execute(this.rootPath);
+    const selectedFlow: Flow = await new SelectAFlow(this.rootPath, 'Select a Flow to rename:').execute(this.rootPath);
+    const basePath = vscode.Uri.file(path.dirname(selectedFlow.flowUri.path));
     const renamedFlow: Flow = new RenameFlow().execute(selectedFlow);
-    const result = await new SaveFlow().execute(renamedFlow, this.rootPath);
-    if(result && vscode.Uri.parse(renamedFlow.path)){
+    const result = await new SaveFlow().execute(renamedFlow, basePath);
+    if (result && vscode.Uri.parse(renamedFlow.path)) {
       vscode.workspace.openTextDocument(vscode.Uri.parse(renamedFlow.path)).then(doc => {
-          vscode.window.showTextDocument(doc);
+        vscode.window.showTextDocument(doc);
       });
-  }
+    }
   }
 
 }
