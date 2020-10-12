@@ -1,10 +1,12 @@
-# Run Automated Jobs on Salesforce Flow(s) in Visual Studio Code
+# Run Automated Jobs on Salesforce Flow(s) using Visual Studio Code
 
 ## Introduction
 
 **Force Flow Control** 
-*aims to assist you when you work with Salesforce Flows(force.com platform automation tools) using the Visual Studio Code Editor,
-offering you automated jobs for in example merging or renaming flows and any otherwise time consuming tasks.*
+*Aims to assist you when you work with Salesforce Flows(force.com platform automation tools) using the Visual Studio Code Editor,
+offering you automated jobs for otherwise time consuming tasks, ie: merging or renaming flows.*
+
+*We recommend you combine this tool with SFDX, but it is not a prerequisite for local use.*
 
 ## Using the commands
 
