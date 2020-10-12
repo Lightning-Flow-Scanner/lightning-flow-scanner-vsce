@@ -15,22 +15,23 @@ export class SelectAFlow {
     public async execute(flowUri : vscode.Uri) {
         vscode.window.showInformationMessage(this.message);
 
-        // todo add while loop
-        const selectedFlowFile = await vscode.window.showOpenDialog({
-            canSelectFiles: true,
-            canSelectFolders: false,
-            canSelectMany: false,
-            defaultUri: flowUri,
-            filters: {
-                'Flow': ['flow-meta.xml']
-            }
-        });
+        let selectedFlowFile;
+        do {
+            selectedFlowFile = await vscode.window.showOpenDialog({
+                canSelectFiles: true,
+                canSelectFolders: false,
+                canSelectMany: false,
+                defaultUri: flowUri,
+                filters: {
+                    'Flow': ['flow-meta.xml']
+                }
+            });
+        } while (!selectedFlowFile);
         return this.parseFlow(selectedFlowFile[0]);
     }
 
     private async parseFlow(selectedUri: vscode.Uri) {
-        let aPath = path.normalize(selectedUri.fsPath);
-        const parsedContent = await new XMLParser().execute(await fs.readFile(aPath));
+        const parsedContent = await new XMLParser().execute(await fs.readFile(path.normalize(selectedUri.fsPath)));
         return new Flow(
             {
                 'label': parsedContent.Flow.label,

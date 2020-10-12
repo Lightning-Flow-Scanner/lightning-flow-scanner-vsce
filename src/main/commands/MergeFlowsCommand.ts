@@ -16,7 +16,7 @@ export class MergeFlowsCommand extends BaseCommand{
 
     public async execute() {
         const aFlow: Flow = new CleanFlow().execute(await new SelectAFlow(this.rootPath, 'Select A Flow').execute(this.rootPath));
-        let basePath = vscode.Uri.parse(path.dirname(aFlow.flowUri.fsPath));
+        const basePath = vscode.Uri.file(path.dirname(aFlow.flowUri.path));
         const aSecondFlow: Flow = new CleanFlow().execute(await new SelectAFlow(this.rootPath, 'Select Another Flow').execute(basePath));
         aFlow.flownumber = 1;
         aSecondFlow.flownumber = 2;
