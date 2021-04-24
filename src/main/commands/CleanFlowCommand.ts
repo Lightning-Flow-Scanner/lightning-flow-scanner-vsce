@@ -2,31 +2,44 @@ import {SelectAFlow} from "../libs/SelectAFlow";
 import { BaseCommand } from "./BaseCommand";
 import {BuildNewFlow} from "../libs/BuildNewFlow";
 import { SaveFlow } from "../libs/SaveFlow";
-import {CleanFlow} from "../libs/CleanFlow";
+import {RemoveUnusedElements} from "../libs/RemoveUnusedElements";
+import {RemoveUnusedVariables} from "../libs/RemoveUnusedVariables";
 import * as vscode from "vscode";
-import Flow = require("../Models/Flow");
+import Flow = require("../models/Flow");
+import {Report} from "../panels/Report";
+import {FindFlowMetadata} from "../libs/FindFlowMetadata";
 const path = require('path');
 
 export class CleanFlowCommand extends BaseCommand{
 
-    constructor(
+    constructor(context : vscode.ExtensionContext
     ) {
-        super()
+        super(context)
     }
 
     public async execute() {
-        const selectedFlow: Flow  = await new SelectAFlow(this.rootPath, 'Select a Flow to clean:').execute(this.rootPath);
+        const selectedFlow: Flow = await new SelectAFlow(this.rootPath, 'Select a Flow to clean:').execute(this.rootPath);
         const basePath = vscode.Uri.file(path.dirname(selectedFlow.flowUri.path));
-        const cleanedFlow: Flow  = new CleanFlow().execute(selectedFlow);
-        vscode.window.showInformationMessage(`${cleanedFlow.unconnectElements.length} elements and ${cleanedFlow.unusedVariables.length} variables have been removed.`);
-        const buildFlow = new BuildNewFlow().execute(cleanedFlow);
-        const result: Boolean = await new SaveFlow().execute(buildFlow, basePath);
-        if(result){
-            let createdFileUri = vscode.Uri.parse(buildFlow.path);
-            vscode.workspace.openTextDocument(createdFileUri).then(doc => {
-                vscode.window.showTextDocument(doc);
-            });
-        }
+        const findFlowMetadataResult: Flow = new FindFlowMetadata().execute(selectedFlow);
+        const removeUnusedVariablesResult: Flow  = new RemoveUnusedVariables().execute(findFlowMetadataResult);
+        const removeUnusedElementsResult: Flow  = new RemoveUnusedElements().execute(removeUnusedVariablesResult);
+
+        const buildFlow = new BuildNewFlow().execute(removeUnusedElementsResult);
+
+
+        const test1 = '1';
+        // // vscode.window.showInformationMessage(`${cleanedFlow.unconnectElements.length} elements and ${cleanedFlow.unusedVariables.length} variables are unused.`);
+        //
+        //
+        Report.createOrShow(this.context.extensionUri, buildFlow);
+
+
+        // const result = await new SaveFlow().execute(buildFlow, basePath);
+        // if(result){
+            // vscode.workspace.openTextDocument(vscode.Uri.parse(result)).then(doc => {
+            //     vscode.window.showTextDocument(doc);
+            // });
+        // }
     }
 
 }

@@ -29,3 +29,11 @@ Merge two Flows:
 Rename a Flow:
 
 ![rename a flow demo(https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demorename.gif)](https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demorename.gif)
+
+
+https://help.salesforce.com/articleView?id=sf.flow_prep_bestpractices.htm&type=5
+
+Never hard-code Salesforce IDs.
+    IDs are org-specific, so don’t hard-code new or existing IDs. Instead, let Salesforce create the IDs, and pass them into variables when the flow starts. You can do so, for example, by using merge fields in URL parameters or by using a Get Records element. 
+    
+    

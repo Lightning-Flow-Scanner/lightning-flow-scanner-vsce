@@ -6,8 +6,8 @@ import {ImportMock} from "ts-mock-imports";
 import sinon = require("sinon");
 import main = require("./testfiles/main-example.json");
 import secondary = require("./testfiles/secondary-example.json");
-import Flow = require("../../main/Models/Flow");
-import {CleanFlow} from "../../main/libs/CleanFlow";
+import Flow = require("../../main/models/Flow");
+import {RemoveUnusedElements} from "../../main/libs/RemoveUnusedElements";
 
 describe("When merging two pre-defined flows that have a common node with a different connector, it should return a new flow based on User selection, regardless of the selection order", async function () {
     let mergeFlowsInstance: MergeFlows;
@@ -17,14 +17,14 @@ describe("When merging two pre-defined flows that have a common node with a diff
 
     before("Assume User selection is the count connector in order to link the selected flows", async function () {
         // ARRANGE
-        mainFlow = new CleanFlow().execute(new Flow({
+        mainFlow = new RemoveUnusedElements().execute(new Flow({
             label: 'main',
             path: 'anypath',
             xmldata : main,
             detail: 'anypath'
         }));
         mainFlow.flownumber = 2;
-        secondaryFlow = new CleanFlow().execute(new Flow({
+        secondaryFlow = new RemoveUnusedElements().execute(new Flow({
             label: 'sec',
             path: 'anyotherpath',
             detail: 'anyotherpath',

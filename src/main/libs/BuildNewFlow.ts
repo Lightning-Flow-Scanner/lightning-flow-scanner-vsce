@@ -1,11 +1,4 @@
-import * as vscode from "vscode";
-import Flow = require("../Models/Flow");
-import FlowElement = require("../Models/FlowElement");
-import FlowMetadata = require("../Models/FlowMetadata");
-import FlowVariable = require("../Models/FlowVariable");
-
-const xml2js = require("xml2js");
-import * as fs from "mz/fs";
+import Flow = require("../models/Flow");
 
 export class BuildNewFlow {
 
@@ -14,9 +7,10 @@ export class BuildNewFlow {
     }
 
     public execute(flow: Flow) {
-        const newFlow = Object.assign({}, flow);
-        newFlow.processedData = this.buildFlow([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements]);
-        return newFlow;
+
+        const processedFlow : Flow = new Flow(Object.assign({}, flow));
+        processedFlow.processedData = this.buildFlow([...flow.flowMetadata, ...flow.flowVariables, ...flow.flowElements]);
+        return processedFlow;
     }
 
     private buildFlow(nodesToMerge) {

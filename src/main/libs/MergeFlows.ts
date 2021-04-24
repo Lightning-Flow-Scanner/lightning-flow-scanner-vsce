@@ -1,7 +1,7 @@
-import FlowMetadata = require("../Models/FlowMetadata");
-import FlowVariable = require("../Models/FlowVariable");
-import FlowElement = require("../Models/FlowElement");
-import Flow = require("../Models/Flow");
+import FlowMetadata = require("../models/FlowMetadata");
+import FlowVariable = require("../models/FlowVariable");
+import FlowElement = require("../models/FlowElement");
+import Flow = require("../models/Flow");
 import * as vscode from "vscode";
 import {BuildNewFlow} from "./BuildNewFlow";
 
@@ -36,11 +36,11 @@ export class MergeFlows {
     private preProcessFlows(flows: Flow[]) {
         const mainNodes = [...flows[0].flowElements, ...flows[0].flowVariables];
         mainNodes.forEach(node => {
-            node.flownumber = flows[0].flownumber;
+            node.flowNumber = flows[0].flowNumber;
         });
         const secondaryNodes = [...flows[1].flowElements, ...flows[1].flowVariables];
         secondaryNodes.forEach(node => {
-            node.flownumber = flows[1].flownumber;
+            node.flowNumber = flows[1].flowNumber;
         });
         return [...mainNodes, ...secondaryNodes];
     }
@@ -87,8 +87,8 @@ export class MergeFlows {
         const processedVariableIndexes = [];
 
         do {
-            const variablesFromSelectedFlow = variables.filter(variable => this.runningFlowNumber === variable.flownumber);
-            const variablesFromOtherFlow = variables.filter(variable => this.runningFlowNumber !== variable.flownumber);
+            const variablesFromSelectedFlow = variables.filter(variable => this.runningFlowNumber === variable.flowNumber);
+            const variablesFromOtherFlow = variables.filter(variable => this.runningFlowNumber !== variable.flowNumber);
             for (const aVariable of variablesFromSelectedFlow) {
                 let matchedVariable = variablesFromOtherFlow.find(variable => aVariable.name === variable.name);
                 if (
@@ -133,7 +133,7 @@ export class MergeFlows {
         for(const [index, element] of flowElements.entries()){
             element.index = index;
         }
-        const elementIndexesToMerge = [this.findStart(flowElements.filter(el => this.runningFlowNumber === el.flownumber)).index];
+        const elementIndexesToMerge = [this.findStart(flowElements.filter(el => this.runningFlowNumber === el.flowNumber)).index];
         const processedIndexes = [];
         const result = [];
         do {
@@ -141,11 +141,11 @@ export class MergeFlows {
             if (elementsToProcess.length > 0){
                 for (const element of elementsToProcess){
                     const newElement: FlowElement = new FlowElement(element.name, element.subtype, element.element);
-                    newElement.flownumber = element.flownumber;
-                    if(this.runningFlowNumber !== element.flownumber){
-                            this.runningFlowNumber = element.flownumber;
+                    newElement.flowNumber = element.flowNumber;
+                    if(this.runningFlowNumber !== element.flowNumber){
+                            this.runningFlowNumber = element.flowNumber;
                         }
-                        const matchingElementIndex = flowElements.findIndex(el => el.name === element.name && element.flownumber !== el.flownumber);
+                        const matchingElementIndex = flowElements.findIndex(el => el.name === element.name && element.flowNumber !== el.flowNumber);
                         const matchingElement = flowElements[matchingElementIndex];
                         let resultingConnectorMap = await this.compareConnectors(element, matchingElement);
                         if (resultingConnectorMap.length > 0) {
@@ -160,14 +160,15 @@ export class MergeFlows {
                                 }
                             }
                             newElement.setConnectors(connectorsToProcess);
-                            if(flowElements.filter(el =>  this.runningFlowNumber === el.flownumber && !processedIndexes.includes(el.index) && elementReferencesToMerge.includes(el.name))){
-                                for (let unprocessedElement of flowElements.filter(el =>  this.runningFlowNumber === el.flownumber && !processedIndexes.includes(el.index) && elementReferencesToMerge.includes(el.name))) {
+                            if(flowElements.filter(el =>  this.runningFlowNumber === el.flowNumber && !processedIndexes.includes(el.index) && elementReferencesToMerge.includes(el.name))){
+                                for (let unprocessedElement of flowElements.filter(el =>  this.runningFlowNumber === el.flowNumber && !processedIndexes.includes(el.index) && elementReferencesToMerge.includes(el.name))) {
                                         elementIndexesToMerge.push(unprocessedElement.index);
+                                    // @ts-ignore
                                         elementReferencesToMerge.splice(unprocessedElement.name, 1);
                                 }
                             }
-                            if(flowElements.filter(el =>  this.runningFlowNumber !== el.flownumber && elementReferencesToMerge.includes(el.name))){
-                                for (let unprocessedElement of flowElements.filter(el =>  this.runningFlowNumber !== el.flownumber && elementReferencesToMerge.includes(el.name))) {
+                            if(flowElements.filter(el =>  this.runningFlowNumber !== el.flowNumber && elementReferencesToMerge.includes(el.name))){
+                                for (let unprocessedElement of flowElements.filter(el =>  this.runningFlowNumber !== el.flowNumber && elementReferencesToMerge.includes(el.name))) {
                                     if(!processedIndexes.includes(element.index)) {
                                             elementIndexesToMerge.push(unprocessedElement.index);
                                     }
@@ -195,12 +196,12 @@ export class MergeFlows {
     private async compareConnectors(element, matchingElement) {
         if(element.connectors){
             element.connectors.forEach(connector => {
-                connector.flownumber = element.flownumber;
+                connector.flowNumber = element.flowNumber;
             });
         }
         if(matchingElement && matchingElement.connectors){
             matchingElement.connectors.forEach(connector => {
-                connector.flownumber = matchingElement.flownumber;
+                connector.flowNumber = matchingElement.flowNumber;
             });
         }
 
@@ -211,10 +212,10 @@ export class MergeFlows {
         let result = [];
 
         do {
-            const connectorsToProcess = allConnectors.filter((c) => this.runningFlowNumber === c.flownumber && false === c.processed);
+            const connectorsToProcess = allConnectors.filter((c) => this.runningFlowNumber === c.flowNumber && false === c.processed);
             for (let connector of connectorsToProcess) {
                 let sameConnector;
-                sameConnector = allConnectors.find((c) => connector.alias === c.alias && element.flownumber !== c.flownumber);
+                sameConnector = allConnectors.find((c) => connector.alias === c.alias && element.flowNumber !== c.flowNumber);
                 if (sameConnector && sameConnector.reference === connector.reference) {
                     connector.processed = true;
                     sameConnector.processed = true;
@@ -230,13 +231,13 @@ export class MergeFlows {
                             [
                                 {
                                     label: `${connector.reference}`,
-                                    description: `Resolve using the reference "${connector.reference}" from "${this.getFlowName(connector.flownumber)}" flow.`,
-                                    flownumber: `${connector.flownumber}`,
+                                    description: `Resolve using the reference "${connector.reference}" from "${this.getFlowName(connector.flowNumber)}" flow.`,
+                                    flownumber: `${connector.flowNumber}`,
                                 },
                                 {
                                     label: `${sameConnector.reference}`,
-                                    description: `Resolve using the reference "${sameConnector.reference}" from "${this.getFlowName(sameConnector.flownumber)}" flow.`,
-                                    flownumber: `${sameConnector.flownumber}`,
+                                    description: `Resolve using the reference "${sameConnector.reference}" from "${this.getFlowName(sameConnector.flowNumber)}" flow.`,
+                                    flownumber: `${sameConnector.flowNumber}`,
                                 },
                             ],
                             {
@@ -250,7 +251,7 @@ export class MergeFlows {
                     connector.processed = true;
                     sameConnector.processed = true;
 
-                    selection.flownumber == connector.flownumber
+                    selection.flowNumber == connector.flowNumber
                         ? result.push({reference: connector.reference, connector: connector})
                         : result.push({
                             reference: sameConnector.reference,
@@ -261,9 +262,9 @@ export class MergeFlows {
                     result.push({reference: connector.reference, connector: connector});
                 }
             }
-            if (allConnectors.filter(c => this.runningFlowNumber !== c.flownumber && false === c.processed).length > 0) {
+            if (allConnectors.filter(c => this.runningFlowNumber !== c.flowNumber && false === c.processed).length > 0) {
 
-                for (const connector of allConnectors.filter((c) => this.runningFlowNumber !== c.flownumber && false === c.processed)){
+                for (const connector of allConnectors.filter((c) => this.runningFlowNumber !== c.flowNumber && false === c.processed)){
                     // Handle Additional Nodes By User Selection
                     let selection;
                     do {
@@ -271,8 +272,8 @@ export class MergeFlows {
                             [
                                 {
                                     label: "Merge Nodes",
-                                    description:`Merge connectors at "${element.name}" from "${this.getFlowName(connector.flownumber)}" flow.`,
-                                    flownumber: `${connector.flownumber}`,
+                                    description:`Merge connectors at "${element.name}" from "${this.getFlowName(connector.flowNumber)}" flow.`,
+                                    flownumber: `${connector.flowNumber}`,
                                 },
                                 {
                                     label: "Split Merge",
@@ -295,10 +296,10 @@ export class MergeFlows {
                         );
                     } while (selection === undefined);
 
-                    if(Number.parseInt(selection.flownumber) < 0){
+                    if(Number.parseInt(selection.flowNumber) < 0){
                         connector.element = undefined;
                         result.push({reference: undefined, connector: connector});
-                    } else if (Number.parseInt(selection.flownumber) === 0){
+                    } else if (Number.parseInt(selection.flowNumber) === 0){
                         connector.element = undefined;
                         result.push({reference: connector.reference, connector: connector, splitMerge: true});
                     } else {
@@ -316,7 +317,7 @@ export class MergeFlows {
     }
 
     private getFlowName(flownumber){
-        return this.flows.find(flow => flownumber === flow.flownumber).label;
+        return this.flows.find(flow => flownumber === flow.flowNumber).label;
     }
 
     private findStart(nodes) {

@@ -1,7 +1,7 @@
 import * as fs from "mz/fs";
 import * as vscode from "vscode";
 import {XMLParser} from "./XMLParser";
-import Flow = require("../Models/Flow");
+import Flow = require("../models/Flow");
 const path = require('path');
 
 export class SelectAFlow {
@@ -34,6 +34,7 @@ export class SelectAFlow {
         const parsedContent = await new XMLParser().execute(await fs.readFile(path.normalize(selectedUri.fsPath)));
         return new Flow(
             {
+                // @ts-ignore
                 'label': parsedContent.Flow.label,
                 'uri': selectedUri,
                 'xmldata': parsedContent

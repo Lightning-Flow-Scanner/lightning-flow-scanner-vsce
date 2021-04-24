@@ -20,7 +20,7 @@ export class ChooseAFlow {
         label :flow.label[0],
         description :"",
         detail: flow.path,
-        flownumber: flow.flownumber
+        flowNumber: flow.flowNumber
       };
       flowDisplayOptions.push(opt);
     }
@@ -29,7 +29,7 @@ export class ChooseAFlow {
       vscode.window.showInformationMessage("Which Flow should be used as a starting point?");
       return;
     }
-    return selection.flownumber;
+    return selection.flowNumber;
   }
   
 }

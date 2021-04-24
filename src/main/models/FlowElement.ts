@@ -5,6 +5,8 @@ export = class FlowElement extends Node {
 
     public connectors = [];
     public name: string;
+    public index: number;
+    public flowNumber: number;
 
     constructor(name: string, subtype: string, element: object) {
 

@@ -8,6 +8,7 @@ describe("When choosing a flow, the correct flownumber is returned", function ()
   let chooseAStartingFlow: ChooseAFlow;
   before("Assume first pick", function () {
     const mockManager = ImportMock.mockOther(vscode, "window", {
+      // @ts-ignore
       showQuickPick: () => {
         return { flownumber: 1 };
       },

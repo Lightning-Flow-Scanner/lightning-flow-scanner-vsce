@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import * as fs from "mz/fs";
-import Flow = require("../Models/Flow");
+import Flow = require("../models/Flow");
 const path = require('path');
 const xml2js = require("xml2js");
 
@@ -25,7 +25,8 @@ export class SaveFlow {
         }
         flow.processedData.Flow.label = baseName;
         flow.processedData.Flow.interviewLabel = baseName + ' {!$Flow.CurrentDateTime}';
-        return await this.writeFlow(flow, pathToWrite);
+        await this.writeFlow(flow, pathToWrite);
+        return pathToWrite;
     }
 
     private async writeFlow(flow, pathToWrite) {

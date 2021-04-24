@@ -9,14 +9,17 @@ export = class Flow {
     public label: string;
     public path: string;
     public flowUri: Uri;
-    public flownumber: number;
+    public flowNumber: number;
     public xmldata: JSON;
+    // public flowVariables : FlowVariable[];
     public flowVariables;
+    // public flowMetadata : FlowMetadata[];
     public flowMetadata;
     public flowElements;
-    public unconnectElements;
+    public unconnectedElements;
     public unusedVariables;
     public processedData;
+    public nodes;
 
     constructor(args) {
         this.flowUri = args.uri;
@@ -26,15 +29,18 @@ export = class Flow {
         this.label = args.label;
         this.detail = args.detail ? args.detail : '';
         this.xmldata = args.xmldata;
-    }
-
-    public nodes(): (FlowElement | FlowMetadata | FlowVariable)[] {
-        return this.preProcessFlowNodes(this.xmldata);
+        this.flowVariables = args.flowVariables;
+        this.unusedVariables = args.unusedVariables;
+        this.flowElements = args.flowElements;
+        this.unconnectedElements = args.unconnectedElements;
+        this.flowMetadata = args.flowMetadata;
+        this.nodes = this.preProcessFlowNodes(args.xmldata);
     }
 
     private preProcessFlowNodes(xml) {
-        const mergeableVariables = ["variables", "constants"];
+        const mergeableVariables = ["variables", "constants", "formulas", "stages", "textTemplates"];
         const flowMetadata = ["description",
+            "apiVersion",
             "processMetadataValues",
             "processType",
             "interviewLabel",
@@ -42,10 +48,13 @@ export = class Flow {
             "status"
         ];
         const allNodes = [];
-        delete xml.Flow.$;
         const flowXML = xml.Flow;
         for (let nodeType in flowXML) {
             let nodes = flowXML[nodeType];
+            // skip xmlns url
+            if (nodeType == '$'){
+                continue;
+            }
             if (flowMetadata.includes(nodeType)) {
                 for (let node of nodes) {
                     allNodes.push(new FlowMetadata(

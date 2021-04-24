@@ -1,30 +1,18 @@
-import Flow = require("../Models/Flow");
-import FlowElement = require("../Models/FlowElement");
-import FlowMetadata = require("../Models/FlowMetadata");
-import FlowVariable = require("../Models/FlowVariable");
-import Node = require("../Models/Node");
+import Flow = require("../models/Flow");
+import FlowElement = require("../models/FlowElement");
+import FlowMetadata = require("../models/FlowMetadata");
+import Node = require("../models/Node");
+import * as vscode from "vscode";
 
-export class CleanFlow {
+export class RemoveUnusedElements {
 
     public execute(flow: Flow) {
-        let unusedVariableReferences: string[] = [];
-        let processedVariableReferences: string[] = [];
-        const flowNodes = flow.nodes();
-        for (const variableName of flowNodes.filter(node => node instanceof FlowVariable).map(variable => variable.name)) {
-            if ([...JSON.stringify(flow.xmldata).matchAll(new RegExp(variableName, 'gi'))].map(a => a.index).length === 1) {
-                unusedVariableReferences.push(variableName);
-            } else {
-                processedVariableReferences.push(variableName);
-            }
-        }
-        const flowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && processedVariableReferences.includes(node.name));
-        const unusedFlowVariables: FlowVariable[] = flowNodes.filter(node => node instanceof FlowVariable && unusedVariableReferences.includes(node.name));
-        const flowElements: FlowElement[] = flowNodes.filter(node => node instanceof FlowElement);
-        const flowMetadata: FlowMetadata[] = flowNodes.filter(node => node instanceof FlowMetadata);
+        // @ts-ignore
+        const flowElements: FlowElement[] = flow.nodes.filter(node => node instanceof FlowElement);
 
         let indexesToProcess = [this.findStart(flowElements)];
         const processedElementIndexes: number[] = [];
-        const unconnectedElementIndexes: number[]  = [];
+        const unconnectedElementIndexes: number[] = [];
         do {
             indexesToProcess = indexesToProcess.filter(index => !processedElementIndexes.includes(index));
             if (indexesToProcess.length > 0) {
@@ -65,18 +53,15 @@ export class CleanFlow {
         for (const [index, element] of flowElements.entries()) {
             if (processedElementIndexes.includes(index)) {
                 processedElements.push(element);
-            } else if(unconnectedElementIndexes.includes(index)){
+            } else if (unconnectedElementIndexes.includes(index)) {
                 unconnectedElements.push(element);
             }
         }
 
-        const cleanedFlow = Object.assign({}, flow);
-        cleanedFlow.flowVariables = flowVariables;
-        cleanedFlow.flowMetadata = flowMetadata;
-        cleanedFlow.flowElements = processedElements;
-        cleanedFlow.unconnectElements = unconnectedElements;
-        cleanedFlow.unusedVariables = unusedFlowVariables;
-        return cleanedFlow;
+        const processedFlow : Flow = new Flow(Object.assign({}, flow));
+        processedFlow.flowElements = processedElements;
+        processedFlow.unconnectedElements = unconnectedElements;
+        return processedFlow;
     }
 
     private findStart(nodes: Node[]) {
@@ -84,5 +69,6 @@ export class CleanFlow {
             return n.subtype === "start";
         });
     }
+
 
 }

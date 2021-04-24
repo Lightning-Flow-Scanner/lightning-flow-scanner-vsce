@@ -5,9 +5,9 @@ import { MergeFlowsCommand } from "./main/commands/MergeFlowsCommand";
 import { CleanFlowCommand } from "./main/commands/CleanFlowCommand";
 
 export function activate(context: vscode.ExtensionContext) {
-  let renameFlowCommand = new RenameFlowCommand();
-  let mergeFlowsCommand = new MergeFlowsCommand();
-  let cleanFlowCommand = new CleanFlowCommand();
+  let renameFlowCommand = new RenameFlowCommand(context);
+  let mergeFlowsCommand = new MergeFlowsCommand(context);
+  let cleanFlowCommand = new CleanFlowCommand(context);
 
   context.subscriptions.concat([
     vscode.commands.registerCommand('flowcontrol.rename', () => renameFlowCommand.execute()),

@@ -1,4 +1,4 @@
-import Flow = require("../Models/Flow");
+import Flow = require("../models/Flow");
 
 export class RenameFlow {
 
