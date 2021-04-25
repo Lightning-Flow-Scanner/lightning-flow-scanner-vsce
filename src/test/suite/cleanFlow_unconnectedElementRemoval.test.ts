@@ -2,7 +2,6 @@ import "mocha";
 import * as assert from "assert";
 import Flow = require("../../main/models/Flow");
 import mainwithaddvars = require("./testfiles/mainwithloosenodes.json");
-import {RemoveUnusedVariables} from "../../main/libs/RemoveUnusedVariables";
 import {RemoveUnusedElements} from "../../main/libs/RemoveUnusedElements";
 
 describe("When there are any unconnected nodes",async function () {

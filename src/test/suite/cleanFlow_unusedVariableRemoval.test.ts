@@ -1,7 +1,6 @@
 import "mocha";
 import * as assert from "assert";
 import Flow = require("../../main/models/Flow");
-import {RemoveUnusedElements} from "../../main/libs/RemoveUnusedElements";
 import mainwithaddvars = require("./testfiles/main-add-vars-example.json");
 import {RemoveUnusedVariables} from "../../main/libs/RemoveUnusedVariables";
 

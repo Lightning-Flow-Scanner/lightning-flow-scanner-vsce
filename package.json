@@ -16,24 +16,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:flowcontrol.merge",
-		"onCommand:flowcontrol.rename",
-		"onCommand:flowcontrol.clean"
+		"onCommand:flowcontrol.clean",
+		"onCommand:flowcontrol.refresh"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
-				"command": "flowcontrol.merge",
-				"title": "Merge Flows"
-			},
-			{
-				"command": "flowcontrol.rename",
-				"title": "Rename Flow"
-			},
-			{
 				"command": "flowcontrol.clean",
 				"title": "Clean Flow"
+			},
+			{
+				"command": "flowcontrol.refresh",
+				"title": "Refresh"
 			}
 		]
 	},

@@ -8,7 +8,6 @@ import * as vscode from "vscode";
 import Flow = require("../models/Flow");
 import {Report} from "../panels/Report";
 import {FindFlowMetadata} from "../libs/FindFlowMetadata";
-const path = require('path');
 
 export class CleanFlowCommand extends BaseCommand{
 

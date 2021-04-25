@@ -9,12 +9,11 @@ export class Report {
      */
     public static currentPanel: Report | undefined;
 
-    public static readonly viewType = "swiper";
+    public static readonly viewType = "report";
 
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
-
 
     public static createOrShow(extensionUri: vscode.Uri , flow : any) {
         const column = vscode.window.activeTextEditor
@@ -31,7 +30,7 @@ export class Report {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             Report.viewType,
-            "Cleaning Check Results",
+            "Clean Flow Results",
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview
@@ -120,7 +119,7 @@ export class Report {
                     webview.postMessage({
                         type: 'init',
                         text: JSON.stringify(flow),
-                        label: flow.label[0],
+                        label: flow.label,
                         unconnectedElements: flow.unconnectedElements && flow.unconnectedElements.length > 0 ? flow.unconnectedElements : null,
                         unusedVariables: flow.unusedVariables && flow.unusedVariables.length > 0 ? flow.unusedVariables : null,
                     });
@@ -139,7 +138,7 @@ export class Report {
     private _getHtmlForWebview(webview: vscode.Webview) {
         // // And the uri we use to load this script in the webview
         const scriptUri = webview.asWebviewUri(
-            Utils.joinPath(this._extensionUri, "out/compiled", "HelloWorld.js")
+            Utils.joinPath(this._extensionUri, "out/compiled", "CleanReport.js")
         );
 
         // vscode css reset
@@ -155,9 +154,12 @@ export class Report {
             "vscode.css"
         ));
 
-        // const cssUri = webview.asWebviewUri(
-        //     vscode.Uri.joinPath(this._extensionUri, "out", "compiled/swiper.css")
-        // );
+        const cssUri = webview.asWebviewUri(Utils.joinPath(
+            this._extensionUri,
+            "media",
+            "CleanReport.css"
+        ));
+
         // Use a nonce to only allow specific scripts to be run
         const nonce = getNonce();
         return `<!DOCTYPE html>
@@ -172,6 +174,7 @@ export class Report {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
+        <link href="${cssUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

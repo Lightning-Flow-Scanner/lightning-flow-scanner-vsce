@@ -1,0 +1,54 @@
+body{
+    padding: 30px;
+    text-align: left;
+    font-size: medium;
+}
+
+h2 {
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+caption{
+    padding:15px;
+    font-weight: bold;
+    font-size: large;
+    clear: both;
+}
+
+table, th, td {
+    margin: 30px;
+    clear: both;
+    border-spacing: 0;
+}
+
+p{
+    clear: both;
+}
+
+table {
+    margin: auto;
+    width: 80%;
+}
+
+th, td {
+    width: 50%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+th{
+    text-align: left;
+    padding-left: 15px;
+}
+
+th + th {
+    border-left: 0;
+}
+
+td + td {
+    border-left: 0;
+}
+
+
+

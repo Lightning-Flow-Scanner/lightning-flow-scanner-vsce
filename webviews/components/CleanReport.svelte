@@ -1,5 +1,6 @@
 <script lang="ts">
     import {onMount} from 'svelte';
+
     onMount(() => {
         console.log('mount');
         tsvscode.postMessage({
@@ -46,32 +47,61 @@
 </script>
 
 <svelte:window on:message={windowMessage}/>
-<h2>Clean Flow Results:</h2>
 
-{#if !unconnectedElements}
-    <h3>0 unused elements found</h3>
-    <br />
-{/if}
-{#if unconnectedElements && unconnectedElements.length > 0}
-    <h3>{unconnectedElements.length} unused elements have been removed:</h3>
-    <ul>
-        {#each unconnectedElements as unconnectedElement}
-            <li>{unconnectedElement.name}</li>
-<!--            todo line number -->
-        {/each}
-    </ul>
-{/if}
+<div>
+    <h2 style="float: left">Flow Name: {label}</h2>
+    <h2 style="float: right">Cleaning Results</h2>
+</div>
+
+
 {#if !unusedVariables}
-    <h3>No unused variables found</h3>
-    <br />
+    <table>
+        <caption>0 unused variable(s) removed</caption>
+    </table>
 {/if}
 {#if unusedVariables && unusedVariables.length > 0}
-    <h3>{unusedVariables.length} unused variables have been removed:</h3>
-    <ul>
+
+    <table>
+        <caption>{unusedVariables.length} unused variable(s) removed:</caption>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subtype</th>
+        </tr>
+        </thead>
+        <tbody>
         {#each unusedVariables as unusedVariable}
-        <!--            todo line number -->
-            <!--            todo var type -->
-            <li>{unusedVariable.name}</li>
+            <tr>
+                <td>{unusedVariable.name}</td>
+                <td>{unusedVariable.subtype}</td>
+            </tr>
         {/each}
-    </ul>
+        </tbody>
+    </table>
 {/if}
+
+{#if !unconnectedElements}
+    <table>
+        <caption>0 unconnected element(s) removed</caption>
+    </table>
+{/if}
+{#if unconnectedElements && unconnectedElements.length > 0}
+    <table>
+        <caption>{unconnectedElements.length} unconnected element(s) removed:</caption>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Subtype</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#each unconnectedElements as unconnectedElement}
+            <tr>
+                <td>{unconnectedElement.name}</td>
+                <td>{unconnectedElement.subtype}</td>
+            </tr>
+        {/each}
+        </tbody>
+    </table>
+{/if}
+
