@@ -15,33 +15,33 @@ export class MergeFlowsCommand extends BaseCommand{
     }
 
     public async execute() {
-        const aFlow: Flow = new RemoveUnusedElements().execute(await new SelectAFlow(this.rootPath, 'Select A Flow').execute(this.rootPath));
-        const basePath = vscode.Uri.file(path.dirname(aFlow.flowUri.path));
-        const aSecondFlow: Flow = new RemoveUnusedElements().execute(await new SelectAFlow(this.rootPath, 'Select Another Flow').execute(basePath));
-        aFlow.flowNumber = 1;
-        aSecondFlow.flowNumber = 2;
-        const selectedFlowNumber: number = await this.chooseStartingFlow([
-            aFlow,
-            aSecondFlow,
-        ]);
-        const mergedFlow: Flow = await this.mergeFlows(
-            [aFlow, aSecondFlow],
-            selectedFlowNumber
-        );
-        const result : String = await new SaveFlow().execute(mergedFlow, basePath);
-        if(result && mergedFlow.path){
-            vscode.workspace.openTextDocument(mergedFlow.flowUri).then(doc => {
-                vscode.window.showTextDocument(doc);
-            });
-        }
+        // const aFlow: Flow = new RemoveUnusedElements().execute(await new SelectAFlow(this.rootPath, 'Select A Flow').execute(this.rootPath));
+        // const basePath = vscode.Uri.file(path.dirname(aFlow.uri.path));
+        // const aSecondFlow: Flow = new RemoveUnusedElements().execute(await new SelectAFlow(this.rootPath, 'Select Another Flow').execute(basePath));
+        // aFlow.flowNumber = 1;
+        // aSecondFlow.flowNumber = 2;
+        // const selectedFlowNumber: number = await this.chooseStartingFlow([
+        //     aFlow,
+        //     aSecondFlow,
+        // ]);
+        // const mergedFlow: Flow = await this.mergeFlows(
+        //     [aFlow, aSecondFlow],
+        //     selectedFlowNumber
+        // );
+        // const result : String = await new SaveFlow().execute(mergedFlow, basePath);
+        // if(result && mergedFlow.path){
+        //     vscode.workspace.openTextDocument(mergedFlow.flowUri).then(doc => {
+        //         vscode.window.showTextDocument(doc);
+        //     });
+        // }
     }
 
-    private async chooseStartingFlow(flows) {
-        return await new ChooseAFlow().execute(flows);
-    }
-
-    private async mergeFlows(flows, selectedFlowNumber) {
-        return await new MergeFlows().execute(flows, selectedFlowNumber);
-    }
+    // private async chooseStartingFlow(flows) {
+    //     return await new ChooseAFlow().execute(flows);
+    // }
+    //
+    // private async mergeFlows(flows, selectedFlowNumber) {
+    //     return await new MergeFlows().execute(flows, selectedFlowNumber);
+    // }
 
 }

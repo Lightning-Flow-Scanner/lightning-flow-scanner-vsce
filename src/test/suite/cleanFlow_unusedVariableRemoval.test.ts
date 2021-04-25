@@ -20,10 +20,10 @@ describe("When there are any unused variables",async function () {
     it("A new flow is returned excluding these unused variables", async function () {
 
         // ACT
-        let result = new RemoveUnusedElements().execute(mainFlow);
+        new RemoveUnusedElements().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(result.flowVariables.length,3);
-        assert.strictEqual(result.unusedVariables.length,2);
+        assert.strictEqual(mainFlow.flowVariables.length,3);
+        assert.strictEqual(mainFlow.unusedVariables.length,2);
     });
 });

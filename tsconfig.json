@@ -5,6 +5,7 @@
 		"resolveJsonModule": true,
 		"outDir": "out",
 		"lib": [
+			"es2020.string",
 			"es6"
 		],
 		"experimentalDecorators": true,

@@ -19,27 +19,14 @@ export class CleanFlowCommand extends BaseCommand{
 
     public async execute() {
         const selectedFlow: Flow = await new SelectAFlow(this.rootPath, 'Select a Flow to clean:').execute(this.rootPath);
-        const basePath = vscode.Uri.file(path.dirname(selectedFlow.flowUri.path));
-        const findFlowMetadataResult: Flow = new FindFlowMetadata().execute(selectedFlow);
-        const removeUnusedVariablesResult: Flow  = new RemoveUnusedVariables().execute(findFlowMetadataResult);
-        const removeUnusedElementsResult: Flow  = new RemoveUnusedElements().execute(removeUnusedVariablesResult);
-
-        const buildFlow = new BuildNewFlow().execute(removeUnusedElementsResult);
-
-
-        const test1 = '1';
-        // // vscode.window.showInformationMessage(`${cleanedFlow.unconnectElements.length} elements and ${cleanedFlow.unusedVariables.length} variables are unused.`);
-        //
-        //
-        Report.createOrShow(this.context.extensionUri, buildFlow);
-
-
-        // const result = await new SaveFlow().execute(buildFlow, basePath);
-        // if(result){
-            // vscode.workspace.openTextDocument(vscode.Uri.parse(result)).then(doc => {
-            //     vscode.window.showTextDocument(doc);
-            // });
-        // }
+        new FindFlowMetadata().execute(selectedFlow);
+        new RemoveUnusedVariables().execute(selectedFlow);
+        new RemoveUnusedElements().execute(selectedFlow);
+        new BuildNewFlow().execute(selectedFlow);
+        const result = await new SaveFlow().execute(selectedFlow, selectedFlow.uri);
+        if(result){
+            Report.createOrShow(this.context.extensionUri, selectedFlow);
+        }
     }
 
 }

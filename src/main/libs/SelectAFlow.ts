@@ -31,13 +31,17 @@ export class SelectAFlow {
     }
 
     private async parseFlow(selectedUri: vscode.Uri) {
-        const parsedContent = await new XMLParser().execute(await fs.readFile(path.normalize(selectedUri.fsPath)));
+        const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(selectedUri.fsPath)));
         return new Flow(
             {
-                // @ts-ignore
-                'label': parsedContent.Flow.label,
-                'uri': selectedUri,
-                'xmldata': parsedContent
+                label: parsedContent.Flow.label,
+                interviewLabel: parsedContent.Flow.interviewLabel,
+                processType: parsedContent.Flow.processType,
+                processMetadataValues: parsedContent.Flow.processMetadataValues,
+                start: parsedContent.Flow.start,
+                status: parsedContent.Flow.status,
+                uri: selectedUri,
+                xmldata: parsedContent
             }
         );
     }

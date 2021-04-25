@@ -15,7 +15,6 @@
     function windowMessage(event) {
 
         const message = event.data; // The json data that the extension sent
-        console.log({message});
         switch (message.type) {
             case 'init':
                 //the extension is sending us an init event with the document text
@@ -63,7 +62,7 @@
     </ul>
 {/if}
 {#if !unusedVariables}
-    <h2>No unused variables found</h2>
+    <h3>No unused variables found</h3>
     <br />
 {/if}
 {#if unusedVariables && unusedVariables.length > 0}

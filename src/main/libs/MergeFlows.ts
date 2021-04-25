@@ -21,16 +21,16 @@ export class MergeFlows {
         const flowVariables = this.processVariables(xmlNodes.filter(node => node instanceof FlowVariable));
         const flowElements = await this.processFlowElements(xmlNodes.filter(node => node instanceof FlowElement));
 
-        const newFlow = new Flow({
-            label: "",
-            flowUri: undefined,
-            detail: "",
-        });
-        newFlow.flowMetadata = flowMetaData;
-        newFlow.flowElements = flowElements;
-        newFlow.flowVariables = flowVariables;
-
-        return new BuildNewFlow().execute(newFlow);
+        // const newFlow = new Flow({
+        //     label: "",
+        //     uri: undefined,
+        //     detail: "",
+        // });
+        // newFlow.flowMetadata = flowMetaData;
+        // newFlow.flowElements = flowElements;
+        // newFlow.flowVariables = flowVariables;
+        //
+        // return new BuildNewFlow().execute(newFlow);
     }
 
     private preProcessFlows(flows: Flow[]) {

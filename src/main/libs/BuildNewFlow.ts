@@ -7,10 +7,7 @@ export class BuildNewFlow {
     }
 
     public execute(flow: Flow) {
-
-        const processedFlow : Flow = new Flow(Object.assign({}, flow));
-        processedFlow.processedData = this.buildFlow([...flow.flowMetadata, ...flow.flowVariables, ...flow.flowElements]);
-        return processedFlow;
+        flow.processedData = this.buildFlow([...flow.flowMetadata, ...flow.flowVariables, ...flow.flowElements]);
     }
 
     private buildFlow(nodesToMerge) {

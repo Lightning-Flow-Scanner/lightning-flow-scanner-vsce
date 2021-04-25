@@ -1,15 +1,11 @@
 import Flow = require("../models/Flow");
 import FlowElement = require("../models/FlowElement");
-import FlowMetadata = require("../models/FlowMetadata");
 import Node = require("../models/Node");
-import * as vscode from "vscode";
 
 export class RemoveUnusedElements {
 
     public execute(flow: Flow) {
-        // @ts-ignore
         const flowElements: FlowElement[] = flow.nodes.filter(node => node instanceof FlowElement);
-
         let indexesToProcess = [this.findStart(flowElements)];
         const processedElementIndexes: number[] = [];
         const unconnectedElementIndexes: number[] = [];
@@ -57,11 +53,8 @@ export class RemoveUnusedElements {
                 unconnectedElements.push(element);
             }
         }
-
-        const processedFlow : Flow = new Flow(Object.assign({}, flow));
-        processedFlow.flowElements = processedElements;
-        processedFlow.unconnectedElements = unconnectedElements;
-        return processedFlow;
+        flow.flowElements = processedElements;
+        flow.unconnectedElements = unconnectedElements;
     }
 
     private findStart(nodes: Node[]) {

@@ -20,11 +20,11 @@ describe("When there are any unconnected nodes",async function () {
     it("They should be removed from the new flow result", async function () {
 
         // ACT
-        let result = new RemoveUnusedElements().execute(mainFlow);
+        new RemoveUnusedElements().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(result.flowElements.length,6);
-        assert.strictEqual(result.flowVariables.length,3);
-        assert.strictEqual(result.unusedVariables.length,1);
+        assert.strictEqual(mainFlow.flowElements.length,6);
+        assert.strictEqual(mainFlow.flowVariables.length,3);
+        assert.strictEqual(mainFlow.unusedVariables.length,1);
     });
 });

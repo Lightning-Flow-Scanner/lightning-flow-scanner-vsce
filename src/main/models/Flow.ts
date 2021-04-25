@@ -5,24 +5,28 @@ import {Uri} from "vscode";
 
 export = class Flow {
 
-    public detail: string;
+    public interviewLabel: string;
     public label: string;
-    public path: string;
-    public flowUri: Uri;
-    public flowNumber: number;
-    public xmldata: JSON;
-    // public flowVariables : FlowVariable[];
-    public flowVariables;
-    // public flowMetadata : FlowMetadata[];
-    public flowMetadata;
-    public flowElements;
-    public unconnectedElements;
-    public unusedVariables;
-    public processedData;
-    public nodes;
+    public processType;
+    public processMetadataValues;
+    public start;
+    public status;
+    public uri: Uri;
+    public xmldata;
+
+    public detail?: string;
+    public path?: string;
+    public flowNumber?: number;
+    public flowVariables?;
+    public flowMetadata?;
+    public flowElements?;
+    public unconnectedElements?;
+    public unusedVariables?;
+    public processedData?;
+    public nodes?;
 
     constructor(args) {
-        this.flowUri = args.uri;
+        this.uri = args.uri;
         if(args.uri){
             this.path = args.uri.fsPath;
         }
@@ -34,10 +38,10 @@ export = class Flow {
         this.flowElements = args.flowElements;
         this.unconnectedElements = args.unconnectedElements;
         this.flowMetadata = args.flowMetadata;
-        this.nodes = this.preProcessFlowNodes(args.xmldata);
+        this.nodes = this.preProcessNodes(args.xmldata);
     }
 
-    private preProcessFlowNodes(xml) {
+    private preProcessNodes(xml) {
         const mergeableVariables = ["variables", "constants", "formulas", "stages", "textTemplates"];
         const flowMetadata = ["description",
             "apiVersion",
