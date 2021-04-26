@@ -1,4 +1,7 @@
 import Flow = require("../models/Flow");
+import FlowMetadata = require("../models/FlowMetadata");
+import FlowVariable = require("../models/FlowVariable");
+import FlowElement = require("../models/FlowElement");
 
 export class BuildNewFlow {
 
@@ -7,7 +10,30 @@ export class BuildNewFlow {
     }
 
     public execute(flow: Flow) {
-        flow.processedData = this.buildFlow([...flow.flowMetadata, ...flow.flowVariables, ...flow.flowElements]);
+        flow.processedData = this.buildFlow([
+            ...flow.nodes.filter(node => node instanceof FlowMetadata),
+            ...flow.nodes.filter(node => {
+                if(flow.unusedVariables){
+                    if(node instanceof FlowVariable && !flow.unusedVariables.includes(node)){
+                        return node;
+                    }
+                } else {
+                    if(node instanceof FlowVariable){
+                        return node;
+                    }
+                }
+            }),
+            ...flow.nodes.filter(node => {
+                if(flow.unconnectedElements){
+                    if(node instanceof FlowElement && !flow.unconnectedElements.includes(node)){
+                        return node;
+                    }
+                } else {
+                    if(node instanceof FlowElement){
+                        return node;
+                    }
+                }
+            })]);
     }
 
     private buildFlow(nodesToMerge) {

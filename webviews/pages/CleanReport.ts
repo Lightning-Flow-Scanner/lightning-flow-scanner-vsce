@@ -1,7 +1,7 @@
 import App from "../components/CleanReport.svelte"
 
-const app = new App({
+const CleanReport = new App({
     target: document.body,
 });
 
-export default app;
+export default CleanReport;

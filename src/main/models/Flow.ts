@@ -23,6 +23,7 @@ export = class Flow {
     public unconnectedElements?;
     public unusedVariables?;
     public processedData?;
+    public nodesWithHardcodedIds?;
     public nodes?;
 
     constructor(args) {
@@ -37,6 +38,7 @@ export = class Flow {
         this.unusedVariables = args.unusedVariables;
         this.flowElements = args.flowElements;
         this.unconnectedElements = args.unconnectedElements;
+        this.nodesWithHardcodedIds = args.nodesWithHardcodedIds;
         this.flowMetadata = args.flowMetadata;
         this.nodes = this.preProcessNodes(args.xmldata);
     }

@@ -1,17 +1,17 @@
-import * as vscode from "vscode";
 import {SelectAFlow} from "../libs/SelectAFlow";
-import {BaseCommand} from "./BaseCommand";
+import { BaseCommand } from "./BaseCommand";
 import {BuildNewFlow} from "../libs/BuildNewFlow";
-import {SaveFlow} from "../libs/SaveFlow";
 import {FindUnusedElements} from "../rules/FindUnusedElements";
 import {FindUnusedVariables} from "../rules/FindUnusedVariables";
+import * as vscode from "vscode";
 import Flow = require("../models/Flow");
-import {Report} from "../panels/Report";
 import {FindFlowMetadata} from "../libs/FindFlowMetadata";
+import {LintReport} from "../panels/LintReport";
+import {FindHardcodedIds} from "../rules/FindHardcodedIds";
 
-export class CleanFlowCommand extends BaseCommand {
+export class LintFlowCommand extends BaseCommand{
 
-    constructor(context: vscode.ExtensionContext
+    constructor(context : vscode.ExtensionContext
     ) {
         super(context)
     }
@@ -21,11 +21,9 @@ export class CleanFlowCommand extends BaseCommand {
         new FindFlowMetadata().execute(selectedFlow);
         new FindUnusedVariables().execute(selectedFlow);
         new FindUnusedElements().execute(selectedFlow);
+        new FindHardcodedIds().execute(selectedFlow);
         new BuildNewFlow().execute(selectedFlow);
-        const result = await new SaveFlow().execute(selectedFlow, selectedFlow.uri);
-        if (result) {
-            Report.createOrShow(this.context.extensionUri, selectedFlow);
-        }
+        LintReport.createOrShow(this.context.extensionUri, selectedFlow);
     }
 
 }

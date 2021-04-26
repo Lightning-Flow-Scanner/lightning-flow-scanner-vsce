@@ -2,7 +2,7 @@ import "mocha";
 import * as assert from "assert";
 import Flow = require("../../main/models/Flow");
 import mainwithaddvars = require("./testfiles/main-add-vars-example.json");
-import {RemoveUnusedVariables} from "../../main/libs/RemoveUnusedVariables";
+import {FindUnusedVariables} from "../../main/rules/FindUnusedVariables";
 
 describe("When there are any unused variables",async function () {
     let mainFlow;
@@ -20,10 +20,9 @@ describe("When there are any unused variables",async function () {
     it("A new flow is returned excluding these unused variables", async function () {
 
         // ACT
-        new RemoveUnusedVariables().execute(mainFlow);
+        new FindUnusedVariables().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(mainFlow.flowVariables.length,1);
-        assert.strictEqual(mainFlow.unusedVariables.length,3);
+        assert.strictEqual(mainFlow.unusedVariables.length,2);
     });
 });

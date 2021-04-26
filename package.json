@@ -17,18 +17,28 @@
 	],
 	"activationEvents": [
 		"onCommand:flowcontrol.clean",
-		"onCommand:flowcontrol.refresh"
+		"onCommand:flowcontrol.refresh",
+		"onCommand:flowcontrol.lint",
+		"onCommand:flowcontrol.create"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
 				"command": "flowcontrol.clean",
-				"title": "Clean Flow"
+				"title": "Clean Flow(Flow Control)"
 			},
 			{
 				"command": "flowcontrol.refresh",
-				"title": "Refresh"
+				"title": "Refresh(Flow Control)"
+			},
+			{
+				"command": "flowcontrol.create",
+				"title": "Create TestData(Flow Control)"
+			},
+			{
+				"command": "flowcontrol.lint",
+				"title": "Lint Flow(Flow Control)"
 			}
 		]
 	},
