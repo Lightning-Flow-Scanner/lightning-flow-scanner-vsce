@@ -50,9 +50,8 @@
 
 <div>
     <h2 style="float: left">Flow Name: {label}</h2>
-    <h2 style="float: right">Cleaning Results</h2>
+    <h2 style="float: right">Results</h2>
 </div>
-
 
 {#if !unusedVariables}
     <table>
@@ -60,7 +59,6 @@
     </table>
 {/if}
 {#if unusedVariables && unusedVariables.length > 0}
-
     <table>
         <caption>{unusedVariables.length} unused variable(s) removed:</caption>
         <thead>
