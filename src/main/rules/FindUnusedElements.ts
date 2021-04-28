@@ -53,9 +53,7 @@ export class FindUnusedElements {
                 unconnectedElements.push(element);
             }
         }
-        if(unconnectedElements && unconnectedElements.length > 0){
-            flow.unconnectedElements = unconnectedElements
-        }
+        flow.unconnectedElements = unconnectedElements;
     }
 
     private findStart(nodes: Node[]) {

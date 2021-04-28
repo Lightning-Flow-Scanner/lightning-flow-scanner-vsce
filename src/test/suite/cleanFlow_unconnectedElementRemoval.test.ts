@@ -14,7 +14,6 @@ describe("When there are any unconnected nodes",async function () {
             label: 'main',
             path: 'anypath',
             xmldata : mainwithloosenodes,
-            detail: 'anypath'
         });
     });
     it("They should be removed from the new flow result", async function () {

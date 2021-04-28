@@ -18,9 +18,7 @@ export class FindUnusedVariables {
                 }
             }
         }
-        if(unusedVariableReferences && unusedVariableReferences.length > 0){
-            flow.unusedVariables = unusedVariableReferences
-        }
+        flow.unusedVariables = unusedVariableReferences;
     }
 
 }

@@ -14,7 +14,6 @@ describe("When there are any unused variables",async function () {
             label: 'main',
             path: 'anypath',
             xmldata : unusedVariables,
-            detail: 'anypath'
         });
     });
     it("A new flow is returned excluding these unused variables", async function () {

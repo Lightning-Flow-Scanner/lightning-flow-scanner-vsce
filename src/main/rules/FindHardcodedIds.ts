@@ -24,8 +24,6 @@ export class FindHardcodedIds {
                 }
             }
         }
-        if(nodesWithHardcodedIds && nodesWithHardcodedIds.length > 0){
-            flow.nodesWithHardcodedIds = nodesWithHardcodedIds
-        }
+        flow.nodesWithHardcodedIds = nodesWithHardcodedIds;
     }
 }

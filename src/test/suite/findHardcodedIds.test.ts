@@ -14,7 +14,6 @@ describe("When there are any hardcoded ids",async function () {
             label: 'main',
             path: 'anypath',
             xmldata : assignHardcodedId,
-            detail: 'anypath'
         });
     });
     it("they are flagged correctly", async function () {

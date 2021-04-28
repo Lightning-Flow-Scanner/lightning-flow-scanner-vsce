@@ -14,32 +14,31 @@ export = class Flow {
     public uri: Uri;
     public xmldata;
 
-    public detail?: string;
     public path?: string;
     public flowNumber?: number;
-    public flowVariables?;
     public flowMetadata?;
-    public flowElements?;
-    public unconnectedElements?;
-    public unusedVariables?;
+    public unconnectedElements = [];
+    public unusedVariables = [];
+    public nodesWithHardcodedIds = [];
+
     public processedData?;
-    public nodesWithHardcodedIds?;
     public nodes?;
 
     constructor(args) {
+        this.interviewLabel = args.interviewLabel;
+        this.label = args.label;
+        this.processMetadataValues = args.processMetadataValues;
+        this.processType = args.processType;
+        this.start = args.start;
+        this.status = args.status;
         this.uri = args.uri;
         if(args.uri){
             this.path = args.uri.fsPath;
         }
-        this.label = args.label;
-        this.detail = args.detail ? args.detail : '';
+        if(args.path){
+            this.path = args.path;
+        }
         this.xmldata = args.xmldata;
-        this.flowVariables = args.flowVariables;
-        this.unusedVariables = args.unusedVariables;
-        this.flowElements = args.flowElements;
-        this.unconnectedElements = args.unconnectedElements;
-        this.nodesWithHardcodedIds = args.nodesWithHardcodedIds;
-        this.flowMetadata = args.flowMetadata;
         this.nodes = this.preProcessNodes(args.xmldata);
     }
 
@@ -82,6 +81,13 @@ export = class Flow {
                 }
             }
         }
+
+        this.label= xml.Flow.label;
+        this.interviewLabel= xml.Flow.interviewLabel;
+        this.processType = xml.Flow.processType;
+        this.processMetadataValues = xml.Flow.processMetadataValues;
+        this.start= xml.Flow.start;
+        this.status= xml.Flow.status;
         return allNodes;
     }
 

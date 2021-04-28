@@ -13,7 +13,7 @@ export class BuildNewFlow {
         flow.processedData = this.buildFlow([
             ...flow.nodes.filter(node => node instanceof FlowMetadata),
             ...flow.nodes.filter(node => {
-                if(flow.unusedVariables){
+                if(flow.unusedVariables.length > 0){
                     if(node instanceof FlowVariable && !flow.unusedVariables.includes(node)){
                         return node;
                     }
@@ -24,7 +24,7 @@ export class BuildNewFlow {
                 }
             }),
             ...flow.nodes.filter(node => {
-                if(flow.unconnectedElements){
+                if(flow.unconnectedElements.length > 0){
                     if(node instanceof FlowElement && !flow.unconnectedElements.includes(node)){
                         return node;
                     }

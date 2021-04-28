@@ -34,12 +34,6 @@ export class SelectAFlow {
         const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(selectedUri.fsPath)));
         return new Flow(
             {
-                label: parsedContent.Flow.label,
-                interviewLabel: parsedContent.Flow.interviewLabel,
-                processType: parsedContent.Flow.processType,
-                processMetadataValues: parsedContent.Flow.processMetadataValues,
-                start: parsedContent.Flow.start,
-                status: parsedContent.Flow.status,
                 uri: selectedUri,
                 xmldata: parsedContent
             }

@@ -19,6 +19,7 @@
 		"onCommand:flowcontrol.clean",
 		"onCommand:flowcontrol.refresh",
 		"onCommand:flowcontrol.lint",
+		"onCommand:flowcontrol.lintflows",
 		"onCommand:flowcontrol.create"
 	],
 	"main": "./dist/extension",
@@ -26,19 +27,23 @@
 		"commands": [
 			{
 				"command": "flowcontrol.clean",
-				"title": "Clean Flow(Flow Control)"
+				"title": "Clean Flow (SFC)"
 			},
 			{
 				"command": "flowcontrol.refresh",
-				"title": "Refresh(Flow Control)"
+				"title": "Refresh (SFC)"
 			},
 			{
 				"command": "flowcontrol.create",
-				"title": "Create TestData(Flow Control)"
+				"title": "Create TestData (SFC)"
 			},
 			{
 				"command": "flowcontrol.lint",
-				"title": "Lint Flow(Flow Control)"
+				"title": "Lint Flow (SFC)"
+			},
+			{
+				"command": "flowcontrol.lintflows",
+				"title": "Lint Flows (SFC)"
 			}
 		]
 	},

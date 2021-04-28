@@ -120,8 +120,8 @@ export class Report {
                         type: 'init',
                         text: JSON.stringify(flow),
                         label: flow.label,
-                        unconnectedElements: flow.unconnectedElements && flow.unconnectedElements.length > 0 ? flow.unconnectedElements : null,
-                        unusedVariables: flow.unusedVariables && flow.unusedVariables.length > 0 ? flow.unusedVariables : null,
+                        unconnectedElements: flow.unconnectedElements,
+                        unusedVariables: flow.unusedVariables,
                     });
                     return;
                 }
