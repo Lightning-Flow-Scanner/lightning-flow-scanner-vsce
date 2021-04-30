@@ -16,19 +16,18 @@ caption{
     clear: both;
 }
 
-table, th, td {
+#mb {
     margin: 30px;
     clear: both;
+}
+
+table, th, td {
     border-spacing: 0;
 }
 
-p{
-    clear: both;
-}
-
 table {
-    margin: auto;
     width: 80%;
+    margin: auto auto 30px;
 }
 
 th, td {

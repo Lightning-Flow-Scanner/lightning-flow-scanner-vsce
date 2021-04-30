@@ -19,7 +19,6 @@
 		"onCommand:flowcontrol.clean",
 		"onCommand:flowcontrol.refresh",
 		"onCommand:flowcontrol.lint",
-		"onCommand:flowcontrol.lintflows",
 		"onCommand:flowcontrol.create"
 	],
 	"main": "./dist/extension",
@@ -39,10 +38,6 @@
 			},
 			{
 				"command": "flowcontrol.lint",
-				"title": "Lint Flow (SFC)"
-			},
-			{
-				"command": "flowcontrol.lintflows",
 				"title": "Lint Flows (SFC)"
 			}
 		]

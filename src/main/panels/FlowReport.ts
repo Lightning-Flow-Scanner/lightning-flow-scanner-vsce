@@ -2,12 +2,15 @@ import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import Flow = require("../models/Flow");
+import {BuildNewFlow} from "../libs/BuildNewFlow";
+import {SaveFlow} from "../libs/SaveFlow";
+import {FixReport} from "./FixReport";
 
-export class LintReport {
+export class FlowReport {
     /**
      * Track the currently panel. Only allow a single panel to exist at a time.
      */
-    public static currentPanel: LintReport | undefined;
+    public static currentPanel: FlowReport | undefined;
 
     public static readonly viewType = "report";
 
@@ -22,7 +25,7 @@ export class LintReport {
 
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
-            LintReport.viewType,
+            FlowReport.viewType,
             `${flow.label} results`,
             column || vscode.ViewColumn.One,
             {
@@ -36,16 +39,16 @@ export class LintReport {
                 ]
             }
         );
-        LintReport.currentPanel = new LintReport(panel, extensionUri, flow);
+        FlowReport.currentPanel = new FlowReport(panel, extensionUri, flow);
     }
 
     public static kill() {
-        LintReport.currentPanel?.dispose();
-        LintReport.currentPanel = undefined;
+        FlowReport.currentPanel?.dispose();
+        FlowReport.currentPanel = undefined;
     }
 
     // public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-    //     LintReport.currentPanel = new LintReport(panel, extensionUri);
+    //     FlowReport.currentPanel = new FlowReport(panel, extensionUri);
     // }
 
     private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flow : any) {
@@ -74,7 +77,7 @@ export class LintReport {
     }
 
     public dispose() {
-        LintReport.currentPanel = undefined;
+        FlowReport.currentPanel = undefined;
 
         // Clean up our resources
         this._panel.dispose();
@@ -92,18 +95,15 @@ export class LintReport {
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
-                case "onInfo": {
-                    if (!data.value) {
+                case "autofix": {
+                    if (!data.flow) {
                         return;
                     }
-                    vscode.window.showInformationMessage(data.value);
-                    break;
-                }
-                case "onError": {
-                    if (!data.value) {
-                        return;
+                    new BuildNewFlow().execute(flow);
+                    const result = await new SaveFlow().execute(flow, flow.uri);
+                    if (result) {
+                        FixReport.createOrShow(this._extensionUri, flow);
                     }
-                    vscode.window.showErrorMessage(data.value);
                     break;
                 }
                 case 'init-view': {
@@ -125,7 +125,7 @@ export class LintReport {
     private _getHtmlForWebview(webview: vscode.Webview) {
         // // And the uri we use to load this script in the webview
         const scriptUri = webview.asWebviewUri(
-            Utils.joinPath(this._extensionUri, "out/compiled", "LintReport.js")
+            Utils.joinPath(this._extensionUri, "out/compiled", "FlowReport.js")
         );
 
         // vscode css reset
@@ -144,7 +144,7 @@ export class LintReport {
         const cssUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
-            "LintReport.css"
+            "FlowReport.css"
         ));
 
         // Use a nonce to only allow specific scripts to be run

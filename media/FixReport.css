@@ -12,23 +12,22 @@ h2 {
 caption{
     padding:15px;
     font-weight: bold;
-    font-size: large;
+    font-size: medium;
+    clear: both;
+}
+
+#mb {
+    margin: 30px;
     clear: both;
 }
 
 table, th, td {
-    margin: 30px;
-    clear: both;
     border-spacing: 0;
 }
 
-p{
-    clear: both;
-}
-
 table {
-    margin: auto;
     width: 80%;
+    margin: auto auto 30px;
 }
 
 th, td {
@@ -50,5 +49,9 @@ td + td {
     border-left: 0;
 }
 
-
+hr.dashed {
+    margin: 15px 0;
+    clear: both;
+    border-top: 3px dashed #bbb;
+}
 

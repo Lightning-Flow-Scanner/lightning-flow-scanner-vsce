@@ -14,6 +14,7 @@ export class LintFlowsCommand extends BaseCommand{
     }
 
     public async execute() {
+
         const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select a Flow to clean:').execute(this.rootPath);
         const flows: Flow[] = await new ParseFlows().execute(selectedUris);
         new ScanFlows().execute(flows);

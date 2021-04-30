@@ -3,11 +3,11 @@ import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import Flow = require("../models/Flow");
 
-export class Report {
+export class FixReport {
     /**
      * Track the currently panel. Only allow a single panel to exist at a time.
      */
-    public static currentPanel: Report | undefined;
+    public static currentPanel: FixReport | undefined;
 
     public static readonly viewType = "report";
 
@@ -21,15 +21,15 @@ export class Report {
             : undefined;
 
         // If we already have a panel, show it.
-        if (Report.currentPanel) {
-            Report.currentPanel._panel.reveal(column);
-            Report.currentPanel._update(flow);
+        if (FixReport.currentPanel) {
+            FixReport.currentPanel._panel.reveal(column);
+            FixReport.currentPanel._update(flow);
             return;
         }
 
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
-            Report.viewType,
+            FixReport.viewType,
             "Clean Flow Results",
             column || vscode.ViewColumn.One,
             {
@@ -43,16 +43,16 @@ export class Report {
                 ]
             }
         );
-        Report.currentPanel = new Report(panel, extensionUri, flow);
+        FixReport.currentPanel = new FixReport(panel, extensionUri, flow);
     }
 
     public static kill() {
-        Report.currentPanel?.dispose();
-        Report.currentPanel = undefined;
+        FixReport.currentPanel?.dispose();
+        FixReport.currentPanel = undefined;
     }
 
     // public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-    //     Report.currentPanel = new Report(panel, extensionUri);
+    //     FixReport.currentPanel = new FixReport(panel, extensionUri);
     // }
 
     private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flow : any) {
@@ -81,7 +81,7 @@ export class Report {
     }
 
     public dispose() {
-        Report.currentPanel = undefined;
+        FixReport.currentPanel = undefined;
 
         // Clean up our resources
         this._panel.dispose();
@@ -99,29 +99,14 @@ export class Report {
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
-                // case "onInfo": {
-                //     if (!data.value) {
-                //         return;
-                //     }
-                //     vscode.window.showInformationMessage(data.value);
-                //     break;
-                // }
-                // case "onError": {
-                //     if (!data.value) {
-                //         return;
-                //     }
-                //     vscode.window.showErrorMessage(data.value);
-                //     break;
-                // }
+
+
 
                 case 'init-view': {
                 //added this route
                     webview.postMessage({
                         type: 'init',
-                        text: JSON.stringify(flow),
-                        label: flow.label,
-                        unconnectedElements: flow.unconnectedElements,
-                        unusedVariables: flow.unusedVariables,
+                        flow: flow
                     });
                     return;
                 }
@@ -138,7 +123,7 @@ export class Report {
     private _getHtmlForWebview(webview: vscode.Webview) {
         // // And the uri we use to load this script in the webview
         const scriptUri = webview.asWebviewUri(
-            Utils.joinPath(this._extensionUri, "out/compiled", "CleanReport.js")
+            Utils.joinPath(this._extensionUri, "out/compiled", "FixReport.js")
         );
 
         // vscode css reset
@@ -157,7 +142,7 @@ export class Report {
         const cssUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
-            "CleanReport.css"
+            "FixReport.css"
         ));
 
         // Use a nonce to only allow specific scripts to be run

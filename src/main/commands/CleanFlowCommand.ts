@@ -6,7 +6,7 @@ import {SaveFlow} from "../libs/SaveFlow";
 import {FindUnusedElements} from "../rules/FindUnusedElements";
 import {FindUnusedVariables} from "../rules/FindUnusedVariables";
 import Flow = require("../models/Flow");
-import {Report} from "../panels/Report";
+import {FixReport} from "../panels/FixReport";
 import {FindFlowMetadata} from "../libs/FindFlowMetadata";
 
 export class CleanFlowCommand extends BaseCommand {
@@ -24,7 +24,7 @@ export class CleanFlowCommand extends BaseCommand {
         new BuildNewFlow().execute(selectedFlow);
         const result = await new SaveFlow().execute(selectedFlow, selectedFlow.uri);
         if (result) {
-            Report.createOrShow(this.context.extensionUri, selectedFlow);
+            FixReport.createOrShow(this.context.extensionUri, selectedFlow);
         }
     }
 

@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import Flow = require("../models/Flow");
-import {LintReport} from "./LintReport";
+import {FlowReport} from "./FlowReport";
 
 export class LintFlowsReport {
     /**
@@ -31,7 +31,7 @@ export class LintFlowsReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             LintFlowsReport.viewType,
-            "Lint Flows Report",
+            "Lint Flows",
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview
@@ -114,7 +114,7 @@ export class LintFlowsReport {
                         return;
                     }
 
-                    LintReport.create(this._extensionUri, data.flow);
+                    FlowReport.create(this._extensionUri, data.flow);
                     break;
                 }
                 case "onError": {

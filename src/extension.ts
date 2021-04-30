@@ -5,15 +5,17 @@ import mainExample = require("./test/suite/testfiles/main-example.json");
 import secondary = require("./test/suite/testfiles/secondary-example.json");
 import unusedVars = require("./test/suite/testfiles/unusedVariables.json");
 import { CleanFlowCommand } from "./main/commands/CleanFlowCommand";
-import {FindFlowMetadata} from "./main/libs/FindFlowMetadata";
-import {BuildNewFlow} from "./main/libs/BuildNewFlow";
-import {Report} from "./main/panels/Report";
 import Flow = require("./main/models/Flow");
 import {CreateTestDataCommand} from "./main/commands/CreateTestDataCommand";
-import {LintReport} from "./main/panels/LintReport";
 import {LintFlowsCommand} from "./main/commands/LintFlowsCommand";
 import { LintFlowsReport } from "./main/panels/LintFlowsReport";
 import {ScanFlows} from "./main/libs/ScanFlows";
+import {FindFlowMetadata} from "./main/libs/FindFlowMetadata";
+import {FindUnusedVariables} from "./main/rules/FindUnusedVariables";
+import {FindHardcodedIds} from "./main/rules/FindHardcodedIds";
+import {BuildNewFlow} from "./main/libs/BuildNewFlow";
+import {FindUnusedElements} from "./main/rules/FindUnusedElements";
+import {FlowReport} from "./main/panels/FlowReport";
 
 export function activate(context: vscode.ExtensionContext) {
   let cleanFlowCommand = new CleanFlowCommand(context);
@@ -70,15 +72,13 @@ export function activate(context: vscode.ExtensionContext) {
       new ScanFlows().execute(flows);
       LintFlowsReport.createOrShow(context.extensionUri, flows);
 
-      // new FindFlowMetadata().execute(selectedFlow);
-      // new FindUnusedVariables().execute(selectedFlow);
-      // new FindUnusedElements().execute(selectedFlow);
-      // new FindHardcodedIds().execute(selectedFlow);
-      // new BuildNewFlow().execute(selectedFlow);
-      // LintReport.kill();
-      // LintReport.createOrShow(context.extensionUri, selectedFlow);
-
-
+      // new FindFlowMetadata().execute(selectedFlow1);
+      // new FindUnusedVariables().execute(selectedFlow1);
+      // new FindUnusedElements().execute(selectedFlow1);
+      // new FindHardcodedIds().execute(selectedFlow1);
+      // new BuildNewFlow().execute(selectedFlow1);
+      // FlowReport.kill();
+      // FlowReport.create(context.extensionUri, selectedFlow1);
     })
   ]);
 }
