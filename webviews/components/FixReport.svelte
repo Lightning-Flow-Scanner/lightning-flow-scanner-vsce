@@ -11,25 +11,19 @@
 
     function windowMessage(event) {
 
-        const message = event.data; // The json data that the extension sent
+        const message = event.data;
         switch (message.type) {
             case 'init':
-                //the extension is sending us an init event with the document text
-                //note: this is the document NOT the state, the state takes precendece, so if any state exists use that instead
                 const state = tsvscode.getState();
                 if (state) {
-                    //we push this state from the vscode workspace to the JSON this component is looking at
                     flow = state.flow;
                 } else {
-                    //use the state data
                     flow = message.flow;
                 }
                 dataType = message.dataType;
                 return;
             case 'update':
-                //assign data
                 flow = message.flow;
-                // assign state
                 tsvscode.setState({flow});
                 return;
         }

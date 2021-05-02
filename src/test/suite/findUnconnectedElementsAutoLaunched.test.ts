@@ -2,12 +2,12 @@ import "mocha";
 import * as assert from "assert";
 import Flow = require("../../main/models/Flow");
 import mainwithloosenodes = require("./testfiles/mainwithloosenodes.json");
-import {FindUnusedElements} from "../../main/rules/FindUnusedElements";
+import {UnconnectedElements} from "../../main/rules/UnconnectedElements";
 
 describe("When there are any unconnected nodes",async function () {
     let mainFlow;
 
-    before("",  async function () {
+    before("arrange",  async function () {
 
         // ARRANGE
         mainFlow = new Flow({
@@ -16,12 +16,12 @@ describe("When there are any unconnected nodes",async function () {
             xmldata : mainwithloosenodes,
         });
     });
-    it("They should be removed from the new flow result", async function () {
+    it("They are flagged correctly", async function () {
 
         // ACT
-        new FindUnusedElements().execute(mainFlow);
+        const unconnectedElements = new UnconnectedElements().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(mainFlow.unconnectedElements.length,1);
+        assert.strictEqual(unconnectedElements.length,1);
     });
 });

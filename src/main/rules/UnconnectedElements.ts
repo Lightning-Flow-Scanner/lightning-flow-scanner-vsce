@@ -2,7 +2,7 @@ import Flow = require("../models/Flow");
 import FlowElement = require("../models/FlowElement");
 import Node = require("../models/Node");
 
-export class FindUnusedElements {
+export class UnconnectedElements {
 
     public execute(flow: Flow) {
         const flowElements: FlowElement[] = flow.nodes.filter(node => node instanceof FlowElement);
@@ -53,7 +53,7 @@ export class FindUnusedElements {
                 unconnectedElements.push(element);
             }
         }
-        flow.unconnectedElements = unconnectedElements;
+        return unconnectedElements;
     }
 
     private findStart(nodes: Node[]) {

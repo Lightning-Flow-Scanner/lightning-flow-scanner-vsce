@@ -26,7 +26,7 @@ export class FlowReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             FlowReport.viewType,
-            `${flow.label} results`,
+            `Lint:${flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview
@@ -99,7 +99,7 @@ export class FlowReport {
                     if (!data.flow) {
                         return;
                     }
-                    new BuildNewFlow().execute(flow);
+                    flow.processedData = new BuildNewFlow().execute(flow);
                     const result = await new SaveFlow().execute(flow, flow.uri);
                     if (result) {
                         FixReport.createOrShow(this._extensionUri, flow);

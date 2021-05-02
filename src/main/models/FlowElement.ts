@@ -6,7 +6,6 @@ export = class FlowElement extends Node {
     public connectors = [];
     public name: string;
     public index: number;
-    public flowNumber: number;
 
     constructor(name: string, subtype: string, element: object) {
 
@@ -127,18 +126,4 @@ export = class FlowElement extends Node {
         return [];
     }
 
-    public setConnectors(connectors) {
-        // todo use setter
-        this.connectors = connectors;
-        for (let connector of connectors) {
-            if (connector.childOf === undefined) {
-                this.element[connector.type] = connector.element;
-            } else if (connector.childName !== undefined) {
-                let connectorToReplace = this.element[connector.childOf].find((c) => {
-                    return connector.childName === c.name[0];
-                });
-                connectorToReplace.connector = connector.element;
-            }
-        }
-    }
 };

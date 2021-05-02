@@ -15,11 +15,12 @@ export = class Flow {
     public xmldata;
 
     public path?: string;
-    public flowNumber?: number;
     public flowMetadata?;
-    public unconnectedElements = [];
-    public unusedVariables = [];
-    public nodesWithHardcodedIds = [];
+    public unconnectedElements;
+    public unusedVariables;
+    public nodesWithHardcodedIds;
+    public queriesInsideOfLoops;
+    public missingFaultPaths;
 
     public processedData?;
     public nodes?;

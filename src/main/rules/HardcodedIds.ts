@@ -1,10 +1,9 @@
 import Flow = require("../models/Flow");
 import * as IdPrefixes from '../data/IdPrefixes.json'
 
-export class FindHardcodedIds {
+export class HardcodedIds{
 
-    public execute(flow: Flow) {
-
+    public execute(flow : Flow) {
         const prefixes = IdPrefixes.ids.map(prefix => {
             return prefix['Key Prefix'];
         });
@@ -24,6 +23,6 @@ export class FindHardcodedIds {
                 }
             }
         }
-        flow.nodesWithHardcodedIds = nodesWithHardcodedIds;
+        return nodesWithHardcodedIds;
     }
 }

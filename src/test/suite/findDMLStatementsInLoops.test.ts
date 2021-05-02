@@ -1,10 +1,10 @@
 import "mocha";
 import * as assert from "assert";
 import Flow = require("../../main/models/Flow");
-import assignHardcodedId = require("./testfiles/assignHardcodedId.json");
-import {HardcodedIds} from "../../main/rules/HardcodedIds";
+import dmlsInLoop = require("./testfiles/allDMLStatementsInALoop.json");
+import {DMLStatementInLoop} from "../../main/rules/DMLStatementInLoop";
 
-describe("When there are any hardcoded ids",async function () {
+describe("If there are any dml statements inside of a loop",async function () {
     let mainFlow;
 
     before("arrange",  async function () {
@@ -13,15 +13,16 @@ describe("When there are any hardcoded ids",async function () {
         mainFlow = new Flow({
             label: 'main',
             path: 'anypath',
-            xmldata : assignHardcodedId,
+            xmldata : dmlsInLoop,
         });
     });
     it("they are flagged correctly", async function () {
 
         // ACT
-        const nodesWithHardcodedIds = new HardcodedIds().execute(mainFlow);
+        const dmlsInLoop = new DMLStatementInLoop().execute(mainFlow);
 
         // ASSERT
-        assert.strictEqual(nodesWithHardcodedIds.length,1);
+        assert.strictEqual(dmlsInLoop.length,4);
+
     });
 });

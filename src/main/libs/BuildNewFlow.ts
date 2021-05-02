@@ -10,10 +10,10 @@ export class BuildNewFlow {
     }
 
     public execute(flow: Flow) {
-        flow.processedData = this.buildFlow([
+        return this.buildFlow([
             ...flow.nodes.filter(node => node instanceof FlowMetadata),
             ...flow.nodes.filter(node => {
-                if(flow.unusedVariables.length > 0){
+                if(flow.unusedVariables && flow.unusedVariables.length > 0){
                     if(node instanceof FlowVariable && !flow.unusedVariables.includes(node)){
                         return node;
                     }
@@ -24,7 +24,7 @@ export class BuildNewFlow {
                 }
             }),
             ...flow.nodes.filter(node => {
-                if(flow.unconnectedElements.length > 0){
+                if(flow.unconnectedElements && flow.unconnectedElements.length > 0){
                     if(node instanceof FlowElement && !flow.unconnectedElements.includes(node)){
                         return node;
                     }

@@ -55,7 +55,7 @@
         <tr>
             <th>Label</th>
             <th>Flow Type</th>
-            <th>Nr of Violations</th>
+            <th>#Violations</th>
             <th>Results</th>
         </tr>
         </thead>
@@ -73,7 +73,13 @@
                 {#if !flow.start[0].triggerType}
                     <td>{flow.processType[0] === 'Flow' ? 'Visual Flow' : flow.processType}</td>
                 {/if}
-                <td>{flow.unconnectedElements.length + flow.unusedVariables.length + flow.nodesWithHardcodedIds.length}</td>
+                <td>
+                    {(flow.unconnectedElements? flow.unconnectedElements.length: 0) +
+                    (flow.unusedVariables? flow.unusedVariables.length: 0) +
+                    (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
+                    (flow.queriesInsideOfLoops? flow.queriesInsideOfLoops.length : 0) +
+                    (flow.missingFaultPaths? flow.missingFaultPaths.length: 0)}
+                </td>
                 <td>
                     <button on:click={() => goToDetails(flow)}>
                         Details

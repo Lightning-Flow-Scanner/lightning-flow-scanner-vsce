@@ -1,0 +1,57 @@
+body{
+    padding: 30px;
+    text-align: left;
+    font-size: medium;
+}
+
+h2 {
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+caption{
+    padding:15px;
+    font-weight: bold;
+    font-size: medium;
+    clear: both;
+}
+
+#mb {
+    margin: 30px;
+    clear: both;
+}
+
+table, th, td {
+    border-spacing: 0;
+}
+
+table {
+    width: 80%;
+    margin: auto auto 30px;
+}
+
+th, td {
+    width: 50%;
+    text-align: center;
+    border: 1px solid black;
+}
+
+th{
+    text-align: left;
+    padding-left: 15px;
+}
+
+th + th {
+    border-left: 0;
+}
+
+td + td {
+    border-left: 0;
+}
+
+hr.dashed {
+    margin: 15px 0;
+    clear: both;
+    border-top: 3px dashed #bbb;
+}
+

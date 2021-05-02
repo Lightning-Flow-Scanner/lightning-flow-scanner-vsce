@@ -13,8 +13,7 @@ export = class FlowElementConnector{
         this.element = element;
         this.childName = args.childName ? args.childName : undefined;
         this.childOf = args.childOf ? args.childOf : undefined;
-        this.alias = !this.childName ? this.type : (this.childName + ' ' + this.type);
-        
+
         if(element && element[0] && element[0].targetReference && element[0].targetReference[0]){
             this.reference = element[0].targetReference[0];
         }
