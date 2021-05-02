@@ -57,7 +57,7 @@
 		"@types/mocha": "^7.0.2",
 		"@types/mz": "^2.7.1",
 		"@types/node": "^13.11.0",
-		"@types/vscode": "^1.47.0",
+		"@types/vscode": "^1.55.0",
 		"@types/xml2js": "^0.4.5",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",

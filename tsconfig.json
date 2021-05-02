@@ -11,11 +11,15 @@
 		"experimentalDecorators": true,
 		"sourceMap": true,
 		"rootDir": "src",
-		"strict": false   /* enable all strict type-checking options */
+		"strict": false,   /* enable all strict type-checking options */
 		/* Additional Checks */
 		// "noImplicitReturns": true, /* FixReport error when not all code paths in function return a value. */
 		// "noFallthroughCasesInSwitch": true, /* FixReport errors for fallthrough cases in switch statement. */
 		// "noUnusedParameters": true,  /* FixReport errors on unused parameters. */
+		"baseUrl": ".",
+		"paths": {
+			"vscode": ["node_modules/@types/vscode/"]
+		}
 	},
 	"exclude": [
 		"node_modules",
