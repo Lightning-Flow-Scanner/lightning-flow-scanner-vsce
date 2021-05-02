@@ -45,16 +45,36 @@
 <svelte:window on:message={windowMessage}/>
 
 {#if flow}
-    <div>
-        <h2 style="float: left">Flow Name: {flow.label}</h2>
-        <h2 style="float: right">Results</h2>
-    </div>
+    <h2>Lint Results: {flow.label}</h2>
 
     <div id="mb">
-        {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length === 0}
-            <hr class="dashed">
+        {#if flow.dmlStatementInLoop && flow.dmlStatementInLoop.length === 0}
             <table>
-                <caption>0 hardcoded id(s)</caption>
+                <caption>0 DML statement(s) in a loop.</caption>
+            </table>
+        {/if}
+        {#if flow.dmlStatementInLoop &&  flow.dmlStatementInLoop.length > 0}
+            <table>
+                <caption>{flow.dmlStatementInLoop.length} DML statement(s) in a loop:</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Subtype</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#each flow.dmlStatementInLoop as dmlInLoop}
+                    <tr>
+                        <td>{dmlInLoop.name}</td>
+                        <td>{dmlInLoop.subtype}</td>
+                    </tr>
+                {/each}
+                </tbody>
+            </table>
+        {/if}
+        {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length === 0}
+            <table>
+                <caption>0 hardcoded id(s).</caption>
             </table>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length > 0}
@@ -77,40 +97,12 @@
                 </tbody>
             </table>
         {/if}
-        {#if flow.queriesInsideOfLoops && flow.queriesInsideOfLoops.length === 0}
-            <hr class="dashed">
-            <table>
-                <caption>0 DML statement(s) in a loop:</caption>
-            </table>
-        {/if}
-        {#if flow.queriesInsideOfLoops &&  flow.queriesInsideOfLoops.length > 0}
-            <hr class="dashed">
-            <table>
-                <caption>{flow.queriesInsideOfLoops.length} DML statement(s) in a loop:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.queriesInsideOfLoops as queryInLoop}
-                    <tr>
-                        <td>{queryInLoop.name}</td>
-                        <td>{queryInLoop.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
-        {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length === 0}
-            <hr class="dashed">
             <table>
-                <caption>0 missing fault paths</caption>
+                <caption>0 missing fault paths.</caption>
             </table>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length > 0}
-            <hr class="dashed">
             <table>
                 <caption>{flow.missingFaultPaths.length} missing fault path(s):</caption>
                 <thead>
@@ -130,13 +122,11 @@
             </table>
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length === 0}
-            <hr class="dashed">
             <table>
-                <caption>0 unconnected element(s)</caption>
+                <caption>0 unconnected element(s).</caption>
             </table>
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length > 0}
-            <hr class="dashed">
             <table>
                 <caption>{flow.unconnectedElements.length} unconnected element(s):</caption>
                 <thead>
@@ -156,13 +146,11 @@
             </table>
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length === 0}
-            <hr class="dashed">
             <table>
-                <caption>0 unused variable(s)</caption>
+                <caption>0 unused variable(s).</caption>
             </table>
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length > 0}
-            <hr class="dashed">
             <table>
                 <caption>{flow.unusedVariables.length} unused variable(s):</caption>
                 <thead>
@@ -181,12 +169,10 @@
                 </tbody>
             </table>
         {/if}
-
-        <hr class="dashed">
-        {#if flow.unusedVariables || flow.unconnectedElements }
-            <button on:click={() => autoFix(flow)}>
-                Auto Fix
-            </button>
-        {/if}
     </div>
+    {#if flow.unusedVariables || flow.unconnectedElements }
+        <button on:click={() => autoFix(flow)}>
+            Auto Fix
+        </button>
+    {/if}
 {/if}

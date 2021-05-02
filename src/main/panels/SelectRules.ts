@@ -114,7 +114,7 @@ export class SelectRules {
                     return;
                 }
                 case "selectedRules": {
-                    const selectedUris: vscode.Uri[] = await new SelectFlows(this._rootPath,  'Select a Flow to clean:').execute(this._rootPath);
+                    const selectedUris: vscode.Uri[] = await new SelectFlows(this._rootPath,  'Select Flows to scan:').execute(this._rootPath);
                     const flows: Flow[] = await new ParseFlows().execute(selectedUris);
                     let options = {
                         "dmlStatementInLoop":data.dmlStatementInLoop,

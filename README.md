@@ -1,20 +1,27 @@
-# Run Automated Jobs on Salesforce Flow(s) using Visual Studio Code
+# Scan Salesforce Flows on bad practices and potential optimalizations.
 
 ## Introduction
 
-**Force Flow Control** 
-*Aims to assist you when you work with Salesforce Flows(force.com platform automation tools) using the Visual Studio Code Editor,
-offering you automated jobs for otherwise time consuming tasks.*
-
-*We recommend you combine this tool in combination with SFDX, but it is not a prerequisite and it is possible to use the extension locally.*
+**Salesforce Flow Linter** 
 
 ## Using the commands
 
-Open the **Command Palette** and type `flow` to see the list of available commands.
+Open the **Command Palette** and type `flowlint` to see the list of available commands.
 
-### Clean Flow
+### Lint Flow
+
+Scan and Find:
+    - Hardcoded ids 
+    - DML statements in a loop
+    - Unused variables 
+    - Unconnected elements
+    - Missing fault paths
+
+### Fix Flow
 
 Remove unused elements and variables from a Flow.
 
-![merge flows demo(https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/demomerge.gif)](https://raw.githubusercontent.com/Force-Config-Control/Salesforce-Flow-Control/master/docs/democlean.gif)
+
+*We recommend you combine this tool with SFDX plugins to retrieve and deploy flow metadata.*
+
 

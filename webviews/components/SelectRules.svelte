@@ -44,36 +44,33 @@
         })
     }
 
-
 </script>
 
 <svelte:window on:message={windowMessage}/>
 
-<h2>Lint Rules</h2>
+<div id="main">
+    <h2>Lint Rules</h2>
+    <p>Select the rules to be included in the scan:</p>
 
-<p>Select the rules to include:</p>
-
-<label>
-    <input type=checkbox bind:checked={dmlStatementInLoop}> DML statements inside of loops
-</label><br/>
-
-<label>
-    <input type=checkbox bind:checked={hardcodedIds}> Hardcoded ids
-</label><br/>
-
-<label>
-    <input type=checkbox bind:checked={missingFaultPaths}> Missing fault path
-</label><br/>
-
-<label>
-    <input type=checkbox bind:checked={unconnectedElements}> Unconnected elements
-</label><br/>
-
-<label>
-    <input type=checkbox bind:checked={unusedVariables}> Unused variables
-</label><br/>
-
-<button on:click={() => runRules(
+    <div id="options">
+        <label>
+            <input type=checkbox bind:checked={dmlStatementInLoop}> DML statements in a loop
+        </label><br/>
+        <label>
+            <input type=checkbox bind:checked={hardcodedIds}> Hardcoded ids
+        </label><br/>
+        <label>
+            <input type=checkbox bind:checked={missingFaultPaths}> Missing fault paths
+        </label><br/>
+        <label>
+            <input type=checkbox bind:checked={unconnectedElements}> Unconnected elements
+        </label><br/>
+        <label>
+            <input type=checkbox bind:checked={unusedVariables}> Unused variables
+        </label><br/>
+    </div>
+    <button on:click={() => runRules(
 dmlStatementInLoop, hardcodedIds, unconnectedElements, unusedVariables, missingFaultPaths
-)}>Lint
-</button>
+)}>Run Scan
+    </button>
+</div>

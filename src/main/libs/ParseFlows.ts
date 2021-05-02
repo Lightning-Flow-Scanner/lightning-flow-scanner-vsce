@@ -17,18 +17,22 @@ export class ParseFlows {
 
         let parsedFlows = [];
         for (let uri of selectedUris) {
-            const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(uri.fsPath)));
-            parsedFlows.push(new Flow(
-                {
-                    interviewLabel: parsedContent.Flow.interviewLabel,
-                    label: parsedContent.Flow.label,
-                    processMetadataValues: parsedContent.Flow.processMetadataValues,
-                    processType: parsedContent.Flow.processType,
-                    start: parsedContent.Flow.start,
-                    status: parsedContent.Flow.status,
-                    uri: uri,
-                    xmldata: parsedContent
-                }));
+            try{
+                const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(uri.fsPath)));
+                parsedFlows.push(new Flow(
+                    {
+                        interviewLabel: parsedContent.Flow.interviewLabel,
+                        label: parsedContent.Flow.label,
+                        processMetadataValues: parsedContent.Flow.processMetadataValues,
+                        processType: parsedContent.Flow.processType,
+                        start: parsedContent.Flow.start,
+                        status: parsedContent.Flow.status,
+                        uri: uri,
+                        xmldata: parsedContent
+                    }));
+            } catch (e) {
+                vscode.window.showInformationMessage(e.name + ' ' + uri);
+            }
         }
         return parsedFlows;
     }

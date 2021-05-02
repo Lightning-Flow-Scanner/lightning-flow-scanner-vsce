@@ -35,13 +35,11 @@
 
 {#if flow}
     <div>
-        <h2 style="float: left">Flow Name: {flow.label}</h2>
-        <h2 style="float: right">Results</h2>
+        <h2>Fix Results: {flow.label}</h2>
     </div>
 
     <div id="mb">
         {#if flow.unconnectedElements.length > 0}
-            <hr class="dashed">
             <table>
                 <caption>{flow.unconnectedElements.length} unconnected element(s) removed:</caption>
                 <thead>
@@ -61,7 +59,6 @@
             </table>
         {/if}
         {#if flow.unusedVariables.length > 0}
-            <hr class="dashed">
             <table>
                 <caption>{flow.unusedVariables.length} unused variable(s) removed:</caption>
                 <thead>

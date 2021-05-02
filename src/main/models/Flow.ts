@@ -19,7 +19,7 @@ export = class Flow {
     public unconnectedElements;
     public unusedVariables;
     public nodesWithHardcodedIds;
-    public queriesInsideOfLoops;
+    public dmlStatementInLoop;
     public missingFaultPaths;
 
     public processedData?;

@@ -1,44 +1,36 @@
 body{
-    padding: 30px;
     text-align: left;
     font-size: medium;
+    margin: 15px;
 }
 
 h2 {
     font-weight: bolder;
-    margin-bottom: 30px;
-}
-
-caption{
-    padding:15px;
-    font-weight: bold;
-    font-size: medium;
-    clear: both;
+    margin-bottom: 15px;
 }
 
 table, th, td {
-    margin: 30px;
-    clear: both;
+    margin: 15px;
     border-spacing: 0;
-}
-
-p{
-    clear: both;
 }
 
 table {
     margin: 30px;
+    min-width: 50%;
 }
 
 th, td {
-    width: 50%;
-    text-align: center;
     border: 1px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 th{
     text-align: left;
-    padding-left: 15px;
+}
+
+td{
+    text-align: center;
 }
 
 th + th {
@@ -48,10 +40,3 @@ th + th {
 td + td {
     border-left: 0;
 }
-
-hr.dashed {
-    margin: 15px 0;
-    clear: both;
-    border-top: 3px dashed #bbb;
-}
-

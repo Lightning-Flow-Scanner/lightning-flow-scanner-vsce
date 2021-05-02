@@ -1,7 +1,7 @@
 {
-	"name": "salesforce-flow-control",
-	"displayName": "Salesforce Flow Control",
-	"description": "Makes working with Salesforce Flows a breeze",
+	"name": "salesforce-flow-linter",
+	"displayName": "Salesforce Flow Linter",
+	"description": "Analyze your Flows to ensure best practices",
 	"version": "1.10.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
@@ -16,28 +16,23 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:flowcontrol.clean",
-		"onCommand:flowcontrol.refresh",
-		"onCommand:flowcontrol.lint",
-		"onCommand:flowcontrol.create"
+		"onCommand:flowlint.fix",
+		"onCommand:flowlint.lint",
+		"onCommand:flowlint.createflowdata"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
-				"command": "flowcontrol.clean",
-				"title": "Clean Flow (SFC)"
+				"command": "flowlint.fix",
+				"title": "Fix Flow (SFC)"
 			},
 			{
-				"command": "flowcontrol.refresh",
-				"title": "Refresh (SFC)"
-			},
-			{
-				"command": "flowcontrol.create",
+				"command": "flowlint.createflowdata",
 				"title": "Create TestData (SFC)"
 			},
 			{
-				"command": "flowcontrol.lint",
+				"command": "flowlint.lint",
 				"title": "Lint Flows (SFC)"
 			}
 		]

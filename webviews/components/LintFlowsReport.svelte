@@ -55,15 +55,15 @@
         <tr>
             <th>Label</th>
             <th>Flow Type</th>
-            <th>#Violations</th>
-            <th>Results</th>
+            <th># Results</th>
+            <th>Report</th>
         </tr>
         </thead>
         <tbody>
         {#each flows as flow}
             <tr>
                 <td><a href="/" on:click|preventDefault={() => goToFile(flow)}>
-                    <div style="height:100%;width:100%">
+                    <div>
                         {flow.label}
                     </div>
                 </a></td>
@@ -77,7 +77,7 @@
                     {(flow.unconnectedElements? flow.unconnectedElements.length: 0) +
                     (flow.unusedVariables? flow.unusedVariables.length: 0) +
                     (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
-                    (flow.queriesInsideOfLoops? flow.queriesInsideOfLoops.length : 0) +
+                    (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) +
                     (flow.missingFaultPaths? flow.missingFaultPaths.length: 0)}
                 </td>
                 <td>
