@@ -2,7 +2,7 @@
 	"name": "salesforce-flow-control",
 	"displayName": "Flow Control",
 	"description": "Analyze your Salesforce Flows and ensure best practices",
-	"version": "1.10.0",
+	"version": "2.0.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
@@ -13,7 +13,8 @@
 		"vscode": "^1.47.0"
 	},
 	"categories": [
-		"Linters", "Other"
+		"Linters",
+		"Other"
 	],
 	"activationEvents": [
 		"onCommand:flowlint.fix",
