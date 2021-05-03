@@ -1,0 +1,60 @@
+body{
+    text-align: left;
+    font-size: medium;
+    margin: 15px;
+}
+
+h2 {
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+
+caption{
+    font-weight: bold;
+    font-size: medium;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#mb {
+    margin: 15px;
+}
+
+table, th, td {
+    border-spacing: 0;
+}
+
+table {
+    min-width: 50%;
+    margin: 15px;
+}
+
+th, td {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 50%;
+    border: 1px solid black;
+}
+
+th{
+    text-align: left;
+}
+
+td{
+    text-align: center;
+}
+
+th + th {
+    border-left: 0;
+}
+
+td + td {
+    border-left: 0;
+}
+
+button{
+    padding: 8px 60px;
+    font-weight: bolder;
+    font-size: medium;
+}
+

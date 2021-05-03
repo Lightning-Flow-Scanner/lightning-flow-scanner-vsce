@@ -1,11 +1,7 @@
-import * as vscode from "vscode";
-import Flow = require("../Models/Flow");
-import FlowElement = require("../Models/FlowElement");
-import FlowMetadata = require("../Models/FlowMetadata");
-import FlowVariable = require("../Models/FlowVariable");
-
-const xml2js = require("xml2js");
-import * as fs from "mz/fs";
+import Flow = require("../models/Flow");
+import FlowMetadata = require("../models/FlowMetadata");
+import FlowVariable = require("../models/FlowVariable");
+import FlowElement = require("../models/FlowElement");
 
 export class BuildNewFlow {
 
@@ -14,9 +10,30 @@ export class BuildNewFlow {
     }
 
     public execute(flow: Flow) {
-        const newFlow = Object.assign({}, flow);
-        newFlow.processedData = this.buildFlow([...newFlow.flowMetadata, ...newFlow.flowVariables, ...newFlow.flowElements]);
-        return newFlow;
+        return this.buildFlow([
+            ...flow.nodes.filter(node => node instanceof FlowMetadata),
+            ...flow.nodes.filter(node => {
+                if(flow.unusedVariables && flow.unusedVariables.length > 0){
+                    if(node instanceof FlowVariable && !flow.unusedVariables.includes(node)){
+                        return node;
+                    }
+                } else {
+                    if(node instanceof FlowVariable){
+                        return node;
+                    }
+                }
+            }),
+            ...flow.nodes.filter(node => {
+                if(flow.unconnectedElements && flow.unconnectedElements.length > 0){
+                    if(node instanceof FlowElement && !flow.unconnectedElements.includes(node)){
+                        return node;
+                    }
+                } else {
+                    if(node instanceof FlowElement){
+                        return node;
+                    }
+                }
+            })]);
     }
 
     private buildFlow(nodesToMerge) {

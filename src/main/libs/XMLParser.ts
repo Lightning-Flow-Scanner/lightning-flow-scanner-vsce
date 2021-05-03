@@ -1,4 +1,5 @@
 import {Parser} from 'xml2js';
+import Flow = require('../models/Flow');
 
 export class XMLParser{
 
@@ -8,8 +9,8 @@ export class XMLParser{
         this.parser = new Parser();
     }
 
-    public execute(xml) {
-        return new Promise((resolve, reject) => {
+    public execute(xml): Promise<{ Flow : Flow }>{
+        return new Promise<{ Flow : Flow }>((resolve, reject) => {
             this.parser.parseString(xml, (err, result) => {
                 if (err) {
                     reject(err);

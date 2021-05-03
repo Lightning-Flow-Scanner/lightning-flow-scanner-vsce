@@ -1,0 +1,42 @@
+body{
+    text-align: left;
+    font-size: medium;
+    margin: 15px;
+}
+
+h2 {
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+table, th, td {
+    margin: 15px;
+    border-spacing: 0;
+}
+
+table {
+    margin: 30px;
+    min-width: 50%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+th{
+    text-align: left;
+}
+
+td{
+    text-align: center;
+}
+
+th + th {
+    border-left: 0;
+}
+
+td + td {
+    border-left: 0;
+}
