@@ -19,7 +19,7 @@ export class SelectFlows {
         do {
             selectedFlows = await vscode.window.showOpenDialog({
                 canSelectFiles: true,
-                canSelectFolders: true,
+                canSelectFolders: false,
                 canSelectMany: true,
                 defaultUri: initialPath,
                 filters: {
