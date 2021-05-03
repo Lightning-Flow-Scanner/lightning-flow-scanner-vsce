@@ -43,7 +43,6 @@
             missingFaultPaths
         })
     }
-
 </script>
 
 <svelte:window on:message={windowMessage}/>
@@ -70,7 +69,11 @@
         </label><br/>
     </div>
     <button on:click={() => runRules(
-dmlStatementInLoop, hardcodedIds, unconnectedElements, unusedVariables, missingFaultPaths
+dmlStatementInLoop,
+hardcodedIds,
+unconnectedElements,
+unusedVariables,
+missingFaultPaths
 )}>Run Scan
     </button>
 </div>

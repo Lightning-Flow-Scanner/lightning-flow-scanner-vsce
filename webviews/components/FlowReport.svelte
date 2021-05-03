@@ -78,7 +78,6 @@
             </table>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length > 0}
-            <hr class="dashed">
             <table>
                 <caption>{flow.nodesWithHardcodedIds.length} hardcoded id(s):</caption>
                 <thead>
@@ -169,10 +168,10 @@
                 </tbody>
             </table>
         {/if}
+        {#if flow.unusedVariables || flow.unconnectedElements }
+            <button on:click={() => autoFix(flow)}>
+                Auto Fix
+            </button>
+        {/if}
     </div>
-    {#if flow.unusedVariables || flow.unconnectedElements }
-        <button on:click={() => autoFix(flow)}>
-            Auto Fix
-        </button>
-    {/if}
 {/if}
