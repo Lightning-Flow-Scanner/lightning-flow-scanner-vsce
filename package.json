@@ -13,7 +13,7 @@
 		"vscode": "^1.47.0"
 	},
 	"categories": [
-		"Other"
+		"Linters", "Other"
 	],
 	"activationEvents": [
 		"onCommand:flowlint.fix",
