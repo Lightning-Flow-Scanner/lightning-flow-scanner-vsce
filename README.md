@@ -1,8 +1,5 @@
-# Scan Salesforce Flows on bad practices and potential optimalizations.
-
-## Introduction
-
-**Salesforce Flow Linter** 
+# Salesforce Flow Control
+####_Identify bad practices and potential optimisations in Salesforce Flows._
 
 ## Using the commands
 
@@ -10,18 +7,19 @@ Open the **Command Palette** and type `flowlint` to see the list of available co
 
 ### Lint Flow
 
-Scan and Find:
-    - Hardcoded ids 
-    - DML statements in a loop
-    - Unused variables 
-    - Unconnected elements
-    - Missing fault paths
+Identify:
+1. DML statements in a loop
+1. Hardcoded ids
+1. Missing fault paths
+1. Unconnected elements
+1. Unused variables
+
+![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)
 
 ### Fix Flow
 
-Remove unused elements and variables from a Flow.
+Apply fixes automatically for (fixable) rules. Currently supports:
+1. Removal of unconnected elements
+1. Removal of unused variables
 
-
-*We recommend you combine this tool with SFDX plugins to retrieve and deploy flow metadata.*
-
-
+![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)

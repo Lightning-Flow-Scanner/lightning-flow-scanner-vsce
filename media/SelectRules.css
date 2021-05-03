@@ -15,6 +15,7 @@ p{
 }
 
 #main{
+    display: inline-block;
 }
 
 #options{
@@ -23,11 +24,11 @@ p{
 }
 
 button{
-    padding: 8px 60px;
+    padding: 8px 30px;
     font-weight: bolder;
     font-size: medium;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin: auto;
 }
-
-
-
-

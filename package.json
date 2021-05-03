@@ -1,7 +1,7 @@
 {
-	"name": "salesforce-flow-linter",
-	"displayName": "Salesforce Flow Linter",
-	"description": "Analyze your Flows to ensure best practices",
+	"name": "salesforce-flow-control",
+	"displayName": "Flow Control",
+	"description": "Analyze your Salesforce Flows and ensure best practices",
 	"version": "1.10.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",

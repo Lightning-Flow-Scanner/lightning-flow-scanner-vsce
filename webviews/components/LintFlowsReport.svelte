@@ -55,7 +55,7 @@
         <tr>
             <th>Label</th>
             <th>Flow Type</th>
-            <th># Results</th>
+            <th>#Results</th>
             <th>Report</th>
         </tr>
         </thead>

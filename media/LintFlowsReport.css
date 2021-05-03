@@ -10,12 +10,11 @@ h2 {
 }
 
 table, th, td {
-    margin: 15px;
     border-spacing: 0;
 }
 
 table {
-    margin: 30px;
+    margin: 15px;
     min-width: 50%;
 }
 
