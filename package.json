@@ -57,7 +57,6 @@
 		"@types/mocha": "^7.0.2",
 		"@types/mz": "^2.7.1",
 		"@types/node": "^13.11.0",
-		"@types/vscode": "^1.55.0",
 		"@types/xml2js": "^0.4.5",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
@@ -77,6 +76,7 @@
 	"dependencies": {
 		"@tsconfig/svelte": "^1.0.10",
 		"@types/sinon": "^9.0.4",
+		"@types/vscode": "1.47",
 		"css": "^3.0.0",
 		"mz": "^2.7.0",
 		"node-sass": "^5.0.0",
