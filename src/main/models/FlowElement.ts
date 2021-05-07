@@ -1,15 +1,13 @@
-import Node = require("./Node");
+import FlowNode = require("./FlowNode");
 import FlowElementConnector = require("./FlowElementConnector");
 
-export = class FlowElement extends Node {
+export = class FlowElement extends FlowNode {
 
     public connectors = [];
     public name: string;
-    public index: number;
 
     constructor(name: string, subtype: string, element: object) {
-
-        super(subtype, element);
+        super('element', subtype, element);
         this.name = (subtype === 'start' ? 'flowstart' : name[0]);
         let connectors = this.getConnectors(subtype, element);
         if (connectors.length > 0 && connectors[0] !== undefined) {

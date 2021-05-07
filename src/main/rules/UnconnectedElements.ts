@@ -1,11 +1,11 @@
 import Flow = require("../models/Flow");
 import FlowElement = require("../models/FlowElement");
-import Node = require("../models/Node");
+import Node = require("../models/FlowNode");
 
 export class UnconnectedElements {
 
     public execute(flow: Flow) {
-        const flowElements: FlowElement[] = flow.nodes.filter(node => node instanceof FlowElement);
+        const flowElements: FlowElement[] = flow.nodes.filter(node => node instanceof FlowElement) as FlowElement[];
         let indexesToProcess = [this.findStart(flowElements)];
         const processedElementIndexes: number[] = [];
         const unconnectedElementIndexes: number[] = [];

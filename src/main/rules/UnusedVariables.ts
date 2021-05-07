@@ -5,8 +5,8 @@ import FlowElement = require("../models/FlowElement");
 export class UnusedVariables{
 
     public execute(flow: Flow) {
-        let unusedVariables = [];
-        for (const variable of flow.nodes.filter(node => node instanceof FlowVariable)) {
+        let unusedVariables : FlowVariable[] = [];
+        for (const variable of flow.nodes.filter(node => node instanceof FlowVariable) as FlowVariable[]) {
             // first check if any inside of flow elements
             let variableName = variable.name;
             if ([...JSON.stringify(flow.nodes.filter(node => node instanceof FlowElement)).matchAll(new RegExp(variableName, 'gi'))].map(a => a.index).length === 0) {

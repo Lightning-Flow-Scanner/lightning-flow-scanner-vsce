@@ -1,12 +1,11 @@
-import Node = require("./Node");
+import FlowNode = require("./FlowNode");
 
-export = class FlowVariable extends Node{
+export = class FlowVariable extends FlowNode{
 
         public name:string;
 
         constructor(name:string, subtype:string, element:object){
-    
-            super(subtype, element);
+            super('variable', subtype, element);
             this.name = name[0];
         }
 

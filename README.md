@@ -1,5 +1,12 @@
 # Salesforce Flow Control
-####_Identify bad practices and potential optimisations in Salesforce Flows._
+### _Identify bad patterns and potential optimisations in Salesforce Flows._
+
+Currently includes rules to flag: 
+1. DML statements in a loop
+1. Hardcoded ids
+1. Missing fault paths
+1. Unconnected elements (fixable)
+1. Unused variables (fixable)
 
 ## Using the commands
 
@@ -7,19 +14,14 @@ Open the **Command Palette** and type `flowlint` to see the list of available co
 
 ### Lint Flow
 
-Identify:
-1. DML statements in a loop
-1. Hardcoded ids
-1. Missing fault paths
-1. Unconnected elements
-1. Unused variables
+Analyze flows and flag issues that can lead to bugs or inconsistencies.
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)
+![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlowResults13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)
+
+![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowResultDetails13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)
 
 ### Fix Flow
 
-Apply fixes automatically for (fixable) rules. Currently supports:
-1. Removal of unconnected elements
-1. Removal of unused variables
+Automatically apply fixes to flows based on (fixable) rules. 
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)
+![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FixResults1350700.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)

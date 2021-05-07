@@ -1,6 +1,7 @@
 import FlowMetadata = require("./FlowMetadata");
 import FlowVariable = require("./FlowVariable");
 import FlowElement = require("./FlowElement");
+import FlowNode = require("./FlowNode");
 import {Uri} from "vscode";
 
 export = class Flow {
@@ -13,17 +14,17 @@ export = class Flow {
     public status;
     public uri: Uri;
     public xmldata;
+    public root;
 
     public path?: string;
-    public flowMetadata?;
-    public unconnectedElements;
-    public unusedVariables;
-    public nodesWithHardcodedIds;
-    public dmlStatementInLoop;
-    public missingFaultPaths;
+    public unconnectedElements : FlowElement [];
+    public unusedVariables : FlowVariable [];
+    public nodesWithHardcodedIds : FlowElement [];
+    public dmlStatementInLoop : FlowElement[];
+    public missingFaultPaths : FlowElement[];
 
     public processedData?;
-    public nodes?;
+    public nodes? : FlowNode[];
 
     constructor(args) {
         this.interviewLabel = args.interviewLabel;
@@ -40,12 +41,13 @@ export = class Flow {
             this.path = args.path;
         }
         this.xmldata = args.xmldata;
-        this.nodes = this.preProcessNodes(args.xmldata);
+        this.preProcessNodes(args.xmldata);
     }
 
     private preProcessNodes(xml) {
         const mergeableVariables = ["variables", "constants", "formulas", "stages", "textTemplates"];
-        const flowMetadata = ["description",
+        const flowMetadata = ["$",
+            "description",
             "apiVersion",
             "processMetadataValues",
             "processType",
@@ -53,29 +55,31 @@ export = class Flow {
             "label",
             "status"
         ];
-        const allNodes = [];
+
+        const allNodes:(FlowVariable | FlowElement | FlowMetadata)[] = [];
         const flowXML = xml.Flow;
         for (let nodeType in flowXML) {
-            let nodes = flowXML[nodeType];
+            let nodesOfType = flowXML[nodeType];
             // skip xmlns url
             if (nodeType == '$'){
+                this.root = nodesOfType;
                 continue;
             }
             if (flowMetadata.includes(nodeType)) {
-                for (let node of nodes) {
+                for (let node of nodesOfType) {
                     allNodes.push(new FlowMetadata(
                         nodeType,
                         node
                     ));
                 }
             } else if (mergeableVariables.includes(nodeType)) {
-                for (let node of nodes) {
+                for (let node of nodesOfType) {
                     allNodes.push(
                         new FlowVariable(node.name, nodeType, node)
                     );
                 }
             } else {
-                for (let node of nodes) {
+                for (let node of nodesOfType) {
                     allNodes.push(
                         new FlowElement(node.name, nodeType, node)
                     );
@@ -89,7 +93,7 @@ export = class Flow {
         this.processMetadataValues = xml.Flow.processMetadataValues;
         this.start= xml.Flow.start;
         this.status= xml.Flow.status;
-        return allNodes;
+        this.nodes = allNodes;
     }
 
 };

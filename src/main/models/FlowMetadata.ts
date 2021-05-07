@@ -1,9 +1,9 @@
-import Node = require("./Node");
+import FlowNode = require("./FlowNode");
 
-export = class FlowMetadata extends Node{
+export = class FlowMetadata extends FlowNode{
 
     constructor(subtype:string, element:object){
-        super(subtype, element);
+        super('metadata', subtype, element);
     }
 
 };

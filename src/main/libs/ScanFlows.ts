@@ -11,7 +11,8 @@ export class ScanFlows{
 
         for (const flow of flows){
             if(options.dmlStatementInLoop){
-                flow.dmlStatementInLoop = new DMLStatementInLoop().execute(flow);
+                flow.dmlStatementInLoop = [];
+                // flow.dmlStatementInLoop = new DMLStatementInLoop().execute(flow);
             }
             if(options.hardcodedIds){
                 flow.nodesWithHardcodedIds = new HardcodedIds().execute(flow);

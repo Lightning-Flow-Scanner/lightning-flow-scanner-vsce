@@ -6,25 +6,16 @@
             type: 'init-view',
         });
     });
-    let dataType = "";
     let flows;
 
     function windowMessage(event) {
-
         const message = event.data;
         switch (message.type) {
             case 'init':
-                const state = tsvscode.getState();
-                if (state) {
-                    flows = state.flows;
-                } else {
-                    flows = message.flows;
-                }
-                dataType = message.dataType;
+                flows = message.flows;
                 return;
             case 'update':
                 flows = message.flows;
-                tsvscode.setState({flows});
                 return;
         }
     }
@@ -48,7 +39,6 @@
 <svelte:window on:message={windowMessage}/>
 
 <h2>Lint Results</h2>
-
 {#if flows && flows.length > 0}
     <table>
         <thead>
@@ -61,31 +51,33 @@
         </thead>
         <tbody>
         {#each flows as flow}
-            <tr>
-                <td><a href="/" on:click|preventDefault={() => goToFile(flow)}>
-                    <div>
-                        {flow.label}
-                    </div>
-                </a></td>
-                {#if flow.start[0].triggerType}
-                    <td>{flow.start[0].triggerType + '-Trigger'}</td>
-                {/if}
-                {#if !flow.start[0].triggerType}
-                    <td>{flow.processType[0] === 'Flow' ? 'Visual Flow' : flow.processType}</td>
-                {/if}
-                <td>
-                    {(flow.unconnectedElements? flow.unconnectedElements.length: 0) +
-                    (flow.unusedVariables? flow.unusedVariables.length: 0) +
-                    (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
-                    (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) +
-                    (flow.missingFaultPaths? flow.missingFaultPaths.length: 0)}
-                </td>
-                <td>
-                    <button on:click={() => goToDetails(flow)}>
-                        Details
-                    </button>
-                </td>
-            </tr>
+            {#if flow.label && flow.start &&  flow.processType && flow.nodes}
+                <tr>
+                    <td><a href="/" on:click|preventDefault={() => goToFile(flow)}>
+                        <div>
+                            {flow.label}
+                        </div>
+                    </a></td>
+                    {#if flow.start[0].triggerType}
+                        <td>{flow.start[0].triggerType + '-Trigger'}</td>
+                    {/if}
+                    {#if !flow.start[0].triggerType}
+                        <td>{flow.processType[0] === 'Flow' ? 'Visual Flow' : flow.processType}</td>
+                    {/if}
+                    <td>
+                        {(flow.unconnectedElements? flow.unconnectedElements.length: 0) +
+                        (flow.unusedVariables? flow.unusedVariables.length: 0) +
+                        (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
+                        (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) +
+                        (flow.missingFaultPaths? flow.missingFaultPaths.length: 0)}
+                    </td>
+                    <td>
+                        <button on:click={() => goToDetails(flow)}>
+                            Details
+                        </button>
+                    </td>
+                </tr>
+            {/if}
         {/each}
         </tbody>
     </table>

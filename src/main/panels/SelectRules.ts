@@ -105,14 +105,6 @@ export class SelectRules {
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
-
-                case 'init-view': {
-                    //added this route
-                    webview.postMessage({
-                        type: 'init'
-                    });
-                    return;
-                }
                 case "selectedRules": {
                     const selectedUris: vscode.Uri[] = await new SelectFlows(this._rootPath,  'Select Flows to scan:').execute(this._rootPath);
                     const flows: Flow[] = await new ParseFlows().execute(selectedUris);
