@@ -10,30 +10,29 @@ export class BuildNewFlow {
     }
 
     public execute(flow: Flow) {
-        return this.buildFlow([
-            ...flow.nodes.filter(node => node instanceof FlowMetadata),
-            ...flow.nodes.filter(node => {
-                if(flow.unusedVariables && flow.unusedVariables.length > 0){
-                    if(node instanceof FlowVariable && !flow.unusedVariables.includes(node)){
+
+        const unusedVariableReferences = flow.unusedVariables.map(unusedVariable => unusedVariable.name);
+        const unconnectedElementsReferences = flow.unconnectedElements.map(unconnectedElement => unconnectedElement.name);
+        const nodesToBuild = flow.nodes.filter(node => {
+                switch (node.nodeType) {
+                    case 'variable':
+                        let nodeVar = node as FlowVariable;
+                        if (!unusedVariableReferences.includes(nodeVar.name)) {
+                            return node;
+                        }
+                        break;
+                    case 'element':
+                        let nodeElement = node as FlowElement;
+                        if (!unconnectedElementsReferences.includes(nodeElement.name)) {
+                            return node;
+                        }
+                        break;
+                    case 'metadata':
                         return node;
-                    }
-                } else {
-                    if(node instanceof FlowVariable){
-                        return node;
-                    }
                 }
-            }),
-            ...flow.nodes.filter(node => {
-                if(flow.unconnectedElements && flow.unconnectedElements.length > 0){
-                    if(node instanceof FlowElement && !flow.unconnectedElements.includes(node)){
-                        return node;
-                    }
-                } else {
-                    if(node instanceof FlowElement){
-                        return node;
-                    }
-                }
-            })]);
+            }
+        );
+        return this.buildFlow(nodesToBuild);
     }
 
     private buildFlow(nodesToMerge) {
@@ -44,6 +43,13 @@ export class BuildNewFlow {
             res = this.convertFlowNodes(res, nodesOfType, subtype);
         }
         return {'Flow': res};
+
+        // return {
+        //     'Flow': {
+        //         $: root,
+        //     }
+        // };
+
     }
 
     private convertFlowNodes(obj, nodes, key) {

@@ -113,7 +113,6 @@ export class LintFlowsReport {
                     if (!data.flow) {
                         return;
                     }
-
                     FlowReport.create(this._extensionUri, data.flow);
                     break;
                 }

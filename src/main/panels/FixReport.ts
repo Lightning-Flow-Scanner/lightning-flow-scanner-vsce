@@ -99,9 +99,6 @@ export class FixReport {
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
-
-
-
                 case 'init-view': {
                 //added this route
                     webview.postMessage({
@@ -110,7 +107,6 @@ export class FixReport {
                     });
                     return;
                 }
-                    
                 // case "tokens": {
                 //     await Util.globalState.update(accessTokenKey, data.accessToken);
                 //     await Util.globalState.update(refreshTokenKey, data.refreshToken);

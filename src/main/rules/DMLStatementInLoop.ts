@@ -6,8 +6,8 @@ export class DMLStatementInLoop{
     public execute(flow: Flow) {
 
         const dmlStatementTypes = ['recordLookups', 'recordDeletes', 'recordUpdates', 'recordCreates'];
-        const flowElements: FlowElement[] = flow.nodes.filter(node => node instanceof FlowElement);
-        const loopElements: FlowElement[] = flow.nodes.filter(node => node.subtype === 'loops');
+        const flowElements: FlowElement[] = flow.nodes.filter(node => node.nodeType === 'element') as FlowElement[];
+        const loopElements: FlowElement[] = flow.nodes.filter(node => node.subtype === 'loops') as FlowElement[];
         const dmlInLoopIndexes: number[] = [];
 
         for (const loopElement of loopElements) {
@@ -48,7 +48,7 @@ export class DMLStatementInLoop{
             } while (reachedEndOfLoop === false);
         }
 
-        const dmlStatementsInLoops = [];
+        const dmlStatementsInLoops: FlowElement[] = [];
         for (const [index, element] of flowElements.entries()) {
             if (dmlInLoopIndexes.includes(index)) {
                 dmlStatementsInLoops.push(element);

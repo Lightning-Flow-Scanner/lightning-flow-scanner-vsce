@@ -7,7 +7,8 @@ import {UnconnectedElements} from "../rules/UnconnectedElements";
 import {UnusedVariables} from "../rules/UnusedVariables";
 import Flow = require("../models/Flow");
 import {FixReport} from "../panels/FixReport";
-import {FindFlowMetadata} from "../libs/FindFlowMetadata";
+import FlowVariable = require("../models/FlowVariable");
+import FlowElement = require("../models/FlowElement");
 
 export class FixFlowCommand extends BaseCommand {
 
@@ -18,9 +19,8 @@ export class FixFlowCommand extends BaseCommand {
 
     public async execute() {
         const selectedFlow: Flow = await new SelectAFlow(this.rootPath, 'Select a Flow to clean:').execute(this.rootPath);
-        selectedFlow.flowMetadata = new FindFlowMetadata().execute(selectedFlow);
-        selectedFlow.unusedVariables = new UnusedVariables().execute(selectedFlow);
-        selectedFlow.unconnectedElements = new UnconnectedElements().execute(selectedFlow);
+        selectedFlow.unusedVariables = new UnusedVariables().execute(selectedFlow) as FlowVariable[];
+        selectedFlow.unconnectedElements = new UnconnectedElements().execute(selectedFlow) as FlowElement[];
         selectedFlow.processedData = new BuildNewFlow().execute(selectedFlow);
         const result = await new SaveFlow().execute(selectedFlow, selectedFlow.uri);
         if (result) {

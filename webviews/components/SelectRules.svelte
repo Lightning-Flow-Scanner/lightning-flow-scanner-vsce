@@ -1,37 +1,10 @@
 <script lang="ts">
-    import {onMount} from 'svelte';
-
-    onMount(() => {
-        tsvscode.postMessage({
-            type: 'init-view',
-        });
-    });
 
     let dmlStatementInLoop = true;
     let hardcodedIds = true;
     let unconnectedElements = true;
     let unusedVariables = true;
     let missingFaultPaths = true;
-
-    function windowMessage(event) {
-
-        const message = event.data;
-        switch (message.type) {
-            case 'init':
-                const state = tsvscode.getState();
-                if (state) {
-                    flows = state.flows;
-                } else {
-                    flows = message.flows;
-                }
-                dataType = message.dataType;
-                return;
-            case 'update':
-                flows = message.flows;
-                tsvscode.setState({flows});
-                return;
-        }
-    }
 
     function runRules(dmlStatementInLoop, hardcodedIds, unconnectedElements, unusedVariables, missingFaultPaths) {
         tsvscode.postMessage({
@@ -44,8 +17,6 @@
         })
     }
 </script>
-
-<svelte:window on:message={windowMessage}/>
 
 <div id="main">
     <h2>Lint Rules</h2>

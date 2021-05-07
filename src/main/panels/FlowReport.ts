@@ -18,7 +18,7 @@ export class FlowReport {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static create(extensionUri: vscode.Uri , flow : any) {
+    public static create(extensionUri: vscode.Uri , flow : Flow) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
@@ -51,7 +51,7 @@ export class FlowReport {
     //     FlowReport.currentPanel = new FlowReport(panel, extensionUri);
     // }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flow : any) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flow : Flow) {
         this._panel = panel;
         this._extensionUri = extensionUri;
 

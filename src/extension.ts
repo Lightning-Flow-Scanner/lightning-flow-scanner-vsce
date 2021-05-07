@@ -11,7 +11,6 @@ import {CreateTestDataCommand} from "./main/commands/CreateTestDataCommand";
 import {LintFlowsCommand} from "./main/commands/LintFlowsCommand";
 import { LintFlowsReport } from "./main/panels/LintFlowsReport";
 import {ScanFlows} from "./main/libs/ScanFlows";
-import {FindFlowMetadata} from "./main/libs/FindFlowMetadata";
 import {UnusedVariables} from "./main/rules/UnusedVariables";
 import {HardcodedIds} from "./main/rules/HardcodedIds";
 import {BuildNewFlow} from "./main/libs/BuildNewFlow";

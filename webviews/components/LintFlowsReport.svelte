@@ -6,7 +6,6 @@
             type: 'init-view',
         });
     });
-    let dataType = "";
     let flows;
 
     function windowMessage(event) {
@@ -14,17 +13,10 @@
         const message = event.data;
         switch (message.type) {
             case 'init':
-                const state = tsvscode.getState();
-                if (state) {
-                    flows = state.flows;
-                } else {
-                    flows = message.flows;
-                }
-                dataType = message.dataType;
+                flows = message.flows;
                 return;
             case 'update':
                 flows = message.flows;
-                tsvscode.setState({flows});
                 return;
         }
     }
