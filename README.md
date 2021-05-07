@@ -16,12 +16,12 @@ Open the **Command Palette** and type `flowlint` to see the list of available co
 
 Analyze flows and flag issues that can lead to bugs or inconsistencies.
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlowResults13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)
+![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlowResults13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlow550660.png)
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowResultDetails13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)
+![Flow Report Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowResultDetails13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowReport550660.png)
 
 ### Fix Flow
 
 Automatically apply fixes to flows based on (fixable) rules. 
 
-![merge flows demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FixResults1350700.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FixResults1350700.png)
+![Fix Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FixResults1350700.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FixResults1350700.png)
