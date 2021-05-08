@@ -31,7 +31,7 @@ export class LintFlowsReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             LintFlowsReport.viewType,
-            "Lint Flows Report",
+            "Scan Results Overview",
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview

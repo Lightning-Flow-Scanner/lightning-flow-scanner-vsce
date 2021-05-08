@@ -38,7 +38,7 @@
 
 <svelte:window on:message={windowMessage}/>
 
-<h2>Lint Results</h2>
+<h2>Scan Results</h2>
 {#if flows && flows.length > 0}
     <table>
         <thead>
@@ -65,11 +65,16 @@
                         <td>{flow.processType[0] === 'Flow' ? 'Visual Flow' : flow.processType}</td>
                     {/if}
                     <td>
-                        {(flow.unconnectedElements? flow.unconnectedElements.length: 0) +
-                        (flow.unusedVariables? flow.unusedVariables.length: 0) +
-                        (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
+                        {
                         (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) +
-                        (flow.missingFaultPaths? flow.missingFaultPaths.length: 0)}
+                        (flow.duplicateDMLOperationsByNavigation? flow.duplicateDMLOperationsByNavigation.length: 0) +
+                        (flow.missingDescription? 1: 0) +
+                        (flow.missingFaultPaths? flow.missingFaultPaths.length: 0) +
+                        (flow.missingNullHandler? flow.missingNullHandler.length: 0) +
+                        (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
+                        (flow.unconnectedElements? flow.unconnectedElements.length: 0) +
+                        (flow.unusedVariables? flow.unusedVariables.length: 0)
+                        }
                     </td>
                     <td>
                         <button on:click={() => goToDetails(flow)}>

@@ -2,7 +2,7 @@ import { BaseCommand } from "./BaseCommand";
 import * as vscode from "vscode";
 import { SelectRules } from "../panels/SelectRules";
 
-export class LintFlowsCommand extends BaseCommand{
+export class ScanFlowsCommand extends BaseCommand{
 
     constructor(context : vscode.ExtensionContext
     ) {

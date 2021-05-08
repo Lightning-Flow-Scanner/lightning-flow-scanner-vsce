@@ -14,6 +14,10 @@ p{
     font-style: italic;
 }
 
+title{
+    margin-top: 15px;
+}
+
 #main{
     display: inline-block;
 }
@@ -28,7 +32,19 @@ button{
     font-weight: bolder;
     font-size: medium;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    margin: auto;
+}
+
+a {
+    color:#fff;
+    background-color:#feb22a;
+    width:15px;
+    height:15px;
+    display:inline-block;
+    border-radius:100%;
+    font-size: medium;
+    text-align:center;
+    text-decoration:none;
+    -webkit-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
 }

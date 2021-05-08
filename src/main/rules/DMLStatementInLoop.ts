@@ -14,7 +14,7 @@ export class DMLStatementInLoop{
             let startOfLoop = flowElements.findIndex(element => element.name === this.findStartOfLoopReference(loopElement));
             let reachedEndOfLoop = false;
             let indexesToProcess: number [] = [startOfLoop];
-            const processedLoopElementIndexes: number[] = [];
+            let processedLoopElementIndexes: number[] = [];
             do {
                 indexesToProcess = indexesToProcess.filter(index => !processedLoopElementIndexes.includes(index));
                 if (indexesToProcess.length > 0) {
