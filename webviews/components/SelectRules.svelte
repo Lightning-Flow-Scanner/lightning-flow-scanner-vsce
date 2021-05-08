@@ -99,8 +99,10 @@
 dmlStatementInLoop,
 duplicateDMLOperations,
 hardcodedIds,
+missingDescription,
+missingFaultPaths,
+missingNullHandlers,
 unconnectedElements,
 unusedVariables,
-missingFaultPaths
 )}>Run Scan
 </button>
