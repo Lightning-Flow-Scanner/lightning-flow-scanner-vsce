@@ -1,8 +1,6 @@
 # Lightning Flow Health Check
 ### _Find and Fix potential bugs and optimisations in Salesforce Lightning Flows._
 
-Choose the rules to run:
-
 ![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)
 
 ## Using the commands
