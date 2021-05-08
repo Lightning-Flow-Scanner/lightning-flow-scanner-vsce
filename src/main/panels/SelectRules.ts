@@ -113,7 +113,9 @@ export class SelectRules {
                         data.dmlStatementInLoop,
                         data.duplicateDMLOperations,
                         data.hardcodedIds,
+                        data.missingDescription,
                         data.missingFaultPaths,
+                        data.missingNullHandlers,
                         data.unconnectedElements,
                         data.unusedVariables
                     ));

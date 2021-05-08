@@ -120,6 +120,16 @@
                 </tbody>
             </table>
         {/if}
+        {#if flow.missingDescription}
+            <table>
+                <caption>1 flow description missing.</caption>
+            </table>
+        {/if}
+        {#if !flow.missingDescription}
+            <table>
+                <caption>0 flow description missing.</caption>
+            </table>
+        {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length === 0}
             <table>
                 <caption>0 missing error handlers.</caption>
@@ -139,6 +149,30 @@
                     <tr>
                         <td>{missingFaultPath.name}</td>
                         <td>{missingFaultPath.subtype}</td>
+                    </tr>
+                {/each}
+                </tbody>
+            </table>
+        {/if}
+        {#if flow.missingNullHandler && flow.missingNullHandler.length === 0}
+            <table>
+                <caption>0 missing null handlers.</caption>
+            </table>
+        {/if}
+        {#if flow.missingNullHandler && flow.missingNullHandler.length > 0}
+            <table>
+                <caption>{flow.missingNullHandler.length} missing null handlers:</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Subtype</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#each flow.missingNullHandler as missingNullHandler}
+                    <tr>
+                        <td>{missingNullHandler.name}</td>
+                        <td>{missingNullHandler.subtype}</td>
                     </tr>
                 {/each}
                 </tbody>

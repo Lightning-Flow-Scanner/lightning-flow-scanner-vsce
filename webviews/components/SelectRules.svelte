@@ -4,7 +4,9 @@
     let dmlStatementInLoop = true;
     let duplicateDMLOperations = true;
     let hardcodedIds = true;
+    let missingDescription = true;
     let missingFaultPaths = true;
+    let missingNullHandlers = true;
     let unconnectedElements = true;
     let unusedVariables = true;
 
@@ -12,7 +14,9 @@
         dmlStatementInLoop,
         duplicateDMLOperations,
         hardcodedIds,
+        missingDescription,
         missingFaultPaths,
+        missingNullHandlers,
         unconnectedElements,
         unusedVariables,
     ) {
@@ -20,7 +24,9 @@
             dmlStatementInLoop,
             duplicateDMLOperations,
             hardcodedIds,
+            missingDescription,
             missingFaultPaths,
+            missingNullHandlers,
             unconnectedElements,
             unusedVariables,
         })
@@ -51,9 +57,23 @@
             <a href="/">?</a>
         </Tooltip>
         <br>
+        <label class="option"><input type=checkbox bind:checked={missingDescription}> Missing description</label>
+        <Tooltip
+                title="Flow Descriptions are the closed thing to documentation. It is recommended to provide information about where it is used and what it will do."
+        >
+            <a href="/">?</a>
+        </Tooltip>
+        <br>
         <label class="option"><input type=checkbox bind:checked={missingFaultPaths}> Missing error handlers</label>
         <Tooltip
                 title="Sometimes a flow doesn’t perform an operation that you configured it to do. By default, the flow shows an error message to the user and emails the admin who created the flow. However, you can control that behavior."
+        >
+            <a href="/">?</a>
+        </Tooltip>
+        <br>
+        <label class="option"><input type=checkbox bind:checked={missingNullHandlers}> Missing null handlers</label>
+        <Tooltip
+                title="If a Get Records operation does not find any data it will return null. You should use decision element on that variable to check if the result is not null."
         >
             <a href="/">?</a>
         </Tooltip>

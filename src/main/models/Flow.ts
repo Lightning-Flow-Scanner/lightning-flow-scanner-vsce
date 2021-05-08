@@ -23,6 +23,8 @@ export = class Flow {
     public dmlStatementInLoop : FlowElement[];
     public duplicateDMLOperationsByNavigation : FlowElement[];
     public missingFaultPaths : FlowElement[];
+    public missingNullHandler : FlowElement[];
+    public missingDescription : Boolean;
 
     public processedData?;
     public nodes? : FlowNode[];

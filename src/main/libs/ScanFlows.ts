@@ -6,6 +6,8 @@ import {DMLStatementInLoop} from "../rules/DMLStatementInLoop";
 import {MissingFaultPath} from "../rules/MissingFaultPath";
 import {DuplicateDMLOperationsByNavigation} from "../rules/DuplicateDMLOperationsByNavigation";
 import RuleOptions = require("../models/RuleOptions");
+import {MissingFlowDescription} from "../rules/MissingFlowDescription";
+import {MissingNullHandler} from "../rules/MissingNullHandler";
 
 export class ScanFlows{
 
@@ -21,8 +23,14 @@ export class ScanFlows{
             if(options.hardcodedIds){
                 flow.nodesWithHardcodedIds = new HardcodedIds().execute(flow);
             }
+            if(options.missingDescription){
+                flow.missingDescription = new MissingFlowDescription().execute(flow);
+            }
             if(options.missingFaultPaths){
                 flow.missingFaultPaths = new MissingFaultPath().execute(flow);
+            }
+            if(options.missingNullHandlers){
+                flow.missingNullHandler = new MissingNullHandler().execute(flow);
             }
             if(options.unconnectedElements){
                 flow.unconnectedElements = new UnconnectedElements().execute(flow);
