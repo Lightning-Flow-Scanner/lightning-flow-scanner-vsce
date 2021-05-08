@@ -1,15 +1,7 @@
 # Lightning Flow Health Check
 ### _Find and Fix potential bugs and optimisations in Salesforce Lightning Flows._
 
-Currently includes rules to flag: 
-1. DML statements in a loop
-1. Duplicate changes by navigation
-1. Hardcoded ids
-1. Missing flow description
-1. Missing error handlers
-1. Missing null handlers
-1. Unconnected elements (fixable)
-1. Unused variables (fixable)
+Choose the rules to run:
 
 ![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)
 
