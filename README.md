@@ -13,7 +13,6 @@ Currently includes rules to flag:
 
 ![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)
 
-
 ## Using the commands
 
 Open the **Command Palette** and type `flowlint` to see the list of available commands.
