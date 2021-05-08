@@ -26,7 +26,7 @@ export class FlowReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             FlowReport.viewType,
-            `Lint:${flow.label}`,
+            `Scan:${flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview

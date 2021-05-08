@@ -45,7 +45,7 @@
 <svelte:window on:message={windowMessage}/>
 
 {#if flow}
-    <h2>Lint Results: {flow.label}</h2>
+    <h2>Results: {flow.label}</h2>
 
     <div id="mb">
         {#if flow.dmlStatementInLoop && flow.dmlStatementInLoop.length === 0}

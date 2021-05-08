@@ -38,7 +38,7 @@
 
 <svelte:window on:message={windowMessage}/>
 
-<h2>Lint Results</h2>
+<h2>Scan Results</h2>
 {#if flows && flows.length > 0}
     <table>
         <thead>

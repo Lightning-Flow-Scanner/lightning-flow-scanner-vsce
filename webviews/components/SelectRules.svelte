@@ -44,7 +44,7 @@
             <a href="/">?</a>
         </Tooltip>
         <br>
-        <label class="option"><input type=checkbox bind:checked={duplicateDMLOperations}>Duplicate changes by navigation.</label>
+        <label class="option"><input type=checkbox bind:checked={duplicateDMLOperations}> Duplicate changes by navigation.</label>
         <Tooltip
                 title="If the flow commits changes to the database or performs actions between two screens, don't let users navigate from the later screen to the previous screen. Otherwise, the flow can make duplicate changes to the database."        >
             <a href="/">?</a>

@@ -30,7 +30,7 @@ export class FixReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             FixReport.viewType,
-            "Fix:${flow.label}",
+            `Fix:${flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview
