@@ -2,21 +2,27 @@
     import Tooltip from './Tooltip.svelte';
 
     let dmlStatementInLoop = true;
+    let duplicateDMLOperations = true;
     let hardcodedIds = true;
+    let missingFaultPaths = true;
     let unconnectedElements = true;
     let unusedVariables = true;
-    let missingFaultPaths = true;
-    let duplicateDMLOperations = true;
 
-    function runRules(dmlStatementInLoop, duplicateDMLOperations, hardcodedIds, unconnectedElements, unusedVariables, missingFaultPaths) {
-        tsvscode.postMessage({
-            type: 'selectedRules',
+    function runRules(
+        dmlStatementInLoop,
+        duplicateDMLOperations,
+        hardcodedIds,
+        missingFaultPaths,
+        unconnectedElements,
+        unusedVariables,
+    ) {
+        tsvscode.postMessage({ type: 'selectedRules',
             dmlStatementInLoop,
             duplicateDMLOperations,
             hardcodedIds,
+            missingFaultPaths,
             unconnectedElements,
             unusedVariables,
-            missingFaultPaths
         })
     }
 </script>

@@ -5,10 +5,11 @@ import {HardcodedIds} from "../rules/HardcodedIds";
 import {DMLStatementInLoop} from "../rules/DMLStatementInLoop";
 import {MissingFaultPath} from "../rules/MissingFaultPath";
 import {DuplicateDMLOperationsByNavigation} from "../rules/DuplicateDMLOperationsByNavigation";
+import RuleOptions = require("../models/RuleOptions");
 
 export class ScanFlows{
 
-    public execute(flows : Flow[], options) {
+    public execute(flows : Flow[], options : RuleOptions) {
 
         for (const flow of flows){
             if(options.dmlStatementInLoop){

@@ -7,6 +7,7 @@ import {SelectFlows} from "../libs/SelectFlows";
 import {ParseFlows} from "../libs/ParseFlows";
 import {ScanFlows} from "../libs/ScanFlows";
 import {LintFlowsReport} from "./LintFlowsReport";
+import RuleOptions = require("../models/RuleOptions");
 
 export class SelectRules {
     /**
@@ -61,7 +62,7 @@ export class SelectRules {
     //     SelectRules.currentPanel = new SelectRules(panel, extensionUri);
     // }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, rootPath : vscode.Uri) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, rootPath: vscode.Uri) {
         this._panel = panel;
         this._extensionUri = extensionUri;
         this._rootPath = rootPath;
@@ -106,17 +107,16 @@ export class SelectRules {
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
                 case "selectedRules": {
-                    const selectedUris: vscode.Uri[] = await new SelectFlows(this._rootPath,  'Select Flows to scan:').execute(this._rootPath);
+                    const selectedUris: vscode.Uri[] = await new SelectFlows(this._rootPath, 'Select Flows to scan:').execute(this._rootPath);
                     const flows: Flow[] = await new ParseFlows().execute(selectedUris);
-                    let options = {
-                        "dmlStatementInLoop":data.dmlStatementInLoop,
-                        "duplicateDMLOperations": data.duplicateDMLOperations,
-                        "hardcodedIds": data.hardcodedIds,
-                        "unconnectedElements": data.unconnectedElements,
-                        "unusedVariables": data.unusedVariables,
-                        "missingFaultPaths": data.missingFaultPaths
-                    };
-                    new ScanFlows().execute(flows, options);
+                    new ScanFlows().execute(flows, new RuleOptions(
+                        data.dmlStatementInLoop,
+                        data.duplicateDMLOperations,
+                        data.hardcodedIds,
+                        data.missingFaultPaths,
+                        data.unconnectedElements,
+                        data.unusedVariables
+                    ));
                     LintFlowsReport.createOrShow(this._extensionUri, flows);
                     this.dispose();
                     break;
