@@ -3,7 +3,7 @@ import FlowElementConnector = require("./FlowElementConnector");
 
 export = class FlowElement extends FlowNode {
 
-    public connectors = [];
+    public connectors: FlowElementConnector[] = [];
     public name: string;
 
     constructor(name: string, subtype: string, element: object) {
@@ -52,21 +52,21 @@ export = class FlowElement extends FlowNode {
             ];
         } else if (subtype === "actionCalls") {
             let connectors = [];
-            if(element.connector){
+            if (element.connector) {
                 connectors.push(new FlowElementConnector("connector", element.connector, {}));
             }
-            if(element.faultConnector){
+            if (element.faultConnector) {
                 connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
             }
             return connectors;
         } else if (subtype === "waits") {
             let connectors = [];
-            if(element.defaultConnector){
+            if (element.defaultConnector) {
                 connectors.push(
                     new FlowElementConnector("defaultConnector", element.defaultConnector, {})
                 );
             }
-            if(element.faultConnector){
+            if (element.faultConnector) {
                 connectors.push(
                     new FlowElementConnector("faultConnector", element.faultConnector, {})
                 );
@@ -84,44 +84,47 @@ export = class FlowElement extends FlowNode {
             return connectors;
         } else if (subtype === "recordCreates") {
             let connectors = [];
-            if(element.connector){
+            if (element.connector) {
                 connectors.push(new FlowElementConnector("connector", element.connector, {}));
             }
-            if(element.faultConnector){
+            if (element.faultConnector) {
                 connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
             }
             return connectors;
         } else if (subtype === "recordDeletes") {
             let connectors = [];
-            if(element.connector){
+            if (element.connector) {
                 connectors.push(new FlowElementConnector("connector", element.connector, {}));
             }
-            if(element.faultConnector){
+            if (element.faultConnector) {
                 connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
             }
             return connectors;
         } else if (subtype === "recordLookups") {
             let connectors = [];
-            if(element.connector){
+            if (element.connector) {
                 connectors.push(new FlowElementConnector("connector", element.connector, {}));
             }
-            if(element.faultConnector){
+            if (element.faultConnector) {
                 connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
             }
             return connectors;
         } else if (subtype === "recordUpdates") {
             let connectors = [];
-            if(element.connector){
+            if (element.connector) {
                 connectors.push(new FlowElementConnector("connector", element.connector, {}));
             }
-            if(element.faultConnector){
+            if (element.faultConnector) {
                 connectors.push(new FlowElementConnector("faultConnector", element.faultConnector, {}));
             }
             return connectors;
         } else if (subtype === "subflows") {
             return [new FlowElementConnector("connector", element.connector, {})];
+        }  else if (subtype === "screens") {
+            return [new FlowElementConnector("connector", element.connector, {})];
+        } else {
+            return [new FlowElementConnector("connector", element.connector, {})];
         }
-        return [];
     }
 
 };

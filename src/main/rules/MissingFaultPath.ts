@@ -13,7 +13,6 @@ export class MissingFaultPath{
                 elementsWithoutFaultPath.push(element);
             }
         }
-
         return elementsWithoutFaultPath;
     }
 }

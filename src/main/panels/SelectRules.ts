@@ -110,6 +110,7 @@ export class SelectRules {
                     const flows: Flow[] = await new ParseFlows().execute(selectedUris);
                     let options = {
                         "dmlStatementInLoop":data.dmlStatementInLoop,
+                        "duplicateDMLOperations": data.duplicateDMLOperations,
                         "hardcodedIds": data.hardcodedIds,
                         "unconnectedElements": data.unconnectedElements,
                         "unusedVariables": data.unusedVariables,

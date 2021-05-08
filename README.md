@@ -1,10 +1,11 @@
-# Salesforce Flow Control
-### _Identify bad patterns and potential optimisations in Salesforce Flows._
+# Lightning Flow Health Check
+### _Find and Fix potential bugs and optimisations in Salesforce Lightning Flows._
 
 Currently includes rules to flag: 
 1. DML statements in a loop
+1. Duplicate changes by navigation
 1. Hardcoded ids
-1. Missing fault paths
+1. Missing error handler
 1. Unconnected elements (fixable)
 1. Unused variables (fixable)
 
@@ -12,9 +13,9 @@ Currently includes rules to flag:
 
 Open the **Command Palette** and type `flowlint` to see the list of available commands.
 
-### Lint Flow
+### Scan Flows
 
-Analyze flows and flag issues that can lead to bugs or inconsistencies.
+Flag issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
 
 ![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlowResults13501000.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/LintFlowResults13501000.png)
 

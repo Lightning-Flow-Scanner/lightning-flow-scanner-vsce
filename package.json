@@ -1,7 +1,7 @@
 {
 	"name": "salesforce-flow-control",
-	"displayName": "Flow Control",
-	"description": "Analyze your Salesforce Flows and ensure best practices",
+	"displayName": "Lightning Flow Health Check",
+	"description": "Helps you flag potential issues and optimizations in your Lightning Flows(Salesforce)",
 	"version": "2.4.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
@@ -17,23 +17,23 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:flowlint.fix",
-		"onCommand:flowlint.lint",
-		"onCommand:flowlint.createflowdata"
+		"onCommand:flowhealthcheck.createflowdata",
+		"onCommand:flowhealthcheck.fix",
+		"onCommand:flowhealthcheck.scan"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
-				"command": "flowlint.fix",
-				"title": "Fix Flow (SFC)"
-			},
-			{
-				"command": "flowlint.createflowdata",
+				"command": "flowhealthcheck.createflowdata",
 				"title": "Create TestData (SFC)"
 			},
 			{
-				"command": "flowlint.lint",
+				"command": "flowhealthcheck.fix",
+				"title": "Fix Flow (SFC)"
+			},
+			{
+				"command": "flowhealthcheck.scan",
 				"title": "Lint Flows (SFC)"
 			}
 		]

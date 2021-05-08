@@ -72,14 +72,38 @@
                 </tbody>
             </table>
         {/if}
+        {#if flow.duplicateDMLOperationsByNavigation && flow.duplicateDMLOperationsByNavigation.length === 0}
+            <table>
+                <caption>0 duplicate changes by navigation.</caption>
+            </table>
+        {/if}
+        {#if flow.duplicateDMLOperationsByNavigation &&  flow.duplicateDMLOperationsByNavigation.length > 0}
+            <table>
+                <caption>{flow.duplicateDMLOperationsByNavigation.length} duplicate changes by navigation:</caption>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Subtype</th>
+                </tr>
+                </thead>
+                <tbody>
+                {#each flow.duplicateDMLOperationsByNavigation as duplicateChangeByNavigation}
+                    <tr>
+                        <td>{duplicateChangeByNavigation.name}</td>
+                        <td>{duplicateChangeByNavigation.subtype}</td>
+                    </tr>
+                {/each}
+                </tbody>
+            </table>
+        {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length === 0}
             <table>
-                <caption>0 hardcoded id(s).</caption>
+                <caption>0 hardcoded ids.</caption>
             </table>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length > 0}
             <table>
-                <caption>{flow.nodesWithHardcodedIds.length} hardcoded id(s):</caption>
+                <caption>{flow.nodesWithHardcodedIds.length} hardcoded ids:</caption>
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -98,12 +122,12 @@
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length === 0}
             <table>
-                <caption>0 missing fault paths.</caption>
+                <caption>0 missing error handlers.</caption>
             </table>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length > 0}
             <table>
-                <caption>{flow.missingFaultPaths.length} missing fault path(s):</caption>
+                <caption>{flow.missingFaultPaths.length} missing error handlers:</caption>
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -127,7 +151,7 @@
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length > 0}
             <table>
-                <caption>{flow.unconnectedElements.length} unconnected element(s):</caption>
+                <caption>{flow.unconnectedElements.length} unconnected elements:</caption>
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -151,7 +175,7 @@
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length > 0}
             <table>
-                <caption>{flow.unusedVariables.length} unused variable(s):</caption>
+                <caption>{flow.unusedVariables.length} unused variables:</caption>
                 <thead>
                 <tr>
                     <th>Name</th>
@@ -168,10 +192,10 @@
                 </tbody>
             </table>
         {/if}
-        {#if flow.unusedVariables || flow.unconnectedElements }
-            <button on:click={() => autoFix(flow)}>
-                Auto Fix
-            </button>
-        {/if}
     </div>
+    {#if flow.unusedVariables || flow.unconnectedElements }
+        <button on:click={() => autoFix(flow)}>
+            Auto Fix
+        </button>
+    {/if}
 {/if}
