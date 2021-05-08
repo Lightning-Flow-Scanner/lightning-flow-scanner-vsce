@@ -1,8 +1,8 @@
 {
-	"name": "salesforce-flow-control",
+	"name": "lightning-flow-health-check",
 	"displayName": "Lightning Flow Health Check",
 	"description": "Helps you flag potential issues and optimizations in your Lightning Flows(Salesforce)",
-	"version": "2.5.0",
+	"version": "2.6.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
@@ -26,15 +26,15 @@
 		"commands": [
 			{
 				"command": "flowhealthcheck.createflowdata",
-				"title": "Create TestData (SFC)"
+				"title": "Create TestData"
 			},
 			{
 				"command": "flowhealthcheck.fix",
-				"title": "Fix Flow (SFC)"
+				"title": "Fix Flow"
 			},
 			{
 				"command": "flowhealthcheck.scan",
-				"title": "Lint Flows (SFC)"
+				"title": "Scan Flows"
 			}
 		]
 	},
