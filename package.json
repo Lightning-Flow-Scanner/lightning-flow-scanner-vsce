@@ -2,7 +2,7 @@
 	"name": "lightning-flow-health-check",
 	"displayName": "Lightning Flow Health Check",
 	"description": "Helps you flag potential issues and optimizations in your Lightning Flows(Salesforce)",
-	"version": "2.7.0",
+	"version": "1.1.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
