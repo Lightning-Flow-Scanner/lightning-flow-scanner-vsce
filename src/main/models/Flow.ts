@@ -10,11 +10,13 @@ export = class Flow {
     public label: string;
     public processType;
     public processMetadataValues;
+    public type;
     public start;
     public status;
     public uri: Uri;
     public xmldata;
     public root;
+    public resultCount;
 
     public path?: string;
     public unconnectedElements : FlowElement [];
@@ -45,6 +47,7 @@ export = class Flow {
         }
         this.xmldata = args.xmldata;
         this.preProcessNodes(args.xmldata);
+
     }
 
     private preProcessNodes(xml) {
@@ -96,6 +99,14 @@ export = class Flow {
         this.processMetadataValues = xml.Flow.processMetadataValues;
         this.start= xml.Flow.start;
         this.status= xml.Flow.status;
+
+        let type;
+        if(xml.Flow.start[0].triggerType)
+        { type = 'trigger:'+ xml.Flow.start[0].triggerType;
+        } else {
+            type = xml.Flow.processType[0] === 'Flow' ? 'Visual Flow' : xml.Flow.processType
+        }
+        this.type = type;
         this.nodes = allNodes;
     }
 

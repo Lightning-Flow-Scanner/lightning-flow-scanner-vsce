@@ -3,6 +3,7 @@
     import {onMount} from 'svelte';
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
+    let sortBy = {col: "resultCount", ascending: false};
     let flows;
     let sidebar_show = false;
     let dmlStatementInLoop = false;
@@ -16,7 +17,7 @@
     let selectedRules;
 
     $: {
-        if(selectedRules !== undefined && selectedRules.size > 0){
+        if (selectedRules !== undefined && selectedRules.size > 0) {
             dmlStatementInLoop = !!selectedRules.has("dmlStatementInLoop");
             duplicateDMLOperations = !!selectedRules.has("duplicateDMLOperations");
             hardcodedIds = !!selectedRules.has("hardcodedIds");
@@ -35,6 +36,20 @@
             unconnectedElements = false;
             unusedVariables = false;
         }
+        if(flows){
+            flows.forEach(flow => {
+                flow.resultCount = ((dmlStatementInLoop ? (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) : 0 ) +
+                        (duplicateDMLOperations ? (flow.duplicateDMLOperationsByNavigation? flow.duplicateDMLOperationsByNavigation.length: 0) : 0 ) +
+                        (missingDescription ? (flow.missingDescription? 1: 0) : 0 ) +
+                        (missingFaultPaths ? (flow.missingFaultPaths? flow.missingFaultPaths.length: 0) : 0 ) +
+                        (missingNullHandlers ? (flow.missingNullHandlers? flow.missingNullHandlers.length: 0) : 0 ) +
+                        (hardcodedIds ? (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) : 0 ) +
+                        (unconnectedElements ? (flow.unconnectedElements? flow.unconnectedElements.length: 0) : 0 ) +
+                        (unusedVariables ? (flow.unusedVariables? flow.unusedVariables.length: 0): 0 ));
+        });
+            sort("resultCount", false);
+        }
+
     }
 
     function windowMessage(event) {
@@ -63,8 +78,29 @@
         })
     }
 
-</script>
+    function sort(column, ascending) {
 
+        // todo fix and allow sorting
+        // if (sortBy.col == column && ascending !== sortBy.ascending) {
+        //     sortBy.ascending = !sortBy.ascending;
+        // } else {
+        //     sortBy.col = column;
+        //     sortBy.ascending = true;
+        // }
+        // // Modifier to sorting function for ascending or descending
+        let sortModifier = (sortBy.ascending) ? 1 : -1;
+
+        let sort = (a, b) =>
+        (a[column] < b[column])
+                ? -1 * sortModifier
+                : (a[column] > b[column])
+                ? 1 * sortModifier
+                : 0;
+
+        flows = flows.sort(sort);
+    }
+
+</script>
 
 <svelte:window on:message={windowMessage}/>
 
@@ -76,9 +112,9 @@
     <table>
         <thead>
         <tr>
-            <th id="label">Label</th>
-            <th id="type">Flow Type</th>
-            <th id="results">#Results</th>
+            <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
+            <th id="label" on:click={() => sort("label", sortBy.ascending)}>Label</th>
+            <th id="type" on:click={() => sort("type", sortBy.ascending)}>Flow Type</th>
             <th id="details">Report</th>
         </tr>
         </thead>
@@ -86,27 +122,15 @@
         {#each flows as flow}
             {#if flow.label && flow.start &&  flow.processType && flow.nodes}
                 <tr>
+                    <td>
+                        {flow.resultCount}
+                    </td>
                     <td><a href="/" on:click|preventDefault={() => goToFile(flow)}>
                         <div>
                             {flow.label}
                         </div>
                     </a></td>
-                    {#if flow.start[0].triggerType}
-                        <td>'Trigger:' + {flow.start[0].triggerType}</td>
-                    {/if}
-                    {#if !flow.start[0].triggerType}
-                        <td>{flow.processType[0] === 'Flow' ? 'Visual Flow' : flow.processType}</td>
-                    {/if}
-                    <td>
-                        {(dmlStatementInLoop ? (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) : 0 ) +
-                        (duplicateDMLOperations ? (flow.duplicateDMLOperationsByNavigation? flow.duplicateDMLOperationsByNavigation.length: 0) : 0 ) +
-                        (missingDescription ? (flow.missingDescription? 1: 0) : 0 ) +
-                        (missingFaultPaths ? (flow.missingFaultPaths? flow.missingFaultPaths.length: 0) : 0 ) +
-                        (missingNullHandlers ? (flow.missingNullHandlers? flow.missingNullHandlers.length: 0) : 0 ) +
-                        (hardcodedIds ? (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) : 0 ) +
-                        (unconnectedElements ? (flow.unconnectedElements? flow.unconnectedElements.length: 0) : 0 ) +
-                        (unusedVariables ? (flow.unusedVariables? flow.unusedVariables.length: 0): 0 )}
-                    </td>
+                    <td>{flow.type}</td>
                     <td>
                         <button on:click={() => goToDetails(flow)}>
                             Details
