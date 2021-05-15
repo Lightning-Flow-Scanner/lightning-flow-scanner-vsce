@@ -1,8 +1,6 @@
 # Lightning Flow Health Check
 ### _Find and Fix potential bugs and optimisations in Salesforce Lightning Flows._
 
-![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/selectrules.png)
-
 ## Using the commands
 
 Open the **Command Palette** and type `flowhealthcheck` to see the list of available commands.
@@ -11,9 +9,10 @@ Open the **Command Palette** and type `flowhealthcheck` to see the list of avail
 
 Flag issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
 
-![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
+![Flow Report Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanHardcodedIdsOnly.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanHardcodedIdsOnly.png)
 
-![Flow Report Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowresults.png)
+![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanAllRules.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanAllRules.png)
+
 
 ### Fix Flow
 
