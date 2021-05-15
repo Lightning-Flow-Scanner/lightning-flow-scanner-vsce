@@ -5,7 +5,7 @@
 
 ## Using the commands
 
-Open the **Command Palette** and type `flowlint` to see the list of available commands.
+Open the **Command Palette** and type `flowhealthcheck` to see the list of available commands.
 
 ### Scan Flows
 

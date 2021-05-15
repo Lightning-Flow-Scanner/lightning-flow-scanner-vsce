@@ -37,7 +37,7 @@ export class SelectRules {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             SelectRules.viewType,
-            "Select Lint Rules",
+            "Select Rules",
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview

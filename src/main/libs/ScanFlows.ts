@@ -30,7 +30,7 @@ export class ScanFlows{
                 flow.missingFaultPaths = new MissingFaultPath().execute(flow);
             }
             if(options.missingNullHandlers){
-                flow.missingNullHandler = new MissingNullHandler().execute(flow);
+                flow.missingNullHandlers = new MissingNullHandler().execute(flow);
             }
             if(options.unconnectedElements){
                 flow.unconnectedElements = new UnconnectedElements().execute(flow);

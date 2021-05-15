@@ -34,7 +34,7 @@
 </script>
 
 <div id="main">
-    <h2>Lint Rules</h2>
+    <h2>Rules:</h2>
     <p>Select the rules to be included in the scan:</p>
     <div id="options">
         <label class="option"><input type=checkbox bind:checked={dmlStatementInLoop}> DML statements in a loop </label>

@@ -39,3 +39,15 @@ th + th {
 td + td {
     border-left: 0;
 }
+
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 2rem 1rem 0.6rem;
+    background-color: var(--vscode-editor-background);
+    border-left: 1px solid #aaa;
+    overflow-y: auto;
+    width: 25rem;
+}

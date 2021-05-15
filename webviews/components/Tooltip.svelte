@@ -27,4 +27,5 @@
 
 {#if isHovered}
     <div style="margin-top: 15px; margin-left: 5px; margin-right: 5px; top: {y}px; left: {x}px;" class="tip">{title}</div>
+    <br />
 {/if}
