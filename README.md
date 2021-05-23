@@ -9,13 +9,13 @@ Open the **Command Palette** and type `flowhealthcheck` to see the list of avail
 
 Flags issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
 
-![Flow Report Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanHardcodedIdsOnly.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanHardcodedIdsOnly.png)
+![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
 
-![Lint Flows Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanAllRules.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanAllRules.png)
+![Filter Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)
 
 
 ### Fix Flow
 
 Automatically apply fixes to flows based on (fixable) rules. 
 
-![Fix Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixresults.png)
+![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)
