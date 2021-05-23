@@ -1,6 +1,5 @@
 import { BaseCommand } from "./BaseCommand";
 import * as vscode from "vscode";
-import { SelectRules } from "../panels/SelectRules";
 import {SelectFlows} from "../libs/SelectFlows";
 import {ParseFlows} from "../libs/ParseFlows";
 import {ScanFlows} from "../libs/ScanFlows";

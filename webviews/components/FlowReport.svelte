@@ -45,191 +45,249 @@
 <svelte:window on:message={windowMessage}/>
 
 {#if flow}
-    <h2>Results: {flow.label}</h2>
-
-    <div id="mb">
+<div class="main">
+    <table>
+        {#if flow.unusedVariables || flow.unconnectedElements }
+            <caption>
+                <button on:click={() => autoFix(flow)}>
+                    Auto Fix
+                </button>
+            </caption>
+        {/if}
+        <thead>
+        <tr>
+            <th colspan=2>Rule</th>
+            <th colspan=1># Results</th>
+        </tr>
+        </thead>
+        <tbody>
         {#if flow.dmlStatementInLoop && flow.dmlStatementInLoop.length === 0}
-            <table>
-                <caption>0 DML statement(s) in a loop.</caption>
-            </table>
+            <tr>
+                <td colspan=2>DML statement(s) in a loop</td>
+                <td>0</td>
+            </tr>
         {/if}
         {#if flow.dmlStatementInLoop &&  flow.dmlStatementInLoop.length > 0}
-            <table>
-                <caption>{flow.dmlStatementInLoop.length} DML statement(s) in a loop:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.dmlStatementInLoop as dmlInLoop}
-                    <tr>
-                        <td>{dmlInLoop.name}</td>
-                        <td>{dmlInLoop.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+            <tr>
+                <td colspan=2>DML statement(s) in a loop</td>
+                <td colspan=1>{flow.dmlStatementInLoop.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.dmlStatementInLoop as dmlInLoop, i}
+                                <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{dmlInLoop.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{dmlInLoop.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
         {#if flow.duplicateDMLOperationsByNavigation && flow.duplicateDMLOperationsByNavigation.length === 0}
-            <table>
-                <caption>0 duplicate changes by navigation.</caption>
-            </table>
+            <tr>
+                <td colspan=2>Duplicate changes by navigation</td>
+                <td>0</td>
+            </tr>
         {/if}
         {#if flow.duplicateDMLOperationsByNavigation &&  flow.duplicateDMLOperationsByNavigation.length > 0}
-            <table>
-                <caption>{flow.duplicateDMLOperationsByNavigation.length} duplicate changes by navigation:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.duplicateDMLOperationsByNavigation as duplicateChangeByNavigation}
-                    <tr>
-                        <td>{duplicateChangeByNavigation.name}</td>
-                        <td>{duplicateChangeByNavigation.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+            <tr>
+                <td colspan=2>Duplicate changes by navigation</td>
+                <td colspan=1>{flow.duplicateDMLOperationsByNavigation.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.duplicateDMLOperationsByNavigation as duplicateChangeByNavigation, i}
+                                <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{duplicateChangeByNavigation.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{duplicateChangeByNavigation.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length === 0}
-            <table>
-                <caption>0 hardcoded ids.</caption>
-            </table>
+            <tr>
+                <td colspan=2>Hardcoded ids</td>
+                <td colspan=1>0</td>
+            </tr>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length > 0}
-            <table>
-                <caption>{flow.nodesWithHardcodedIds.length} hardcoded ids:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.nodesWithHardcodedIds as nodeWithHardcodedIds}
-                    <tr>
-                        <td>{nodeWithHardcodedIds.name}</td>
-                        <td>{nodeWithHardcodedIds.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+            <tr>
+                <td colspan=2>Hardcoded ids</td>
+                <td colspan=1>{flow.nodesWithHardcodedIds.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.nodesWithHardcodedIds as nodeWithHardcodedIds, i}
+                            <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{nodeWithHardcodedIds.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{nodeWithHardcodedIds.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+
         {/if}
         {#if flow.missingDescription}
-            <table>
-                <caption>1 flow description missing.</caption>
-            </table>
+            <tr>
+                <td colspan=2>Flow description missing</td>
+                <td colspan=1>1</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 10%">1</td>
+                                    <td style="width: 45%">Flow Description Missing</td>
+                                    <td style="width: 45%">Metadata</td>
+                                </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
         {#if !flow.missingDescription}
-            <table>
-                <caption>0 flow description missing.</caption>
-            </table>
+            <tr>
+                <td colspan=2>Flow description missing</td>
+                <td colspan=1>0</td>
+            </tr>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length === 0}
-            <table>
-                <caption>0 missing error handlers.</caption>
-            </table>
+            <tr>
+                <td colspan=2>Missing error handlers.</td>
+                <td colspan=1>0</td>
+            </tr>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length > 0}
-            <table>
-                <caption>{flow.missingFaultPaths.length} missing error handlers:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.missingFaultPaths as missingFaultPath}
-                    <tr>
-                        <td>{missingFaultPath.name}</td>
-                        <td>{missingFaultPath.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+            <tr>
+                <td colspan=2>Missing error handlers</td>
+                <td colspan=1>{flow.missingFaultPaths.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.missingFaultPaths as missingFaultPath, i}
+                                <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{missingFaultPath.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{missingFaultPath.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
-        {#if flow.missingNullHandler && flow.missingNullHandler.length === 0}
-            <table>
-                <caption>0 missing null handlers.</caption>
-            </table>
+        {#if flow.missingNullHandlers && flow.missingNullHandlers.length === 0}
+            <tr>
+                <td colspan=2>Missing null handlers</td>
+                <td colspan=1>0</td>
+            </tr>
         {/if}
-        {#if flow.missingNullHandler && flow.missingNullHandler.length > 0}
-            <table>
-                <caption>{flow.missingNullHandler.length} missing null handlers:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.missingNullHandler as missingNullHandler}
-                    <tr>
-                        <td>{missingNullHandler.name}</td>
-                        <td>{missingNullHandler.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+        {#if flow.missingNullHandlers && flow.missingNullHandlers.length > 0}
+            <tr>
+                <td colspan=2>Missing null handlers</td>
+                <td colspan=1>{flow.missingNullHandlers.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.missingNullHandlers as missingNullHandler, i}
+                            <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{missingNullHandler.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{missingNullHandler.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length === 0}
-            <table>
-                <caption>0 unconnected element(s).</caption>
-            </table>
+            <tr>
+                <td colspan=2>Unconnected element(s)</td>
+                <td colspan=1>0</td>
+            </tr>
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length > 0}
-            <table>
-                <caption>{flow.unconnectedElements.length} unconnected elements:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.unconnectedElements as unconnectedElement}
-                    <tr>
-                        <td>{unconnectedElement.name}</td>
-                        <td>{unconnectedElement.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+            <tr>
+                <td colspan=2>Unconnected elements</td>
+                <td colspan=1>{flow.unconnectedElements.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.unconnectedElements as unconnectedElement, i}
+                            <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{unconnectedElement.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{unconnectedElement.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length === 0}
-            <table>
-                <caption>0 unused variable(s).</caption>
-            </table>
+            <tr>
+                <td colspan=2>Unused variable(s)</td>
+                <td colspan=1>0</td>
+            </tr>
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length > 0}
-            <table>
-                <caption>{flow.unusedVariables.length} unused variables:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.unusedVariables as unusedVariable}
-                    <tr>
-                        <td>{unusedVariable.name}</td>
-                        <td>{unusedVariable.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+            <tr>
+                <td colspan=2>Unused variables</td>
+                <td colspan=1>{flow.unusedVariables.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.unusedVariables as unusedVariable, i}
+                                <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{unusedVariable.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{unusedVariable.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
-    </div>
-    {#if flow.unusedVariables || flow.unconnectedElements }
-        <button on:click={() => autoFix(flow)}>
-            Auto Fix
-        </button>
-    {/if}
+        <tr>
+            <td colspan=2><br/><strong># Total Results</strong></td>
+            <td colspan=1><br/><strong>{(flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) +
+            (flow.duplicateDMLOperationsByNavigation? flow.duplicateDMLOperationsByNavigation.length: 0) +
+            (flow.missingDescription? 1: 0) +
+            (flow.missingFaultPaths? flow.missingFaultPaths.length: 0) +
+            (flow.missingNullHandlers? flow.missingNullHandlers.length: 0) +
+            (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) +
+            (flow.unconnectedElements? flow.unconnectedElements.length: 0) +
+            (flow.unusedVariables? flow.unusedVariables.length: 0)}</strong></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 {/if}

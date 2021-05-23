@@ -1,5 +1,5 @@
 # Lightning Flow Health Check
-### _Find and Fix potential bugs and optimisations in Salesforce Lightning Flows._
+### _Find bugs and optimise Salesforce Lightning Flows._
 
 ## Using the commands
 
@@ -7,7 +7,7 @@ Open the **Command Palette** and type `flowhealthcheck` to see the list of avail
 
 ### Scan Flows
 
-Flag issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
+Flags issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
 
 ![Flow Report Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanHardcodedIdsOnly.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanHardcodedIdsOnly.png)
 

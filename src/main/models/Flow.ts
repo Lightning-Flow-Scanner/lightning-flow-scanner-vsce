@@ -102,7 +102,7 @@ export = class Flow {
 
         let type;
         if(xml.Flow.start[0].triggerType)
-        { type = 'trigger:'+ xml.Flow.start[0].triggerType;
+        { type = 'Trigger:'+ xml.Flow.start[0].triggerType;
         } else {
             type = xml.Flow.processType[0] === 'Flow' ? 'Visual Flow' : xml.Flow.processType
         }

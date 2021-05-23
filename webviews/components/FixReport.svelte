@@ -34,48 +34,75 @@
 <svelte:window on:message={windowMessage}/>
 
 {#if flow}
-    <div>
-        <h2>Fix Results: {flow.label}</h2>
-    </div>
-
-    <div id="mb">
-        {#if flow.unconnectedElements.length > 0}
-            <table>
-                <caption>{flow.unconnectedElements.length} unconnected element(s) removed:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.unconnectedElements as unconnectedElement}
-                    <tr>
-                        <td>{unconnectedElement.name}</td>
-                        <td>{unconnectedElement.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+    <div class="main">
+    <table>
+        <thead>
+        <tr>
+            <th colspan=2>Applied Fix</th>
+            <th colspan=1># Results</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#if flow.unconnectedElements && flow.unconnectedElements.length === 0}
+            <tr>
+                <td colspan=2>Unconnected elements removed</td>
+                <td>0</td>
+            </tr>
         {/if}
-        {#if flow.unusedVariables.length > 0}
-            <table>
-                <caption>{flow.unusedVariables.length} unused variable(s) removed:</caption>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Subtype</th>
-                </tr>
-                </thead>
-                <tbody>
-                {#each flow.unusedVariables as unusedVariable}
-                    <tr>
-                        <td>{unusedVariable.name}</td>
-                        <td>{unusedVariable.subtype}</td>
-                    </tr>
-                {/each}
-                </tbody>
-            </table>
+        {#if flow.unconnectedElements &&  flow.unconnectedElements.length > 0}
+            <tr>
+                <td colspan=2>DML statement(s) in a loop</td>
+                <td colspan=1>{flow.unconnectedElements.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.unconnectedElements as unconnectedElement, i}
+                                <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{unconnectedElement.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{unconnectedElement.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
         {/if}
+        {#if flow.unusedVariables && flow.unusedVariables.length === 0}
+            <tr>
+                <td colspan=2>Unused variables removed</td>
+                <td>0</td>
+            </tr>
+        {/if}
+        {#if flow.unusedVariables &&  flow.unusedVariables.length > 0}
+            <tr>
+                <td colspan=2>DML statement(s) in a loop</td>
+                <td colspan=1>{flow.unusedVariables.length}</td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <div class="subtable">
+                        <table style="width: 100%;">
+                            {#each flow.unusedVariables as unusedVariable, i}
+                                <tr>
+                                    <td style="width: 10%">{i+1}</td>
+                                    <td style="width: 45%">{unusedVariable.name}</td>
+                                    <td style="width: 45%; text-transform: capitalize;">{unusedVariable.subtype}</td>
+                                </tr>
+                            {/each}
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        {/if}
+        <tr>
+            <td colspan=2><br/><strong># Fixes Applied</strong></td>
+            <td colspan=1><br/><strong>{(flow.unconnectedElements? flow.unconnectedElements.length: 0) +
+            (flow.unusedVariables? flow.unusedVariables.length: 0)}</strong></td>
+        </tr>
+        </tbody>
+    </table>
     </div>
 {/if}

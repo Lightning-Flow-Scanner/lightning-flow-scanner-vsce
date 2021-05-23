@@ -12,7 +12,7 @@
                     <Tooltip
                             title={rules.find(ruleWT => ruleWT.name === rule).text}
                     >
-                        <a href="/">?</a>
+                        <a class="tooltip" href="/">?</a>
                     </Tooltip>
                 </li>
             {/each}

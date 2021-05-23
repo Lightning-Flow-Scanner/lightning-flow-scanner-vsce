@@ -104,12 +104,12 @@
 
 <svelte:window on:message={windowMessage}/>
 
-<button on:click={() => sidebar_show = !sidebar_show}>Filter Rules</button>
 
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
 
 {#if flows && flows.length > 0}
     <table>
+        <caption><button on:click={() => sidebar_show = !sidebar_show}>Filter Rules</button></caption>
         <thead>
         <tr>
             <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
