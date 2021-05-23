@@ -1,6 +1,8 @@
 # Lightning Flow Health Check
 ### _Find bugs and optimise Salesforce Lightning Flows._
 
+![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
+
 ## Using the commands
 
 Open the **Command Palette** and type `flowhealthcheck` to see the list of available commands.
@@ -9,10 +11,9 @@ Open the **Command Palette** and type `flowhealthcheck` to see the list of avail
 
 Flags issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
 
-![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
-
 ![Filter Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)
 
+![Flow Details Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)
 
 ### Fix Flow
 
