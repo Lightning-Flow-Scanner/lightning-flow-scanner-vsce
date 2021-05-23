@@ -51,7 +51,7 @@
         {/if}
         {#if flow.unconnectedElements &&  flow.unconnectedElements.length > 0}
             <tr>
-                <td colspan=2>DML statement(s) in a loop</td>
+                <td colspan=2>Unconnected elements removed</td>
                 <td colspan=1>{flow.unconnectedElements.length}</td>
             </tr>
             <tr>
@@ -78,7 +78,7 @@
         {/if}
         {#if flow.unusedVariables &&  flow.unusedVariables.length > 0}
             <tr>
-                <td colspan=2>DML statement(s) in a loop</td>
+                <td colspan=2>Unused variables removed</td>
                 <td colspan=1>{flow.unusedVariables.length}</td>
             </tr>
             <tr>
