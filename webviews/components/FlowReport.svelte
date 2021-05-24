@@ -69,7 +69,7 @@
         {/if}
         {#if flow.dmlStatementInLoop &&  flow.dmlStatementInLoop.length > 0}
             <tr>
-                <td colspan=2>DML statement(s) in a loop</td>
+                <td colspan=2>DML statements in a loop</td>
                 <td colspan=1>{flow.dmlStatementInLoop.length}</td>
             </tr>
             <tr>
@@ -90,13 +90,13 @@
         {/if}
         {#if flow.duplicateDMLOperationsByNavigation && flow.duplicateDMLOperationsByNavigation.length === 0}
             <tr>
-                <td colspan=2>Duplicate changes by navigation</td>
+                <td colspan=2>Duplicate DML operations</td>
                 <td>0</td>
             </tr>
         {/if}
         {#if flow.duplicateDMLOperationsByNavigation &&  flow.duplicateDMLOperationsByNavigation.length > 0}
             <tr>
-                <td colspan=2>Duplicate changes by navigation</td>
+                <td colspan=2>Duplicate DML operations</td>
                 <td colspan=1>{flow.duplicateDMLOperationsByNavigation.length}</td>
             </tr>
             <tr>
@@ -117,13 +117,13 @@
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length === 0}
             <tr>
-                <td colspan=2>Hardcoded ids</td>
+                <td colspan=2>Hardcoded Ids</td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length > 0}
             <tr>
-                <td colspan=2>Hardcoded ids</td>
+                <td colspan=2>Hardcoded Ids</td>
                 <td colspan=1>{flow.nodesWithHardcodedIds.length}</td>
             </tr>
             <tr>
@@ -145,7 +145,7 @@
         {/if}
         {#if flow.missingDescription}
             <tr>
-                <td colspan=2>Flow description missing</td>
+                <td colspan=2>Missing flow description</td>
                 <td colspan=1>1</td>
             </tr>
             <tr>
@@ -164,13 +164,13 @@
         {/if}
         {#if !flow.missingDescription}
             <tr>
-                <td colspan=2>Flow description missing</td>
+                <td colspan=2>Missing flow description</td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length === 0}
             <tr>
-                <td colspan=2>Missing error handlers.</td>
+                <td colspan=2>Missing error handlers</td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
@@ -224,7 +224,7 @@
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length === 0}
             <tr>
-                <td colspan=2>Unconnected element(s)</td>
+                <td colspan=2>Unconnected elements</td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
@@ -251,7 +251,7 @@
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length === 0}
             <tr>
-                <td colspan=2>Unused variable(s)</td>
+                <td colspan=2>Unused variables</td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
