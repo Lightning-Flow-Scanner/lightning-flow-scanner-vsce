@@ -3,29 +3,30 @@ import * as vscode from "vscode";
 import {XMLParser} from "../libs/XMLParser";
 import Flow = require("../models/Flow");
 import {BaseCommand} from "./BaseCommand";
+
 const path = require('path');
 
-export class CreateTestDataCommand extends BaseCommand{
+export class CreateTestDataCommand extends BaseCommand {
 
-    constructor(context : vscode.ExtensionContext
+    constructor(context: vscode.ExtensionContext
     ) {
         super(context)
     }
 
     public async execute() {
         let selectedFlowFile;
-        do {
-            selectedFlowFile = await vscode.window.showOpenDialog({
-                canSelectFiles: true,
-                canSelectFolders: false,
-                canSelectMany: false,
-                defaultUri: this.rootPath,
-                filters: {
-                    'Flow': ['flow-meta.xml']
-                }
-            });
-        } while (!selectedFlowFile);
-        this.parseFlow(selectedFlowFile[0]);
+        selectedFlowFile = await vscode.window.showOpenDialog({
+            canSelectFiles: true,
+            canSelectFolders: false,
+            canSelectMany: false,
+            defaultUri: this.rootPath,
+            filters: {
+                'Flow': ['flow-meta.xml']
+            }
+        });
+        if(selectedFlowFile){
+            this.parseFlow(selectedFlowFile[0]);
+        }
     }
 
     private async parseFlow(selectedUri: vscode.Uri) {
