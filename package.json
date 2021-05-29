@@ -1,0 +1,95 @@
+{
+	"name": "lightning-flow-health-check",
+	"displayName": "Lightning Flow Health Check",
+	"description": "Find bugs and optimise Salesforce Lightning Flows",
+	"version": "1.11.0",
+	"icon": "resources/images/lightningflow.png",
+	"publisher": "ForceFlowControl",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Force-Config-Control/Salesforce-Flow-Control.git"
+	},
+	"engines": {
+		"vscode": "^1.47.0"
+	},
+	"categories": [
+		"Linters",
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:flowhealthcheck.createflowdata",
+		"onCommand:flowhealthcheck.fix",
+		"onCommand:flowhealthcheck.scan"
+	],
+	"main": "./dist/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "flowhealthcheck.createflowdata",
+				"title": "Create TestData"
+			},
+			{
+				"command": "flowhealthcheck.fix",
+				"title": "Fix Flow"
+			},
+			{
+				"command": "flowhealthcheck.scan",
+				"title": "Scan Flows"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run package",
+		"compile": "rollup -c && webpack --mode production",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"watch": "concurrently \"rollup -c -w\" \"webpack --mode development --watch\"",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"test-compile": "tsc -p ./",
+		"test-watch": "tsc -watch -p ./",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@rollup/plugin-commonjs": "^18.0.0",
+		"@rollup/plugin-node-resolve": "^11.2.1",
+		"@rollup/plugin-typescript": "^8.2.1",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/mz": "^2.7.1",
+		"@types/node": "^13.11.0",
+		"@types/xml2js": "^0.4.5",
+		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/parser": "^2.30.0",
+		"concurrently": "^6.0.2",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"rollup": "^2.45.2",
+		"rollup-plugin-svelte": "^7.1.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"sinon": "^9.0.3",
+		"svelte-preprocess": "^4.7.0",
+		"typescript": "^3.8.3",
+		"vscode": "^1.1.37",
+		"vscode-test": "^1.4.0",
+		"webpack-cli": "^4.6.0"
+	},
+	"dependencies": {
+		"@tsconfig/svelte": "^1.0.10",
+		"@types/sinon": "^9.0.4",
+		"@types/vscode": "1.47",
+		"css": "^3.0.0",
+		"mz": "^2.7.0",
+		"node-sass": "^5.0.0",
+		"reflect-metadata": "^0.1.13",
+		"sfdx": "^1.4.2",
+		"svelte": "^3.37.0",
+		"svelte-check": "^1.4.0",
+		"ts-loader": "^8.1.0",
+		"ts-mock-imports": "^1.3.0",
+		"vsce": "^1.79.5",
+		"vscode-uri": "^3.0.2",
+		"webpack": "^5.31.2",
+		"xml2js": "^0.4.23"
+	}
+}

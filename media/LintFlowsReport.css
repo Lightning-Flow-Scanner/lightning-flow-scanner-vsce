@@ -1,0 +1,68 @@
+body{
+    text-align: left;
+    font-size: medium;
+    margin: 15px;
+}
+
+h2 {
+    font-weight: bolder;
+    margin-bottom: 15px;
+}
+
+table, th, td {
+    border-spacing: 0;
+}
+
+table {
+    margin: 15px;
+    min-width: 75%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+th{
+    text-align: left;
+}
+
+td{
+    text-align: center;
+}
+
+th + th {
+    border-left: 0;
+}
+
+td + td {
+    border-left: 0;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    padding: 2rem 1rem 0.6rem;
+    background-color: var(--vscode-editor-background);
+    border-left: 1px solid #aaa;
+    overflow-y: auto;
+    width: 25rem;
+}
+
+.tooltip {
+    color:#fff;
+    background-color:#feb22a;
+    width:15px;
+    height:15px;
+    display:inline-block;
+    border-radius:100%;
+    font-size: medium;
+    text-align:center;
+    text-decoration:none;
+    -webkit-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+}
