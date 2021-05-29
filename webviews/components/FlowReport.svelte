@@ -106,21 +106,21 @@
         </thead>
         <tbody>
         {#if flow.dmlStatementInLoop && flow.dmlStatementInLoop.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "dmlStatementInLoop").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "dmlStatementInLoop").text}>
+                <td colspan=2>
                     DML statement(s) in a loop
                 </td>
                 <td>0</td>
             </tr>
         {/if}
         {#if flow.dmlStatementInLoop &&  flow.dmlStatementInLoop.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "dmlStatementInLoop").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "dmlStatementInLoop").text}>
+                <td colspan=2>
                     DML statement(s) in a loop
                 </td>
                 <td colspan=1>{flow.dmlStatementInLoop.length}</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "dmlStatementInLoop").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
@@ -137,21 +137,21 @@
             </tr>
         {/if}
         {#if flow.duplicateDMLOperationsByNavigation && flow.duplicateDMLOperationsByNavigation.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "duplicateDMLOperations").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "duplicateDMLOperations").text}>
+                <td colspan=2>
                     Duplicate DML operations
                 </td>
                 <td>0</td>
             </tr>
         {/if}
         {#if flow.duplicateDMLOperationsByNavigation &&  flow.duplicateDMLOperationsByNavigation.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "duplicateDMLOperations").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "duplicateDMLOperations").text}>
+                <td colspan=2>
                     Duplicate DML operations
                 </td>
                 <td colspan=1>{flow.duplicateDMLOperationsByNavigation.length}</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "duplicateDMLOperations").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
@@ -168,22 +168,22 @@
             </tr>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "hardcodedIds").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "hardcodedIds").text}>
+                <td colspan=2>
                     Hardcoded Ids
                 </td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.nodesWithHardcodedIds && flow.nodesWithHardcodedIds.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "hardcodedIds").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "hardcodedIds").text}>
+                <td colspan=2>
                     Hardcoded Ids
                 </td>
                 <td colspan=1>{flow.nodesWithHardcodedIds.length}</td>
             </tr>
-            <tr>
-                <td colspan=3>
+            <tr title={rules.find(ruleWT => ruleWT.name === "hardcodedIds").text}>
+            <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
                             {#each flow.nodesWithHardcodedIds as nodeWithHardcodedIds, i}
@@ -197,16 +197,15 @@
                     </div>
                 </td>
             </tr>
-
         {/if}
         {#if flow.missingDescription}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "missingDescription").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingDescription").text}>
+                <td colspan=2>
                     Missing flow description
                 </td>
                 <td colspan=1>1</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingDescription").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
@@ -221,29 +220,29 @@
             </tr>
         {/if}
         {#if !flow.missingDescription}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "missingDescription").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingDescription").text}>
+                <td colspan=2>
                     Missing flow description
                 </td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "missingFaultPaths").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingFaultPaths").text}>
+                <td colspan=2 >
                     Missing error handlers
                 </td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.missingFaultPaths && flow.missingFaultPaths.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "missingFaultPaths").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingFaultPaths").text}>
+                <td colspan=2>
                     Missing error handlers
                 </td>
                 <td colspan=1>{flow.missingFaultPaths.length}</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingFaultPaths").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
@@ -260,21 +259,21 @@
             </tr>
         {/if}
         {#if flow.missingNullHandlers && flow.missingNullHandlers.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "missingNullHandlers").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingNullHandlers").text}>
+                <td colspan=2>
                     Missing null handlers
                 </td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.missingNullHandlers && flow.missingNullHandlers.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "missingNullHandlers").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingNullHandlers").text}>
+                <td colspan=2>
                     Missing null handlers
                 </td>
                 <td colspan=1>{flow.missingNullHandlers.length}</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "missingNullHandlers").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
@@ -291,21 +290,21 @@
             </tr>
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "unconnectedElements").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "unconnectedElements").text}>
+                <td colspan=2>
                     Unconnected elements
                 </td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.unconnectedElements && flow.unconnectedElements.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "unconnectedElements").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "unconnectedElements").text}>
+                <td colspan=2>
                     Unconnected elements
                 </td>
                 <td colspan=1>{flow.unconnectedElements.length}</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "unconnectedElements").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
@@ -322,21 +321,21 @@
             </tr>
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length === 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "unusedVariables").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "unusedVariables").text}>
+                <td colspan=2>
                     Unused variables
                 </td>
                 <td colspan=1>0</td>
             </tr>
         {/if}
         {#if flow.unusedVariables && flow.unusedVariables.length > 0}
-            <tr>
-                <td colspan=2 title={rules.find(ruleWT => ruleWT.name === "unusedVariables").text}>
+            <tr title={rules.find(ruleWT => ruleWT.name === "unusedVariables").text}>
+                <td colspan=2>
                     Unused variables
                 </td>
                 <td colspan=1>{flow.unusedVariables.length}</td>
             </tr>
-            <tr>
+            <tr title={rules.find(ruleWT => ruleWT.name === "unusedVariables").text}>
                 <td colspan=3>
                     <div class="subtable">
                         <table style="width: 100%;">
