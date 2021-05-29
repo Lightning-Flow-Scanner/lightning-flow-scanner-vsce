@@ -33,7 +33,7 @@
         },
         {
             name: 'duplicateDMLOperations',
-            label: 'duplicate DML operations',
+            label: 'Duplicate DML operations',
             text: "If the flow commits changes to the database or performs actions between two screens, don't let users navigate from the later screen to the previous screen. Otherwise, the flow can make duplicate changes to the database."
         },
         {
