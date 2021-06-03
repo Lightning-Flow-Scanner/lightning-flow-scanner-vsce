@@ -28,19 +28,23 @@ export class MissingNullHandler{
                 let rules = el.element.rules;
                 for( let rule of rules){
                     for (let condition of rule.conditions){
-                        if(condition.leftValueReference && condition.leftValueReference.length > 0 && condition.leftValueReference[0] === resultReference
-                            && condition.operator && condition.operator.length > 0 && condition.operator[0] === 'IsNull'
-                            && condition.rightValue && condition.rightValue.length > 0 && condition.rightValue[0].booleanValue && condition.rightValue[0].booleanValue.length > 0
-                            && condition.rightValue[0].booleanValue[0] === 'false'
+
+                        let referenceFound = (condition.leftValueReference && condition.leftValueReference.length > 0 && condition.leftValueReference[0] === resultReference);
+                        let nullOperator = (condition.operator && condition.operator.length > 0 && condition.operator[0] === 'IsNull');
+                        let isFalse = (condition.rightValue && condition.rightValue.length > 0 && condition.rightValue[0].booleanValue && condition.rightValue[0].booleanValue.length > 0
+                            && condition.rightValue[0].booleanValue[0].toLowerCase() === 'false');
+
+                        if(
+                            referenceFound && nullOperator && isFalse
                         ){
                             nullCheckFound = true;
                         }
                     }
                 }
+            }
 
-                if (!nullCheckFound){
-                    getOperationsWithoutNullHandler.push(getElement);
-                }
+            if (!nullCheckFound){
+                getOperationsWithoutNullHandler.push(getElement);
             }
         }
 
