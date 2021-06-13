@@ -10,8 +10,8 @@ export class BaseCommand {
             this.rootPath = vscode.workspace.workspaceFolders[0].uri;
             this.context = context;
         } else {
-        //    todo add warning
-
+            vscode.window.showInformationMessage("You need to select a workspace first!");
+            throw new Error('No workspace selected');
         }
     }
 
