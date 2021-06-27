@@ -2,7 +2,7 @@ import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
 import { FlowVariable } from "flowhealthcheck--core/out/main/models/FlowVariable";
 import { FlowElement } from "flowhealthcheck--core/out/main/models/FlowElement";
 
-export class BuildNewFlow {
+export class FixFlow {
 
     constructor() {
 

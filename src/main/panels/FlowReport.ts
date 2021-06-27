@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import {BuildNewFlow} from "../libs/BuildNewFlow";
+import {FixFlow} from "../libs/FixFlow";
 import {SaveFlow} from "../libs/SaveFlow";
 import {FixReport} from "./FixReport";
 import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
@@ -99,7 +99,7 @@ export class FlowReport {
                     if (!data.flow) {
                         return;
                     }
-                    flow.processedData = new BuildNewFlow().execute(flow);
+                    flow.processedData = new FixFlow().execute(flow);
                     const result = await new SaveFlow().execute(flow, flow.uri);
                     if (result) {
                         FixReport.createOrShow(this._extensionUri, flow);
