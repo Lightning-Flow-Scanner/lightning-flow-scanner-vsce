@@ -1562,10 +1562,10 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
-flowhealthcheck--core@^1.0.92:
-  version "1.0.92"
-  resolved "https://registry.yarnpkg.com/flowhealthcheck--core/-/flowhealthcheck--core-1.0.92.tgz#636155b1cc64772d1f68c8c66f2feb7f5c60fc05"
-  integrity sha512-AXtgLYOtczh0zG3ZEP2EHobgU8NizR+LbAc6jqcTixoYMwHtfR1Kl9fS4sEsaj375OO8kf1sh9gmymmRRjZfTg==
+flowhealthcheck--core@^1.0.95:
+  version "1.0.95"
+  resolved "https://registry.yarnpkg.com/flowhealthcheck--core/-/flowhealthcheck--core-1.0.95.tgz#1281d7189086f30f1299f03104386d6bb0e75270"
+  integrity sha512-j1TyArO2OoE+p9n5NhtSRdLpOz93kDl8VVAKx5/RGXQEAvPATEGu8O7r+HIECg5+TWP+Xpe4qYpoXn07qUuAjw==
   dependencies:
     tslint "^6.1.3"
     typescript "^4.3.4"

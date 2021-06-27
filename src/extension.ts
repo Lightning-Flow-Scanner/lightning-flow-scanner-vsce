@@ -1,10 +1,10 @@
 import * as vscode from "vscode";
-import { FixFlowCommand } from "./main/commands/FixFlowCommand";
+import { FixFlowsCommand } from "./main/commands/FixFlowsCommand";
 import {CreateTestDataCommand} from "./main/commands/CreateTestDataCommand";
 import {ScanFlowsCommand} from "./main/commands/ScanFlowsCommand";
 
 export function activate(context: vscode.ExtensionContext) {
-  let fixFlowCommand = new FixFlowCommand(context);
+  let fixFlowsCommand = new FixFlowsCommand(context);
   let lintFlowsCommand = new ScanFlowsCommand(context);
   let createTestDataCommand = new CreateTestDataCommand(context);
 
@@ -13,7 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
   ]);
 
   context.subscriptions.concat([
-    vscode.commands.registerCommand('flowhealthcheck.fix', () => fixFlowCommand.execute())
+    vscode.commands.registerCommand('flowhealthcheck.fix', () => fixFlowsCommand.execute())
   ]);
 
   context.subscriptions.concat([

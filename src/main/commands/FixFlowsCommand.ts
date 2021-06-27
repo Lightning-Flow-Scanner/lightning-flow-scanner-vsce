@@ -1,13 +1,12 @@
 import * as vscode from "vscode";
 import {BaseCommand} from "./BaseCommand";
 import {SaveFlow} from "../libs/SaveFlow";
-import {FixReport} from "../panels/FixReport";
 import {Flow} from "flowhealthcheck--core/out/main/models/Flow";
 import {SelectFlows} from "../libs/SelectFlows";
 import {ParseFlows} from "../libs/ParseFlows";
 import * as core from "flowhealthcheck--core/out";
 
-export class FixFlowCommand extends BaseCommand {
+export class FixFlowsCommand extends BaseCommand {
 
   constructor(context: vscode.ExtensionContext
   ) {
