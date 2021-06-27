@@ -1,7 +1,6 @@
 import * as fs from "mz/fs";
 import * as vscode from "vscode";
 import {XMLParser} from "./XMLParser";
-import {Flow} from "../models/Flow";
 
 const path = require('path');
 

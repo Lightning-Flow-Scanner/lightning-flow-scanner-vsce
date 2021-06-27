@@ -79,7 +79,7 @@
 		"@types/sinon": "^9.0.4",
 		"@types/vscode": "1.47",
 		"css": "^3.0.0",
-		"flowhealthcheck--core": "^1.0.81",
+		"flowhealthcheck--core": "^1.0.86",
 		"mz": "^2.7.0",
 		"node-sass": "^5.0.0",
 		"reflect-metadata": "^0.1.13",

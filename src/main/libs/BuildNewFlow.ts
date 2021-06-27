@@ -1,7 +1,6 @@
-import {Flow} from "../models/Flow";
-import FlowMetadata = require("../models/FlowMetadata");
-import FlowVariable = require("../models/FlowVariable");
-import FlowElement = require("../models/FlowElement");
+import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
+import { FlowVariable } from "flowhealthcheck--core/out/main/models/FlowVariable";
+import { FlowElement } from "flowhealthcheck--core/out/main/models/FlowElement";
 
 export class BuildNewFlow {
 
