@@ -111,7 +111,6 @@
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
 
 {#if flows && flows.length > 0}
-    <p>{flows[0].scanResults[0].results}</p>
     <table>
         <caption><button on:click={() => sidebar_show = !sidebar_show}>Filter Rules</button></caption>
         <thead>
