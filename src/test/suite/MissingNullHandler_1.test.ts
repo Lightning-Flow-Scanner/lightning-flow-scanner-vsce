@@ -1,7 +1,6 @@
-
 import "mocha";
 import * as assert from "assert";
-import Flow = require("../../main/models/Flow");
+import {Flow} from "../../main/models/Flow";
 import combinedNullCheck = require("./testfiles/testNullCheckAssignment.json");
 import {MissingNullHandler} from "../../main/rules/MissingNullHandler";
 

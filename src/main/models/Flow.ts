@@ -4,7 +4,7 @@ import FlowElement = require("./FlowElement");
 import FlowNode = require("./FlowNode");
 import {Uri} from "vscode";
 
-export = class Flow {
+export class Flow {
 
     public interviewLabel: string;
     public label: string;

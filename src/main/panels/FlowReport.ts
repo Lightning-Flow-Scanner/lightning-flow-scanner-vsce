@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import {BuildNewFlow} from "../libs/BuildNewFlow";
 import {SaveFlow} from "../libs/SaveFlow";
 import {FixReport} from "./FixReport";

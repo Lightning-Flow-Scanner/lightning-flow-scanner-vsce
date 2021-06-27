@@ -1,4 +1,4 @@
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import FlowMetadata = require("../models/FlowMetadata");
 import FlowVariable = require("../models/FlowVariable");
 import FlowElement = require("../models/FlowElement");

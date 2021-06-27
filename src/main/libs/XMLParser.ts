@@ -1,5 +1,5 @@
 import {Parser} from 'xml2js';
-import Flow = require('../models/Flow');
+import {Flow} from "../models/Flow";
 
 export class XMLParser{
 

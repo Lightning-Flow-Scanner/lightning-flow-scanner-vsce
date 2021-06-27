@@ -1,4 +1,4 @@
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import {UnconnectedElements} from "../rules/UnconnectedElements";
 import {UnusedVariables} from "../rules/UnusedVariables";
 import {HardcodedIds} from "../rules/HardcodedIds";

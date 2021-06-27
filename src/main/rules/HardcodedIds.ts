@@ -1,4 +1,4 @@
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import * as IdPrefixes from '../data/IdPrefixes.json'
 
 export class HardcodedIds{

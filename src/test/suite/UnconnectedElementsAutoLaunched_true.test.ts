@@ -1,6 +1,6 @@
 import "mocha";
 import * as assert from "assert";
-import Flow = require("../../main/models/Flow");
+import {Flow} from "../../main/models/Flow";
 import mainwithloosenodes = require("./testfiles/mainwithloosenodes.json");
 import {UnconnectedElements} from "../../main/rules/UnconnectedElements";
 

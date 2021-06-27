@@ -1,6 +1,6 @@
 import "mocha";
 import * as assert from "assert";
-import Flow = require("../../main/models/Flow");
+import {Flow} from "../../main/models/Flow";
 import withDescription = require("./testfiles/withDescription.json");
 import {MissingFlowDescription} from "../../main/rules/MissingFlowDescription";
 

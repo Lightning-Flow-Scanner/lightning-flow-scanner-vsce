@@ -1,4 +1,4 @@
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 
 export class MissingFlowDescription{
 

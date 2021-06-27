@@ -1,4 +1,4 @@
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import FlowElement = require("../models/FlowElement");
 
 export class MissingFaultPath{

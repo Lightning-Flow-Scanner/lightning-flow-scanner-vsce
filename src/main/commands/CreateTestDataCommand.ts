@@ -1,7 +1,7 @@
 import * as fs from "mz/fs";
 import * as vscode from "vscode";
 import {XMLParser} from "../libs/XMLParser";
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import {BaseCommand} from "./BaseCommand";
 
 const path = require('path');

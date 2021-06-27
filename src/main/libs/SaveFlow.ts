@@ -1,5 +1,5 @@
 import * as fs from "mz/fs";
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 const xml2js = require("xml2js");
 import {URI} from 'vscode-uri';
 

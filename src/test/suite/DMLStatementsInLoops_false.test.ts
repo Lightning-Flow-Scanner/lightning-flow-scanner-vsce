@@ -1,6 +1,6 @@
 import "mocha";
 import * as assert from "assert";
-import Flow = require("../../main/models/Flow");
+import {Flow} from "../../main/models/Flow";
 import missingFaultPaths = require("./testfiles/MissingFaultPaths.json");
 import {DMLStatementInLoop} from "../../main/rules/DMLStatementInLoop";
 

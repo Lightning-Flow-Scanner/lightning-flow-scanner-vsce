@@ -1,8 +1,8 @@
 import "mocha";
 import * as assert from "assert";
-import Flow = require("../../main/models/Flow");
-import MissingFaultPaths = require("./testfiles/MissingFaultPaths.json");
+import {Flow} from "../../main/models/Flow";
 import {MissingFaultPath} from "../../main/rules/MissingFaultPath";
+import MissingFaultPathsFlow = require("./testfiles/MissingFaultPaths.json");
 
 describe("When there are any fault paths missing",async function () {
     let flow;
@@ -13,7 +13,7 @@ describe("When there are any fault paths missing",async function () {
         flow = new Flow({
             label: 'main',
             path: 'anypath',
-            xmldata : MissingFaultPaths,
+            xmldata : MissingFaultPathsFlow,
             detail: 'anypath'
         });
     });

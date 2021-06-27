@@ -1,7 +1,7 @@
 import "mocha";
 import * as assert from "assert";
 import duplicatechangesbynavigation = require("./testfiles/duplchangesbynav.json");
-import Flow = require("../../main/models/Flow");
+import {Flow} from "../../main/models/Flow";
 import {DuplicateDMLOperationsByNavigation} from "../../main/rules/DuplicateDMLOperationsByNavigation";
 
 describe("If there are changes made to the database between screens",async function () {

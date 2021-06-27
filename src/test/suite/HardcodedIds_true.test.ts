@@ -1,6 +1,6 @@
 import "mocha";
 import * as assert from "assert";
-import Flow = require("../../main/models/Flow");
+import {Flow} from "../../main/models/Flow";
 import assignHardcodedId = require("./testfiles/assignHardcodedId.json");
 import {HardcodedIds} from "../../main/rules/HardcodedIds";
 

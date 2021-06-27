@@ -5,7 +5,7 @@ import {BuildNewFlow} from "../libs/BuildNewFlow";
 import {SaveFlow} from "../libs/SaveFlow";
 import {UnconnectedElements} from "../rules/UnconnectedElements";
 import {UnusedVariables} from "../rules/UnusedVariables";
-import Flow = require("../models/Flow");
+import {Flow} from "../models/Flow";
 import {FixReport} from "../panels/FixReport";
 import FlowVariable = require("../models/FlowVariable");
 import FlowElement = require("../models/FlowElement");
