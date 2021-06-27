@@ -38,15 +38,18 @@
         }
         if(flows){
             flows.forEach(flow => {
-                flow.resultCount = ((dmlStatementInLoop ? (flow.dmlStatementInLoop? flow.dmlStatementInLoop.length : 0) : 0 ) +
-                        (duplicateDMLOperations ? (flow.duplicateDMLOperationsByNavigation? flow.duplicateDMLOperationsByNavigation.length: 0) : 0 ) +
-                        (missingDescription ? (flow.missingDescription? 1: 0) : 0 ) +
-                        (missingFaultPaths ? (flow.missingFaultPaths? flow.missingFaultPaths.length: 0) : 0 ) +
-                        (missingNullHandlers ? (flow.missingNullHandlers? flow.missingNullHandlers.length: 0) : 0 ) +
-                        (hardcodedIds ? (flow.nodesWithHardcodedIds? flow.nodesWithHardcodedIds.length : 0) : 0 ) +
-                        (unconnectedElements ? (flow.unconnectedElements? flow.unconnectedElements.length: 0) : 0 ) +
-                        (unusedVariables ? (flow.unusedVariables? flow.unusedVariables.length: 0): 0 ));
-        });
+                let count = 0;
+                for (const result of flow.scanResults){
+                    if(result.results === true){
+                        count = count + 1;
+                    } else if(result.results === false){
+
+                    } else {
+                        count = count + result.results.length;
+                    }
+                }
+                flow.resultCount = count;
+            });
             sort("resultCount", false);
         }
 

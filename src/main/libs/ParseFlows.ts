@@ -2,8 +2,8 @@ import * as vscode from "vscode";
 import {XMLParser} from "./XMLParser";
 import * as fs from "mz/fs";
 import {URI} from "vscode-uri";
-import Flow = require("../models/Flow");
 import path = require("path");
+import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
 
 
 export class ParseFlows {

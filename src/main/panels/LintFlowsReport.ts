@@ -1,8 +1,8 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import Flow = require("../models/Flow");
 import {FlowReport} from "./FlowReport";
+import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
 
 export class LintFlowsReport {
     /**
