@@ -37,7 +37,7 @@
             unusedVariables = false;
         }
         if(scanResults){
-            sort("resultCount", false);
+            // sort("resultCount", false);
         }
 
     }
@@ -46,10 +46,10 @@
         const message = event.data;
         switch (message.type) {
             case 'init':
-                scanResults = message.scanResults;
+                scanResults = message.value;
                 return;
             case 'update':
-                scanResults = message.scanResults;
+                scanResults = message.value;
                 return;
         }
     }
@@ -57,14 +57,14 @@
     function goToFile(flow) {
         tsvscode.postMessage({
             type: 'goToFile',
-            flow: flow
+            value: flow
         })
     }
 
     function goToDetails(scanResult) {
         tsvscode.postMessage({
             type: 'goToDetails',
-            scanResult: scanResult
+            value: scanResult
         })
     }
 
@@ -113,7 +113,7 @@
             {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
-                        {scanResult.flow.resultCount}
+                        {scanResult.ruleResults.reduce((a, b) => a + b.results.length, 0)}
                     </td>
                     <td><a href="/" on:click|preventDefault={() => goToFile(scanResult.flow)}>
                         <div>

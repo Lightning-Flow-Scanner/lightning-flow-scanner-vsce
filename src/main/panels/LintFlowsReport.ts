@@ -101,19 +101,19 @@ export class LintFlowsReport {
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
                 case "goToFile": {
-                    if (!data.flow) {
+                    if (!data.value) {
                         return;
                     }
-                    vscode.workspace.openTextDocument(data.flow.path).then(doc => {
+                    vscode.workspace.openTextDocument(data.value.path).then(doc => {
                         vscode.window.showTextDocument(doc);
                     });
                     break;
                 }
                 case "goToDetails": {
-                    if (!data.scanResults) {
+                    if (!data.value) {
                         return;
                     }
-                    FlowReport.create(this._extensionUri, data.scanResults);
+                    FlowReport.create(this._extensionUri, data.value);
                     break;
                 }
                 case "onError": {
@@ -126,7 +126,7 @@ export class LintFlowsReport {
                 case 'init-view': {
                     webview.postMessage({
                         type: 'init',
-                        scanResults: scanResults
+                        value: scanResults
                     });
                     return;
                 }
