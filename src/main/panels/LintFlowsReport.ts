@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {FlowReport} from "./FlowReport";
-import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
+import {ScanResult} from "flowhealthcheck--core/out/main/models/ScanResult";
 
 export class LintFlowsReport {
     /**
@@ -16,7 +16,7 @@ export class LintFlowsReport {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static createOrShow(extensionUri: vscode.Uri, flows: Flow[]) {
+    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
@@ -24,7 +24,7 @@ export class LintFlowsReport {
         // If we already have a panel, show it.
         if (LintFlowsReport.currentPanel) {
             LintFlowsReport.currentPanel._panel.reveal(column);
-            LintFlowsReport.currentPanel._update(flows);
+            LintFlowsReport.currentPanel._update(scanResults);
             return;
         }
 
@@ -44,7 +44,7 @@ export class LintFlowsReport {
                 ]
             }
         );
-        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, flows);
+        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, scanResults);
     }
 
     public static kill() {
@@ -56,12 +56,12 @@ export class LintFlowsReport {
     //     LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri);
     // }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flows: Flow[]) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[]) {
         this._panel = panel;
         this._extensionUri = extensionUri;
 
         // Set the webview's initial html content
-        this._update(flows);
+        this._update(scanResults);
 
         // Listen for when the panel is disposed
         // This happens when the user closes the panel or when the panel is closed programatically
@@ -95,7 +95,7 @@ export class LintFlowsReport {
         }
     }
 
-    private async _update(flows: Flow[]) {
+    private async _update(scanResults: ScanResult[]) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -110,10 +110,10 @@ export class LintFlowsReport {
                     break;
                 }
                 case "goToDetails": {
-                    if (!data.flow) {
+                    if (!data.scanResults) {
                         return;
                     }
-                    FlowReport.create(this._extensionUri, data.flow);
+                    FlowReport.create(this._extensionUri, data.scanResults);
                     break;
                 }
                 case "onError": {
@@ -126,7 +126,7 @@ export class LintFlowsReport {
                 case 'init-view': {
                     webview.postMessage({
                         type: 'init',
-                        flows: flows
+                        scanResults: scanResults
                     });
                     return;
                 }

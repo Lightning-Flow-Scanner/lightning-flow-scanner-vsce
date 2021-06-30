@@ -4,6 +4,7 @@ import {URI, Utils} from 'vscode-uri';
 import {SaveFlow} from "../libs/SaveFlow";
 import {FixReport} from "./FixReport";
 import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
+import {ScanResult} from "flowhealthcheck--core/out/main/models/ScanResult";
 
 export class FlowReport {
     /**
@@ -17,7 +18,7 @@ export class FlowReport {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static create(extensionUri: vscode.Uri , flow : Flow) {
+    public static create(extensionUri: vscode.Uri , scanResult : ScanResult) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
@@ -25,7 +26,7 @@ export class FlowReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             FlowReport.viewType,
-            `Scan:${flow.label}`,
+            `Scan:${scanResult.flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview
@@ -38,7 +39,7 @@ export class FlowReport {
                 ]
             }
         );
-        FlowReport.currentPanel = new FlowReport(panel, extensionUri, flow);
+        FlowReport.currentPanel = new FlowReport(panel, extensionUri, scanResult);
     }
 
     public static kill() {
@@ -50,7 +51,7 @@ export class FlowReport {
     //     FlowReport.currentPanel = new FlowReport(panel, extensionUri);
     // }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flow : Flow) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, flow : ScanResult) {
         this._panel = panel;
         this._extensionUri = extensionUri;
 
@@ -89,7 +90,7 @@ export class FlowReport {
         }
     }
 
-    private async _update(flow : Flow) {
+    private async _update(scanResult : ScanResult) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -108,7 +109,7 @@ export class FlowReport {
                 case 'init-view': {
                     webview.postMessage({
                         type: 'init',
-                        flow: flow
+                        scanResult: scanResult
                     });
                     return;
                 }

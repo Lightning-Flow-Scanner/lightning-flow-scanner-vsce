@@ -4,7 +4,7 @@
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
     let sortBy = {col: "resultCount", ascending: false};
-    let flows;
+    let scanResults;
     let sidebar_show = false;
     let dmlStatementInLoop = false;
     let duplicateDMLOperations = false;
@@ -36,20 +36,7 @@
             unconnectedElements = false;
             unusedVariables = false;
         }
-        if(flows){
-            flows.forEach(flow => {
-                let count = 0;
-                for (const result of flow.scanResults){
-                    if(result.results === true){
-                        count = count + 1;
-                    } else if(result.results === false){
-
-                    } else {
-                        count = count + result.results.length;
-                    }
-                }
-                flow.resultCount = count;
-            });
+        if(scanResults){
             sort("resultCount", false);
         }
 
@@ -59,10 +46,10 @@
         const message = event.data;
         switch (message.type) {
             case 'init':
-                flows = message.flows;
+                scanResults = message.scanResults;
                 return;
             case 'update':
-                flows = message.flows;
+                scanResults = message.scanResults;
                 return;
         }
     }
@@ -74,10 +61,10 @@
         })
     }
 
-    function goToDetails(flow) {
+    function goToDetails(scanResult) {
         tsvscode.postMessage({
             type: 'goToDetails',
-            flow: flow
+            scanResult: scanResult
         })
     }
 
@@ -100,7 +87,7 @@
                 ? 1 * sortModifier
                 : 0;
 
-        flows = flows.sort(sort);
+        scanResults = scanResults.sort(sort);
     }
 
 </script>
@@ -110,7 +97,7 @@
 
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
 
-{#if flows && flows.length > 0}
+{#if scanResults && scanResults.length > 0}
     <table>
         <caption><button on:click={() => sidebar_show = !sidebar_show}>Filter Rules</button></caption>
         <thead>
@@ -122,20 +109,20 @@
         </tr>
         </thead>
         <tbody>
-        {#each flows as flow}
-            {#if flow.label && flow.start &&  flow.processType && flow.nodes}
+        {#each scanResults as scanResult}
+            {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
-                        {flow.resultCount}
+                        {scanResult.flow.resultCount}
                     </td>
-                    <td><a href="/" on:click|preventDefault={() => goToFile(flow)}>
+                    <td><a href="/" on:click|preventDefault={() => goToFile(scanResult.flow)}>
                         <div>
-                            {flow.label}
+                            {scanResult.flow.label}
                         </div>
                     </a></td>
-                    <td>{flow.type}</td>
+                    <td>{scanResult.flow.type}</td>
                     <td>
-                        <button on:click={() => goToDetails(flow)}>
+                        <button on:click={() => goToDetails(scanResult)}>
                             Details
                         </button>
                     </td>
