@@ -1,4 +1,4 @@
-# Lightning Flow Health Check
+# Lightning Flow Scan
 ### _Find bugs and optimise Salesforce Lightning Flows._
 
 ![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)

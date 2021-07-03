@@ -3,9 +3,9 @@ import * as vscode from "vscode";
 import {SelectFlows} from "../libs/SelectFlows";
 import {ParseFlows} from "../libs/ParseFlows";
 import {LintFlowsReport} from "../panels/LintFlowsReport";
-import * as core from 'flowhealthcheck--core/out';
-import {Flow} from "flowhealthcheck--core/out/main/models/Flow";
-import {ScanOptions} from "flowhealthcheck--core/out/main/models/ScanOptions";
+import * as core from 'lightningflowscan-core/out';
+import {Flow} from "lightningflowscan-core/out/main/models/Flow";
+import {ScanResult} from "lightningflowscan-core/out/main/models/ScanResult";
 
 export class ScanFlowsCommand extends BaseCommand {
 
@@ -19,8 +19,8 @@ export class ScanFlowsCommand extends BaseCommand {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select your Flow(s):').execute(this.rootPath);
     if (selectedUris) {
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
-      core.scan(flows, new ScanOptions(true, true, true, true, true, true, true, true));
-      LintFlowsReport.createOrShow(this.context.extensionUri, flows);
+      const results: ScanResult[] = core.scan(flows);
+      LintFlowsReport.createOrShow(this.context.extensionUri, results);
     }
   }
 

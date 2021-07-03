@@ -7,7 +7,7 @@
         });
     });
     let dataType = "";
-    let flow;
+    let scanResult;
 
     function windowMessage(event) {
         const message = event.data; // The json data that the extension sent
@@ -18,33 +18,33 @@
                 const state = tsvscode.getState();
                 if (state) {
                     //we push this state from the vscode workspace to the JSON this component is looking at
-                    flow = state.flow;
+                    scanResult = state.value;
                 } else {
                     //use the state data
-                    flow = message.flow;
+                    scanResult = message.value;
                 }
                 dataType = message.dataType;
                 return;
             case 'update':
                 //assign data
-                flow = message.flow;
+                scanResult = message.value;
                 // assign state
-                tsvscode.setState({flow});
+                tsvscode.setState({scanResult});
                 return;
         }
     }
 
-    function autoFix(flow) {
+    function autoFix(scanResult) {
         tsvscode.postMessage({
             type: 'autofix',
-            flow: flow
+            value: scanResult
         });
     }
 </script>
 
 <svelte:window on:message={windowMessage}/>
 
-{#if flow}
+{#if scanResult}
 <div class="main">
         <table>
             <thead>
@@ -54,20 +54,20 @@
             </tr>
             </thead>
             <tbody>
-            {#each flow.scanResults as scanResult}
-              <tr title={scanResult.ruleDescription}>
+            {#each scanResult.ruleResults as ruleResult}
+              <tr title={ruleResult.ruleDescription}>
                   <td colspan=2>
-                      {scanResult.ruleLabel}
+                      {ruleResult.ruleLabel}
                   </td>
                   <td colspan=1>
-                    {scanResult.resultCount}
+                    {ruleResult.results.length}
                   </td>
               </tr>
-              <tr title={scanResult.ruleDescription}>
+              <tr title={ruleResult.ruleDescription}>
                   <td colspan=3>
                       <div class="subtable">
                           <table style="width: 100%;">
-                            {#each scanResult.results as result, i}
+                            {#each ruleResult.results as result, i}
                                 <tr>
                                     <td style="width: 10%">{i+1}</td>
                                     <td style="width: 45%">{result.name}</td>
@@ -81,16 +81,16 @@
             {/each}
                 <tr>
                     <td colspan=2><br/><strong># Total Results</strong></td>
-                    <td colspan=1><br/><strong>{flow.resultCount}</strong></td>
+                    <td colspan=1><br/><strong>{scanResult.ruleResults.reduce((a, b) => a + b.results.length, 0)}</strong></td>
                 </tr>
             </tbody>
     </table>
 </div>
 {/if}
 
-        <!--        {#if flow.unusedVariables || flow.unconnectedElements }-->
+        <!--        {#if scanResult.unusedVariables || scanResult.unconnectedElements }-->
 <!--            <caption>-->
-<!--                <button on:click={() => autoFix(flow)}>-->
+<!--                <button on:click={() => autoFix(scanResult)}>-->
 <!--                    Auto Fix-->
 <!--                </button>-->
 <!--            </caption>-->

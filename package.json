@@ -1,13 +1,13 @@
 {
-	"name": "lightning-flow-health-check",
-	"displayName": "Lightning Flow Health Check",
+	"name": "lightningflowscan",
+	"displayName": "Lightning Flow Scan",
 	"description": "Find bugs and optimise Salesforce Lightning Flows",
-	"version": "1.19.0",
+	"version": "1.1.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Force-Config-Control/Salesforce-Flow-Control.git"
+		"url": "https://github.com/Force-Config-Control/lightningflowscan-vsce"
 	},
 	"engines": {
 		"vscode": "^1.47.0"
@@ -17,23 +17,23 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:flowhealthcheck.createflowdata",
-		"onCommand:flowhealthcheck.fix",
-		"onCommand:flowhealthcheck.scan"
+		"onCommand:lightningflowscan.createflowdata",
+		"onCommand:lightningflowscan.fix",
+		"onCommand:lightningflowscan.scan"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
-				"command": "flowhealthcheck.createflowdata",
+				"command": "lightningflowscan.createflowdata",
 				"title": "Create TestData"
 			},
 			{
-				"command": "flowhealthcheck.fix",
+				"command": "lightningflowscan.fix",
 				"title": "Fix Flows"
 			},
 			{
-				"command": "flowhealthcheck.scan",
+				"command": "lightningflowscan.scan",
 				"title": "Scan Flows"
 			}
 		]
@@ -79,7 +79,7 @@
 		"@types/sinon": "^9.0.4",
 		"@types/vscode": "1.47",
 		"css": "^3.0.0",
-		"flowhealthcheck--core": "^1.1.4",
+		"lightningflowscan-core": "^1.1.0",
 		"mz": "^2.7.0",
 		"node-sass": "^5.0.0",
 		"reflect-metadata": "^0.1.13",
