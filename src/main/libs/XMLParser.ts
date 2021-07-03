@@ -1,5 +1,5 @@
 import {Parser} from 'xml2js';
-import { Flow } from 'flowhealthcheck--core/out/main/models/Flow';
+import { Flow } from 'lightningflowscan-core/out/main/models/Flow';
 
 export class XMLParser{
 

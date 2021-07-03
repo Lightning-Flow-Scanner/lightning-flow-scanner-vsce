@@ -3,8 +3,8 @@ import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {SaveFlow} from "../libs/SaveFlow";
 import {FixReport} from "./FixReport";
-import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
-import {ScanResult} from "flowhealthcheck--core/out/main/models/ScanResult";
+import { Flow } from "lightningflowscan-core/out/main/models/Flow";
+import {ScanResult} from "lightningflowscan-core/out/main/models/ScanResult";
 
 export class FlowReport {
     /**

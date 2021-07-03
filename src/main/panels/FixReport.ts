@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import { Flow } from "flowhealthcheck--core/out/main/models/Flow";
+import { Flow } from "lightningflowscan-core/out/main/models/Flow";
 
 export class FixReport {
     /**

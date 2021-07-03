@@ -1,13 +1,8 @@
-import * as fs from "mz/fs";
 import * as vscode from "vscode";
-import {XMLParser} from "./XMLParser";
-
-const path = require('path');
 
 export class SelectFlows {
 
     private message: string;
-
     constructor(rootPath: vscode.Uri, message: string) {
         this.message = message;
     }

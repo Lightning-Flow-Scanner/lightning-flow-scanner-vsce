@@ -1562,14 +1562,6 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.2.tgz#4575b21e2bcee7434aa9be662f4b7b5f9c2b5138"
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
-flowhealthcheck--core@^1.1.4:
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/flowhealthcheck--core/-/flowhealthcheck--core-1.1.16.tgz#75cca619a77d98edee9ddf9f52d9c1aeabf2bb64"
-  integrity sha512-MnLIRLLHwYK8niD93YX/JFP4TE2/++Wsy6NmnpxhZadjSnAT4982gNvx6wbrak2TDHKmhQw2zY0XaD2Qrbv77Q==
-  dependencies:
-    tslint "^6.1.3"
-    typescript "^4.3.4"
-
 forever-agent@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/forever-agent/-/forever-agent-0.6.1.tgz#fbc71f0c41adeb37f96c577ad1ed42d8fdacca91"
@@ -2195,6 +2187,14 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+lightningflowscan-core@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/lightningflowscan-core/-/lightningflowscan-core-1.1.0.tgz#ab18bafe2091419a7a954cb9cfad3436e02c3e07"
+  integrity sha512-dAwOIYOffbpbiE9P8m06p1ns5LjE1qArG/C9IYUrnC9TPomrdDYjYuWrdxJpo4l7JQ3tqiuhbVsLnM2qh5vpgA==
+  dependencies:
+    tslint "^6.1.3"
+    typescript "^4.3.4"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -3847,7 +3847,7 @@ typed-rest-client@^1.8.4:
     tunnel "0.0.6"
     underscore "^1.12.1"
 
-typescript@*, typescript@^4.3.4:
+typescript@*:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.4.tgz#3f85b986945bcf31071decdd96cf8bfa65f9dcbc"
   integrity sha512-uauPG7XZn9F/mo+7MrsRjyvbxFpzemRjKEZXS4AK83oP2KKOJPvb+9cO/gmnv8arWZvhnjVOXz7B49m1l0e9Ew==
@@ -3856,6 +3856,11 @@ typescript@^3.8.3:
   version "3.9.10"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
   integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
+
+typescript@^4.3.4:
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
+  integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.6"

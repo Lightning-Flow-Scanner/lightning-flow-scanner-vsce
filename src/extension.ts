@@ -9,15 +9,15 @@ export function activate(context: vscode.ExtensionContext) {
   let createTestDataCommand = new CreateTestDataCommand(context);
 
   context.subscriptions.concat([
-    vscode.commands.registerCommand('flowhealthcheck.createflowdata', () => createTestDataCommand.execute())
+    vscode.commands.registerCommand('lightningflowscan.createflowdata', () => createTestDataCommand.execute())
   ]);
 
   context.subscriptions.concat([
-    vscode.commands.registerCommand('flowhealthcheck.fix', () => fixFlowsCommand.execute())
+    vscode.commands.registerCommand('lightningflowscan.fix', () => fixFlowsCommand.execute())
   ]);
 
   context.subscriptions.concat([
-    vscode.commands.registerCommand('flowhealthcheck.scan', () => lintFlowsCommand.execute())
+    vscode.commands.registerCommand('lightningflowscan.scan', () => lintFlowsCommand.execute())
   ]);
 }
 
