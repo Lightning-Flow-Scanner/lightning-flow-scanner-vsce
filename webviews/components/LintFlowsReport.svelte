@@ -10,15 +10,9 @@
     let selectedRules = new Set(core.getRuleDefinitions().map(rule => rule.name));
 
     $: {
-        if (selectedRules !== undefined && selectedRules.size > 0) {
-            for (let selectedRule of selectedRules){
-                console.log('rule rec = ' + selectedRule);
-            }
-        }
         // if(scanResults){
         //     // sort("resultCount", false);
         // }
-
     }
 
     function windowMessage(event) {
