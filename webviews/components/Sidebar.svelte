@@ -26,7 +26,7 @@
 
     let allRules = core.getRuleDefinitions();
     const ruleNames = allRules.map(rule => rule.name);
-    export let selectedRules = new Set(ruleNames);
+    export let selectedRules;
     export let show = true;
 
     function onCheckRule(event) {
@@ -41,7 +41,7 @@
 
     function onSelectAll(event) {
         if (event.target.checked) {
-            selectedRules = new Set(allRules.map(rule => rule.name));
+            selectedRules = new Set(ruleNames);
         } else {
             selectedRules.clear();
         }

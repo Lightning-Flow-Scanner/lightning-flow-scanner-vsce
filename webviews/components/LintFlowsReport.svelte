@@ -1,20 +1,23 @@
 <script lang="typescript">
     import Sidebar from "./Sidebar.svelte";
     import {onMount} from 'svelte';
+    import * as core from 'lightningflowscan-core/out';
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
     let sortBy = {col: "resultCount", ascending: false};
     let scanResults;
     let sidebar_show = false;
-    let selectedRules;
+    let selectedRules = new Set(core.getRuleDefinitions().map(rule => rule.name));
 
     $: {
         if (selectedRules !== undefined && selectedRules.size > 0) {
-
+            for (let selectedRule of selectedRules){
+                console.log('rule rec = ' + selectedRule);
+            }
         }
-        if(scanResults){
-            // sort("resultCount", false);
-        }
+        // if(scanResults){
+        //     // sort("resultCount", false);
+        // }
 
     }
 
@@ -70,7 +73,6 @@
 
 <svelte:window on:message={windowMessage}/>
 
-
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
 
 {#if scanResults && scanResults.length > 0}
@@ -89,7 +91,12 @@
             {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
-                        {scanResult.ruleResults.reduce((a, b) => a + b.results.length, 0)}
+                        {scanResult.ruleResults.reduce((total, rule) => {
+                            if(selectedRules.has(rule.ruleName)){
+                              total = (total + rule.results.length)
+                            }
+                            return total;
+                        }, 0)}
                     </td>
                     <td><a href="/" on:click|preventDefault={() => goToFile(scanResult.flow)}>
                         <div>
