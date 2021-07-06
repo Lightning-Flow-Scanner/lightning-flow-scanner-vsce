@@ -19,7 +19,7 @@ export class ScanFlowsCommand extends BaseCommand {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select your Flow(s):').execute(this.rootPath);
     if (selectedUris) {
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
-      const results: ScanResult[] = core.Scan(flows);
+      const results: ScanResult[] = core.scan(flows);
       LintFlowsReport.createOrShow(this.context.extensionUri, results);
     }
   }

@@ -2196,9 +2196,9 @@ levn@^0.3.0, levn@~0.3.0:
     type-check "~0.3.2"
 
 lightningflowscan-core@^1.1.0:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/lightningflowscan-core/-/lightningflowscan-core-1.1.7.tgz#7140266dc92c393413dcf6f6bcc84c1a98d4c775"
-  integrity sha512-PIECFtvmaKvsMxoIIxMGSkAyhTuvDtPGf9i/V8wEQPYXbrqY5JO6dhfYogOukxm0yQoxV+rJwHZ7crwHcnX4Tw==
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/lightningflowscan-core/-/lightningflowscan-core-1.1.12.tgz#a38f39e3a9a2cc1cade4f6e42303324de22b2b84"
+  integrity sha512-asgSWriqsq3iD6HxYxB3nUrqeJZIC3fE+x5bLvzpg0PaY182ga+oZY3g+avrOYH1qrL/dIvZzEW2aonhMwZUgA==
   dependencies:
     tslint "^6.1.3"
     typescript "^4.3.4"
