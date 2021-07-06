@@ -75,6 +75,7 @@
 		"webpack-cli": "^4.6.0"
 	},
 	"dependencies": {
+		"@rollup/plugin-json": "^4.1.0",
 		"@tsconfig/svelte": "^1.0.10",
 		"@types/sinon": "^9.0.4",
 		"@types/vscode": "1.47",

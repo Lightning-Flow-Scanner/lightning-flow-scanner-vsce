@@ -17,7 +17,7 @@ export class FixFlowsCommand extends BaseCommand {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select your Flow(s):').execute(this.rootPath);
     if (selectedUris) {
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
-      core.fix(flows);
+      core.Fix(flows);
       for (const flow of flows){
         const result = await new SaveFlow().execute(flow, flow.uri);
       }

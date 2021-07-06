@@ -6,35 +6,11 @@
     let sortBy = {col: "resultCount", ascending: false};
     let scanResults;
     let sidebar_show = false;
-    let dmlStatementInLoop = false;
-    let duplicateDMLOperations = false;
-    let hardcodedIds = false;
-    let missingDescription = false;
-    let missingFaultPaths = false;
-    let missingNullHandlers = false;
-    let unconnectedElements = false;
-    let unusedVariables = false;
     let selectedRules;
 
     $: {
         if (selectedRules !== undefined && selectedRules.size > 0) {
-            dmlStatementInLoop = !!selectedRules.has("dmlStatementInLoop");
-            duplicateDMLOperations = !!selectedRules.has("duplicateDMLOperations");
-            hardcodedIds = !!selectedRules.has("hardcodedIds");
-            missingDescription = !!selectedRules.has("missingDescription");
-            missingFaultPaths = !!selectedRules.has("missingFaultPaths");
-            missingNullHandlers = !!selectedRules.has("missingNullHandlers");
-            unconnectedElements = !!selectedRules.has("unconnectedElements");
-            unusedVariables = !!selectedRules.has("unusedVariables");
-        } else {
-            dmlStatementInLoop = false;
-            duplicateDMLOperations = false;
-            hardcodedIds = false;
-            missingDescription = false;
-            missingFaultPaths = false;
-            missingNullHandlers = false;
-            unconnectedElements = false;
-            unusedVariables = false;
+
         }
         if(scanResults){
             // sort("resultCount", false);
