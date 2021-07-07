@@ -19,8 +19,9 @@
 	"activationEvents": [
 		"onCommand:lightningflowscan.createflowdata",
 		"onCommand:lightningflowscan.fix",
-		"onCommand:lightningflowscan.scan"
-	],
+		"onCommand:lightningflowscan.scan",
+    "onCommand:lightningflowscan.viewrules"
+  ],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
@@ -35,6 +36,10 @@
 			{
 				"command": "lightningflowscan.scan",
 				"title": "Scan Flows"
+			},
+			{
+				"command": "lightningflowscan.viewrules",
+				"title": "Flow Rules Overview"
 			}
 		]
 	},
