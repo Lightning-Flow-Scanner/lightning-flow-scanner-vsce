@@ -2,7 +2,7 @@
 	"name": "lightningflowscan",
 	"displayName": "Lightning Flow Scan",
 	"description": "Find bugs and optimise Salesforce Lightning Flows",
-	"version": "1.5.0",
+	"version": "1.6.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
@@ -20,8 +20,8 @@
 		"onCommand:lightningflowscan.createflowdata",
 		"onCommand:lightningflowscan.fix",
 		"onCommand:lightningflowscan.scan",
-    "onCommand:lightningflowscan.viewrules"
-  ],
+		"onCommand:lightningflowscan.viewrules"
+	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
