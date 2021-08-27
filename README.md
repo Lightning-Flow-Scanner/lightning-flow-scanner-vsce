@@ -1,11 +1,11 @@
-# Lightning Flow Scan
+# Lightning Flow Scanner
 ### _Find bugs and optimise Salesforce Lightning Flows._
 
 ![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
 
 ## Using the commands
 
-Open the **Command Palette** and type `flowhealthcheck` to see the list of available commands.
+Open the **Command Palette** and type `lightningflowscan` to see the list of available commands.
 
 ### Scan Flows
 

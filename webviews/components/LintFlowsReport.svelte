@@ -1,7 +1,7 @@
 <script lang="typescript">
     import Sidebar from "./Sidebar.svelte";
     import {onMount} from 'svelte';
-    import * as core from 'lightningflowscan-core/out';
+    import * as core from 'lightning-flow-scanner-core/out';
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
     let sortBy = {col: "resultCount", ascending: false};

@@ -1,13 +1,13 @@
 {
 	"name": "lightningflowscan",
-	"displayName": "Lightning Flow Scan",
-	"description": "Find bugs and optimise Salesforce Lightning Flows",
+	"displayName": "Lightning Flow Scanner",
+	"description": "Find bugs and optimise Salesforce Lightning Flows(Linter)",
 	"version": "1.7.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Force-Config-Control/lightningflowscan-vsce"
+		"url": "https://github.com/Force-Config-Control/lightning-flow-scanner-vsce"
 	},
 	"engines": {
 		"vscode": "^1.47.0"
@@ -85,7 +85,7 @@
 		"@types/sinon": "^9.0.4",
 		"@types/vscode": "1.47",
 		"css": "^3.0.0",
-		"lightningflowscan-core": "^1.1.0",
+		"lightning-flow-scanner-core": "^1.0.1",
 		"mz": "^2.7.0",
 		"node-sass": "6.0.1",
 		"reflect-metadata": "^0.1.13",

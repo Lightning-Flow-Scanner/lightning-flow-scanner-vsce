@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {FlowReport} from "./FlowReport";
-import {ScanResult} from "lightningflowscan-core/out/main/models/ScanResult";
+import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class LintFlowsReport {
     /**
@@ -11,12 +11,14 @@ export class LintFlowsReport {
     public static currentPanel: LintFlowsReport | undefined;
 
     public static readonly viewType = "report";
+    private static _commandType: string;
 
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
+    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
+      this._commandType = type;
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
@@ -24,14 +26,14 @@ export class LintFlowsReport {
         // If we already have a panel, show it.
         if (LintFlowsReport.currentPanel) {
             LintFlowsReport.currentPanel._panel.reveal(column);
-            LintFlowsReport.currentPanel._update(scanResults);
+            LintFlowsReport.currentPanel._update(scanResults, type);
             return;
         }
 
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             LintFlowsReport.viewType,
-            "Scan Results",
+          this._commandType + " Results",
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview
@@ -44,7 +46,7 @@ export class LintFlowsReport {
                 ]
             }
         );
-        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, scanResults);
+        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, scanResults, type);
     }
 
     public static kill() {
@@ -56,12 +58,12 @@ export class LintFlowsReport {
     //     LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri);
     // }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[]) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
         this._panel = panel;
         this._extensionUri = extensionUri;
 
         // Set the webview's initial html content
-        this._update(scanResults);
+        this._update(scanResults, type);
 
         // Listen for when the panel is disposed
         // This happens when the user closes the panel or when the panel is closed programatically
@@ -95,7 +97,7 @@ export class LintFlowsReport {
         }
     }
 
-    private async _update(scanResults: ScanResult[]) {
+    private async _update(scanResults: ScanResult[], type: string) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -113,7 +115,7 @@ export class LintFlowsReport {
                     if (!data.value) {
                         return;
                     }
-                    FlowReport.create(this._extensionUri, data.value);
+                    FlowReport.create(this._extensionUri, data.value, type);
                     break;
                 }
                 case "onError": {

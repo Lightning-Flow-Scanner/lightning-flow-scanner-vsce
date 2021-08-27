@@ -1,6 +1,6 @@
 <script lang="ts">
     import Tooltip from "./Tooltip.svelte";
-    import * as core from 'lightningflowscan-core/out';
+    import * as core from 'lightning-flow-scanner-core/out';
     import RuleCard from "./RuleCard.svelte";
 
     let allRules = core.getRuleDefinitions();

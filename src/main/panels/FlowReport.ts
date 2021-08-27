@@ -3,8 +3,8 @@ import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {SaveFlow} from "../libs/SaveFlow";
 import {FixReport} from "./FixReport";
-import { Flow } from "lightningflowscan-core/out/main/models/Flow";
-import {ScanResult} from "lightningflowscan-core/out/main/models/ScanResult";
+import { Flow } from "lightning-flow-scanner-core/out/main/models/Flow";
+import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class FlowReport {
     /**
@@ -18,7 +18,7 @@ export class FlowReport {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static create(extensionUri: vscode.Uri , scanResult : ScanResult) {
+    public static create(extensionUri: vscode.Uri , scanResult : ScanResult, type : string) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
@@ -26,7 +26,7 @@ export class FlowReport {
         // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             FlowReport.viewType,
-            `Scan:${scanResult.flow.label}`,
+            `${type}:${scanResult.flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 // Enable javascript in the webview

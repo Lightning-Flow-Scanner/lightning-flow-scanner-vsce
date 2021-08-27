@@ -3,7 +3,7 @@ import {XMLParser} from "./XMLParser";
 import * as fs from "mz/fs";
 import {URI} from "vscode-uri";
 import path = require("path");
-import { Flow } from "lightningflowscan-core/out/main/models/Flow";
+import { Flow } from "lightning-flow-scanner-core/out/main/models/Flow";
 
 
 export class ParseFlows {
