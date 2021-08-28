@@ -19,7 +19,7 @@ export class LintFlowsReport {
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
-        if (LintFlowsReport.currentPanel) {
+        if (LintFlowsReport.currentPanel && LintFlowsReport._commandType === type) {
             LintFlowsReport.currentPanel._panel.reveal(column);
             LintFlowsReport.currentPanel._update(scanResults, type);
             return;
