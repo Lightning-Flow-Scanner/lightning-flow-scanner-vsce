@@ -137,6 +137,11 @@ export class RuleOverview {
       "media",
       "RuleOverview.css"
     ));
+    const spinnerUri = webview.asWebviewUri(Utils.joinPath(
+      this._extensionUri,
+      "media",
+      "Spinner.css"
+    ));
     // Use a nonce to only allow specific scripts to be run
     const nonce = getNonce();
     return `<!DOCTYPE html>
@@ -148,6 +153,7 @@ export class RuleOverview {
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
+        <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

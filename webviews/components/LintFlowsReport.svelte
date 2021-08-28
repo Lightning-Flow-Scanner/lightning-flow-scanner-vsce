@@ -51,23 +51,14 @@
 
     function sort(column, ascending) {
 
-        // todo fix and allow sorting
-        // if (sortBy.col == column && ascending !== sortBy.ascending) {
-        //     sortBy.ascending = !sortBy.ascending;
-        // } else {
-        //     sortBy.col = column;
-        //     sortBy.ascending = true;
-        // }
         // // Modifier to sorting function for ascending or descending
         let sortModifier = (sortBy.ascending) ? 1 : -1;
-
         let sort = (a, b) =>
         (a[column] < b[column])
                 ? -1 * sortModifier
                 : (a[column] > b[column])
                 ? 1 * sortModifier
                 : 0;
-
         scanResults = scanResults.sort(sort);
     }
 
@@ -76,6 +67,12 @@
 <svelte:window on:message={windowMessage}/>
 
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
+
+{#if !scanResults}
+<div class="centered">
+    <div class="loader"></div>
+</div>
+{/if}
 
 {#if scanResults && scanResults.length > 0}
     <table>

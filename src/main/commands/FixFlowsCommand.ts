@@ -18,8 +18,10 @@ export class FixFlowsCommand extends BaseCommand {
   public async execute() {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select your Flow(s):').execute(this.rootPath);
     if (selectedUris) {
+      let results: ScanResult[];
+      LintFlowsReport.createOrShow(this.context.extensionUri, results, "Fix");
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
-      const results: ScanResult[] = core.fix(flows);
+      results = core.fix(flows);
       for (const flow of flows){
         const result = await new SaveFlow().execute(flow, flow.uri);
       }
