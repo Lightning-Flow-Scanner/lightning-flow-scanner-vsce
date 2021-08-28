@@ -1,18 +1,12 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import {SaveFlow} from "../libs/SaveFlow";
-import { Flow } from "lightning-flow-scanner-core/out/main/models/Flow";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class FlowReport {
-    /**
-     * Track the currently panel. Only allow a single panel to exist at a time.
-     */
+
     public static currentPanel: FlowReport | undefined;
-
     public static readonly viewType = "report";
-
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
@@ -22,16 +16,12 @@ export class FlowReport {
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
-        // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             FlowReport.viewType,
             `${type}:${scanResult.flow.label}`,
             column || vscode.ViewColumn.One,
             {
-                // Enable javascript in the webview
                 enableScripts: true,
-
-                // And restrict the webview to only loading content from our extension's `media` directory.
                 localResourceRoots: [
                     Utils.joinPath(extensionUri, "media"),
                     Utils.joinPath(extensionUri, "out/compiled")
@@ -54,10 +44,8 @@ export class FlowReport {
         this._panel = panel;
         this._extensionUri = extensionUri;
 
-        // Set the webview's initial html content
         this._update(scanResult);
 
-        // Listen for when the panel is disposed
         // This happens when the user closes the panel or when the panel is closed programatically
         this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
@@ -105,6 +93,15 @@ export class FlowReport {
                     // }
                 //     break;
                 // }
+                case "goToFile": {
+                  if (!data.value) {
+                    return;
+                  }
+                  vscode.workspace.openTextDocument(data.value.path).then(doc => {
+                    vscode.window.showTextDocument(doc);
+                  });
+                  break;
+                }
                 case 'init-view': {
                     webview.postMessage({
                         type: 'init',
@@ -122,40 +119,29 @@ export class FlowReport {
     }
 
     private _getHtmlForWebview(webview: vscode.Webview) {
-        // // And the uri we use to load this script in the webview
         const scriptUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "FlowReport.js")
         );
-
-        // vscode css reset
         const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
             "reset.css"
         ));
-        // vscode recommended css
         const stylesMainUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
             "vscode.css"
         ));
-
         const cssUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
             "FlowReport.css"
         ));
-
-        // Use a nonce to only allow specific scripts to be run
         const nonce = getNonce();
         return `<!DOCTYPE html>
 			<html lang="en">
 			<head>
 				<meta charset="UTF-8">
-				<!--
-					Use a content security policy to only allow loading images from https or from our extension directory,
-					and only allow scripts that have a specific nonce.
-        -->
         <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${stylesResetUri}" rel="stylesheet">

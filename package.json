@@ -27,7 +27,7 @@
 		"commands": [
 			{
 				"command": "lightningflowscan.createflowdata",
-				"title": "Create TestData"
+				"title": "Create Test Data(Flow Scanner)"
 			},
 			{
 				"command": "lightningflowscan.fix",
@@ -39,7 +39,7 @@
 			},
 			{
 				"command": "lightningflowscan.viewrules",
-				"title": "Flow Rules Overview"
+				"title": "Flow Rules"
 			}
 		]
 	},

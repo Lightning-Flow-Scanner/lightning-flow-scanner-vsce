@@ -10,35 +10,29 @@
     let scanResult;
 
     function windowMessage(event) {
-        const message = event.data; // The json data that the extension sent
+        const message = event.data;
         switch (message.type) {
             case 'init':
-                //the extension is sending us an init event with the document text
-                //note: this is the document NOT the state, the state takes precendece, so if any state exists use that instead
                 const state = tsvscode.getState();
                 if (state) {
-                    //we push this state from the vscode workspace to the JSON this component is looking at
                     scanResult = state.value;
                 } else {
-                    //use the state data
                     scanResult = message.value;
                 }
                 dataType = message.dataType;
                 return;
             case 'update':
-                //assign data
                 scanResult = message.value;
-                // assign state
                 tsvscode.setState({scanResult});
                 return;
         }
     }
 
-    function autoFix(scanResult) {
+    function goToFile(flow) {
         tsvscode.postMessage({
-            type: 'autofix',
-            value: scanResult
-        });
+            type: 'goToFile',
+            value: flow
+        })
     }
 </script>
 
@@ -47,6 +41,7 @@
 {#if scanResult}
 <div class="main">
         <table>
+            <caption><button on:click={() => goToFile(scanResult.flow)}>Go To File</button></caption>
             <thead>
             <tr>
                 <th colspan=2>Rule</th>

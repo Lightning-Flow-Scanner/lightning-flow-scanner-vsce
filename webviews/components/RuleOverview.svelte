@@ -2,7 +2,8 @@
     import * as core from 'lightning-flow-scanner-core/out';
     import RuleCard from "./RuleCard.svelte";
 
-    let allRules = core.getRuleDefinitions();
+    let allRules;
+    allRules = core.getRuleDefinitions();
     const ruleNames = allRules.map(rule => rule.name);
 </script>
 
@@ -11,6 +12,7 @@
         <div class="loader"></div>
     </div>
 {/if}
+
 {#if allRules}
     <div id="main">
         <ol>
