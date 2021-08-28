@@ -10,9 +10,17 @@
     let selectedRules = new Set(core.getRuleDefinitions().map(rule => rule.name));
 
     $: {
-        // if(scanResults){
-        //     // sort("resultCount", false);
-        // }
+        if(scanResults){
+            scanResults.forEach(scanResult => {
+                scanResult.resultCount = scanResult.ruleResults.reduce((total, rule) => {
+                    if(selectedRules.has(rule.ruleName)){
+                        total = (total + rule.results.length)
+                    }
+                    return total;
+                }, 0)
+            });
+            sort("resultCount", false);
+        }
     }
 
     function windowMessage(event) {
@@ -85,12 +93,7 @@
             {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
-                        {scanResult.ruleResults.reduce((total, rule) => {
-                            if(selectedRules.has(rule.ruleName)){
-                              total = (total + rule.results.length)
-                            }
-                            return total;
-                        }, 0)}
+                        {scanResult.resultCount}
                     </td>
                     <td><a href="/" on:click|preventDefault={() => goToFile(scanResult.flow)}>
                         <div>
