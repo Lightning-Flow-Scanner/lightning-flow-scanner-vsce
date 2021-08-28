@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {SaveFlow} from "../libs/SaveFlow";
-import {FixReport} from "./FixReport";
 import { Flow } from "lightning-flow-scanner-core/out/main/models/Flow";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
