@@ -1,10 +1,10 @@
 {
-	"name": "lightningflowscan",
+	"name": "lightningflowscanner",
 	"displayName": "Lightning Flow Scanner",
 	"description": "Find bugs and optimise Salesforce Lightning Flows(Linter)",
-	"version": "1.9.0",
+	"version": "1.0.0",
 	"icon": "resources/images/lightningflow.png",
-	"publisher": "ForceFlowControl",
+	"publisher": "ForceConfigControl",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Force-Config-Control/lightning-flow-scanner-vsce"
@@ -17,28 +17,28 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:lightningflowscan.createflowdata",
-		"onCommand:lightningflowscan.fix",
-		"onCommand:lightningflowscan.scan",
-		"onCommand:lightningflowscan.viewrules"
+		"onCommand:lightningflowscanner.createflowdata",
+		"onCommand:lightningflowscanner.fix",
+		"onCommand:lightningflowscanner.scan",
+		"onCommand:lightningflowscanner.viewrules"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
-				"command": "lightningflowscan.createflowdata",
+				"command": "lightningflowscanner.createflowdata",
 				"title": "Create Test Data(Flow Scanner)"
 			},
 			{
-				"command": "lightningflowscan.fix",
+				"command": "lightningflowscanner.fix",
 				"title": "Fix Flows"
 			},
 			{
-				"command": "lightningflowscan.scan",
+				"command": "lightningflowscanner.scan",
 				"title": "Scan Flows"
 			},
 			{
-				"command": "lightningflowscan.viewrules",
+				"command": "lightningflowscanner.viewrules",
 				"title": "Flow Rules"
 			}
 		]
