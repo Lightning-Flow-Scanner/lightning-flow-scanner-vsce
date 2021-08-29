@@ -1,5 +1,5 @@
 # Lightning Flow Scanner
-### _Fix and prevent breaking bugs in Salesforce Lightning Flows with the Lightning Flow Scanner._
+### _Fix and prevent breaking bugs in Salesforce Lightning Flows._
 
 ## Using the commands
 
@@ -7,7 +7,7 @@ Open the **Command Palette** and type `Flow` to see the list of all available co
 
 ### Scan Flows
 
-Flags issues that can lead to bugs or inconsistencies and other potential optimisations in flows.
+Flags issues that can lead to bugs or issues in flows.
 
 ![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
 
@@ -17,7 +17,7 @@ Flags issues that can lead to bugs or inconsistencies and other potential optimi
 
 ### Fix Flow
 
-Automatically apply fixes to flows based on (fixable) rules. 
+Automatically applies fixes to flows based on (fixable) rules. 
 
 ![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)
 
@@ -36,5 +36,5 @@ Current rules from the [core module](https://github.com/Force-Config-Control/lig
 
 ## Contributing
 
-Lightning Flow Health Check is a free and open source initiative and can benefit hugely from your contribution(s). 
+The Lightning Flow Scanner is a free and open source initiative and can benefit hugely from your contribution(s). 
 Please consider getting engaged by giving us feedback or leaving a review if you use the extension.
