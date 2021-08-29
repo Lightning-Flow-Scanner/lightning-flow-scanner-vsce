@@ -2,7 +2,7 @@
 	"name": "lightningflowscan",
 	"displayName": "Lightning Flow Scanner",
 	"description": "Find bugs and optimise Salesforce Lightning Flows(Linter)",
-	"version": "1.7.0",
+	"version": "1.8.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceFlowControl",
 	"repository": {
