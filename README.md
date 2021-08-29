@@ -1,5 +1,5 @@
 # Lightning Flow Scanner
-### _Fix and prevent breaking bugs in Salesforce Lightning Flows._
+### _Fix and Prevent bugs in the Lightning Flows of your Salesforce Org._
 
 ## Using the commands
 
