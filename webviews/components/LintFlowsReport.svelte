@@ -1,7 +1,7 @@
 <script lang="typescript">
     import Sidebar from "./Sidebar.svelte";
     import {onMount} from 'svelte';
-    import * as core from 'lightningflowscan-core/out';
+    import * as core from 'lightning-flow-scanner-core/out';
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
     let sortBy = {col: "resultCount", ascending: false};
@@ -10,9 +10,17 @@
     let selectedRules = new Set(core.getRuleDefinitions().map(rule => rule.name));
 
     $: {
-        // if(scanResults){
-        //     // sort("resultCount", false);
-        // }
+        if(scanResults){
+            scanResults.forEach(scanResult => {
+                scanResult.resultCount = scanResult.ruleResults.reduce((total, rule) => {
+                    if(selectedRules.has(rule.ruleName)){
+                        total = (total + rule.results.length)
+                    }
+                    return total;
+                }, 0)
+            });
+            sort("resultCount", false);
+        }
     }
 
     function windowMessage(event) {
@@ -43,23 +51,14 @@
 
     function sort(column, ascending) {
 
-        // todo fix and allow sorting
-        // if (sortBy.col == column && ascending !== sortBy.ascending) {
-        //     sortBy.ascending = !sortBy.ascending;
-        // } else {
-        //     sortBy.col = column;
-        //     sortBy.ascending = true;
-        // }
         // // Modifier to sorting function for ascending or descending
         let sortModifier = (sortBy.ascending) ? 1 : -1;
-
         let sort = (a, b) =>
         (a[column] < b[column])
                 ? -1 * sortModifier
                 : (a[column] > b[column])
                 ? 1 * sortModifier
                 : 0;
-
         scanResults = scanResults.sort(sort);
     }
 
@@ -68,6 +67,12 @@
 <svelte:window on:message={windowMessage}/>
 
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
+
+{#if !scanResults}
+<div class="centered">
+    <div class="loader"></div>
+</div>
+{/if}
 
 {#if scanResults && scanResults.length > 0}
     <table>
@@ -85,12 +90,7 @@
             {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
-                        {scanResult.ruleResults.reduce((total, rule) => {
-                            if(selectedRules.has(rule.ruleName)){
-                              total = (total + rule.results.length)
-                            }
-                            return total;
-                        }, 0)}
+                        {scanResult.resultCount}
                     </td>
                     <td><a href="/" on:click|preventDefault={() => goToFile(scanResult.flow)}>
                         <div>

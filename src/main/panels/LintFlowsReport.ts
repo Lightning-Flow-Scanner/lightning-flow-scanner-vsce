@@ -2,49 +2,42 @@ import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {FlowReport} from "./FlowReport";
-import {ScanResult} from "lightningflowscan-core/out/main/models/ScanResult";
+import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class LintFlowsReport {
-    /**
-     * Track the currently panel. Only allow a single panel to exist at a time.
-     */
+
     public static currentPanel: LintFlowsReport | undefined;
-
     public static readonly viewType = "report";
-
+    private static _commandType: string;
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
+    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
+      this._commandType = type;
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
-        // If we already have a panel, show it.
-        if (LintFlowsReport.currentPanel) {
+        if (LintFlowsReport.currentPanel && LintFlowsReport._commandType === type) {
             LintFlowsReport.currentPanel._panel.reveal(column);
-            LintFlowsReport.currentPanel._update(scanResults);
+            LintFlowsReport.currentPanel._update(scanResults, type);
             return;
         }
 
-        // Otherwise, create a new panel.
         const panel = vscode.window.createWebviewPanel(
             LintFlowsReport.viewType,
-            "Scan Results",
+          this._commandType + " Results",
             column || vscode.ViewColumn.One,
             {
-                // Enable javascript in the webview
                 enableScripts: true,
-
-                // And restrict the webview to only loading content from our extension's `media` directory.
                 localResourceRoots: [
                     Utils.joinPath(extensionUri, "media"),
                     Utils.joinPath(extensionUri, "out/compiled")
                 ]
             }
         );
-        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, scanResults);
+        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, scanResults, type);
     }
 
     public static kill() {
@@ -56,15 +49,12 @@ export class LintFlowsReport {
     //     LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri);
     // }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[]) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
         this._panel = panel;
         this._extensionUri = extensionUri;
 
-        // Set the webview's initial html content
-        this._update(scanResults);
+        this._update(scanResults, type);
 
-        // Listen for when the panel is disposed
-        // This happens when the user closes the panel or when the panel is closed programatically
         this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
         // // Handle messages from the webview
@@ -83,10 +73,7 @@ export class LintFlowsReport {
 
     public dispose() {
         LintFlowsReport.currentPanel = undefined;
-
-        // Clean up our resources
         this._panel.dispose();
-
         while (this._disposables.length) {
             const x = this._disposables.pop();
             if (x) {
@@ -95,7 +82,7 @@ export class LintFlowsReport {
         }
     }
 
-    private async _update(scanResults: ScanResult[]) {
+    private async _update(scanResults: ScanResult[], type: string) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -113,7 +100,7 @@ export class LintFlowsReport {
                     if (!data.value) {
                         return;
                     }
-                    FlowReport.create(this._extensionUri, data.value);
+                    FlowReport.create(this._extensionUri, data.value, type);
                     break;
                 }
                 case "onError": {
@@ -138,13 +125,11 @@ export class LintFlowsReport {
         const scriptUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "LintFlowsReport.js")
         );
-        // vscode css reset
         const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
             "reset.css"
         ));
-        // vscode recommended css
         const stylesMainUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
@@ -155,7 +140,11 @@ export class LintFlowsReport {
             "media",
             "LintFlowsReport.css"
         ));
-        // Use a nonce to only allow specific scripts to be run
+        const spinnerUri = webview.asWebviewUri(Utils.joinPath(
+            this._extensionUri,
+            "media",
+            "Spinner.css"
+        ));
         const nonce = getNonce();
         return `<!DOCTYPE html>
 			<html lang="en">
@@ -166,6 +155,7 @@ export class LintFlowsReport {
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
+        <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

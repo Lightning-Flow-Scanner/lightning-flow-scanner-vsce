@@ -1,7 +1,7 @@
 import * as fs from "mz/fs";
 const xml2js = require("xml2js");
 import {URI} from 'vscode-uri';
-import { Flow } from "lightningflowscan-core/out/main/models/Flow";
+import { Flow } from "lightning-flow-scanner-core/out/main/models/Flow";
 
 
 export class SaveFlow {

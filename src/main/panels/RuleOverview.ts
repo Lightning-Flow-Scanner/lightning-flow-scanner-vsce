@@ -1,14 +1,11 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import {ScanResult} from "lightningflowscan-core/out/main/models/ScanResult";
+import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class RuleOverview {
-  /**
-   * Track the currently panel. Only allow a single panel to exist at a time.
-   */
-  public static currentPanel: RuleOverview | undefined;
 
+  public static currentPanel: RuleOverview | undefined;
   public static readonly viewType = "report";
 
   private readonly _panel: vscode.WebviewPanel;
@@ -20,23 +17,18 @@ export class RuleOverview {
       ? vscode.window.activeTextEditor.viewColumn
       : undefined;
 
-    // If we already have a panel, show it.
     if (RuleOverview.currentPanel) {
       RuleOverview.currentPanel._panel.reveal(column);
       RuleOverview.currentPanel._update();
       return;
     }
 
-    // Otherwise, create a new panel.
     const panel = vscode.window.createWebviewPanel(
       RuleOverview.viewType,
-      "Flow Rules Overview",
+      "Flow Rules",
       column || vscode.ViewColumn.One,
       {
-        // Enable javascript in the webview
         enableScripts: true,
-
-        // And restrict the webview to only loading content from our extension's `media` directory.
         localResourceRoots: [
           Utils.joinPath(extensionUri, "media"),
           Utils.joinPath(extensionUri, "out/compiled")
@@ -59,11 +51,8 @@ export class RuleOverview {
     this._panel = panel;
     this._extensionUri = extensionUri;
 
-    // Set the webview's initial html content
     this._update();
 
-    // Listen for when the panel is disposed
-    // This happens when the user closes the panel or when the panel is closed programatically
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
     // // Handle messages from the webview
@@ -83,7 +72,6 @@ export class RuleOverview {
   public dispose() {
     RuleOverview.currentPanel = undefined;
 
-    // Clean up our resources
     this._panel.dispose();
 
     while (this._disposables.length) {
@@ -120,13 +108,11 @@ export class RuleOverview {
     const scriptUri = webview.asWebviewUri(
       Utils.joinPath(this._extensionUri, "out/compiled", "RuleOverview.js")
     );
-    // vscode css reset
     const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
       this._extensionUri,
       "media",
       "reset.css"
     ));
-    // vscode recommended css
     const stylesMainUri = webview.asWebviewUri(Utils.joinPath(
       this._extensionUri,
       "media",
@@ -137,7 +123,11 @@ export class RuleOverview {
       "media",
       "RuleOverview.css"
     ));
-    // Use a nonce to only allow specific scripts to be run
+    const spinnerUri = webview.asWebviewUri(Utils.joinPath(
+      this._extensionUri,
+      "media",
+      "Spinner.css"
+    ));
     const nonce = getNonce();
     return `<!DOCTYPE html>
 			<html lang="en">
@@ -148,6 +138,7 @@ export class RuleOverview {
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
+        <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

@@ -22,7 +22,7 @@
 <script>
     import {fly} from 'svelte/transition';
     import Tooltip from "./Tooltip.svelte";
-    import * as core from 'lightningflowscan-core/out';
+    import * as core from 'lightning-flow-scanner-core/out';
 
     let allRules = core.getRuleDefinitions();
     const ruleNames = allRules.map(rule => rule.name);

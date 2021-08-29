@@ -1,13 +1,13 @@
 {
-	"name": "lightningflowscan",
-	"displayName": "Lightning Flow Scan",
-	"description": "Find bugs and optimise Salesforce Lightning Flows",
-	"version": "1.7.0",
+	"name": "lightningflowscanner",
+	"displayName": "Lightning Flow Scanner",
+	"description": "Find bugs and optimise Salesforce Lightning Flows(Linter)",
+	"version": "1.0.0",
 	"icon": "resources/images/lightningflow.png",
-	"publisher": "ForceFlowControl",
+	"publisher": "ForceConfigControl",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Force-Config-Control/lightningflowscan-vsce"
+		"url": "https://github.com/Force-Config-Control/lightning-flow-scanner-vsce"
 	},
 	"engines": {
 		"vscode": "^1.47.0"
@@ -17,29 +17,29 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:lightningflowscan.createflowdata",
-		"onCommand:lightningflowscan.fix",
-		"onCommand:lightningflowscan.scan",
-		"onCommand:lightningflowscan.viewrules"
+		"onCommand:lightningflowscanner.createflowdata",
+		"onCommand:lightningflowscanner.fix",
+		"onCommand:lightningflowscanner.scan",
+		"onCommand:lightningflowscanner.viewrules"
 	],
 	"main": "./dist/extension",
 	"contributes": {
 		"commands": [
 			{
-				"command": "lightningflowscan.createflowdata",
-				"title": "Create TestData"
+				"command": "lightningflowscanner.createflowdata",
+				"title": "Create Test Data(Flow Scanner)"
 			},
 			{
-				"command": "lightningflowscan.fix",
+				"command": "lightningflowscanner.fix",
 				"title": "Fix Flows"
 			},
 			{
-				"command": "lightningflowscan.scan",
+				"command": "lightningflowscanner.scan",
 				"title": "Scan Flows"
 			},
 			{
-				"command": "lightningflowscan.viewrules",
-				"title": "Flow Rules Overview"
+				"command": "lightningflowscanner.viewrules",
+				"title": "Flow Rules"
 			}
 		]
 	},
@@ -85,7 +85,7 @@
 		"@types/sinon": "^9.0.4",
 		"@types/vscode": "1.47",
 		"css": "^3.0.0",
-		"lightningflowscan-core": "^1.1.0",
+		"lightning-flow-scanner-core": "^1.0.1",
 		"mz": "^2.7.0",
 		"node-sass": "6.0.1",
 		"reflect-metadata": "^0.1.13",
