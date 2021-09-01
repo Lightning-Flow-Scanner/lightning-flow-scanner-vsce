@@ -39,9 +39,11 @@
 <svelte:window on:message={windowMessage}/>
 
 {#if scanResult}
-<div class="main">
+    <div class="main">
         <table>
-            <caption><button on:click={() => goToFile(scanResult.flow)}>Go To File</button></caption>
+            <caption>
+                <button on:click={() => goToFile(scanResult.flow)}>Go To File</button>
+            </caption>
             <thead>
             <tr>
                 <th colspan=2>Rule</th>
@@ -50,37 +52,61 @@
             </thead>
             <tbody>
             {#each scanResult.ruleResults as ruleResult}
-              <tr title={ruleResult.ruleDescription}>
-                  <td colspan=2>
+                <tr title={ruleResult.ruleDescription}>
+                    <td colspan=2>
                       {ruleResult.ruleLabel}
-                  </td>
-                  <td colspan=1>
-                    {ruleResult.results.length}
-                  </td>
-              </tr>
-              <tr title={ruleResult.ruleDescription}>
-                  <td colspan=3>
-                      <div class="subtable">
-                          <table style="width: 100%;">
-                            {#each ruleResult.results as result, i}
-                                <tr>
-                                    <td style="width: 10%">{i+1}</td>
-                                    <td style="width: 45%">{result.name}</td>
-                                    <td style="width: 45%; text-transform: capitalize;">{result.subtype}</td>
-                                </tr>
-                            {/each}
-                          </table>
-                      </div>
-                  </td>
-              </tr>
-            {/each}
-                <tr>
-                    <td colspan=2><br/><strong># Total Results</strong></td>
-                    <td colspan=1><br/><strong>{scanResult.ruleResults.reduce((a, b) => a + b.results.length, 0)}</strong></td>
+                    </td>
+                    <td colspan=1>
+                      {ruleResult.results.length}
+                    </td>
                 </tr>
+                <tr title={ruleResult.ruleDescription}>
+                    <td colspan=3>
+                        <div class="subtable">
+                            <table style="width: 100%;">
+                              {#each ruleResult.results as result, i}
+                                  <tr>
+                                      <td style="width: 10%">{i+1}</td>
+                                      <td style="width: 45%">{result.name}</td>
+                                      <td style="width: 45%; text-transform: capitalize;">{result.subtype}</td>
+                                  </tr>
+                                {#if result.element}
+                                    <tr>
+                                        <td colspan=3>
+                                            <div class="detailtable">
+                                                <table style="width: 100%;">
+                                                  {#if result.element["locationX"] && result.element["locationY"]}
+                                                      <tr>
+                                                          <td style="width: 50%;">Coordinates</td>
+                                                          <td style="width: 50%;">X: {result.element["locationX"]}
+                                                              Y: {result.element["locationY"]}</td>
+                                                      </tr>
+                                                  {/if}
+                                                  {#if result.element["connector"]}
+                                                      <tr>
+                                                          <td style="width: 50%;">Connects to</td>
+                                                          <td style="width: 50%;">{result.element["connector"][0]["targetReference"][0]}</td>
+                                                      </tr>
+                                                  {/if}
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {/if}
+                              {/each}
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            {/each}
+            <tr>
+                <td colspan=2><br/><strong># Total Results</strong></td>
+                <td colspan=1><br/><strong>{scanResult.ruleResults.reduce((a, b) => a + b.results.length, 0)}</strong>
+                </td>
+            </tr>
             </tbody>
-    </table>
-</div>
+        </table>
+    </div>
 {/if}
 
         <!--        {#if scanResult.unusedVariables || scanResult.unconnectedElements }-->

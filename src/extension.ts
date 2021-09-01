@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.concat([
     vscode.commands.registerCommand('lightningflowscanner.createflowdata', () => createTestDataCommand.execute())
-  ]);
+  ]); 
 
   context.subscriptions.concat([
     vscode.commands.registerCommand('lightningflowscanner.fix', () => fixFlowsCommand.execute())
