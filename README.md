@@ -1,5 +1,6 @@
 # Lightning Flow Scanner
 ### _Fix and Prevent bugs in the Lightning Flows of your Salesforce Org._
+#### _(Now also available as [SFDX Plugin](https://github.com/Force-Config-Control/lightning-flow-scanner-core))_
 
 ## Using the commands
 
@@ -38,3 +39,4 @@ Current rules from the [core module](https://github.com/Force-Config-Control/lig
 
 The Lightning Flow Scanner is a free and open source initiative and can benefit hugely from your contribution(s). 
 Please consider getting engaged by giving us feedback or leaving a review if you use the extension.
+
