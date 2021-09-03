@@ -65,11 +65,19 @@
                         <div class="subtable">
                             <table style="width: 100%;">
                               {#each ruleResult.results as result, i}
-                                  <tr>
-                                      <td style="width: 10%">{i+1}</td>
-                                      <td style="width: 45%">{result.name}</td>
-                                      <td style="width: 45%; text-transform: capitalize;">{result.subtype}</td>
-                                  </tr>
+                                {#if ruleResult.ruleName !== "MissingFlowDescription"}
+                                    <tr>
+                                        <td style="width: 10%">{i+1}</td>
+                                        <td style="width: 45%">{result.name}</td>
+                                        <td style="width: 45%; text-transform: capitalize;">{result.subtype}</td>
+                                    </tr>
+                                {:else}
+                                    <tr>
+                                        <td style="width: 10%">{i+1}</td>
+                                        <td style="width: 45%"></td>
+                                        <td style="width: 45%; text-transform: capitalize;">Description</td>
+                                    </tr>
+                                {/if}
                                 {#if result.element}
                                     <tr>
                                         <td colspan=3>
