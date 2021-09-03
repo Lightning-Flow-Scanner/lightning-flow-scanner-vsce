@@ -77,8 +77,7 @@
                                         <td style="width: 45%"></td>
                                         <td style="width: 45%; text-transform: capitalize;">Description</td>
                                     </tr>
-                                {/if}}
-
+                                {/if}
                                 {#if result.element}
                                     <tr>
                                         <td colspan=3>
