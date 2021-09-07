@@ -19,7 +19,7 @@ export class SelectFlows {
       canSelectMany: true,
       defaultUri: initialPath,
       filters: {
-        'Flow': ['flow-meta.xml']
+        'Flow': ['.xml']
       }
     });
 
