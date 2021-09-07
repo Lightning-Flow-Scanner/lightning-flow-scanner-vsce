@@ -18,7 +18,7 @@ export class ParseFlows {
         let parsedFlows = [];
         for (let uri of selectedUris) {
             try{
-                const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(uri.fsPath)));
+                const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(uri.fsPath ? uri.fsPath : uri.path)));
                 parsedFlows.push(new Flow(
                     {
                         interviewLabel: parsedContent.Flow.interviewLabel,
