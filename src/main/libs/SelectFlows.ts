@@ -18,9 +18,6 @@ export class SelectFlows {
       canSelectFolders: true,
       canSelectMany: true,
       defaultUri: initialPath,
-      filters: {
-        'Flow': ['.xml']
-      }
     });
 
     if (selectedFlows && selectedFlows[0].path.endsWith('.flow-meta.xml')) {
