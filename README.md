@@ -1,7 +1,7 @@
 # Lightning Flow Scanner
 ### _Fix and Prevent bugs in the Lightning Flows of your Salesforce Org._
 
-![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/demo.gif)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/demo.gif)
+![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/demo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/scandemo.gif)
 
 ## Using the commands
 
@@ -11,17 +11,15 @@ Open the **Command Palette** and type `Flow` to see the list of all available co
 
 Use the scan command to flags issues that can lead to bugs or issues in flows.
 
-![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)
+![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/scanresults.png)
 
-![Filter Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)
-
-![Flow Details Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)
+![Filter Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/filterresults.png)
 
 ### Fix Flows
 
 Use the fix command to apply automatic fixes to flows.  
 
-![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)
+![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/fixapplied.png)
 
 ### Flow Rules
 
