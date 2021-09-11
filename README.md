@@ -15,8 +15,6 @@ Use the scan command to flags issues that can lead to bugs or issues in flows.
 
 ![Filter Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/filterresults.png)
 
-![Flow Details Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/flowdetails.png)
-
 ### Fix Flow
 
 Use the fix command to apply automatic fixes to flows. 
