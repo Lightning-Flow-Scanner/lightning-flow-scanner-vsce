@@ -17,9 +17,9 @@ Use the scan command to flags issues that can lead to bugs or issues in flows.
 
 ![Flow Details Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/flowdetails.png)
 
-### Fix Flow
+### Fix Flows
 
-Use the fix command to apply automatic fixes to flows. 
+Use the fix command to apply automatic fixes to flows.  
 
 ![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)](https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/fixapplied.png)
 
