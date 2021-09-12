@@ -1,5 +1,5 @@
 # Lightning Flow Scanner
-### _Fix and Prevent bugs in the Lightning Flows of your Salesforce Org._
+### _Find and Fix bugs in Lightning Flows of your Salesforce Org._
 
 ![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/demo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/scandemo.gif)
 
