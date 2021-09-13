@@ -7,14 +7,18 @@
     let sortBy = {col: "resultCount", ascending: false};
     let scanResults;
     let sidebar_show = false;
-    let selectedRules = new Set(core.getRuleDefinitions().map(rule => rule.name));
+    let selectedRules = new Set(core.getRules().map(rule => rule.name));
 
     $: {
         if(scanResults){
             scanResults.forEach(scanResult => {
                 scanResult.resultCount = scanResult.ruleResults.reduce((total, rule) => {
                     if(selectedRules.has(rule.ruleName)){
-                        total = (total + rule.results.length)
+                        if(rule.details){
+                            total = (total + rule.details.length)
+                        } else if(rule.occurs){
+                            total = (total + 1)
+                        }
                     }
                     return total;
                 }, 0)
