@@ -3,7 +3,7 @@
     import RuleCard from "./RuleCard.svelte";
 
     let allRules;
-    allRules = core.getRuleDefinitions();
+    allRules = core.getRules();
     const ruleNames = allRules.map(rule => rule.name);
 </script>
 
