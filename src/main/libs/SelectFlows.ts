@@ -14,23 +14,24 @@ export class SelectFlows {
 
     let selectedFlows;
     selectedFlows = await vscode.window.showOpenDialog({
-      canSelectFiles: true,
-      canSelectFolders: true,
-      canSelectMany: true,
+      canSelectFiles: specifyFiles,
+      canSelectFolders: !specifyFiles,
+      canSelectMany: specifyFiles,
       defaultUri: initialPath,
     });
 
-    if (selectedFlows && selectedFlows[0].path.endsWith('.flow-meta.xml')) {
-      return selectedFlows;
-    } else if (selectedFlows && !selectedFlows[0].path.endsWith('.flow-meta.xml')) {
-
-      var getDirectories = function (src) {
-        return glob.sync(src + '/**/*.flow-meta.xml');
-      };
-      let uris = [];
-      const flowsURIsFound = getDirectories(selectedFlows[0].path);
-      flowsURIsFound.forEach(flowURI => uris.push(vscode.Uri.file(flowURI)));
-      return uris;
+    if(selectedFlows){
+      if(vscode.workspace.getConfiguration('lightningFlowScanner').get("specifyFiles", "`")){
+        return selectedFlows;
+      } else{
+        var getDirectories = function (src) {
+          return glob.sync(src + '/**/*.flow-meta.xml');
+        };
+        let uris = [];
+        const flowsURIsFound = getDirectories(selectedFlows[0].path);
+        flowsURIsFound.forEach(flowURI => uris.push(vscode.Uri.file(flowURI)));
+        return uris;
+      }
     }
   }
 }

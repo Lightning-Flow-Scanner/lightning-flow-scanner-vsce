@@ -21,7 +21,7 @@ export class ScanFlowsCommand extends BaseCommand {
       const results: ScanResult[] = core.scan(flows);
       LintFlowsReport.createOrShow(this.context.extensionUri, results, "Scan");
     } else {
-      vscode.window.showInformationMessage('No flows found in selected directory');
+      vscode.window.showInformationMessage('No flows were found.');
     }
 
   }

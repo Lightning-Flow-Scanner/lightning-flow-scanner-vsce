@@ -24,6 +24,16 @@
 	],
 	"main": "./dist/extension",
 	"contributes": {
+    "configuration": {
+      "title": "Lightning Flow Scanner",
+      "properties": {
+        "lightningFlowScanner.specifyFiles": {
+          "type": "boolean",
+          "default": false,
+          "description": "Specify flow files instead of selecting a root folder."
+        }
+      }
+    },
 		"commands": [
 			{
 				"command": "lightningflowscanner.createflowdata",
