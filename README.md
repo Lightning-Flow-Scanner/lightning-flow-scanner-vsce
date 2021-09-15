@@ -40,4 +40,4 @@ Provides an overview of all available rules. Current rules include:
 The Lightning Flow Scanner is a free and open source initiative and can benefit hugely from your contribution(s). 
 Please consider getting engaged by giving us feedback or leaving a review if you use the extension.
 
-#### _Now also available as [SFDX Plugin(Beta)](https://github.com/Force-Config-Control/lightning-flow-scanner-core)!_
+#### _Now also available as [SFDX Plugin(Beta)](https://github.com/Force-Config-Control/lightning-flow-scanner-sfdx)!_
