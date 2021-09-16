@@ -76,7 +76,7 @@
 		"@types/xml2js": "^0.4.5",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
-		"concurrently": "^6.0.2",
+		"concurrently": "^6.2.1",
 		"eslint": "^6.8.0",
 		"glob": "^7.1.7",
 		"rollup": "^2.45.2",
