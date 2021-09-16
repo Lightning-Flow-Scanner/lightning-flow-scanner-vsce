@@ -11,6 +11,7 @@ export class SelectFlows {
 
   public async execute(initialPath: vscode.Uri) {
     vscode.window.showInformationMessage(this.message);
+    const specifyFiles : boolean = vscode.workspace.getConfiguration('lightningFlowScanner').get("specifyFiles") as boolean;
 
     let selectedFlows;
     selectedFlows = await vscode.window.showOpenDialog({
@@ -21,14 +22,14 @@ export class SelectFlows {
     });
 
     if(selectedFlows){
-      if(vscode.workspace.getConfiguration('lightningFlowScanner').get("specifyFiles", "`")){
+      if(specifyFiles){
         return selectedFlows;
       } else{
         var getDirectories = function (src) {
           return glob.sync(src + '/**/*.flow-meta.xml');
         };
         let uris = [];
-        const flowsURIsFound = getDirectories(selectedFlows[0].path);
+        const flowsURIsFound = getDirectories(selectedFlows[0].fsPath);
         flowsURIsFound.forEach(flowURI => uris.push(vscode.Uri.file(flowURI)));
         return uris;
       }
