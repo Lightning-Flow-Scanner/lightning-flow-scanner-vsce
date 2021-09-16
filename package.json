@@ -2,7 +2,7 @@
 	"name": "lightningflowscanner",
 	"displayName": "Lightning Flow Scanner",
 	"description": "Find bugs and optimise Salesforce Lightning Flows(Linter)",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceConfigControl",
 	"repository": {
@@ -24,6 +24,16 @@
 	],
 	"main": "./dist/extension",
 	"contributes": {
+		"configuration": {
+			"title": "Lightning Flow Scanner",
+			"properties": {
+				"lightningFlowScanner.specifyFiles": {
+					"type": "boolean",
+					"default": false,
+					"description": "Specify flow files instead of selecting a root folder."
+				}
+			}
+		},
 		"commands": [
 			{
 				"command": "lightningflowscanner.createflowdata",
@@ -68,7 +78,7 @@
 		"@typescript-eslint/parser": "^2.30.0",
 		"concurrently": "^6.0.2",
 		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
+		"glob": "^7.1.7",
 		"rollup": "^2.45.2",
 		"rollup-plugin-svelte": "^7.1.0",
 		"rollup-plugin-terser": "^7.0.2",

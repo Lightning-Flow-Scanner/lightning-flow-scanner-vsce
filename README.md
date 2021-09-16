@@ -13,8 +13,6 @@ Use the scan command to flags issues that can lead to bugs or issues in flows.
 
 ![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/scanresults.png)
 
-![Filter Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/filterresults.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/filterresults.png)
-
 ### Fix Flows
 
 Use the fix command to apply automatic fixes to flows.  
@@ -34,6 +32,11 @@ Provides an overview of all available rules. Current rules include:
 1. Unused variables
 
 [See the core module for further details](https://github.com/Force-Config-Control/lightning-flow-scanner-core)
+
+### Configurations
+
+To specify files instead of folders in the filepicker, go to:
+   - setings -> extensions -> lightning flow scanner -> specify files.
 
 ## Contributing
 
