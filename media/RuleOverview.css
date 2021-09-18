@@ -1,19 +1,30 @@
+body{
+  text-align: left;
+  font-size: medium;
+  margin: 15px;
+}
+
 .rule-card {
   border-radius: 2px;
-  padding: 1em;
+  margin: 15px;
+  display: block;
 }
 
 h2 {
-  padding: 0 0 0.2em 0;
-  margin: 0 0 1em 0;
+  font-weight: bolder;
+  margin-bottom: 15px;
 }
 
-.uri, .description {
-  padding: 0 0 0 1.5em;
-  background: 0 0 no-repeat;
-  background-size: 20px 20px;
-  margin: 0 0 0.5em 0;
-  line-height: 1.2;
+.description {
+  padding-left: 5px;
+  padding-right: 5px;
+  /*margin: 0 0 0.5em 0;*/
+}
+
+.docRefs {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 15px;
 }
 
 .missing {
