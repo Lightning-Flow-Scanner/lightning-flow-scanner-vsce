@@ -21,7 +21,7 @@ Use the fix command to apply automatic fixes to flows.
 
 ### Flow Rules
 
-Provides an overview of all available rules including relevant documentation and the source code. Current rules include:
+Provides an overview of available rules, relevant documentation and source code. Current rules include:
 1. DML statements in a loop
 1. Duplicate DML operations
 1. Hardcoded Ids
