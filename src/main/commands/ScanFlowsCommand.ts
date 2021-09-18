@@ -15,7 +15,7 @@ export class ScanFlowsCommand extends BaseCommand {
   }
 
   public async execute() {
-    const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select your Flow(s):').execute(this.rootPath);
+    const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select a project that includes Flow(s):').execute(this.rootPath);
     if (selectedUris.length > 0) {
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
       const results: ScanResult[] = core.scan(flows);
