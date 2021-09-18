@@ -18,8 +18,15 @@
               <RuleCard>
                   <span slot="label">{rule.label}</span>
                   <span slot="description">{rule.text}</span>
-                  <span slot="doc"><a href={rule.docRef}>Documentation</a></span>
-                  <span slot="uri"><a href={rule.uri}>Source code</a></span>
+                  <span slot="uri">Source code: <a href={rule.uri}>{rule.name}</a></span>
+                  <span slot="docRefs">
+                      {#if rule.docRefs.length > 0}
+                          <p><strong>Related articles:</strong></p>
+                          {#each rule.docRefs as docRef}
+                              <a href={docRef.path}>{docRef.label}</a>
+                          {/each}
+                      {/if}
+                  </span>
               </RuleCard>
           {/each}
         </ol>

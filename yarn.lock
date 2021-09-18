@@ -2389,9 +2389,9 @@ levn@^0.3.0, levn@~0.3.0:
     type-check "~0.3.2"
 
 lightning-flow-scanner-core@^1.0.1:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-1.0.9.tgz#797a18f886c8076840271d7074a9569826c008d5"
-  integrity sha512-qmY8ar2VCT4zUP/jsvNBV6FD11gE3kUJdQSu6QSxF0F5KAcdeE6ms6pdPljLhmFmhLKUBVsOL2+hGfIXus5EnQ==
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-1.0.12.tgz#a07b4e2e84a6bf091b448681a11f91ec0e0cbe59"
+  integrity sha512-M2cihAGCMv3Q8WLwam3NdCnA7/9HkhvKRJY37vG7DUO0oUCiCxDIg16VX8mIacUOtPsYlIVXDvWUUIFxNQ9j8w==
   dependencies:
     "@types/chai" "^4.2.21"
     chai "^4.3.4"

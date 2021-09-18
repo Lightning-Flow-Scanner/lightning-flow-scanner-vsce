@@ -10,16 +10,14 @@
             <span class="missing">Unknown description</span>
         </slot>
     </div>
-
-    <div class="uris">
-        <strong>
-            <slot name="doc">
-                <span class="missing">Unknown location</span>
-            </slot>
-            <slot name="uri">
-                <span class="missing">Unknown location</span>
-            </slot>
-        </strong>
+    <br>
+    <slot name="uri">
+        <span class="missing">Unknown location</span>
+    </slot>
+    <div class="docRefs">
+        <slot name="docRefs">
+        </slot>
     </div>
+
 
 </article>
