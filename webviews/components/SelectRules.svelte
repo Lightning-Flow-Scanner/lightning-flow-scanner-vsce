@@ -18,7 +18,7 @@
         missingFaultPaths,
         missingNullHandlers,
         unconnectedElements,
-        unusedVariables,
+        unusedVariables
     ) {
         tsvscode.postMessage({ type: 'selectedRules',
             dmlStatementInLoop,
@@ -28,7 +28,7 @@
             missingFaultPaths,
             missingNullHandlers,
             unconnectedElements,
-            unusedVariables,
+            unusedVariables
         })
     }
 </script>

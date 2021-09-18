@@ -18,8 +18,7 @@
         <ol>
           {#each allRules as rule, i}
               <RuleCard>
-                  <span slot="label">{i+1}: {rule.label}</span>
-                  <span slot="name">API name: {rule.name}</span>
+                  <span slot="label">{rule.label} ({rule.name})</span>
                   <span slot="description">{rule.text}</span>
               </RuleCard>
           {/each}
