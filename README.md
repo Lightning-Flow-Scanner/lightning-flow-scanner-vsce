@@ -1,8 +1,6 @@
 # Lightning Flow Scanner
 ### _Find and Fix bugs in Lightning Flows of your Salesforce Org._
 
-![All Results Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/scanresults.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/scanresults.png)
-
 ## Using the commands
 
 Open the **Command Palette** and type `Flow` to see the list of all available commands.
