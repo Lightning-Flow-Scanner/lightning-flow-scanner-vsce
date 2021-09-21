@@ -21,7 +21,7 @@ Use the fix command to apply automatic fixes to flows.
 
 Provides an overview of available rules, relevant documentation and source code. 
 
-![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowRulesDemo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/FlowRulesDemo.gif)
+![Fix Flow Screenshot(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/FlowRulesDemo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/FlowRulesDemo.gif)
 
 [See the core module for details on rules](https://github.com/Force-Config-Control/lightning-flow-scanner-core)
 
