@@ -1,5 +1,5 @@
 # Lightning Flow Scanner
-### _Find potential issues and optimisations in Lightning Flows._
+### _Find potential issues and optimizations in Lightning Flows._
 
 ![Scan Result example(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/resultexample.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/resultexample.png)
 
@@ -9,7 +9,7 @@ Open the **Command Palette** and type `Flow` to see the list of all available co
 
 ### Scan Flows
 
-Use the scan command to identify potential issues and optimisations.
+Use the scan command to identify potential issues and optimizations.
 
 ![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanFlowsDemo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/ScanFlowsDemo.gif)
 
