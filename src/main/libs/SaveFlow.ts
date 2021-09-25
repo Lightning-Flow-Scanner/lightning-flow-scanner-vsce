@@ -11,7 +11,7 @@ export class SaveFlow {
     }
 
     private async writeFlow(flow: Flow, pathToWrite: URI) {
-        const xml = new xml2js.Builder().buildObject(flow.processedData);
+       const xml = new xml2js.Builder({rootName: "Flow", xmldec : {'version': '1.0', 'encoding': 'UTF-8'}}).buildObject(flow.xmldata);
         await fs.writeFile(pathToWrite.fsPath, xml);
         return true;
     }

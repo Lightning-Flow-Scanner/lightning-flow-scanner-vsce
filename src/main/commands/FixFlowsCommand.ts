@@ -20,8 +20,13 @@ export class FixFlowsCommand extends BaseCommand {
     if (selectedUris) {
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
       const results: ScanResult[] = core.fix(flows);
-      for (const flow of flows){
-        const result = await new SaveFlow().execute(flow, flow.uri);
+      for (const result of results){
+        if(
+          result.ruleResults.find(res => res.ruleName === "UnusedVariables").occurs ||
+          result.ruleResults.find(res => res.ruleName === "UnconnectedElements").occurs)
+        {
+          let saved = await new SaveFlow().execute(result.flow, result.flow.uri);
+        }
       }
       LintFlowsReport.createOrShow(this.context.extensionUri, results, "Fix");
     }

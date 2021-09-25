@@ -1,4 +1,5 @@
 import {Parser} from 'xml2js';
+const xml2js = require("xml2js");
 import { Flow } from 'lightning-flow-scanner-core/out/main/models/Flow';
 
 export class XMLParser{
@@ -6,7 +7,7 @@ export class XMLParser{
     private parser : Parser;
 
     constructor(){
-        this.parser = new Parser();
+        this.parser = new Parser(xml2js.defaults["0.2"]);
     }
 
     public execute(xml): Promise<{ Flow : Flow }>{
