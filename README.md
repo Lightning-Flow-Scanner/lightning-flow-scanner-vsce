@@ -1,5 +1,7 @@
 # Lightning Flow Scanner
-### _Find and Fix potential issues and optimisations in Lightning Flows of your Salesforce Projects._
+### _Find and Fix potential issues and optimisations in Lightning Flows._
+
+![Scan Result example(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/resultexample.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/resultexample.png)
 
 ## Using the commands
 
@@ -27,12 +29,12 @@ Provides an overview of all the available rules, relevant documentation and sour
 
 ### Configurations
 
-To specify files instead of folders in the filepicker, go to:
-   - setings -> extensions -> lightning flow scanner -> specify files.
+If you want to specify files instead of folders, go to:
+   setings:extensions -> lightning flow scanner, specify files.
 
 ## Contributing
 
-The Lightning Flow Scanner is a free and open source initiative and can benefit hugely from your contribution(s). 
-Please consider getting engaged by giving us feedback or leaving a review if you use the extension.
+Lightning Flow Scanner is a free and open source initiative and can benefit from your contribution(s). 
+This can be anything from leaving feedback to suggesting new features.
 
 #### _Now also available as [SFDX Plugin(Beta)](https://github.com/Force-Config-Control/lightning-flow-scanner-sfdx)!_
