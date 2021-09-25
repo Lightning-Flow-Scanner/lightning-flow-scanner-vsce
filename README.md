@@ -30,7 +30,7 @@ Provides an overview of all the available rules, relevant documentation and sour
 ### Configurations
 
 If you want to specify files instead of folders, go to:
-   setings:extensions -> lightning flow scanner, specify files.
+   settings:extensions -> lightning flow scanner, specify files.
 
 ## Contributing
 
