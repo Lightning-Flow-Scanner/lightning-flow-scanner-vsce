@@ -4,7 +4,8 @@
     import * as core from 'lightning-flow-scanner-core/out';
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
-    let sortBy = {col: "resultCount", ascending: false};
+    let sortByColumn = "label";
+    let sortByAscending= false;
     let scanResults;
     let sidebar_show = false;
     let selectedRules = new Set(core.getRules().map(rule => rule.name));
@@ -21,9 +22,11 @@
                         }
                     }
                     return total;
-                }, 0)
+                }, 0);
+                scanResult.label = scanResult.flow.label;
+                scanResult.type = scanResult.flow.type;
             });
-            sort("resultCount", false);
+
         }
     }
 
@@ -53,16 +56,23 @@
         })
     }
 
-    function sort(column, ascending) {
+    function sort(column) {
 
-        // // Modifier to sorting function for ascending or descending
-        let sortModifier = (sortBy.ascending) ? 1 : -1;
+        if (sortByColumn === column) {
+            sortByAscending = !sortByAscending;
+        } else {
+            sortByColumn = column;
+            sortByAscending = true;
+        }
+
+        let sortModifier = (sortByAscending) ? 1 : -1;
         let sort = (a, b) =>
         (a[column] < b[column])
                 ? -1 * sortModifier
                 : (a[column] > b[column])
                 ? 1 * sortModifier
                 : 0;
+
         scanResults = scanResults.sort(sort);
     }
 
@@ -83,10 +93,10 @@
         <caption><button on:click={() => sidebar_show = !sidebar_show}>Filter Rules</button></caption>
         <thead>
         <tr>
-            <th id="label" on:click={() => sort("label", sortBy.ascending)}>Label</th>
-            <th id="type" on:click={() => sort("type", sortBy.ascending)}>Flow Type</th>
-            <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
-            <th id="coverage" on:click={() => sort("type", sortBy.ascending)}>%Test Coverage</th>
+            <th id="label" on:click={() => sort("label")}>Label</th>
+            <th id="type" on:click={() => sort("type")}>Flow Type</th>
+            <th id="results" on:click={() => sort("resultCount")}># Results</th>
+            <th id="coverage" on:click={() => sort("coverage")}>% Coverage</th>
             <th id="details">Report</th>
         </tr>
         </thead>
@@ -104,11 +114,7 @@
                       {scanResult.resultCount}
                     </td>
                     <td>
-                      {#if scanResult.coverage}
                         {scanResult.coverage}
-                        {:else}
-                        0
-                      {/if}
                     </td>
                     <td>
                         <button on:click={() => goToDetails(scanResult)}>
