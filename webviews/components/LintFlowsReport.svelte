@@ -26,7 +26,7 @@
                 scanResult.label = scanResult.flow.label;
                 scanResult.type = scanResult.flow.type;
             });
-
+            scanResults = scanResults;
         }
     }
 
