@@ -86,6 +86,7 @@
             <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
             <th id="label" on:click={() => sort("label", sortBy.ascending)}>Label</th>
             <th id="type" on:click={() => sort("type", sortBy.ascending)}>Flow Type</th>
+            <th id="coverage" on:click={() => sort("type", sortBy.ascending)}>%Test Coverage</th>
             <th id="details">Report</th>
         </tr>
         </thead>
@@ -102,6 +103,13 @@
                         </div>
                     </a></td>
                     <td>{scanResult.flow.type}</td>
+                    <td>
+                      {#if scanResult.coverage}
+                        {scanResult.coverage}
+                        {:else}
+                        0
+                      {/if}
+                    </td>
                     <td>
                         <button on:click={() => goToDetails(scanResult)}>
                             Details
