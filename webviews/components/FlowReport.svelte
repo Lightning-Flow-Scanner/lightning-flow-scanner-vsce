@@ -56,10 +56,10 @@
                       {ruleResult.ruleLabel}
                     </td>
                     <td colspan=1>
-                      {(ruleResult.details ?ruleResult.details.length: 1)}
+                      {(ruleResult.details ?ruleResult.details.length: ruleResult.occurs ? 1 : 0)}
                     </td>
                 </tr>
-                {#if !ruleResult.details || ruleResult.details && ruleResult.details.length > 0}
+                {#if ruleResult.details && ruleResult.details.length > 0}
                 <tr title={ruleResult.ruleDescription}>
                     <td colspan=3>
                         <div class="subtable">
