@@ -4,7 +4,7 @@
     import * as core from 'lightning-flow-scanner-core/out';
 
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
-    let sortBy = {col: "resultCount", ascending: false};
+    let sortBy = {col: "label", ascending: false};
     let scanResults;
     let sidebar_show = false;
     let selectedRules = new Set(core.getRules().map(rule => rule.name));
@@ -23,7 +23,6 @@
                     return total;
                 }, 0)
             });
-            sort("resultCount", false);
         }
     }
 
@@ -55,7 +54,15 @@
 
     function sort(column, ascending) {
 
-        // // Modifier to sorting function for ascending or descending
+        // todo fix and allow sorting
+        if (sortBy.col == column && ascending !== sortBy.ascending) {
+            sortBy.ascending = !sortBy.ascending;
+        } else {
+            sortBy.col = column;
+            sortBy.ascending = true;
+        }
+        // Modifier to sorting function for ascending or descending
+
         let sortModifier = (sortBy.ascending) ? 1 : -1;
         let sort = (a, b) =>
         (a[column] < b[column])
@@ -63,6 +70,7 @@
                 : (a[column] > b[column])
                 ? 1 * sortModifier
                 : 0;
+
         scanResults = scanResults.sort(sort);
     }
 
@@ -85,8 +93,8 @@
         <tr>
             <th id="label" on:click={() => sort("label", sortBy.ascending)}>Label</th>
             <th id="type" on:click={() => sort("type", sortBy.ascending)}>Flow Type</th>
-            <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
-            <th id="coverage" on:click={() => sort("type", sortBy.ascending)}>%Test Coverage</th>
+            <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}># Results</th>
+            <th id="coverage" on:click={() => sort("coverage", sortBy.ascending)}>% Coverage</th>
             <th id="details">Report</th>
         </tr>
         </thead>
