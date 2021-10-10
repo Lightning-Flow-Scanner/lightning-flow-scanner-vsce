@@ -6,6 +6,7 @@ import {LintFlowsReport} from "../panels/LintFlowsReport";
 import * as core from 'lightning-flow-scanner-core/out';
 import {Flow} from "lightning-flow-scanner-core/out/main/models/Flow";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import {FindFlowCoverage} from "../libs/FindFlowCoverage";
 
 export class ScanFlowsCommand extends BaseCommand {
 
@@ -19,6 +20,7 @@ export class ScanFlowsCommand extends BaseCommand {
     if (selectedUris.length > 0) {
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
       const results: ScanResult[] = core.scan(flows);
+      await FindFlowCoverage(results);
       LintFlowsReport.createOrShow(this.context.extensionUri, results, "Scan");
     } else {
       vscode.window.showInformationMessage('No flow files found.');
