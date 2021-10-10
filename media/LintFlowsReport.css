@@ -26,6 +26,7 @@ th, td {
 
 th{
     text-align: left;
+    cursor: pointer;
 }
 
 td{
