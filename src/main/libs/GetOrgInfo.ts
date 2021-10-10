@@ -17,6 +17,10 @@ export class GetOrgInfo {
 
   public getOrgInfo(): Promise<SFDX> {
 
-    return RunSFDXCommand('sfdx force:org:display --json') as Promise<SFDX>;
+    try {
+      return RunSFDXCommand('sfdx force:org:display --json') as Promise<SFDX>;
+    } catch (e) {
+
+    }
   }
 }

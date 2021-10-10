@@ -5,7 +5,7 @@ import {GetFlowDefinitionViews} from "./GetFlowDefinitionViews";
 export async function FindFlowCoverage(results) {
 
   const orgInfo = await new GetOrgInfo().getOrgInfo();
-  if(orgInfo.result && orgInfo.result.username){
+  if(orgInfo && orgInfo.result && orgInfo.result.username){
     const flowCoverage = await new GetFlowCoverage().getFlowCoverage(orgInfo.result.username);
     const flowDefinitions = await new GetFlowDefinitionViews().getFlowDefinitionViews(orgInfo.result.username);
     for (const scanResult of results){
@@ -17,6 +17,10 @@ export async function FindFlowCoverage(results) {
       } else {
         scanResult['coverage'] = 0;
       }
+    }
+  } else {
+    for (const scanResult of results){
+      scanResult['coverage'] = 0;
     }
   }
 
