@@ -103,8 +103,7 @@ export class LintFlowsReport {
         });
     }
 
-
-  private _getHtmlForWebview(webview: vscode.Webview) {
+    private _getHtmlForWebview(webview: vscode.Webview) {
         const scriptUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "LintFlowsReport.js")
         );
