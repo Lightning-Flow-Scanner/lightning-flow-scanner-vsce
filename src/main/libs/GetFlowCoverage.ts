@@ -1,5 +1,8 @@
 import * as vscode from 'vscode';
 import * as child from 'child_process';
+import {RunSFDXCommand} from "./RunCommand";
+import {SFDX} from "./GetOrgInfo";
+import {FlowDefinitionViewResult} from "./GetFlowDefinitionViews";
 
 export interface CoverageResult {
   status: number,
@@ -22,38 +25,9 @@ export interface CoverageResult {
 
 export class GetFlowCoverage {
 
-  public getFlowCoverage(username): Promise<CoverageResult> {
-    var p = new Promise<CoverageResult>(resolve => {
-      let sfdxCmd ="sfdx force:data:soql:query -q \"SELECT Id, ApexTestClassId, TestMethodName, " +
-        "FlowVersionId, NumElementsCovered, NumElementsNotCovered FROM FlowTestCoverage\""  + " -u " + username +  " -t --json";
+  public async getFlowCoverage(username): Promise<CoverageResult> {
 
-      let workspacePath = vscode.workspace.workspaceFolders;
-      let foo: child.ChildProcess = child.exec(sfdxCmd,{
-        maxBuffer: 1024 * 1024 * 6,
-        cwd: workspacePath?workspacePath[0].uri.fsPath:""
-      });
-
-      let bufferOutData='';
-      foo.stdout.on("data",(dataArg : any)=> {
-        bufferOutData+=dataArg;
-      });
-
-      foo.stderr.on("data",(data : any)=> {
-        vscode.window.showErrorMessage(data);
-        resolve();
-      });
-
-      foo.stdin.on("data",(data : any)=> {
-        vscode.window.showErrorMessage(data);
-        resolve();
-      });
-
-      foo.on('exit',(code,signal)=>{
-        let data = JSON.parse(bufferOutData) as CoverageResult;
-        resolve(data);
-      });
-    });
-
-    return p;
+    return await RunSFDXCommand('sfdx force:data:soql:query -q \"SELECT Id, ApexTestClassId, ' +
+      'TestMethodName, FlowVersionId, NumElementsCovered, NumElementsNotCovered FROM FlowTestCoverage\"'  + ' -u ' + username + ' -t --json') as Promise<CoverageResult>;
   }
 }

@@ -98,6 +98,7 @@
 		"lightning-flow-scanner-core": "^1.0.1",
 		"mz": "^2.7.0",
 		"node-sass": "6.0.1",
+		"os": "^0.1.2",
 		"reflect-metadata": "^0.1.13",
 		"sfdx": "^1.4.2",
 		"svelte": "^3.37.0",

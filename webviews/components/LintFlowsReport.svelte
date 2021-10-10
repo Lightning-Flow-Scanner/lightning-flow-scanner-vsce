@@ -83,9 +83,9 @@
         <caption><button on:click={() => sidebar_show = !sidebar_show}>Filter Rules</button></caption>
         <thead>
         <tr>
-            <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
             <th id="label" on:click={() => sort("label", sortBy.ascending)}>Label</th>
             <th id="type" on:click={() => sort("type", sortBy.ascending)}>Flow Type</th>
+            <th id="results" on:click={() => sort("resultCount", sortBy.ascending)}>#Results</th>
             <th id="coverage" on:click={() => sort("type", sortBy.ascending)}>%Test Coverage</th>
             <th id="details">Report</th>
         </tr>
@@ -94,15 +94,15 @@
         {#each scanResults as scanResult}
             {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
-                    <td>
-                        {scanResult.resultCount}
-                    </td>
                     <td><a href="/" on:click|preventDefault={() => goToFile(scanResult.flow)}>
                         <div>
                             {scanResult.flow.label}
                         </div>
                     </a></td>
                     <td>{scanResult.flow.type}</td>
+                    <td>
+                      {scanResult.resultCount}
+                    </td>
                     <td>
                       {#if scanResult.coverage}
                         {scanResult.coverage}
