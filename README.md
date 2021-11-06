@@ -1,7 +1,9 @@
 # Lightning Flow Scanner
 ### _Find potential issues and optimizations in Lightning Flows._
 
-![Scan Result example(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/resultexample.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/resultexample.png)
+![Scan Result example(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/resultexample.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/overviewdemo.png)
+
+![Scan Result example(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/resultexample.png)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/resultdetails.png)
 
 ## Using the commands
 
