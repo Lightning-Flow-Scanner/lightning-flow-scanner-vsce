@@ -51,26 +51,68 @@
             </thead>
             <tbody>
             {#each scanResult.ruleResults as ruleResult}
-                <tr title={ruleResult.ruleDescription}>
-                    <td colspan=2>
-                      {ruleResult.ruleLabel}
-                    </td>
-                    <td colspan=1>
-                      {(ruleResult.details ?ruleResult.details.length: ruleResult.occurs ? 1 : 0)}
-                    </td>
-                </tr>
-                {#if ruleResult.details && ruleResult.details.length > 0}
-                <tr title={ruleResult.ruleDescription}>
-                    <td colspan=3>
-                        <div class="subtable">
-                            <p>{ruleResult.ruleDescription}</p>
-                            <br>
-                            <RuleDetails bind:ruleResult={ruleResult}>
-                            </RuleDetails>
-                        </div>
-                    </td>
-                </tr>
-                {/if}
+              {#if ruleResult.type === 'pattern'}
+                  <tr title={ruleResult.ruleDescription}>
+                      <td colspan=2>
+                        {ruleResult.ruleLabel}
+                      </td>
+                      <td colspan=1>
+                        {(ruleResult.details ?ruleResult.details.length: ruleResult.occurs ? 1 : 0)}
+                      </td>
+                  </tr>
+                  {#if ruleResult.details && ruleResult.details.length > 0}
+                      <tr title={ruleResult.ruleDescription}>
+                          <td colspan=3>
+                              <div class="subtable">
+                                  <p>{ruleResult.ruleDescription}</p>
+                                  <br>
+                                  <RuleDetails bind:ruleResult={ruleResult}>
+                                  </RuleDetails>
+                              </div>
+                          </td>
+                      </tr>
+                  {/if}
+              {/if}
+              {#if ruleResult.type === 'flow'}
+                  <tr title={ruleResult.ruleDescription}>
+                      <td colspan=2>
+                        {ruleResult.ruleLabel}
+                      </td>
+                      <td colspan=1>
+                        {(ruleResult.occurs ? 1 : 0)}
+                      </td>
+                  </tr>
+                  <tr title={ruleResult.ruleDescription}>
+                      <td colspan=3>
+                          <div class="subtable">
+                              <p>{ruleResult.ruleDescription}</p>
+                              <br>
+                              <RuleDetails bind:ruleResult={ruleResult}>
+                              </RuleDetails>
+                          </div>
+                      </td>
+                  </tr>
+              {/if}
+              {#if ruleResult.type === 'error'}
+                  <tr title={ruleResult.ruleDescription}>
+                      <td colspan=2>
+                        {ruleResult.ruleLabel}
+                      </td>
+                      <td colspan=1>
+                        0
+                      </td>
+                  </tr>
+                  <tr title={ruleResult.ruleDescription}>
+                      <td colspan=3>
+                          <div class="subtable">
+                              <p>{ruleResult.ruleDescription}</p>
+                              <br>
+                              <RuleDetails bind:ruleResult={ruleResult}>
+                              </RuleDetails>
+                          </div>
+                      </td>
+                  </tr>
+              {/if}
             {/each}
             <tr>
                 <td colspan=2><br/><strong># Total Results</strong></td>

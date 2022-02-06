@@ -102,7 +102,7 @@
         </thead>
         <tbody>
         {#each scanResults as scanResult}
-            {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
+            {#if scanResult.flow.label && scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
                       {scanResult.resultCount}
