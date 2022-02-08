@@ -7,7 +7,7 @@
     let sortByColumn = "label";
     let sortByAscending= false;
     let scanResults;
-    let sidebar_show = false;
+    let sidebar_show = true;
     let allRules = new Set(core.getRules().map(rule => rule.name));
     let selectedRules = allRules;
 
