@@ -7,7 +7,7 @@
     let sortByColumn = "label";
     let sortByAscending= false;
     let scanResults;
-    let sidebar_show = false;
+    let sidebar_show = true;
     let allRules = new Set(core.getRules().map(rule => rule.name));
     let selectedRules = allRules;
 
@@ -102,7 +102,7 @@
         </thead>
         <tbody>
         {#each scanResults as scanResult}
-            {#if scanResult.flow.label && scanResult.flow.start &&  scanResult.flow.processType && scanResult.flow.nodes}
+            {#if scanResult.flow.label && scanResult.flow.processType && scanResult.flow.nodes}
                 <tr>
                     <td>
                       {scanResult.resultCount}

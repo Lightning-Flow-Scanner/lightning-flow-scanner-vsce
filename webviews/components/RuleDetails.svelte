@@ -13,7 +13,7 @@
 
 <table style="width: 100%;">
 
-  {#if ruleResult.details}
+  {#if ruleResult.details && ruleResult.type !== 'error'}
     {#each ruleResult.details as result, i}
         <ViolationDetails bind:result={result} nr={i+1}>
         </ViolationDetails>
@@ -27,11 +27,20 @@
           <th colspan=1 style="width: 10%">details</th>
       </tr>
       </thead>
+    {#if ruleResult.type === 'error'}
+        <tr>
+            <td style="width: 10%">1</td>
+            <td style="width: 40%">Error</td>
+            <td style="width: 40%; text-transform: capitalize;">{ruleResult.details[0]}</td>
+            <td style="width: 10%;"></td>
+        </tr>
+    {:else}
       <tr>
           <td style="width: 10%">1</td>
           <td style="width: 40%">undefined</td>
           <td style="width: 40%; text-transform: capitalize;">Description</td>
           <td style="width: 10%;"></td>
       </tr>
+    {/if}
   {/if}
 </table>

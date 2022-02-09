@@ -2,7 +2,7 @@
 	"name": "lightningflowscanner",
 	"displayName": "Lightning Flow Scanner",
 	"description": "Find potential issues and optimizations in Lightning Flows",
-	"version": "1.5.0",
+	"version": "1.9.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceConfigControl",
 	"repository": {
