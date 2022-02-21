@@ -2447,9 +2447,9 @@ levn@^0.3.0, levn@~0.3.0:
     type-check "~0.3.2"
 
 lightning-flow-scanner-core@^1.0.1:
-  version "1.0.37"
-  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-1.0.37.tgz#c1b111a09e5d5675c9f556660cbcc354b0e40467"
-  integrity sha512-OTlbTuT+1r++EuVaPawsvelPPwumtzPmXIC23udiHW09qO8BZpcEMiyfnu5DYUdwkYa8DWEVvp/k2I1BYKtdsw==
+  version "1.0.46"
+  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-1.0.46.tgz#5abd8057a7ba4d01b367f71168868004cca89b2a"
+  integrity sha512-xwUORyjWUNnnx7MzH9jd7fPG8E99g5dnKQA26ckZDPKYZm1yAnHEH4DhCRWsYA6ccZjB4TU0+NLSwSbHtsrvDA==
   dependencies:
     "@types/chai" "^4.2.21"
     chai "^4.3.4"
@@ -2541,9 +2541,9 @@ logging@^3.3.0:
     nicely-format "^1.1.0"
 
 loupe@^2.3.1:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/loupe/-/loupe-2.3.3.tgz#5a92027d54cfb6de4c327d3c3b705561d394d3c6"
-  integrity sha512-krIV4Cf1BIGIx2t1e6tucThhrBemUnIUjMtD2vN4mrMxnxpBvrcosBSpooqunBqP/hOEEV1w/Cr1YskGtqw5Jg==
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/loupe/-/loupe-2.3.4.tgz#7e0b9bffc76f148f9be769cb1321d3dcf3cb25f3"
+  integrity sha512-OvKfgCC2Ndby6aSTREl5aCCPTNIzlDfQZvZxNUrBrihDhL3xcrYegTblhmEiCrg2kKQz4XsFIaemE5BF4ybSaQ==
   dependencies:
     get-func-name "^2.0.0"
 
@@ -2690,9 +2690,9 @@ minimatch@3.0.4, minimatch@^3.0.3, minimatch@~3.0.2:
     brace-expansion "^1.1.7"
 
 minimatch@^3.0.4:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.5.tgz#4da8f1290ee0f0f8e83d60ca69f8f134068604a3"
-  integrity sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
+  integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
 
@@ -2767,9 +2767,9 @@ mocha@^5.2.0:
     supports-color "5.4.0"
 
 mocha@^9.1.1:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-9.2.0.tgz#2bfba73d46e392901f877ab9a47b7c9c5d0275cc"
-  integrity sha512-kNn7E8g2SzVcq0a77dkphPsDSN7P+iYkqE0ZsGCYWRsoiKjOt+NvXfaagik8vuDa6W5Zw3qxe8Jfpt5qKf+6/Q==
+  version "9.2.1"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-9.2.1.tgz#a1abb675aa9a8490798503af57e8782a78f1338e"
+  integrity sha512-T7uscqjJVS46Pq1XDXyo9Uvey9gd3huT/DD9cYBb4K2Xc/vbKRPUWK067bxDQRK0yIz6Jxk73IrnimvASzBNAQ==
   dependencies:
     "@ungap/promise-all-settled" "1.1.2"
     ansi-colors "4.1.1"
