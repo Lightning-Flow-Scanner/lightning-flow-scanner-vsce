@@ -2447,9 +2447,9 @@ levn@^0.3.0, levn@~0.3.0:
     type-check "~0.3.2"
 
 lightning-flow-scanner-core@^1.0.1:
-  version "1.0.46"
-  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-1.0.46.tgz#5abd8057a7ba4d01b367f71168868004cca89b2a"
-  integrity sha512-xwUORyjWUNnnx7MzH9jd7fPG8E99g5dnKQA26ckZDPKYZm1yAnHEH4DhCRWsYA6ccZjB4TU0+NLSwSbHtsrvDA==
+  version "1.0.52"
+  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-1.0.52.tgz#3fc4bf80459d2dd744b4a2b88798d85dedfe0eb1"
+  integrity sha512-sHKqQCENciECn7W3OuuH6JrBu35tIhzkdpPLJ8XtGBxF3Ga9klrln3ckP54WMFqizUfC8bZV0tUlEC7WrSpXGQ==
   dependencies:
     "@types/chai" "^4.2.21"
     chai "^4.3.4"
@@ -4229,9 +4229,9 @@ typescript@^3.8.3:
   integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
 typescript@^4.3.4:
-  version "4.5.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.5.tgz#d8c953832d28924a9e3d37c73d729c846c5896f3"
-  integrity sha512-TCTIul70LyWe6IJWT8QSYeA54WQe8EjQFU4wY52Fasj5UKx88LNYKCgBEHcOMOrFF1rKGbD8v/xcNWVUq9SymA==
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.2.tgz#fe12d2727b708f4eef40f51598b3398baa9611d4"
+  integrity sha512-HM/hFigTBHZhLXshn9sN37H085+hQGeJHJ/X7LpBWLID/fbc2acUMfU+lGD98X81sKP+pFa9f0DZmCwB9GnbAg==
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.6"
