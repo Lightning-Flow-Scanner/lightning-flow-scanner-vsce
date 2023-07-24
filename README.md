@@ -2,10 +2,10 @@
 
 __*Identify potential issues and improvements in Salesforce Flows*__
 
-**Also available as [SFDX Plugin](https://github.com/Force-Config-Control/lightning-flow-scanner-sfdx)*
-
 [![Demo Image](docs/filterresults.png)](https://github.com/Force-Config-Control/lightning-flow-scanner-vsce)
 
+**Also available as [SFDX Plugin](https://github.com/Force-Config-Control/lightning-flow-scanner-sfdx)*
+a
 ## Table of contents
 
 - [Using the commands](#Using-the-commands)
