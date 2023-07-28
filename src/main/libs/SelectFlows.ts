@@ -26,7 +26,7 @@ export class SelectFlows {
         return selectedFlows;
       } else{
         var getDirectories = function (src) {
-          return glob.sync(src + '/**/*.flow-meta.xml');
+          return glob.sync(src + '/**/*.{flow-meta.xml,flow}');
         };
         let uris = [];
         const flowsURIsFound = getDirectories(selectedFlows[0].fsPath);

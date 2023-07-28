@@ -21,7 +21,7 @@ export class CreateTestDataCommand extends BaseCommand {
       canSelectMany: false,
       defaultUri: this.rootPath,
       filters: {
-        'Flow': ['flow-meta.xml']
+        'Flow': ['.flow', 'flow-meta.xml']
       }
     });
     if (selectedFlowFile) {
