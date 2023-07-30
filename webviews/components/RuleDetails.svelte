@@ -13,16 +13,14 @@
       <thead>
       <tr>
           <th colspan=1 style="width: 10%">#</th>
-          <th colspan=1 style="width: 40%">name</th>
+          <th colspan=1 style="width: 40%">current</th>
           <th colspan=1 style="width: 40%">type</th>
-          <th colspan=1 style="width: 10%">details</th>
       </tr>
       </thead>
       <tr>
           <td style="width: 10%">1</td>
-          <td style="width: 40%">undefined</td>
-          <td style="width: 40%; text-transform: capitalize;">Description</td>
-          <td style="width: 10%;"></td>
+          <td style="width: 40%">{ruleResult.details}</td>
+          <td style="width: 40%; text-transform: capitalize;">{ruleResult.ruleName}</td>
       </tr>
   {/if}
 </table>

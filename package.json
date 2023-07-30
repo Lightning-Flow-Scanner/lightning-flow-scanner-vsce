@@ -34,13 +34,18 @@
 				},
 				"lightningFlowScanner.namingConvention": {
 					"type": "string",
-					"default": "0",
+					"default": "[A-Za-z0-9]+_[A-Za-z0-9]+",
 					"description": "Specify a REGEX expression to use as Flow Naming convention."
 				},
 				"lightningFlowScanner.versionAPI": {
 					"type": "string",
-					"default": "0",
-					"description": "Specify an expression to validate the API version, i.e. '===50'."
+					"default": ">50",
+					"description": "Specify an expression to validate the API version, i.e. '===50'(use at least 50)."
+				},
+				"lightningFlowScanner.initialConfiguration": {
+					"type": "boolean",
+					"default": true,
+					"description": "Reset configuration"
 				}
 			}
 		},
