@@ -2,7 +2,6 @@
     import Sidebar from "./Sidebar.svelte";
     import {onMount} from 'svelte';
     import * as core from 'lightning-flow-scanner-core/out';
-
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
     let sortByColumn = "label";
     let sortByAscending= false;
@@ -16,9 +15,9 @@
             scanResults.forEach(scanResult => {
                 scanResult.resultCount = scanResult.ruleResults.reduce((total, rule) => {
                     if(selectedRules.has(rule.ruleName)){
-                        if(rule.details){
+                        if(rule.details && rule.type === 'pattern'){
                             total = (total + rule.details.length)
-                        } else if(rule.occurs){
+                        } else if(rule.details && rule.type === 'flow'){
                             total = (total + 1)
                         }
                     }
@@ -58,7 +57,6 @@
     }
 
     function sort(column) {
-
         if (sortByColumn === column) {
             sortByAscending = !sortByAscending;
         } else {
@@ -73,22 +71,18 @@
                 : (a[column] > b[column])
                 ? 1 * sortModifier
                 : 0;
-
         scanResults = scanResults.sort(sort);
     }
 
 </script>
 
 <svelte:window on:message={windowMessage}/>
-
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
-
 {#if !scanResults}
 <div class="centered">
     <div class="loader"></div>
 </div>
 {/if}
-
 {#if scanResults && scanResults.length > 0}
     <table>
         <thead>

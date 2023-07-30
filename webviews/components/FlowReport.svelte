@@ -1,7 +1,6 @@
 <script lang="ts">
     import RuleDetails from "./RuleDetails.svelte";
     import {onMount} from 'svelte';
-
     onMount(() => {
         tsvscode.postMessage({
             type: 'init-view',
@@ -39,7 +38,6 @@
 </script>
 
 <svelte:window on:message={windowMessage}/>
-
 {#if scanResult}
     <div class="main">
         <table>
@@ -51,15 +49,22 @@
             </thead>
             <tbody>
             {#each scanResult.ruleResults as ruleResult}
-              {#if ruleResult.type === 'pattern'}
-                  <tr title={ruleResult.ruleDescription}>
-                      <td colspan=2>
-                        {ruleResult.ruleLabel}
-                      </td>
-                      <td colspan=1>
-                        {(ruleResult.details ?ruleResult.details.length: ruleResult.occurs ? 1 : 0)}
-                      </td>
-                  </tr>
+            <tr title={ruleResult.ruleDescription}>
+                <td colspan=2>
+                    {ruleResult.ruleLabel}
+                </td>
+                {#if ruleResult.type === 'flow'}
+                <td colspan=1>
+                    {(ruleResult.occurs ? 1 : 0)}
+                </td>
+                {/if}
+                {#if ruleResult.type === 'pattern'}
+                <td colspan=1>
+                    {(ruleResult.occurs ? ruleResult.details.length : 0)}
+                </td>
+                {/if}
+            </tr>
+                
                   {#if ruleResult.details && ruleResult.details.length > 0}
                       <tr title={ruleResult.ruleDescription}>
                           <td colspan=3>
@@ -71,53 +76,14 @@
                               </div>
                           </td>
                       </tr>
-                  {/if}
-              {/if}
-              {#if ruleResult.type === 'flow'}
-                  <tr title={ruleResult.ruleDescription}>
-                      <td colspan=2>
-                        {ruleResult.ruleLabel}
-                      </td>
-                      <td colspan=1>
-                        {(ruleResult.occurs ? 1 : 0)}
-                      </td>
-                  </tr>
-                  <tr title={ruleResult.ruleDescription}>
-                      <td colspan=3>
-                          <div class="subtable">
-                              <p>{ruleResult.ruleDescription}</p>
-                              <br>
-                              <RuleDetails bind:ruleResult={ruleResult}>
-                              </RuleDetails>
-                          </div>
-                      </td>
-                  </tr>
-              {/if}
-              {#if ruleResult.type === 'error'}
-                  <tr title={ruleResult.ruleDescription}>
-                      <td colspan=2>
-                        {ruleResult.ruleLabel}
-                      </td>
-                      <td colspan=1>
-                        0
-                      </td>
-                  </tr>
-                  <tr title={ruleResult.ruleDescription}>
-                      <td colspan=3>
-                          <div class="subtable">
-                              <p>{ruleResult.ruleDescription}</p>
-                              <br>
-                              <RuleDetails bind:ruleResult={ruleResult}>
-                              </RuleDetails>
-                          </div>
-                      </td>
-                  </tr>
-              {/if}
+                  {/if} 
             {/each}
             <tr>
                 <td colspan=2><br/><strong># Total Results</strong></td>
                 <td colspan=1>
-                    <br/><strong>{scanResult.ruleResults.reduce((a, b) => a + (b.details ? b.details.length : 1), 0)}</strong>
+                    <br/><strong>
+                        {scanResult.resultCount}
+                    </strong>
                 </td>
             </tr>
             </tbody>
@@ -125,7 +91,6 @@
     </div>
     <button on:click={() => goToFile(scanResult.flow)}>Go To File</button>
 {/if}
-
         <!--        {#if scanResult.unusedVariables || scanResult.unconnectedElements }-->
 <!--            <caption>-->
 <!--                <button on:click={() => autoFix(scanResult)}>-->

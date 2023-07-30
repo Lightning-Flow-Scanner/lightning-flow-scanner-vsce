@@ -43,11 +43,9 @@
 {/if}
 
 <script>
-
     export let result;
     export let nr = 0;
     let showDetails = false;
-
     function updateShowDetails() {
         showDetails = !showDetails;
     }

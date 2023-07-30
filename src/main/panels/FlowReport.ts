@@ -36,39 +36,16 @@ export class FlowReport {
         FlowReport.currentPanel = undefined;
     }
 
-    // public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-    //     FlowReport.currentPanel = new FlowReport(panel, extensionUri);
-    // }
-
     private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResult : ScanResult) {
         this._panel = panel;
         this._extensionUri = extensionUri;
-
         this._update(scanResult);
-
-        // This happens when the user closes the panel or when the panel is closed programatically
         this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
-
-        // // Handle messages from the webview
-        // this._panel.webview.onDidReceiveMessage(
-        //   (message) => {
-        //     switch (message.command) {
-        //       case "alert":
-        //         vscode.window.showErrorMessage(message.text);
-        //         return;
-        //     }
-        //   },
-        //   null,
-        //   this._disposables
-        // );
     }
 
     public dispose() {
         FlowReport.currentPanel = undefined;
-
-        // Clean up our resources
         this._panel.dispose();
-
         while (this._disposables.length) {
             const x = this._disposables.pop();
             if (x) {
@@ -82,17 +59,6 @@ export class FlowReport {
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
             switch (data.type) {
-                // case "autofix": {
-                //     if (!data.flow) {
-                //         return;
-                //     }
-                    // flow.processedData = new FixFlow().execute(flow);
-                    // const result = await new SaveFlow().execute(flow, flow.uri);
-                    // if (result) {
-                    //     FixReport.createOrShow(this._extensionUri, flow);
-                    // }
-                //     break;
-                // }
                 case "goToFile": {
                   if (!data.value) {
                     return;
@@ -109,11 +75,6 @@ export class FlowReport {
                     });
                     return;
                 }
-                // case "tokens": {
-                //     await Util.globalState.update(accessTokenKey, data.accessToken);
-                //     await Util.globalState.update(refreshTokenKey, data.refreshToken);
-                //     break;
-                // }
             }
         });
     }
