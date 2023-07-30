@@ -25,7 +25,7 @@ Use the scan command to run analysis on a selection of flows
 
 ![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanFlowsDemo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/ScanFlowsDemo.gif)
 
-### Scan Flows
+### Get Rules
 
 Get Rules can be used to view details on the latest rules included in the scans. 
 
