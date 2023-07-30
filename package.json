@@ -59,7 +59,7 @@
 			},
 			{
 				"command": "lightningflowscanner.viewrules",
-				"title": "Flow Rules"
+				"title": "Get Rules(Flow)"
 			}
 		]
 	},
