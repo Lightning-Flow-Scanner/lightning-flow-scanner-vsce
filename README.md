@@ -9,9 +9,9 @@ __*Identify potential issues and improvements in Salesforce Flows*__
 ## Table of contents
 
 - [Using the commands](#Using-the-commands)
--  [Get Rules](#Get-Rules)
--  [Scan Flows](#Scan-Flows)
--  [Fix Flows](#Fix-Flows)
+  - [Get Rules](#Get-Rules)
+  - [Scan Flows](#Scan-Flows)
+  - [Fix Flows](#Fix-Flows)
 - [Rule overview](#rule-overview)
 - [Configuration](#configuration)
 
@@ -38,6 +38,7 @@ Use the fix command to apply available fixes automatically.
 | Rule       | Description |
 |--------------|:-----------|
 | **Old API version** | Newer API components may cause older versions of Flows to start behaving incorrectly due to differences in the underlying mechanics. The Api Version has been available as an attribute on the Flow since API v50.0 and it is recommended to limit variation and to update them on a regular basis. |
+| **Copy of API Name** | Having multiple elements called Copy_X_Of_Element will decrease the readability of the Flow. If you copy and paste them, make sure to update the API name of the new copy. |
 | **DML statements in a loop** |  To avoid hitting Apex governor limits, we recommend grouping all of your database changes together at the end of the flow, whether those changes create, update, or delete records. |
 | **Duplicate DML operations** |   If the flow commits changes to the database or performs actions between two screens, don't let users navigate back between screen. Otherwise, the flow may perform duplicate database operations. |
 | **Hardcoded Ids** |  IDs are org-specific, so don’t hard-code IDs. Instead, pass them into variables when the flow starts. You can do so, for example, by using merge fields in URL parameters or by using a Get Records element. |
