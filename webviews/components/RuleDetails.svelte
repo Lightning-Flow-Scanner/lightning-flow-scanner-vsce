@@ -13,7 +13,7 @@
       <thead>
       <tr>
           <th colspan=1 style="width: 10%">#</th>
-          <th colspan=1 style="width: 40%">current</th>
+          <th colspan=1 style="width: 40%">details</th>
           <th colspan=1 style="width: 40%">type</th>
       </tr>
       </thead>
