@@ -1,13 +1,13 @@
 <script lang="ts">
-    import ViolationDetails from "./ViolationDetails.svelte";
+    import Violation from "./Violation.svelte";
     export let ruleResult;
 </script>
 
 <table style="width: 100%;">
   {#if ruleResult.details && ruleResult.type === 'pattern'}
     {#each ruleResult.details as result, i}
-        <ViolationDetails bind:result={result} nr={i+1}>
-        </ViolationDetails>
+        <Violation bind:result={result} nr={i+1}>
+        </Violation>
     {/each}
   {:else}
       <thead>

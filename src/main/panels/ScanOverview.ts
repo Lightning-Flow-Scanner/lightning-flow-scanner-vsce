@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import {FlowReport} from "./FlowReport";
+import {ViolationTable} from "./ViolationTable";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class ScanOverview {
@@ -82,7 +82,7 @@ export class ScanOverview {
                     if (!data.value) {
                         return;
                     }
-                    FlowReport.create(this._extensionUri, data.value, type);
+                    ViolationTable.create(this._extensionUri, data.value, type);
                     break;
                 }
                 case "onError": {

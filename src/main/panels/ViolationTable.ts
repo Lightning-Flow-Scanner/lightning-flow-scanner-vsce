@@ -3,9 +3,9 @@ import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
-export class FlowReport {
+export class ViolationTable {
 
-    public static currentPanel: FlowReport | undefined;
+    public static currentPanel: ViolationTable | undefined;
     public static readonly viewType = "report";
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
@@ -17,7 +17,7 @@ export class FlowReport {
             : undefined;
 
         const panel = vscode.window.createWebviewPanel(
-            FlowReport.viewType,
+            ViolationTable.viewType,
             `${type}:${scanResult.flow.label}`,
             column || vscode.ViewColumn.One,
             {
@@ -28,12 +28,12 @@ export class FlowReport {
                 ]
             }
         );
-        FlowReport.currentPanel = new FlowReport(panel, extensionUri, scanResult);
+        ViolationTable.currentPanel = new ViolationTable(panel, extensionUri, scanResult);
     }
 
     public static kill() {
-        FlowReport.currentPanel?.dispose();
-        FlowReport.currentPanel = undefined;
+        ViolationTable.currentPanel?.dispose();
+        ViolationTable.currentPanel = undefined;
     }
 
     private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResult : ScanResult) {
@@ -44,7 +44,7 @@ export class FlowReport {
     }
 
     public dispose() {
-        FlowReport.currentPanel = undefined;
+        ViolationTable.currentPanel = undefined;
         this._panel.dispose();
         while (this._disposables.length) {
             const x = this._disposables.pop();
@@ -81,7 +81,7 @@ export class FlowReport {
 
     private _getHtmlForWebview(webview: vscode.Webview) {
         const scriptUri = webview.asWebviewUri(
-            Utils.joinPath(this._extensionUri, "out/compiled", "FlowReport.js")
+            Utils.joinPath(this._extensionUri, "out/compiled", "ViolationTable.js")
         );
         const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
@@ -96,7 +96,7 @@ export class FlowReport {
         const cssUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
-            "FlowReport.css"
+            "ViolationTable.css"
         ));
         const nonce = getNonce();
         return `<!DOCTYPE html>
