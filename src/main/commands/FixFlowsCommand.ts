@@ -6,7 +6,7 @@ import {SelectFlows} from "../libs/SelectFlows";
 import {ParseFlows} from "../libs/ParseFlows";
 import * as core from "lightning-flow-scanner-core/out";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
-import {LintFlowsReport} from "../panels/LintFlowsReport";
+import {ScanOverview} from "../panels/ScanOverview";
 
 export class FixFlowsCommand extends BaseCommand {
 
@@ -28,7 +28,7 @@ export class FixFlowsCommand extends BaseCommand {
           let saved = await new SaveFlow().execute(result.flow, result.flow.uri);
         }
       }
-      LintFlowsReport.createOrShow(this.context.extensionUri, results, "Fix");
+      ScanOverview.createOrShow(this.context.extensionUri, results, "Fix");
     }
   }
 }

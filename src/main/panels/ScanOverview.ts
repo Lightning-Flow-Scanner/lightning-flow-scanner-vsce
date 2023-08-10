@@ -4,9 +4,9 @@ import {URI, Utils} from 'vscode-uri';
 import {FlowReport} from "./FlowReport";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
-export class LintFlowsReport {
+export class ScanOverview {
 
-    public static currentPanel: LintFlowsReport | undefined;
+    public static currentPanel: ScanOverview | undefined;
     public static readonly viewType = "report";
     private static _commandType: string;
     private readonly _panel: vscode.WebviewPanel;
@@ -19,14 +19,14 @@ export class LintFlowsReport {
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
-        if (LintFlowsReport.currentPanel && LintFlowsReport._commandType === type) {
-            LintFlowsReport.currentPanel._panel.reveal(column);
-            LintFlowsReport.currentPanel._update(scanResults, type);
+        if (ScanOverview.currentPanel && ScanOverview._commandType === type) {
+            ScanOverview.currentPanel._panel.reveal(column);
+            ScanOverview.currentPanel._update(scanResults, type);
             return;
         }
 
         const panel = vscode.window.createWebviewPanel(
-            LintFlowsReport.viewType,
+            ScanOverview.viewType,
           this._commandType + " Results",
             column || vscode.ViewColumn.One,
             {
@@ -37,12 +37,12 @@ export class LintFlowsReport {
                 ]
             }
         );
-        LintFlowsReport.currentPanel = new LintFlowsReport(panel, extensionUri, scanResults, type);
+        ScanOverview.currentPanel = new ScanOverview(panel, extensionUri, scanResults, type);
     }
 
     public static kill() {
-        LintFlowsReport.currentPanel?.dispose();
-        LintFlowsReport.currentPanel = undefined;
+        ScanOverview.currentPanel?.dispose();
+        ScanOverview.currentPanel = undefined;
     }
 
     private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
@@ -54,7 +54,7 @@ export class LintFlowsReport {
     }
 
     public dispose() {
-        LintFlowsReport.currentPanel = undefined;
+        ScanOverview.currentPanel = undefined;
         this._panel.dispose();
         while (this._disposables.length) {
             const x = this._disposables.pop();
@@ -105,7 +105,7 @@ export class LintFlowsReport {
 
     private _getHtmlForWebview(webview: vscode.Webview) {
         const scriptUri = webview.asWebviewUri(
-            Utils.joinPath(this._extensionUri, "out/compiled", "LintFlowsReport.js")
+            Utils.joinPath(this._extensionUri, "out/compiled", "ScanOverview.js")
         );
         const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
@@ -120,7 +120,7 @@ export class LintFlowsReport {
         const cssUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
-            "LintFlowsReport.css"
+            "ScanOverview.css"
         ));
         const spinnerUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
