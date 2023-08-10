@@ -17,10 +17,11 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:lightningflowscanner.createflowdata",
+		"onCommand:lightningflowscanner.createtestdata",
 		"onCommand:lightningflowscanner.fix",
 		"onCommand:lightningflowscanner.scan",
-		"onCommand:lightningflowscanner.viewrules"
+		"onCommand:lightningflowscanner.viewrules",
+		"onCommand:lightningflowscanner.refresh"
 	],
 	"main": "./dist/extension",
 	"contributes": {
@@ -51,7 +52,7 @@
 		},
 		"commands": [
 			{
-				"command": "lightningflowscanner.createflowdata",
+				"command": "lightningflowscanner.createtestdata",
 				"title": "Create Test Data(Flow Scanner)"
 			},
 			{
@@ -65,6 +66,10 @@
 			{
 				"command": "lightningflowscanner.viewrules",
 				"title": "Get Rules(Flow)"
+			},
+			{
+				"command": "lightningflowscanner.refresh",
+				"title": "Refresh Web Views"
 			}
 		]
 	},
@@ -95,8 +100,6 @@
 		"concurrently": "^6.2.1",
 		"eslint": "^6.8.0",
 		"glob": "^7.1.7",
-		"rollup": "^2.45.2",
-		"rollup-plugin-svelte": "^7.1.0",
 		"rollup-plugin-terser": "^7.0.2",
 		"sinon": "^9.0.3",
 		"svelte-preprocess": "^4.7.0",
@@ -116,6 +119,8 @@
 		"node-sass": "6.0.1",
 		"os": "^0.1.2",
 		"reflect-metadata": "^0.1.13",
+		"rollup": "2.30",
+		"rollup-plugin-svelte": "6.1.1",
 		"sfdx": "^1.4.2",
 		"svelte": "^3.37.0",
 		"svelte-check": "^1.4.0",

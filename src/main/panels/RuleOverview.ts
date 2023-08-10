@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class RuleOverview {
 
@@ -108,6 +107,9 @@ export class RuleOverview {
     const scriptUri = webview.asWebviewUri(
       Utils.joinPath(this._extensionUri, "out/compiled", "RuleOverview.js")
     );
+    const styleUri = webview.asWebviewUri(
+      Utils.joinPath(this._extensionUri, "out/compiled", "RuleOverview.css")
+    );
     const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
       this._extensionUri,
       "media",
@@ -117,11 +119,6 @@ export class RuleOverview {
       this._extensionUri,
       "media",
       "vscode.css"
-    ));
-    const cssUri = webview.asWebviewUri(Utils.joinPath(
-      this._extensionUri,
-      "media",
-      "RuleOverview.css"
     ));
     const spinnerUri = webview.asWebviewUri(Utils.joinPath(
       this._extensionUri,
@@ -137,7 +134,7 @@ export class RuleOverview {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
-        <link href="${cssUri}" rel="stylesheet">
+        <link href="${styleUri}" rel="stylesheet">
         <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();

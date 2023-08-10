@@ -13,22 +13,20 @@
 
 {#if allRules}
     <div id="main">
-        <ol>
+        <h2>Lightning Flow Scanner Default Rules</h2>
           {#each allRules as rule, i}
               <RuleCard>
-                  <span slot="label">{rule.label}</span>
-                  <span slot="description">{rule.text}</span>
-                  <span slot="uri">Source code: <a href={rule.uri}>{rule.name}</a></span>
-                  <span slot="docRefs">
-                      {#if rule.docRefs.length > 0}
-                          <p><strong>Related articles:</strong></p>
+                  <span slot="label">{i+1}. {rule.label}</span>
+                  <span slot="config"> <a href={rule.uri}>{rule.name}</a></span>
+                  <span slot="description">{rule.description}</span>
+                  <!-- <span slot="docRefs"> -->
+                          <!-- <p><strong>Related articles:</strong></p>
                           {#each rule.docRefs as docRef}
                               <a href={docRef.path}>{docRef.label}</a>
                           {/each}
-                      {/if}
-                  </span>
+                      {/if} --> 
+                  <!-- </span> -->
               </RuleCard>
           {/each}
-        </ol>
     </div>
 {/if}
