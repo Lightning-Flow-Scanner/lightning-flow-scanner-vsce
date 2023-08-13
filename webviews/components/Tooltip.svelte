@@ -1,3 +1,21 @@
+
+<style>
+    .tip {
+    color:#fff;
+    background-color:#feb22a;
+    width:15px;
+    height:15px;
+    display:inline-block;
+    border-radius:100%;
+    font-size: medium;
+    text-align:center;
+    text-decoration:none;
+    -webkit-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+    box-shadow: inset -1px -1px 1px 0px rgba(0,0,0,0.25);
+}
+</style>
+
 <script>
     export let title = '';
     let isHovered = false;

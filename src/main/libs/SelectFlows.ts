@@ -11,7 +11,7 @@ export class SelectFlows {
 
   public async execute(initialPath: vscode.Uri) {
     vscode.window.showInformationMessage(this.message);
-    const specifyFiles : boolean = vscode.workspace.getConfiguration('lightningFlowScanner').get("specifyFiles") as boolean;
+    const specifyFiles : boolean = vscode.workspace.getConfiguration('lightningFlowScanner').get("specifyFlows") as boolean;
 
     let selectedFlows;
     selectedFlows = await vscode.window.showOpenDialog({

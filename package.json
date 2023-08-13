@@ -28,25 +28,25 @@
 		"configuration": {
 			"title": "Lightning Flow Scanner",
 			"properties": {
-				"lightningFlowScanner.specifyFiles": {
+				"lightningFlowScanner.SpecifyFlows": {
 					"type": "boolean",
 					"default": false,
-					"description": "Specify flow files instead of selecting a root folder."
+					"description": "Make a selection of flow files instead of selecting a root folder."
 				},
-				"lightningFlowScanner.namingConvention": {
+				"lightningFlowScanner.NamingConvention": {
 					"type": "string",
 					"default": "[A-Za-z0-9]+_[A-Za-z0-9]+",
 					"description": "Specify a REGEX expression to use as Flow Naming convention."
 				},
-				"lightningFlowScanner.versionAPI": {
+				"lightningFlowScanner.APIVersion": {
 					"type": "string",
 					"default": ">50",
 					"description": "Specify an expression to validate the API version, i.e. '===50'(use at least 50)."
 				},
-				"lightningFlowScanner.initialConfiguration": {
+				"lightningFlowScanner.Reset": {
 					"type": "boolean",
 					"default": true,
-					"description": "Reset configuration"
+					"description": "Reset all configurations"
 				}
 			}
 		},
@@ -65,7 +65,7 @@
 			},
 			{
 				"command": "lightningflowscanner.viewrules",
-				"title": "Get Rules(Flow)"
+				"title": "View Default Flow Rules"
 			},
 			{
 				"command": "lightningflowscanner.refresh",

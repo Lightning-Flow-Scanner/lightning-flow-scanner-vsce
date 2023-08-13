@@ -76,6 +76,44 @@
 
 </script>
 
+
+<style>
+    table, th, td {
+        border-spacing: 0;
+        text-align: left;
+        font-size: medium;
+        margin: 15px;
+    }
+    
+    table {
+        margin: 15px;
+        min-width: 75%;
+    }
+    
+    th, td {
+        border: 1px solid black;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    th{
+        text-align: left;
+        cursor: pointer;
+    }
+    
+    td{
+        text-align: center;
+    }
+    
+    th + th {
+        border-left: 0;
+    }
+    
+    td + td {
+        border-left: 0;
+    }
+</style>
+
 <svelte:window on:message={windowMessage}/>
 <Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show}/>
 {#if !scanResults}

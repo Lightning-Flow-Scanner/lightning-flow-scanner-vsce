@@ -6,32 +6,23 @@ __*Identify potential issues and improvements in Salesforce Flows*__
 
 **Also available as [SFDX Plugin](https://github.com/Force-Config-Control/lightning-flow-scanner-sfdx)*
 
-## Table of contents
-
-- [Using the commands](#Using-the-commands)
-  - [Get Rules](#Get-Rules)
-  - [Scan Flows](#Scan-Flows)
-  - [Fix Flows](#Fix-Flows)
-- [Rule overview](#rule-overview)
-- [Configuration](#configuration)
-
 ## Using the commands
 
 Open the **Command Palette** and type `Flow` to see the list of all available commands.
 
 ### Scan Flows
 
-Use the scan command to run analysis on a selection of flows
+Use the `Scan Flows` command by choosing either a directory or a selection of flows to run the analysis on.
 
 ![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanFlowsDemo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/ScanFlowsDemo.gif)
 
-### Get Rules
-
-Get Rules can be used to view details on the latest rules included in the scans. 
-
 ### Fix Flows
 
-Use the fix command to apply available fixes automatically.  
+Use the `Fix Flows` command to apply available fixes automatically.  
+
+### View Default Flow Rules
+
+The `View Default Flow Rules` command can be used to view more details on the rules that are applied to Flows in the scans. 
 
 ## Rule Overview
 
@@ -51,9 +42,9 @@ Use the fix command to apply available fixes automatically.
 
 **More information on the rules can be found in the [lfs-core module documentation](https://github.com/Force-Config-Control/lightning-flow-scanner-core).*
 
-## Configuration
-
-There are configurations for the lightning flow scanner, that can be changed by going to VS Code settings:extensions
-- If you want to specify files for scanning, instead of folders, set *specify files* as true.
-- If you want to reset your naming conventions define your expression under *Naming Convention*
-- If you want to reset your API thresholds define your expression under *API Version*
+## Settings
+ Name        | Description | Type | Default value | 
+|--------------|:-----------|--------------|:-----------|
+| SpecifyFlows | Specify flow file paths instead of a root directory. | boolean | false | 
+| NamingConvention | Specify a REGEX expression to use as Flow Naming convention. | string | [A-Za-z0-9]+_[A-Za-z0-9]+ | 
+| APIVersion | Specify an expression to validate the API version, i.e. '===50'(use at least 50). | string | >50 | 
