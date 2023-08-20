@@ -124,6 +124,7 @@
 		"sfdx": "^1.4.2",
 		"svelte": "^3.37.0",
 		"svelte-check": "^1.4.0",
+		"tabulator-tables": "^5.5.1",
 		"ts-loader": "^8.1.0",
 		"ts-mock-imports": "^1.3.0",
 		"vsce": "^1.79.5",

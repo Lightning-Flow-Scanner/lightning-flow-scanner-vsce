@@ -107,6 +107,14 @@ export class ScanOverview {
         const scriptUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "ScanOverview.js")
         );
+        const cssUri = webview.asWebviewUri(
+            Utils.joinPath(this._extensionUri, "out/compiled", "ScanOverview.css")
+          );
+          const tabulatorStyles = webview.asWebviewUri(Utils.joinPath(
+            this._extensionUri,
+            "media",
+            "tabulator.css"
+        ));
         const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
@@ -116,11 +124,6 @@ export class ScanOverview {
             this._extensionUri,
             "media",
             "vscode.css"
-        ));
-        const cssUri = webview.asWebviewUri(Utils.joinPath(
-            this._extensionUri,
-            "media",
-            "ScanOverview.css"
         ));
         const spinnerUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
@@ -134,6 +137,7 @@ export class ScanOverview {
 				<meta charset="UTF-8">
         <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="${tabulatorStyles}" rel="stylesheet">
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">

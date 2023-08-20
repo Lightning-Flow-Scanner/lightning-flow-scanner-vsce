@@ -4039,6 +4039,11 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
+tabulator-tables@^5.5.1:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.5.1.tgz#c788da18b013d163b95389d3b520a73a135f5ffd"
+  integrity sha512-YxWVXbWVgUOMhU/g2xnf7y4Vrk1grYpDftQigbY/yAOKMEfgCRYzNaNEpMZbaimWdCt7KdpIp+lpp+HM5DY5sQ==
+
 tapable@^1.0.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
