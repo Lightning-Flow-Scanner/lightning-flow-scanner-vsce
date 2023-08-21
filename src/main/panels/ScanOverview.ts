@@ -3,6 +3,7 @@ import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {ViolationTable} from "./ViolationTable";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import { fs } from "mz";
 
 export class ScanOverview {
 
@@ -21,7 +22,7 @@ export class ScanOverview {
 
         if (ScanOverview.currentPanel && ScanOverview._commandType === type) {
             ScanOverview.currentPanel._panel.reveal(column);
-            ScanOverview.currentPanel._update(scanResults, type);
+            ScanOverview.currentPanel._update(scanResults);
             return;
         }
 
@@ -48,8 +49,7 @@ export class ScanOverview {
     private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
         this._panel = panel;
         this._extensionUri = extensionUri;
-
-        this._update(scanResults, type);
+        this._update(scanResults);
         this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
     }
 
@@ -64,7 +64,7 @@ export class ScanOverview {
         }
     }
 
-    private async _update(scanResults: ScanResult[], type: string) {
+    private async _update(scanResults: ScanResult[]) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -82,7 +82,8 @@ export class ScanOverview {
                     if (!data.value) {
                         return;
                     }
-                    ViolationTable.create(this._extensionUri, data.value, type);
+                    await fs.writeFile('val.json', JSON.stringify(data.value));
+                    ViolationTable.create(this._extensionUri, data.value);
                     break;
                 }
                 case "onError": {

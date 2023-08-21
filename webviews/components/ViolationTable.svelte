@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Banner from "./Banner.svelte";
     import RuleDetails from "./RuleDetails.svelte";
     import {onMount} from 'svelte';
     onMount(() => {
@@ -38,6 +39,9 @@
 </script>
 
 <svelte:window on:message={windowMessage}/>
+
+<Banner></Banner>
+
 {#if scanResult}
     <div class="main">
         <table>

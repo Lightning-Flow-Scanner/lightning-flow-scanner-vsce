@@ -5,7 +5,10 @@ import {ScanFlowsCommand} from "./main/commands/ScanFlowsCommand";
 import {ViewFlowRulesCommand} from "./main/commands/ViewFlowRulesCommand";
 import { ScanOverview } from "./main/panels/ScanOverview";
 import { data } from './main/data/testdata'; 
+import { singleresult } from './main/data/td2'; 
 import { RuleOverview } from "./main/panels/RuleOverview";
+import { ViolationTable } from "./main/panels/ViolationTable";
+import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export function activate(context: vscode.ExtensionContext) {
   let fixFlowsCommand = new FixFlowsCommand(context);
@@ -34,8 +37,10 @@ export function activate(context: vscode.ExtensionContext) {
       
       // RuleOverview.kill();
       // RuleOverview.createOrShow(context.extensionUri);
-      ScanOverview.kill();
-      ScanOverview.createOrShow(context.extensionUri, data as [], "Scan");
+      // ScanOverview.kill();
+      // ScanOverview.createOrShow(context.extensionUri, data as [], "Scan");
+      ViolationTable.kill();
+      ViolationTable.create(context.extensionUri,  singleresult as unknown as ScanResult);
       setTimeout(() => {
         vscode.commands.executeCommand("workbench.action.webview.openDeveloperTools");
       }, 500);

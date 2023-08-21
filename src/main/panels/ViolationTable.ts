@@ -11,14 +11,14 @@ export class ViolationTable {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static create(extensionUri: vscode.Uri , scanResult : ScanResult, type : string) {
+    public static create(extensionUri: vscode.Uri , scanResult : ScanResult) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
         const panel = vscode.window.createWebviewPanel(
             ViolationTable.viewType,
-            `${type}:${scanResult.flow.label}`,
+            `Details: ${scanResult.flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -83,6 +83,14 @@ export class ViolationTable {
         const scriptUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "ViolationTable.js")
         );
+        const cssUri = webview.asWebviewUri(
+            Utils.joinPath(this._extensionUri, "out/compiled", "ViolationTable.css")
+          );
+          const tabulatorStyles = webview.asWebviewUri(Utils.joinPath(
+            this._extensionUri,
+            "media",
+            "tabulator.css"
+        ));
         const stylesResetUri = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
@@ -93,11 +101,7 @@ export class ViolationTable {
             "media",
             "vscode.css"
         ));
-        const cssUri = webview.asWebviewUri(Utils.joinPath(
-            this._extensionUri,
-            "media",
-            "ViolationTable.css"
-        ));
+        
         const nonce = getNonce();
         return `<!DOCTYPE html>
 			<html lang="en">
@@ -105,6 +109,7 @@ export class ViolationTable {
 				<meta charset="UTF-8">
         <meta http-equiv="Content-Security-Policy" content="img-src https: data:; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="${tabulatorStyles}" rel="stylesheet">
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
