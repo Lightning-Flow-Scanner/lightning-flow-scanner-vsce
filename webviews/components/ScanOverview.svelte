@@ -17,9 +17,7 @@
             scanResults.forEach(scanResult => {
                 scanResult.resultCount = scanResult.ruleResults.reduce((total, rule) => {
                     let selectedValues = value.map(val => val.value);
-                    console.log(selectedValues);
                     if(selectedValues.includes(rule.ruleName)){
-                        console.log(rule.ruleName);
                         if(rule.details && rule.type === 'pattern'){
                             total = (total + rule.details.length)
                         } else if(rule.details && rule.type === 'flow'){
@@ -54,13 +52,6 @@
         })
     }
 
-    function goToDetails(scanResult) {
-        tsvscode.postMessage({
-            type: 'goToDetails',
-            value: scanResult
-        })
-    }
-
     function sort(column) {
         if (sortByColumn === column) {
             sortByAscending = !sortByAscending;
@@ -80,13 +71,10 @@
     }
 
 </script>
-
 <svelte:window on:message={windowMessage} />
 
 <Banner></Banner>
-
 <Select {items} multiple={true} bind:value />
-
 {#if !scanResults}
 <div class="centered">
     <div class="loader"></div>

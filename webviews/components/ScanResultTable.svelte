@@ -5,27 +5,52 @@
     export let scanResults;
     let tableComponent;
 
+    var printIcon = function (cell, formatterParams, onRendered) {
+        return "<button>details</button>";
+    };
+
     onMount(() => {
         new Tabulator(tableComponent, {
-            data: scanResults, //link data to table
-            reactiveData: true, //enable data reactivity
-            layout:"fitColumns",
+            data: scanResults,
+            reactiveData: true,
+            layout: "fitColumns",
             columns: [
-                //Define Table Columns
                 {
                     title: "# Results",
                     field: "resultCount",
                     hozAlign: "left",
                 },
-                { title: "Label", field: "label", formatter: "plaintext" },
+                {
+                    title: "Label",
+                    field: "label",
+                    formatter: "link",
+                    cellClick: function (e, cell) {
+                        tsvscode.postMessage({
+                            type: "goToFile",
+                            value: cell.getRow().getData().flow,
+                        });
+                    },
+                },
                 { title: "Flow Type", field: "type", formatter: "plaintext" },
                 {
                     title: "% Test Coverage",
-                    field: "coverage"
-                }
+                    field: "coverage",
+                },
+                {
+                    title: "Details",
+                    formatter: printIcon,
+                    width: 100,
+                    hozAlign: "center",
+                    cellClick: function (e, cell) {
+                        tsvscode.postMessage({
+                            type: "goToDetails",
+                            value: cell.getRow().getData(),
+                        });
+                    },
+                },
             ],
         });
     });
 </script>
 
-<div bind:this={tableComponent}></div>
+<div bind:this={tableComponent} />
