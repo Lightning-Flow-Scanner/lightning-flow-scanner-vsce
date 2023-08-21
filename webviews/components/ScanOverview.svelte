@@ -1,21 +1,25 @@
 <script lang="typescript">
-    import Sidebar from "./Sidebar.svelte";
     import {onMount} from 'svelte';
     import * as core from 'lightning-flow-scanner-core/out';
     import ScanResultTable from "./ScanResultTable.svelte";
+    import Banner from "./Banner.svelte";
+    import Select from 'svelte-select';
+	
     onMount(() => tsvscode.postMessage({type: 'init-view'}));
     let sortByColumn = "label";
     let sortByAscending= false;
     let scanResults;
-    let sidebar_show = true;
-    let allRules = new Set(core.getRules().map(rule => rule.name));
-    let selectedRules = allRules;
+    let items = core.getRules().map(rule => {return {'label':rule.label, 'value':rule.name}});
+	let value =[...items];
 
     $: {
         if(scanResults){
             scanResults.forEach(scanResult => {
                 scanResult.resultCount = scanResult.ruleResults.reduce((total, rule) => {
-                    if(selectedRules.has(rule.ruleName)){
+                    let selectedValues = value.map(val => val.value);
+                    console.log(selectedValues);
+                    if(selectedValues.includes(rule.ruleName)){
+                        console.log(rule.ruleName);
                         if(rule.details && rule.type === 'pattern'){
                             total = (total + rule.details.length)
                         } else if(rule.details && rule.type === 'flow'){
@@ -78,14 +82,16 @@
 </script>
 
 <svelte:window on:message={windowMessage} />
-<Sidebar bind:selectedRules={selectedRules} bind:show={sidebar_show} />
+
+<Banner></Banner>
+
+<Select {items} multiple={true} bind:value />
 
 {#if !scanResults}
 <div class="centered">
     <div class="loader"></div>
 </div>
 {/if}
-
 {#if scanResults && scanResults.length > 0}
     <ScanResultTable bind:scanResults={scanResults}></ScanResultTable>
 {/if}

@@ -1,10 +1,12 @@
 <script lang="ts">
     import * as core from 'lightning-flow-scanner-core/out';
     import RuleCard from "./RuleCard.svelte";
+    import Banner from './Banner.svelte';
 
     const allRules = core.getRules();
 </script>
 
+<Banner></Banner>
 {#if !allRules}
     <div class="centered">
         <div class="loader"></div>
@@ -13,7 +15,7 @@
 
 {#if allRules}
     <div id="main">
-        <h2>Lightning Flow Scanner Default Rules</h2>
+        <h2>Default Rules</h2>
           {#each allRules as rule, i}
               <RuleCard>
                   <span slot="label">{i+1}. {rule.label}</span>
