@@ -7,7 +7,7 @@ import { ScanOverview } from "./main/panels/ScanOverview";
 import { data } from './main/data/testdata'; 
 import { singleresult } from './main/data/td2'; 
 import { RuleOverview } from "./main/panels/RuleOverview";
-import { ViolationTable } from "./main/panels/ViolationTable";
+import { ViolationOverview } from "./main/panels/ViolationOverview";
 import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export function activate(context: vscode.ExtensionContext) {
@@ -39,8 +39,8 @@ export function activate(context: vscode.ExtensionContext) {
       // RuleOverview.createOrShow(context.extensionUri);
       // ScanOverview.kill();
       // ScanOverview.createOrShow(context.extensionUri, data as [], "Scan");
-      ViolationTable.kill();
-      ViolationTable.create(context.extensionUri,  singleresult as unknown as ScanResult);
+      ViolationOverview.kill();
+      ViolationOverview.create(context.extensionUri,  singleresult as unknown as ScanResult);
       setTimeout(() => {
         vscode.commands.executeCommand("workbench.action.webview.openDeveloperTools");
       }, 500);

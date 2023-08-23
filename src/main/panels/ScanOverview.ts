@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
-import {ViolationTable} from "./ViolationTable";
+import {ViolationOverview} from "./ViolationOverview";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
 import { fs } from "mz";
 
@@ -83,7 +83,7 @@ export class ScanOverview {
                         return;
                     }
                     await fs.writeFile('val.json', JSON.stringify(data.value));
-                    ViolationTable.create(this._extensionUri, data.value);
+                    ViolationOverview.create(this._extensionUri, data.value);
                     break;
                 }
                 case "onError": {
