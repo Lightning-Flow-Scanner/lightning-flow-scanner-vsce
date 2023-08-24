@@ -789,6 +789,7 @@
     background: #ccc;
     font-weight: bold;
     min-width: 100%;
+    white-space: normal !important;
   }
   
   @media (hover: hover) and (pointer: fine) {

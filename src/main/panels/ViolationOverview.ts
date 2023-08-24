@@ -18,7 +18,7 @@ export class ViolationOverview {
 
         const panel = vscode.window.createWebviewPanel(
             ViolationOverview.viewType,
-            `Report: ${scanResult.flow.label}`,
+            `Details: ${scanResult.flow.label}`,
             column || vscode.ViewColumn.One,
             {
                 enableScripts: true,
