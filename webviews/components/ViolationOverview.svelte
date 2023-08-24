@@ -13,35 +13,44 @@
     $: {
         let details = [];
         if (scanResult) {
-
-            console.log('process sr');
-            // {#each scanResult.ruleResults as ruleResult}
             for(let ruleResult of scanResult.ruleResults){
-
-                console.log(ruleResult);
+                console.debug(ruleResult);
                 let ruleDescription = ruleResult.ruleDescription;
                 let ruleLabel = ruleResult.ruleLabel;
                 let flowName = scanResult.flow.name;
                 let violation;
                 let type;
- 
+
+                let connectsto;
+                let xCoordinates;
+                let yCoordinates;
+                let nodeType;
 
                 let initobj = {
                     ruleDescription,
                     ruleLabel,
                     flowName
                 }
-
                 if(ruleResult.type === 'pattern' && ruleResult.details ){
-                    console.log('pattern');
                     for(let detail of ruleResult.details){
+
+                        console.debug(detail);
                         violation = detail.name;
                         type = detail.subtype;
-                        const detailObj = Object.assign(structuredClone(initobj), {violation, type});
+                        nodeType = detail.nodeType;
+                        if(detail.connectors){
+                            connectsto = detail.connectors.map(connector => connector.reference);
+                        }
+                        if(detail.element["locationX"]){
+                            xCoordinates = detail.element["locationX"];
+                        }
+                        if(detail.element["locationY"]){
+                            yCoordinates = detail.element["locationY"];
+                        }
+                        const detailObj = Object.assign(structuredClone(initobj), {violation, type, connectsto, nodeType, xCoordinates,yCoordinates});
                         details.push(detailObj);
                     }
                 } else if(ruleResult.type === 'flow' && ruleResult.details){
-                    console.log('pattern');
                     violation = ruleResult.details;
                     // todo type should be expression
                     const detailObj = Object.assign(structuredClone(initobj), {violation});
@@ -50,7 +59,6 @@
 
             }
         }
-        console.log(details);
         allResults = details;
     }
 

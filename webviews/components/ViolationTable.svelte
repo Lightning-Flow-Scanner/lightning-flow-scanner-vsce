@@ -6,29 +6,62 @@
     let tableComponent;
 
     onMount(() => {
-        console.log('mount');
         new Tabulator(tableComponent, {
             data: allResults,
             reactiveData: true,
             layout: "fitColumns",
+            groupBy: ["ruleLabel"],
+            groupHeader: function (value, count, data, group) {
+                let description;
+                if (data && data.length > 0) {
+                    description = data[0].ruleDescription;
+                    return (
+                        value +
+                        "<span>(" +
+                        count +
+                        " item)</span>" +
+                        "<p style='font-style: italic'>" +
+                        description +
+                        "</p>"
+                    );
+                } else {
+                    return (
+                        value +
+                        "<span style='color:#d00; margin-left:10px;'>(" +
+                        count +
+                        " item)</span>"
+                    );
+                }
+            },
             columns: [
+                { title: "#", formatter: "rownum", width: 75 },
                 {
                     title: "Violation",
                     field: "violation",
+                    formatter: "textarea",
                 },
                 {
-                    title: "Violation Label",
-                    field: "ruleLabel",
+                    title: "Type",
+                    field: "type",
+                    formatter: "plaintext",
+                    width: 150,
                 },
                 {
-                    title: "Description",
-                    field: "ruleDescription",
+                    title: "X coordinates",
+                    field: "xCoordinates",
+                    width: 75,
                 },
                 {
-                    title: "Flow name",
-                    field: "flowName",
-                }
-            ]
+                    title: "Y coordinates",
+                    field: "yCoordinates",
+                    width: 75,
+                },
+                {
+                    title: "Connects to",
+                    field: "connectsto",
+                    formatter: "textarea",
+                },
+            ],
         });
     });
 </script>
