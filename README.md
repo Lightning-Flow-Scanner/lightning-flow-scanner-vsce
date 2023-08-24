@@ -2,7 +2,9 @@
 
 __*Identify potential issues and improvements in Salesforce Flows*__
 
-[![Demo Image](docs/filterresults.png)](https://github.com/Force-Config-Control/lightning-flow-scanner-vsce)
+[![Demo Image Overview](docs/overview.png)](https://github.com/Force-Config-Control/lightning-flow-scanner-vsce)
+
+[![Demo Image Details](docs/details.png)](https://github.com/Force-Config-Control/lightning-flow-scanner-vsce)
 
 **Also available as [SFDX Plugin](https://github.com/Force-Config-Control/lightning-flow-scanner-sfdx)*
 
@@ -13,8 +15,6 @@ Open the **Command Palette** and type `Flow` to see the list of all available co
 ### Scan Flows
 
 Use the `Scan Flows` command by choosing either a directory or a selection of flows to run the analysis on.
-
-![Scan Demo(https://raw.githubusercontent.com/RubenHalman/Force-Flow-Control/master/docs/ScanFlowsDemo.gif)](https://raw.githubusercontent.com/Force-Config-Control/lightning-flow-scanner-vsce/master/docs/ScanFlowsDemo.gif)
 
 ### Fix Flows
 

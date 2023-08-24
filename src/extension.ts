@@ -39,8 +39,8 @@ export function activate(context: vscode.ExtensionContext) {
       // RuleOverview.createOrShow(context.extensionUri);
       // ScanOverview.kill();
       // ScanOverview.createOrShow(context.extensionUri, data as [], "Scan");
-      ViolationOverview.kill();
-      ViolationOverview.create(context.extensionUri,  singleresult as unknown as ScanResult);
+      // ViolationOverview.kill();
+      // ViolationOverview.create(context.extensionUri,  singleresult as unknown as ScanResult);
       setTimeout(() => {
         vscode.commands.executeCommand("workbench.action.webview.openDeveloperTools");
       }, 500);
