@@ -10,7 +10,6 @@ export class ViewFlowRulesCommand extends BaseCommand {
   }
 
   public async execute() {
-
     RuleOverview.createOrShow(this.context.extensionUri);
   }
 
