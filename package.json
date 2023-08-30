@@ -1,7 +1,7 @@
 {
 	"name": "lightningflowscanner",
 	"displayName": "Lightning Flow Scanner",
-	"description": "Find potential issues and optimizations in Lightning Flows",
+	"description": "Identify potential issues and improvements in Salesforce Flows",
 	"version": "2.8.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceConfigControl",
