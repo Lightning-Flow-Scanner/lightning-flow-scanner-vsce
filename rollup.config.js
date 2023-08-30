@@ -23,8 +23,7 @@ export default fs
                 file: "out/compiled/" + name + ".js",
             },
             onwarn: function (message) {
-                if (message.code === 'EVAL'){
-                }else {
+                if (message.code !== 'EVAL'){
                     throw new Error(message);
                 }
             },
