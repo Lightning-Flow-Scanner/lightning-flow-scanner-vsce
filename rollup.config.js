@@ -17,10 +17,16 @@ export default fs
         return {
             input: "webviews/pages/" + input,
             output: {
-                sourcemap: true,
+                sourcemap: !production,
                 format: "iife",
                 name: "app",
                 file: "out/compiled/" + name + ".js",
+            },
+            onwarn: function (message) {
+                if (message.code === 'EVAL'){
+                }else {
+                    throw new Error(message);
+                }
             },
             plugins: [
                 svelte({
@@ -31,7 +37,7 @@ export default fs
                     css: (css) => {
                         css.write(name + ".css");
                     },
-                    preprocess: sveltePreprocess(),
+                    preprocess: sveltePreprocess({ sourceMap: !production })
                 }),
                 json(),
 
