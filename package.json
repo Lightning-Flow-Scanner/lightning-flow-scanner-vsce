@@ -114,7 +114,7 @@
 		"@types/sinon": "^9.0.4",
 		"@types/vscode": "1.47",
 		"css": "^3.0.0",
-		"lightning-flow-scanner-core": "^2.21.0",
+		"lightning-flow-scanner-core": "^2.23.0",
 		"mz": "^2.7.0",
 		"node-sass": "6.0.1",
 		"os": "^0.1.2",
