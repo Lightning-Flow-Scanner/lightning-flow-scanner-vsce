@@ -1,34 +1,34 @@
 <script lang="ts">
-    import * as core from 'lightning-flow-scanner-core/out';
+    import * as core from "lightning-flow-scanner-core/out";
     import RuleCard from "./RuleCard.svelte";
-    import Banner from './Banner.svelte';
+    import Banner from "./Banner.svelte";
 
     const allRules = core.getRules();
 </script>
 
-<Banner></Banner>
+<Banner />
 {#if !allRules}
     <div class="centered">
-        <div class="loader"></div>
+        <div class="loader" />
     </div>
 {/if}
 
 {#if allRules}
     <div id="main">
         <h2>Default Rules</h2>
-          {#each allRules as rule, i}
-              <RuleCard>
-                  <span slot="label">{i+1}. {rule.label}</span>
-                  <span slot="config"> <a href={rule.uri}>{rule.name}</a></span>
-                  <span slot="description">{rule.description}</span>
-                  <!-- <span slot="docRefs"> -->
-                          <!-- <p><strong>Related articles:</strong></p>
-                          {#each rule.docRefs as docRef}
-                              <a href={docRef.path}>{docRef.label}</a>
-                          {/each}
-                      {/if} --> 
-                  <!-- </span> -->
-              </RuleCard>
-          {/each}
+        {#each allRules as rule, i}
+            <RuleCard>
+                <span slot="label">{i + 1}. {rule.label}</span>
+                <span slot="config"> <a href={rule.uri}>{rule.name}</a></span>
+                <span slot="description">{rule.description}</span>
+                <span slot="docRefs">
+                    <ul>
+                        {#each rule.docRefs as docRef}
+                        <li><a href={docRef.path}>{docRef.label}</a></li>
+                        {/each}
+                    </ul>
+                </span>
+            </RuleCard>
+        {/each}
     </div>
 {/if}

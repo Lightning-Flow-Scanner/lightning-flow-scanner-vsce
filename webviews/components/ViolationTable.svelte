@@ -36,8 +36,8 @@
             columns: [
                 { title: "#", formatter: "rownum", width: 75 },
                 {
-                    title: "Violation",
-                    field: "violation",
+                    title: "Name",
+                    field: "name",
                     formatter: "textarea",
                 },
                 {
@@ -47,18 +47,29 @@
                     width: 150,
                 },
                 {
+                    title: "DataType",
+                    field: "dataType",
+                    width: 150,
+                    formatter: "textarea"
+                },
+                {
                     title: "X coordinates",
-                    field: "xCoordinates",
+                    field: "locationX",
                     width: 75,
                 },
                 {
                     title: "Y coordinates",
-                    field: "yCoordinates",
+                    field: "locationY",
                     width: 75,
                 },
                 {
                     title: "Connects to",
-                    field: "connectsto",
+                    field: "connectsTo",
+                    formatter: "textarea",
+                },
+                {
+                    title: "Expression",
+                    field: "expression",
                     formatter: "textarea",
                 },
             ],

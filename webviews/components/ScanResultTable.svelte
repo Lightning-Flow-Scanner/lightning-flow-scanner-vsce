@@ -5,7 +5,7 @@
     export let scanResults;
     let tableComponent;
 
-    var printIcon = function (cell, formatterParams, onRendered) {
+    var detailButton = function (cell, formatterParams, onRendered) {
         return "<button>details</button>";
     };
 
@@ -38,7 +38,7 @@
                 },
                 {
                     title: "Details",
-                    formatter: printIcon,
+                    formatter: detailButton,
                     width: 100,
                     hozAlign: "center",
                     cellClick: function (e, cell) {

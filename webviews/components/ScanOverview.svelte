@@ -23,11 +23,7 @@
                     (total, rule) => {
                         let selectedValues = value.map((val) => val.value);
                         if (selectedValues.includes(rule.ruleName)) {
-                            if (rule.details && rule.type === "pattern") {
-                                total = total + rule.details.length;
-                            } else if (rule.details && rule.type === "flow") {
-                                total = total + 1;
-                            }
+                            total = total + rule.details.length;
                         }
                         return total;
                     },

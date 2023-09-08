@@ -39,13 +39,9 @@
             </slot>
         </p>
     </div>
-
-    <!-- 
         <div class="docRefs">
         <slot name="docRefs">
         </slot>
     </div> 
--->
-
 
 </article>
