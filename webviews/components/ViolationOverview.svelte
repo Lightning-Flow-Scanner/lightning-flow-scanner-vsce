@@ -9,54 +9,64 @@
         tsvscode.postMessage({ type: "init-view" });
     });
 
-
     $: {
         let details = [];
         if (scanResult) {
-            for(let ruleResult of scanResult.ruleResults){
-                console.debug(ruleResult);
-                let ruleDescription = ruleResult.ruleDescription;
-                let ruleLabel = ruleResult.ruleLabel;
+            for (let ruleResult of scanResult.ruleResults) {
+                let ruleDescription = ruleResult.ruleDefinition.description;
+                let ruleLabel = ruleResult.ruleDefinition.label;
                 let flowName = scanResult.flow.name;
-                let violation;
+                let name;
                 let type;
+                let metaType;
 
-                let connectsto;
-                let xCoordinates;
-                let yCoordinates;
-                let nodeType;
+                let dataType;
+                let locationX;
+                let locationY;
+                let connectsTo;
+                let expression;
 
                 let initobj = {
                     ruleDescription,
                     ruleLabel,
-                    flowName
-                }
-                if(ruleResult.type === 'pattern' && ruleResult.details ){
-                    for(let detail of ruleResult.details){
+                    flowName,
+                };
+                for (let detail of ruleResult.details) {
+                    
+                    name = detail.name;
+                    type = detail.type;
+                    metaType = detail.metaType;
+                    if (detail.details) {
+                        console.debug(ruleResult);
 
-                        console.debug(detail);
-                        violation = detail.name;
-                        type = detail.subtype;
-                        nodeType = detail.nodeType;
-                        if(detail.connectors){
-                            connectsto = detail.connectors.map(connector => connector.reference);
+                        if (detail.details.dataType) {
+                            dataType = detail.details.dataType;
                         }
-                        if(detail.element["locationX"]){
-                            xCoordinates = detail.element["locationX"];
+                        if (detail.details.locationX) {
+                            locationX = detail.details.locationX;
                         }
-                        if(detail.element["locationY"]){
-                            yCoordinates = detail.element["locationY"];
+                        if (detail.details.locationY) {
+                            locationY = detail.details.locationY;
                         }
-                        const detailObj = Object.assign(structuredClone(initobj), {violation, type, connectsto, nodeType, xCoordinates,yCoordinates});
-                        details.push(detailObj);
+                        if (detail.details.connectsTo) {
+                            connectsTo = detail.details.connectsTo.join();
+                        }
+                        if (detail.details.expression) {
+                            expression = detail.details.expression;
+                        }
                     }
-                } else if(ruleResult.type === 'flow' && ruleResult.details){
-                    violation = ruleResult.details;
-                    // todo type should be expression
-                    const detailObj = Object.assign(structuredClone(initobj), {violation});
+                    const detailObj = Object.assign(structuredClone(initobj), {
+                        name,
+                        type,
+                        metaType,
+                        dataType,
+                        locationX,
+                        locationY,
+                        connectsTo,
+                        expression,
+                    });
                     details.push(detailObj);
                 }
-
             }
         }
         allResults = details;
@@ -65,7 +75,7 @@
     function windowMessage(event) {
         const message = event.data;
         switch (message.type) {
-            case 'init':
+            case "init":
                 const state = tsvscode.getState();
                 if (state) {
                     scanResult = state.value;
@@ -74,18 +84,17 @@
                 }
                 dataType = message.dataType;
                 return;
-            case 'update':
+            case "update":
                 scanResult = message.value;
-                tsvscode.setState({scanResult});
+                tsvscode.setState({ scanResult });
                 return;
         }
     }
-
 </script>
 
-<svelte:window on:message={windowMessage}/>
+<svelte:window on:message={windowMessage} />
 
-<Banner></Banner>
+<Banner />
 {#if allResults && allResults.length > 0}
-<ViolationTable bind:allResults />
+    <ViolationTable bind:allResults />
 {/if}

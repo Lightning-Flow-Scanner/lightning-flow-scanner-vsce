@@ -4,8 +4,6 @@ import {CreateTestDataCommand} from "./main/commands/CreateTestDataCommand";
 import {ScanFlowsCommand} from "./main/commands/ScanFlowsCommand";
 import {ViewFlowRulesCommand} from "./main/commands/ViewFlowRulesCommand";
 import { ScanOverview } from "./main/panels/ScanOverview";
-import { data } from './main/data/testdata'; 
-import { singleresult } from './main/data/td2'; 
 import { RuleOverview } from "./main/panels/RuleOverview";
 import { ViolationOverview } from "./main/panels/ViolationOverview";
 import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
