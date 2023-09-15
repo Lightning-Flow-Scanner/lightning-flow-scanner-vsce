@@ -11,14 +11,18 @@ export class ViolationOverview {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static create(extensionUri: vscode.Uri, scanResult: ScanResult) {
+    public static create(extensionUri: vscode.Uri, scanResult: ScanResult[]) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
-
+        
+        let title = 'Details';
+        if(scanResult.length === 1){
+            title = title + ' ' + scanResult[0].flow.label;
+        }
         const panel = vscode.window.createWebviewPanel(
             ViolationOverview.viewType,
-            `Details: ${scanResult.flow.label}`,
+            `${title}`,
             column || vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -36,7 +40,7 @@ export class ViolationOverview {
         ViolationOverview.currentPanel = undefined;
     }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResult: ScanResult) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResult: ScanResult[]) {
         this._panel = panel;
         this._extensionUri = extensionUri;
         this._update(scanResult);
@@ -54,7 +58,7 @@ export class ViolationOverview {
         }
     }
 
-    private async _update(scanResult: ScanResult) {
+    private async _update(scanResult: ScanResult[]) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {

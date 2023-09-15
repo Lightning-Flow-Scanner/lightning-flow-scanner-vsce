@@ -71,6 +71,10 @@
 <svelte:window on:message={windowMessage} />
 
 <Banner />
+
+<!-- <button>TODO TOP RIGHT GOTO BUTTONS: ALL RESULTS</button> -->
+<!-- TOP LEFT DOWNLOAD -->
+
 <Select {items} multiple={true} bind:value />
 {#if !scanResults}
     <div class="centered">

@@ -82,8 +82,7 @@ export class ScanOverview {
                     if (!data.value) {
                         return;
                     }
-                    await fs.writeFile('val.json', JSON.stringify(data.value));
-                    ViolationOverview.create(this._extensionUri, data.value);
+                    ViolationOverview.create(this._extensionUri, [data.value]);
                     break;
                 }
                 case "onError": {
