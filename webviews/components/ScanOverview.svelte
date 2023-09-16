@@ -66,14 +66,16 @@
                 : 0;
         return (results = results.sort(sort));
     }
+
+    function viewAll() {
+        tsvscode.postMessage({
+            type: "goToAllDetails",
+            value: scanResults,
+        });
+    }
 </script>
 
 <svelte:window on:message={windowMessage} />
-
-<Banner />
-
-<!-- <button>TODO TOP RIGHT GOTO BUTTONS: ALL RESULTS</button> -->
-<!-- TOP LEFT DOWNLOAD -->
 
 <Select {items} multiple={true} bind:value />
 {#if !scanResults}
@@ -82,5 +84,68 @@
     </div>
 {/if}
 {#if scanResults && scanResults.length > 0}
+
+    <div class="nav-menu">
+        <div class="nav-button-left">
+        <button class="button" on:click={viewAll}>View all results</button>
+        </div>
+            <Banner />
+        <div class="nav-button-right">
+            <button class="button">Print</button>
+        </div>
+    </div>
+
     <ScanResultTable bind:scanResults />
 {/if}
+
+<style>
+
+    .button {
+        flex-grow: 1;
+        margin: 5px;
+        padding: 10px;
+        text-align: center;
+        background-color: #0074d9; /* You can change the background color */
+        color: white; /* You can change the text color */
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            background-color: white;
+        }
+
+        /* Left button */
+        .nav-button-left {
+            flex: 1;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        /* Right button */
+        .nav-button-right {
+            flex: 1;
+            text-align: right;
+            padding-right: 10px;
+        }
+
+        /* Media query for responsive layout */
+        @media (max-width: 600px) {
+            .nav-menu {
+                flex-direction: column;
+            }
+
+            .nav-button-left,
+            .nav-button-right {
+                flex: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+</style>

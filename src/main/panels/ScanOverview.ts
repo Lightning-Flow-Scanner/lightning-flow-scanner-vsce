@@ -68,6 +68,7 @@ export class ScanOverview {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
+            console.log(data.type);
             switch (data.type) {
                 case "goToFile": {
                     if (!data.value) {
@@ -76,6 +77,13 @@ export class ScanOverview {
                     vscode.workspace.openTextDocument(data.value.path).then(doc => {
                         vscode.window.showTextDocument(doc);
                     });
+                    break;
+                }
+                case "goToAllDetails": {
+                    if (!data.value) {
+                        return;
+                    }
+                    ViolationOverview.create(this._extensionUri, data.value);
                     break;
                 }
                 case "goToDetails": {

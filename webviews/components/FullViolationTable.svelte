@@ -51,6 +51,11 @@
                     width: 150,
                 },
                 {
+                    title: "Flow name",
+                    field: "flowName",
+                    formatter: "textarea",
+                },
+                {
                     title: "DataType",
                     field: "dataType",
                     width: 150,

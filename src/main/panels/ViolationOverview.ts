@@ -16,9 +16,11 @@ export class ViolationOverview {
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
         
-        let title = 'Details';
+        let title = 'Results';
         if(scanResult.length === 1){
             title = title + ' ' + scanResult[0].flow.label;
+        } else {
+            title = 'All ' + title;
         }
         const panel = vscode.window.createWebviewPanel(
             ViolationOverview.viewType,

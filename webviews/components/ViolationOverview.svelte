@@ -2,8 +2,11 @@
     import { onMount } from "svelte";
     import Banner from "./Banner.svelte";
     import ViolationTable from "./ViolationTable.svelte";
+    import FullViolationTable from "./FullViolationTable.svelte";
+
     let scanResults;
     let allResults;
+    let showFlowName: boolean;
     onMount(() => {
         tsvscode.postMessage({ type: "init-view" });
     });
@@ -11,6 +14,12 @@
     $: {
         let details = [];
         if (scanResults) {
+            console.log(scanResults.length);
+            if(scanResults.length > 1){
+                showFlowName = true;
+            } else {
+                showFlowName = false;
+            }
             for (let scanResult of scanResults) {
                 for (let ruleResult of scanResult.ruleResults) {
                     let ruleDescription = ruleResult.ruleDefinition.description;
@@ -98,5 +107,9 @@
 
 <Banner />
 {#if allResults && allResults.length > 0}
-    <ViolationTable bind:allResults />
+    {#if showFlowName}
+        <FullViolationTable bind:allResults />
+    {:else}
+        <ViolationTable bind:allResults />
+    {/if}
 {/if}

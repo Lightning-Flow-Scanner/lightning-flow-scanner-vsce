@@ -8,9 +8,6 @@
 
 <style>
     .banner {
-        display: block;
         height: 80px;
-        margin-left: auto;
-        margin-right: auto;
     }
 </style>

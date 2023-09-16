@@ -19,6 +19,7 @@
                     title: "# Results",
                     field: "resultCount",
                     hozAlign: "left",
+                    bottomCalc: "count",
                 },
                 {
                     title: "Label",
