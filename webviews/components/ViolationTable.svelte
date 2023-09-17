@@ -12,16 +12,14 @@
             layout: "fitColumns",
             groupBy: ["ruleLabel"],
             groupHeader: function (value, count, data, group) {
-                let description;
                 if (data && data.length > 0) {
-                    description = data[0].ruleDescription;
                     return (
                         value +
                         "<span>(" +
                         count +
-                        " item)</span>" +
+                        " total)</span>" +
                         "<p style='font-style: italic'>" +
-                        description +
+                            data[0].ruleDescription +
                         "</p>"
                     );
                 } else {
@@ -29,7 +27,7 @@
                         value +
                         "<span style='color:#d00; margin-left:10px;'>(" +
                         count +
-                        " item)</span>"
+                        " total)</span>"
                     );
                 }
             },

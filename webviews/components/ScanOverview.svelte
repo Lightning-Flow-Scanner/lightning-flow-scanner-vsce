@@ -4,6 +4,7 @@
     import ScanResultTable from "./ScanResultTable.svelte";
     import NavigationBanner from "./NavigationBanner.svelte";
     import Select from "svelte-select";
+    import Spinner from "./Spinner.svelte";
 
     onMount(() => {
         tsvscode.postMessage({ type: "init-view" });
@@ -59,7 +60,7 @@
 
         let sortModifier = sortByAscending ? 1 : -1;
         let sort = (a, b) =>
-            a[column] < b[column]
+            a[column] < b[column]   
                 ? -1 * sortModifier
                 : a[column] > b[column]
                 ? 1 * sortModifier
@@ -71,9 +72,7 @@
 <svelte:window on:message={windowMessage} />
 
 {#if !scanResults}
-    <div class="centered">
-        <div class="loader" />
-    </div>
+    <Spinner />
 {/if}
 {#if scanResults && scanResults.length > 0}
     <NavigationBanner />

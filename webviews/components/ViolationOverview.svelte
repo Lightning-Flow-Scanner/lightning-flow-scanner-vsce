@@ -1,8 +1,8 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Banner from "./Navigation.svelte";
+    import NavigationBanner from "./NavigationBanner.svelte";
     import ViolationTable from "./ViolationTable.svelte";
-    import FullViolationTable from "./FullViolationTable.svelte";
+    import ViolationTableFull from "./ViolationTableFull.svelte";
 
     let scanResults;
     let allResults;
@@ -104,11 +104,10 @@
 </script>
 
 <svelte:window on:message={windowMessage} />
-
-<Banner />
+<NavigationBanner />
 {#if allResults && allResults.length > 0}
     {#if showFlowName}
-        <FullViolationTable bind:allResults />
+        <ViolationTableFull bind:allResults />
     {:else}
         <ViolationTable bind:allResults />
     {/if}

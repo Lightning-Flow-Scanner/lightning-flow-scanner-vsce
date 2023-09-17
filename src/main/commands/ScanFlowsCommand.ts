@@ -19,7 +19,8 @@ export class ScanFlowsCommand extends BaseCommand {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select a root folder:').execute(this.rootPath);
     if (selectedUris.length > 0) {
 
-      // ScanOverview.createOrShow(this.context.extensionUri, undefined, "Scan");
+      let results: ScanResult[];
+      ScanOverview.createOrShow(this.context.extensionUri, results, "Scan");
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
       const allRules = core.getRules();
       const ruleConfig = {rules: {}};
@@ -38,7 +39,7 @@ export class ScanFlowsCommand extends BaseCommand {
         await vscode.workspace.getConfiguration().update('lightningFlowScanner.APIVersion', apiVersionEvalExpressionString, true);
         await vscode.workspace.getConfiguration().update('lightningFlowScanner.Reset', false, true);
       } 
-      const results: ScanResult[] = core.scan(flows, ruleConfig);
+      results = core.scan(flows, ruleConfig);
       // todo find coverage asynchronously
       await FindFlowCoverage(results);
       ScanOverview.createOrShow(this.context.extensionUri, results, "Scan");

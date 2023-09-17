@@ -3,7 +3,6 @@ import {getNonce} from "../libs/getNonce";
 import {URI, Utils} from 'vscode-uri';
 import {ViolationOverview} from "./ViolationOverview";
 import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
-import { fs } from "mz";
 
 export class ScanOverview {
 
@@ -68,7 +67,6 @@ export class ScanOverview {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
-            console.log(data.type);
             switch (data.type) {
                 case "goToFile": {
                     if (!data.value) {
@@ -133,11 +131,6 @@ export class ScanOverview {
             "media",
             "vscode.css"
         ));
-        const spinnerUri = webview.asWebviewUri(Utils.joinPath(
-            this._extensionUri,
-            "media",
-            "Spinner.css"
-        ));
         const nonce = getNonce();
         return `<!DOCTYPE html>
 			<html lang="en">
@@ -149,7 +142,6 @@ export class ScanOverview {
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
-        <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

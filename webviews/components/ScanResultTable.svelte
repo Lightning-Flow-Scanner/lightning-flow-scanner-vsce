@@ -18,8 +18,9 @@
                 {
                     title: "# Results",
                     field: "resultCount",
-                    hozAlign: "left",
+                    hozAlign: "center",
                     bottomCalc: "count",
+                    width: 100
                 },
                 {
                     title: "Label",
@@ -36,6 +37,8 @@
                 {
                     title: "% Test Coverage",
                     field: "coverage",
+                    hozAlign: "center",
+                    width: 100
                 },
                 {
                     title: "Details",
