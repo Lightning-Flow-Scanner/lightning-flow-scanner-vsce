@@ -19,7 +19,7 @@ export class ScanFlowsCommand extends BaseCommand {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select a root folder:').execute(this.rootPath);
     if (selectedUris.length > 0) {
 
-      ScanOverview.createOrShow(this.context.extensionUri, undefined, "Scan");
+      // ScanOverview.createOrShow(this.context.extensionUri, undefined, "Scan");
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
       const allRules = core.getRules();
       const ruleConfig = {rules: {}};

@@ -77,24 +77,22 @@
 
 <svelte:window on:message={windowMessage} />
 
-<Select {items} multiple={true} bind:value />
 {#if !scanResults}
     <div class="centered">
         <div class="loader" />
     </div>
 {/if}
 {#if scanResults && scanResults.length > 0}
-
     <div class="nav-menu">
         <div class="nav-button-left">
-        <button class="button" on:click={viewAll}>View all results</button>
-        </div>
-            <Banner />
+        <button class="button" on:click={viewAll}>View all results</button></div>
+        <button class="button">Print</button>
+        <Banner />
         <div class="nav-button-right">
-            <button class="button">Print</button>
+            <!-- <button class="button">Download</button> -->
         </div>
     </div>
-
+    <Select {items} multiple={true} bind:value />
     <ScanResultTable bind:scanResults />
 {/if}
 
@@ -105,7 +103,7 @@
         margin: 5px;
         padding: 10px;
         text-align: center;
-        background-color: #0074d9; /* You can change the background color */
+        background-color: #2765ae; /* You can change the background color */
         color: white; /* You can change the text color */
         border: none;
         cursor: pointer;
@@ -121,21 +119,22 @@
             background-color: white;
         }
 
-        /* Left button */
         .nav-button-left {
             flex: 1;
             text-align: left;
-            padding-left: 10px;
         }
 
-        /* Right button */
         .nav-button-right {
             flex: 1;
             text-align: right;
-            padding-right: 10px;
         }
 
-        /* Media query for responsive layout */
+        .nav-button-left button,
+        .nav-button-right button {
+            width: 200px;
+            margin: 5px auto;
+        }
+
         @media (max-width: 600px) {
             .nav-menu {
                 flex-direction: column;
@@ -144,8 +143,6 @@
             .nav-button-left,
             .nav-button-right {
                 flex: 100%;
-                text-align: center;
-                padding: 10px;
             }
         }
 </style>
