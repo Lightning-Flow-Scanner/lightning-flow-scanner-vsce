@@ -6,7 +6,7 @@
     let tableComponent;
 
     var detailButton = function (cell, formatterParams, onRendered) {
-        return `<button style="background-color: #2765ae;">details</button>`;
+        return `<button style="background-color: #2765ae;border-radius: 10px;">Details</button>`;
     };
 
     onMount(() => {

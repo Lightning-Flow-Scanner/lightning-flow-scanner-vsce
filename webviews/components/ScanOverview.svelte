@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
     import * as core from "lightning-flow-scanner-core/out";
     import ScanResultTable from "./ScanResultTable.svelte";
-    import Banner from "./Banner.svelte";
+    import NavigationBanner from "./NavigationBanner.svelte";
     import Select from "svelte-select";
 
     onMount(() => {
@@ -66,13 +66,6 @@
                 : 0;
         return (results = results.sort(sort));
     }
-
-    function viewAll() {
-        tsvscode.postMessage({
-            type: "goToAllDetails",
-            value: scanResults,
-        });
-    }
 </script>
 
 <svelte:window on:message={windowMessage} />
@@ -83,66 +76,7 @@
     </div>
 {/if}
 {#if scanResults && scanResults.length > 0}
-    <div class="nav-menu">
-        <div class="nav-button-left">
-        <button class="button" on:click={viewAll}>View all results</button></div>
-        <button class="button">Print</button>
-        <Banner />
-        <div class="nav-button-right">
-            <!-- <button class="button">Download</button> -->
-        </div>
-    </div>
+    <NavigationBanner />
     <Select {items} multiple={true} bind:value />
     <ScanResultTable bind:scanResults />
 {/if}
-
-<style>
-
-    .button {
-        flex-grow: 1;
-        margin: 5px;
-        padding: 10px;
-        text-align: center;
-        background-color: #2765ae; /* You can change the background color */
-        color: white; /* You can change the text color */
-        border: none;
-        cursor: pointer;
-    }
-
-    .nav-menu {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #333;
-            color: white;
-            background-color: white;
-        }
-
-        .nav-button-left {
-            flex: 1;
-            text-align: left;
-        }
-
-        .nav-button-right {
-            flex: 1;
-            text-align: right;
-        }
-
-        .nav-button-left button,
-        .nav-button-right button {
-            width: 200px;
-            margin: 5px auto;
-        }
-
-        @media (max-width: 600px) {
-            .nav-menu {
-                flex-direction: column;
-            }
-
-            .nav-button-left,
-            .nav-button-right {
-                flex: 100%;
-            }
-        }
-</style>

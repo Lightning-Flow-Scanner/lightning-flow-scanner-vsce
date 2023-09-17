@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Banner from "./Banner.svelte";
+    import Banner from "./Navigation.svelte";
     import ViolationTable from "./ViolationTable.svelte";
     import FullViolationTable from "./FullViolationTable.svelte";
 
