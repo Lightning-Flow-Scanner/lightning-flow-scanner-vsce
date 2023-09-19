@@ -11,6 +11,8 @@
         tsvscode.postMessage({ type: "init-view" });
     });
 
+    let banner;
+
     $: {
         let details = [];
         if (scanResults) {
@@ -101,10 +103,11 @@
                 return;
         }
     }
+
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner currentPage="viewAll" />
+<NavigationBanner currentPage="viewAll" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)}/>
 {#if allResults && allResults.length > 0}
     {#if showFlowName}
         <ViolationTableFull bind:allResults />

@@ -16,6 +16,7 @@
         return { label: rule.label, value: rule.name };
     });
     let value = [...items];
+    let banner;
 
     $: {
         if (scanResults) {
@@ -68,24 +69,10 @@
         return (results = results.sort(sort));
     }
 
-    function navigate(event) {
-        const navitem = event.detail;
-        if (navitem === "viewAll") {
-            tsvscode.postMessage({
-                type: "viewAll",
-                value: scanResults,
-            });
-        } else if(navitem === "overview"){
-            tsvscode.postMessage({
-                type: "overview",
-                value: scanResults,
-            });
-        }
-    }
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner currentPage="overview" on:navigate={navigate} />
+<NavigationBanner currentPage="overview" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)}/>
 {#if !scanResults}
     <Spinner />
 {/if}

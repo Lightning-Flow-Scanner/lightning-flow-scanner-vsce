@@ -75,13 +75,6 @@ export class ScanOverview {
                     });
                     break;
                 }
-                case "overview": {
-                    if (!data.value) {
-                        return;
-                    }
-                    ScanOverview.createOrShow(this._extensionUri, data.value);
-                    break;
-                }
                 case "viewAll": {
                     if (!data.value) {
                         return;

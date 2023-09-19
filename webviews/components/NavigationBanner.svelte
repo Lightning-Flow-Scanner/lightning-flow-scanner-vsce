@@ -11,6 +11,25 @@
     function viewOverview() {
         dispatch("navigate", "overview");
     }
+
+    export function navigate(event, data) {
+        console.debug(event);
+        const navitem = event.detail;
+        console.log('navitem = ' + navitem);
+        console.log('data=');
+        console.debug(data);
+        if (navitem === "viewAll") {
+            tsvscode.postMessage({
+                type: "viewAll",
+                value: data,
+            });
+        } else if(navitem === "overview"){
+            tsvscode.postMessage({
+                type: "overview",
+                value: data,
+            });
+        }
+    }
 </script>
 
 <div class="nav-menu">

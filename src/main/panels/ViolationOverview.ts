@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { getNonce } from "../libs/getNonce";
 import { URI, Utils } from 'vscode-uri';
 import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import { ScanOverview } from "./ScanOverview";
 
 export class ViolationOverview {
 
@@ -78,6 +79,13 @@ export class ViolationOverview {
                     vscode.workspace.openTextDocument(data.value.path).then(doc => {
                         vscode.window.showTextDocument(doc);
                     });
+                    break;
+                }
+                case "overview": {
+                    if (!data.value) {
+                        return;
+                    }
+                    ScanOverview.createOrShow(this._extensionUri, data.value);
                     break;
                 }
                 case 'init-view': {
