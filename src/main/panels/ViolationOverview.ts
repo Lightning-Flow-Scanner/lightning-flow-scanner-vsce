@@ -11,14 +11,20 @@ export class ViolationOverview {
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
 
-    public static create(extensionUri: vscode.Uri, scanResult: ScanResult[]) {
+    public static create(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
+
+        if (ViolationOverview.currentPanel) {
+            ViolationOverview.currentPanel._panel.reveal(column);
+            ViolationOverview.currentPanel._update(scanResults);
+            return;
+        }
         
         let title = 'Results';
-        if(scanResult.length === 1){
-            title = title + ' ' + scanResult[0].flow.label;
+        if(scanResults.length === 1){
+            title = title + ' ' + scanResults[0].flow.label;
         } else {
             title = 'All ' + title;
         }
@@ -34,7 +40,7 @@ export class ViolationOverview {
                 ]
             }
         );
-        ViolationOverview.currentPanel = new ViolationOverview(panel, extensionUri, scanResult);
+        ViolationOverview.currentPanel = new ViolationOverview(panel, extensionUri, scanResults);
     }
 
     public static kill() {
@@ -60,7 +66,7 @@ export class ViolationOverview {
         }
     }
 
-    private async _update(scanResult: ScanResult[]) {
+    private async _update(scanResults: ScanResult[]) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -77,7 +83,7 @@ export class ViolationOverview {
                 case 'init-view': {
                     webview.postMessage({
                         type: 'init',
-                        value: scanResult
+                        value: scanResults
                     });
                     return;
                 }

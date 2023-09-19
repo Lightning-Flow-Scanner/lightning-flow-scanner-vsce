@@ -60,22 +60,36 @@
 
         let sortModifier = sortByAscending ? 1 : -1;
         let sort = (a, b) =>
-            a[column] < b[column]   
+            a[column] < b[column]
                 ? -1 * sortModifier
                 : a[column] > b[column]
                 ? 1 * sortModifier
                 : 0;
         return (results = results.sort(sort));
     }
+
+    function navigate(event) {
+        const navitem = event.detail;
+        if (navitem === "viewAll") {
+            tsvscode.postMessage({
+                type: "viewAll",
+                value: scanResults,
+            });
+        } else if(navitem === "overview"){
+            tsvscode.postMessage({
+                type: "overview",
+                value: scanResults,
+            });
+        }
+    }
 </script>
 
 <svelte:window on:message={windowMessage} />
-
+<NavigationBanner currentPage="overview" on:navigate={navigate} />
 {#if !scanResults}
     <Spinner />
 {/if}
 {#if scanResults && scanResults.length > 0}
-    <NavigationBanner />
     <Select {items} multiple={true} bind:value />
     <ScanResultTable bind:scanResults />
 {/if}

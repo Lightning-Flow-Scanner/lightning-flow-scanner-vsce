@@ -20,7 +20,7 @@ export class ScanFlowsCommand extends BaseCommand {
     if (selectedUris.length > 0) {
 
       let results: ScanResult[];
-      ScanOverview.createOrShow(this.context.extensionUri, results, "Scan");
+      ScanOverview.createOrShow(this.context.extensionUri, results);
       const flows: Flow[] = await new ParseFlows().execute(selectedUris);
       const allRules = core.getRules();
       const ruleConfig = {rules: {}};
@@ -42,7 +42,7 @@ export class ScanFlowsCommand extends BaseCommand {
       results = core.scan(flows, ruleConfig);
       // todo find coverage asynchronously
       await FindFlowCoverage(results);
-      ScanOverview.createOrShow(this.context.extensionUri, results, "Scan");
+      ScanOverview.createOrShow(this.context.extensionUri, results);
     } else {
       vscode.window.showInformationMessage('No flow files found.');
     }

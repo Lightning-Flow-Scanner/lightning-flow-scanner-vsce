@@ -104,7 +104,7 @@
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner />
+<NavigationBanner currentPage="viewAll" />
 {#if allResults && allResults.length > 0}
     {#if showFlowName}
         <ViolationTableFull bind:allResults />
