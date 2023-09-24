@@ -1,71 +1,82 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Banner from "./Banner.svelte";
+    import NavigationBanner from "./NavigationBanner.svelte";
     import ViolationTable from "./ViolationTable.svelte";
-    let dataType = "";
-    let scanResult;
+    import ViolationTableFull from "./ViolationTableFull.svelte";
+
+    let results;
+    let scanResults;
     let allResults;
+    let showFlowName: boolean;
     onMount(() => {
         tsvscode.postMessage({ type: "init-view" });
     });
 
+    let banner;
+
     $: {
         let details = [];
-        if (scanResult) {
-            for (let ruleResult of scanResult.ruleResults) {
-                let ruleDescription = ruleResult.ruleDefinition.description;
-                let ruleLabel = ruleResult.ruleDefinition.label;
-                let flowName = scanResult.flow.name;
-                let name;
-                let type;
-                let metaType;
+        if (scanResults) {
+            if(scanResults.length > 1){
+                showFlowName = true;
+            } else {
+                showFlowName = false;
+            }
+            for (let scanResult of scanResults) {
+                for (let ruleResult of scanResult.ruleResults) {
+                    let ruleDescription = ruleResult.ruleDefinition.description;
+                    let ruleLabel = ruleResult.ruleDefinition.label;
+                    let flowName = scanResult.flow.name;
+                    let type;
+                    let metaType;
+                    let name;
+                    let dataType = "";
+                    let locationX = "";
+                    let locationY = "";
+                    let connectsTo = "";
+                    let expression = "";
 
-                let dataType;
-                let locationX;
-                let locationY;
-                let connectsTo;
-                let expression;
-
-                let initobj = {
-                    ruleDescription,
-                    ruleLabel,
-                    flowName,
-                };
-                for (let detail of ruleResult.details) {
-                    
-                    name = detail.name;
-                    type = detail.type;
-                    metaType = detail.metaType;
-                    if (detail.details) {
-                        console.debug(ruleResult);
-
-                        if (detail.details.dataType) {
-                            dataType = detail.details.dataType;
+                    let initobj = {
+                        ruleDescription,
+                        ruleLabel,
+                        flowName,
+                    };
+                    for (let detail of ruleResult.details) {
+                        name = detail.name ? detail.name : "";
+                        type = detail.type;
+                        metaType = detail.metaType;
+                        if (detail.details) {
+                            if (detail.details.dataType) {
+                                dataType = detail.details.dataType;
+                            }
+                            if (detail.details.locationX) {
+                                locationX = detail.details.locationX;
+                            }
+                            if (detail.details.locationY) {
+                                locationY = detail.details.locationY;
+                            }
+                            if (detail.details.connectsTo) {
+                                connectsTo = detail.details.connectsTo.join();
+                            }
+                            if (detail.details.expression) {
+                                expression = detail.details.expression;
+                            }
                         }
-                        if (detail.details.locationX) {
-                            locationX = detail.details.locationX;
-                        }
-                        if (detail.details.locationY) {
-                            locationY = detail.details.locationY;
-                        }
-                        if (detail.details.connectsTo) {
-                            connectsTo = detail.details.connectsTo.join();
-                        }
-                        if (detail.details.expression) {
-                            expression = detail.details.expression;
-                        }
+                        const detailObj = Object.assign(
+                            structuredClone(initobj),
+                            {
+                                name,
+                                type,
+                                metaType,
+                                dataType,
+                                locationX,
+                                locationY,
+                                connectsTo,
+                                expression,
+                            }
+                        );
+                        details.push(detailObj);
                     }
-                    const detailObj = Object.assign(structuredClone(initobj), {
-                        name,
-                        type,
-                        metaType,
-                        dataType,
-                        locationX,
-                        locationY,
-                        connectsTo,
-                        expression,
-                    });
-                    details.push(detailObj);
                 }
             }
         }
@@ -78,23 +89,26 @@
             case "init":
                 const state = tsvscode.getState();
                 if (state) {
-                    scanResult = state.value;
+                    scanResults = state.value;
                 } else {
-                    scanResult = message.value;
+                    scanResults = message.value;
                 }
-                dataType = message.dataType;
                 return;
             case "update":
-                scanResult = message.value;
-                tsvscode.setState({ scanResult });
+                scanResults = message.value;
+                tsvscode.setState({ scanResults });
                 return;
         }
     }
+
 </script>
 
 <svelte:window on:message={windowMessage} />
-
-<Banner />
+<NavigationBanner currentPage="viewAll" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => results.download()}/>
 {#if allResults && allResults.length > 0}
-    <ViolationTable bind:allResults />
+    {#if showFlowName}
+        <ViolationTableFull bind:this={results} bind:allResults />
+    {:else}
+        <ViolationTable bind:this={results} bind:allResults />
+    {/if}
 {/if}

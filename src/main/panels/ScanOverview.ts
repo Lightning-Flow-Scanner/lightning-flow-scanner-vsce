@@ -1,26 +1,26 @@
 import * as vscode from "vscode";
-import {getNonce} from "../libs/getNonce";
-import {URI, Utils} from 'vscode-uri';
-import {ViolationOverview} from "./ViolationOverview";
-import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
-import { fs } from "mz";
+import * as fs from "mz/fs";
+import { convertArrayToCSV } from "convert-array-to-csv";
+import { getNonce } from "../libs/getNonce";
+import { URI, Utils } from 'vscode-uri';
+import { ViolationOverview } from "./ViolationOverview";
+import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class ScanOverview {
 
     public static currentPanel: ScanOverview | undefined;
     public static readonly viewType = "report";
-    private static _commandType: string;
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
+    private isDownloading = false;
 
-    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
-      this._commandType = type;
+    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
-        if (ScanOverview.currentPanel && ScanOverview._commandType === type) {
+        if (ScanOverview.currentPanel) {
             ScanOverview.currentPanel._panel.reveal(column);
             ScanOverview.currentPanel._update(scanResults);
             return;
@@ -28,7 +28,7 @@ export class ScanOverview {
 
         const panel = vscode.window.createWebviewPanel(
             ScanOverview.viewType,
-          this._commandType + " Results",
+            "Scan Results",
             column || vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -38,7 +38,7 @@ export class ScanOverview {
                 ]
             }
         );
-        ScanOverview.currentPanel = new ScanOverview(panel, extensionUri, scanResults, type);
+        ScanOverview.currentPanel = new ScanOverview(panel, extensionUri, scanResults);
     }
 
     public static kill() {
@@ -46,7 +46,7 @@ export class ScanOverview {
         ScanOverview.currentPanel = undefined;
     }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[], type: string) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResults: ScanResult[]) {
         this._panel = panel;
         this._extensionUri = extensionUri;
         this._update(scanResults);
@@ -78,12 +78,18 @@ export class ScanOverview {
                     });
                     break;
                 }
+                case "viewAll": {
+                    if (!data.value) {
+                        return;
+                    }
+                    ViolationOverview.createOrShow(this._extensionUri, data.value, "All");
+                    break;
+                }
                 case "goToDetails": {
                     if (!data.value) {
                         return;
                     }
-                    await fs.writeFile('val.json', JSON.stringify(data.value));
-                    ViolationOverview.create(this._extensionUri, data.value);
+                    ViolationOverview.createOrShow(this._extensionUri, [data.value], data.value.flow.label);
                     break;
                 }
                 case "onError": {
@@ -94,11 +100,31 @@ export class ScanOverview {
                     break;
                 }
                 case 'init-view': {
-                    webview.postMessage({
-                        type: 'init',
-                        value: scanResults
-                    });
+                    if (scanResults) {
+                        webview.postMessage({
+                            type: 'init',
+                            value: scanResults
+                        });
+                    }
                     return;
+                }
+                case 'download': {
+                    if (!this.isDownloading && data.value) {
+                        this.isDownloading = true;
+                        let saveResult;
+                        do {
+                            saveResult = await vscode.window.showSaveDialog({
+                                defaultUri: vscode.Uri.file(vscode.workspace.workspaceFolders[0].uri.fsPath),
+                                filters: {
+                                    'csv': ['.csv']
+                                }
+                            });
+                        } while (!saveResult);
+                        const csv = convertArrayToCSV(data.value);
+                        await fs.writeFile(saveResult.fsPath, csv);
+                        vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
+                        this.isDownloading = false;
+                    }
                 }
             }
         });
@@ -110,8 +136,8 @@ export class ScanOverview {
         );
         const cssUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "ScanOverview.css")
-          );
-          const tabulatorStyles = webview.asWebviewUri(Utils.joinPath(
+        );
+        const tabulatorStyles = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
             "tabulator.css"
@@ -126,13 +152,9 @@ export class ScanOverview {
             "media",
             "vscode.css"
         ));
-        const spinnerUri = webview.asWebviewUri(Utils.joinPath(
-            this._extensionUri,
-            "media",
-            "Spinner.css"
-        ));
         const nonce = getNonce();
-        return `<!DOCTYPE html>
+        return `
+        <!DOCTYPE html>
 			<html lang="en">
 			<head>
 				<meta charset="UTF-8">
@@ -142,7 +164,6 @@ export class ScanOverview {
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
-        <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

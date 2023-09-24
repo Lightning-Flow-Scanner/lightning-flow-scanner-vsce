@@ -120,11 +120,6 @@ export class RuleOverview {
       "media",
       "vscode.css"
     ));
-    const spinnerUri = webview.asWebviewUri(Utils.joinPath(
-      this._extensionUri,
-      "media",
-      "Spinner.css"
-    ));
     const nonce = getNonce();
     return `<!DOCTYPE html>
 			<html lang="en">
@@ -135,7 +130,6 @@ export class RuleOverview {
         <link href="${stylesResetUri}" rel="stylesheet">
         <link href="${stylesMainUri}" rel="stylesheet">
         <link href="${styleUri}" rel="stylesheet">
-        <link href="${spinnerUri}" rel="stylesheet">
         <script nonce="${nonce}">
         const tsvscode = acquireVsCodeApi();
         </script>

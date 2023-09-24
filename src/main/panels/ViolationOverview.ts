@@ -2,6 +2,9 @@ import * as vscode from "vscode";
 import { getNonce } from "../libs/getNonce";
 import { URI, Utils } from 'vscode-uri';
 import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import { ScanOverview } from "./ScanOverview";
+import * as fs from "mz/fs";
+import { convertArrayToCSV } from "convert-array-to-csv";
 
 export class ViolationOverview {
 
@@ -10,15 +13,23 @@ export class ViolationOverview {
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
+    private isDownloading = false;
 
-    public static create(extensionUri: vscode.Uri, scanResult: ScanResult) {
+    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[], tab : string) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
+        let title = tab ? "Results " + tab : "All Results";
+        if (ViolationOverview.currentPanel && ViolationOverview.currentPanel._panel.title === title) {
+            ViolationOverview.currentPanel._panel.reveal(column);
+            ViolationOverview.currentPanel._update(scanResults);
+            return;
+        }
+        
         const panel = vscode.window.createWebviewPanel(
             ViolationOverview.viewType,
-            `Details: ${scanResult.flow.label}`,
+            `${title}`,
             column || vscode.ViewColumn.One,
             {
                 enableScripts: true,
@@ -28,7 +39,7 @@ export class ViolationOverview {
                 ]
             }
         );
-        ViolationOverview.currentPanel = new ViolationOverview(panel, extensionUri, scanResult);
+        ViolationOverview.currentPanel = new ViolationOverview(panel, extensionUri, scanResults);
     }
 
     public static kill() {
@@ -36,7 +47,7 @@ export class ViolationOverview {
         ViolationOverview.currentPanel = undefined;
     }
 
-    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResult: ScanResult) {
+    private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, scanResult: ScanResult[]) {
         this._panel = panel;
         this._extensionUri = extensionUri;
         this._update(scanResult);
@@ -54,7 +65,7 @@ export class ViolationOverview {
         }
     }
 
-    private async _update(scanResult: ScanResult) {
+    private async _update(scanResults: ScanResult[]) {
         const webview = this._panel.webview;
         this._panel.webview.html = this._getHtmlForWebview(webview);
         webview.onDidReceiveMessage(async (data) => {
@@ -68,12 +79,37 @@ export class ViolationOverview {
                     });
                     break;
                 }
+                case "overview": {
+                    if (!data.value) {
+                        return;
+                    }
+                    ScanOverview.createOrShow(this._extensionUri, data.value);
+                    break;
+                }
                 case 'init-view': {
                     webview.postMessage({
                         type: 'init',
-                        value: scanResult
+                        value: scanResults
                     });
                     return;
+                }
+                case 'download': {
+                    if (!this.isDownloading && data.value) {
+                        this.isDownloading = true;
+                        let saveResult;
+                        do {
+                            saveResult = await vscode.window.showSaveDialog({
+                                defaultUri: vscode.Uri.file(vscode.workspace.workspaceFolders[0].uri.fsPath),
+                                filters: {
+                                    'csv': ['.csv']
+                                }
+                            });
+                        } while (!saveResult);
+                        const csv = convertArrayToCSV(data.value);
+                        await fs.writeFile(saveResult.fsPath, csv);
+                        vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
+                        this.isDownloading = false;
+                    }
                 }
             }
         });

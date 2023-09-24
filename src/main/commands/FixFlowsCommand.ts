@@ -28,7 +28,7 @@ export class FixFlowsCommand extends BaseCommand {
           let saved = await new SaveFlow().execute(result.flow, result.flow.uri);
         }
       }
-      ScanOverview.createOrShow(this.context.extensionUri, results, "Fix");
+      ScanOverview.createOrShow(this.context.extensionUri, results);
     }
   }
 }

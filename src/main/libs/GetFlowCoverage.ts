@@ -1,8 +1,4 @@
-import * as vscode from 'vscode';
-import * as child from 'child_process';
 import {RunSFDXCommand} from "./RunCommand";
-import {SFDX} from "./GetOrgInfo";
-import {FlowDefinitionViewResult} from "./GetFlowDefinitionViews";
 
 export interface CoverageResult {
   status: number,

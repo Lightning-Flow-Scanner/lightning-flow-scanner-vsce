@@ -4,13 +4,21 @@
 
     export let scanResults;
     let tableComponent;
+    let table;
+    let printData = [];
 
     var detailButton = function (cell, formatterParams, onRendered) {
-        return "<button>details</button>";
+        return `<button style="background-color: #2765ae;border-radius: 10px;">Details</button>`;
     };
 
     onMount(() => {
-        new Tabulator(tableComponent, {
+        for(let scanResult of scanResults){
+            const detailObj = Object.assign({}, scanResult);
+            delete detailObj.flow;
+            delete detailObj.ruleResults;
+            printData.push(detailObj);
+        }
+        table = new Tabulator(tableComponent, {
             data: scanResults,
             reactiveData: true,
             layout: "fitColumns",
@@ -18,7 +26,9 @@
                 {
                     title: "# Results",
                     field: "resultCount",
-                    hozAlign: "left",
+                    hozAlign: "center",
+                    bottomCalc: "count",
+                    width: 100,
                 },
                 {
                     title: "Label",
@@ -35,12 +45,15 @@
                 {
                     title: "% Test Coverage",
                     field: "coverage",
+                    hozAlign: "center",
+                    width: 100,
                 },
                 {
                     title: "Details",
                     formatter: detailButton,
                     width: 100,
                     hozAlign: "center",
+                    print: false,
                     cellClick: function (e, cell) {
                         tsvscode.postMessage({
                             type: "goToDetails",
@@ -48,9 +61,16 @@
                         });
                     },
                 },
-            ]
+            ],
         });
     });
+
+    export function download() {
+        tsvscode.postMessage({
+            type: "download",
+            value: printData
+        });
+    }
 </script>
 
 <div bind:this={tableComponent} />

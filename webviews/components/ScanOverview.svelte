@@ -2,8 +2,9 @@
     import { onMount } from "svelte";
     import * as core from "lightning-flow-scanner-core/out";
     import ScanResultTable from "./ScanResultTable.svelte";
-    import Banner from "./Banner.svelte";
+    import NavigationBanner from "./NavigationBanner.svelte";
     import Select from "svelte-select";
+    import Spinner from "./Spinner.svelte";
 
     onMount(() => {
         tsvscode.postMessage({ type: "init-view" });
@@ -15,6 +16,8 @@
         return { label: rule.label, value: rule.name };
     });
     let value = [...items];
+    let banner;
+    let overview;
 
     $: {
         if (scanResults) {
@@ -66,17 +69,15 @@
                 : 0;
         return (results = results.sort(sort));
     }
+
 </script>
 
 <svelte:window on:message={windowMessage} />
-
-<Banner />
-<Select {items} multiple={true} bind:value />
+<NavigationBanner currentPage="overview" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => overview.download()}/>
 {#if !scanResults}
-    <div class="centered">
-        <div class="loader" />
-    </div>
+    <Spinner />
 {/if}
 {#if scanResults && scanResults.length > 0}
-    <ScanResultTable bind:scanResults />
+    <Select {items} multiple={true} bind:value />
+    <ScanResultTable bind:this={overview} bind:scanResults />
 {/if}

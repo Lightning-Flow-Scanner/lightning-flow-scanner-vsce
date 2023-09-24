@@ -14,9 +14,10 @@ export async function FindFlowCoverage(results) {
         if (matchingFlowDefinition) {
           const matchingFlowCoverage = flowCoverage.result.records.find(record => matchingFlowDefinition.ActiveVersionId === record.FlowVersionId);
           scanResult['coverage'] = matchingFlowCoverage ? (matchingFlowCoverage.NumElementsCovered / (matchingFlowCoverage.NumElementsCovered + matchingFlowCoverage.NumElementsNotCovered) * 100) : 0
+        } else {
+          scanResult['coverage'] = 0;
         }
       } catch (e) {
-        // just go next
         scanResult['coverage'] = 0;
       }
     }

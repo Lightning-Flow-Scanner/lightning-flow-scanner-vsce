@@ -18,14 +18,16 @@
             layout: "fitColumns",
             groupBy: ["ruleLabel"],
             groupHeader: function (value, count, data, group) {
+                let description;
                 if (data && data.length > 0) {
+                    description = data[0].ruleDescription;
                     return (
                         value +
                         "<span>(" +
                         count +
-                        " total)</span>" +
+                        ")</span>" +
                         "<p style='font-style: italic'>" +
-                            data[0].ruleDescription +
+                        description +
                         "</p>"
                     );
                 } else {
@@ -33,7 +35,7 @@
                         value +
                         "<span style='color:#d00; margin-left:10px;'>(" +
                         count +
-                        " total)</span>"
+                        ")</span>"
                     );
                 }
             },
@@ -53,6 +55,11 @@
                     field: "type",
                     formatter: "plaintext",
                     width: 150,
+                },
+                {
+                    title: "Flow name",
+                    field: "flowName",
+                    formatter: "textarea",
                 },
                 {
                     title: "DataType",
