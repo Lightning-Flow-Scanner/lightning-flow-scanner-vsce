@@ -40,8 +40,8 @@ export class ScanFlowsCommand extends BaseCommand {
         await vscode.workspace.getConfiguration().update('lightningFlowScanner.Reset', false, true);
       } 
       results = core.scan(flows, ruleConfig);
-      // todo find coverage asynchronously
       await FindFlowCoverage(results);
+      
       ScanOverview.createOrShow(this.context.extensionUri, results);
     } else {
       vscode.window.showInformationMessage('No flow files found.');

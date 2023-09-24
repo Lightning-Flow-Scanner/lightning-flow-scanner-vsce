@@ -3,6 +3,8 @@ import { getNonce } from "../libs/getNonce";
 import { URI, Utils } from 'vscode-uri';
 import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
 import { ScanOverview } from "./ScanOverview";
+import * as fs from "mz/fs";
+import { convertArrayToCSV } from "convert-array-to-csv";
 
 export class ViolationOverview {
 
@@ -11,24 +13,20 @@ export class ViolationOverview {
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
+    private isDownloading = false;
 
-    public static create(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
+    public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[], tab : string) {
         const column = vscode.window.activeTextEditor
             ? vscode.window.activeTextEditor.viewColumn
             : undefined;
 
-        if (ViolationOverview.currentPanel) {
+        let title = tab ? "Results " + tab : "All Results";
+        if (ViolationOverview.currentPanel && ViolationOverview.currentPanel._panel.title === title) {
             ViolationOverview.currentPanel._panel.reveal(column);
             ViolationOverview.currentPanel._update(scanResults);
             return;
         }
         
-        let title = 'Results';
-        if(scanResults.length === 1){
-            title = title + ' ' + scanResults[0].flow.label;
-        } else {
-            title = 'All ' + title;
-        }
         const panel = vscode.window.createWebviewPanel(
             ViolationOverview.viewType,
             `${title}`,
@@ -94,6 +92,24 @@ export class ViolationOverview {
                         value: scanResults
                     });
                     return;
+                }
+                case 'download': {
+                    if (!this.isDownloading && data.value) {
+                        this.isDownloading = true;
+                        let saveResult;
+                        do {
+                            saveResult = await vscode.window.showSaveDialog({
+                                defaultUri: vscode.Uri.file(vscode.workspace.workspaceFolders[0].uri.fsPath),
+                                filters: {
+                                    'csv': ['.csv']
+                                }
+                            });
+                        } while (!saveResult);
+                        const csv = convertArrayToCSV(data.value);
+                        await fs.writeFile(saveResult.fsPath, csv);
+                        vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
+                        this.isDownloading = false;
+                    }
                 }
             }
         });

@@ -4,6 +4,7 @@
     import ViolationTable from "./ViolationTable.svelte";
     import ViolationTableFull from "./ViolationTableFull.svelte";
 
+    let results;
     let scanResults;
     let allResults;
     let showFlowName: boolean;
@@ -16,7 +17,6 @@
     $: {
         let details = [];
         if (scanResults) {
-            console.log(scanResults.length);
             if(scanResults.length > 1){
                 showFlowName = true;
             } else {
@@ -27,15 +27,14 @@
                     let ruleDescription = ruleResult.ruleDefinition.description;
                     let ruleLabel = ruleResult.ruleDefinition.label;
                     let flowName = scanResult.flow.name;
-                    let name;
                     let type;
                     let metaType;
-
-                    let dataType;
-                    let locationX;
-                    let locationY;
-                    let connectsTo;
-                    let expression;
+                    let name;
+                    let dataType = "";
+                    let locationX = "";
+                    let locationY = "";
+                    let connectsTo = "";
+                    let expression = "";
 
                     let initobj = {
                         ruleDescription,
@@ -43,12 +42,10 @@
                         flowName,
                     };
                     for (let detail of ruleResult.details) {
-                        name = detail.name;
+                        name = detail.name ? detail.name : "";
                         type = detail.type;
                         metaType = detail.metaType;
                         if (detail.details) {
-                            console.debug(ruleResult);
-
                             if (detail.details.dataType) {
                                 dataType = detail.details.dataType;
                             }
@@ -107,11 +104,11 @@
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner currentPage="viewAll" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)}/>
+<NavigationBanner currentPage="viewAll" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => results.download()}/>
 {#if allResults && allResults.length > 0}
     {#if showFlowName}
-        <ViolationTableFull bind:allResults />
+        <ViolationTableFull bind:this={results} bind:allResults />
     {:else}
-        <ViolationTable bind:allResults />
+        <ViolationTable bind:this={results} bind:allResults />
     {/if}
 {/if}

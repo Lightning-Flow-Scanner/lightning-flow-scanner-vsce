@@ -4,9 +4,15 @@
 
     export let allResults;
     let tableComponent;
+    let table;
+    let printData = [];
 
     onMount(() => {
-        new Tabulator(tableComponent, {
+        for(let result of allResults){
+            const detailObj = Object.assign({}, result);
+            printData.push(detailObj);
+        }
+        table = new Tabulator(tableComponent, {
             data: allResults,
             reactiveData: true,
             layout: "fitColumns",
@@ -77,6 +83,13 @@
             ],
         });
     });
+
+    export function download() {
+        tsvscode.postMessage({
+            type: "download",
+            value: printData
+        });
+    }
 </script>
 
 <div bind:this={tableComponent} />

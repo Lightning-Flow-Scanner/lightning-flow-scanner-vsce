@@ -13,11 +13,7 @@
     }
 
     export function navigate(event, data) {
-        console.debug(event);
         const navitem = event.detail;
-        console.log('navitem = ' + navitem);
-        console.log('data=');
-        console.debug(data);
         if (navitem === "viewAll") {
             tsvscode.postMessage({
                 type: "viewAll",
@@ -29,6 +25,10 @@
                 value: data,
             });
         }
+    }
+
+    function download() {
+        dispatch("download", currentPage);
     }
 </script>
 
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="nav-button-right">
-        <button>Print</button>
+        <button on:click={download}>Download</button>
     </div>
 </div>
 

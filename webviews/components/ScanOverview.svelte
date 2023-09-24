@@ -17,6 +17,7 @@
     });
     let value = [...items];
     let banner;
+    let overview;
 
     $: {
         if (scanResults) {
@@ -72,11 +73,11 @@
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner currentPage="overview" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)}/>
+<NavigationBanner currentPage="overview" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => overview.download()}/>
 {#if !scanResults}
     <Spinner />
 {/if}
 {#if scanResults && scanResults.length > 0}
     <Select {items} multiple={true} bind:value />
-    <ScanResultTable bind:scanResults />
+    <ScanResultTable bind:this={overview} bind:scanResults />
 {/if}

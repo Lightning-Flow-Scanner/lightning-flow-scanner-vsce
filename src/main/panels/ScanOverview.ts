@@ -1,8 +1,10 @@
 import * as vscode from "vscode";
-import {getNonce} from "../libs/getNonce";
-import {URI, Utils} from 'vscode-uri';
-import {ViolationOverview} from "./ViolationOverview";
-import {ScanResult} from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import * as fs from "mz/fs";
+import { convertArrayToCSV } from "convert-array-to-csv";
+import { getNonce } from "../libs/getNonce";
+import { URI, Utils } from 'vscode-uri';
+import { ViolationOverview } from "./ViolationOverview";
+import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class ScanOverview {
 
@@ -11,6 +13,7 @@ export class ScanOverview {
     private readonly _panel: vscode.WebviewPanel;
     private readonly _extensionUri: vscode.Uri;
     private _disposables: vscode.Disposable[] = [];
+    private isDownloading = false;
 
     public static createOrShow(extensionUri: vscode.Uri, scanResults: ScanResult[]) {
         const column = vscode.window.activeTextEditor
@@ -79,14 +82,14 @@ export class ScanOverview {
                     if (!data.value) {
                         return;
                     }
-                    ViolationOverview.create(this._extensionUri, data.value);
+                    ViolationOverview.createOrShow(this._extensionUri, data.value, "All");
                     break;
                 }
                 case "goToDetails": {
                     if (!data.value) {
                         return;
                     }
-                    ViolationOverview.create(this._extensionUri, [data.value]);
+                    ViolationOverview.createOrShow(this._extensionUri, [data.value], data.value.flow.label);
                     break;
                 }
                 case "onError": {
@@ -97,13 +100,31 @@ export class ScanOverview {
                     break;
                 }
                 case 'init-view': {
-                    if(scanResults){
+                    if (scanResults) {
                         webview.postMessage({
                             type: 'init',
                             value: scanResults
                         });
                     }
                     return;
+                }
+                case 'download': {
+                    if (!this.isDownloading && data.value) {
+                        this.isDownloading = true;
+                        let saveResult;
+                        do {
+                            saveResult = await vscode.window.showSaveDialog({
+                                defaultUri: vscode.Uri.file(vscode.workspace.workspaceFolders[0].uri.fsPath),
+                                filters: {
+                                    'csv': ['.csv']
+                                }
+                            });
+                        } while (!saveResult);
+                        const csv = convertArrayToCSV(data.value);
+                        await fs.writeFile(saveResult.fsPath, csv);
+                        vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
+                        this.isDownloading = false;
+                    }
                 }
             }
         });
@@ -115,8 +136,8 @@ export class ScanOverview {
         );
         const cssUri = webview.asWebviewUri(
             Utils.joinPath(this._extensionUri, "out/compiled", "ScanOverview.css")
-          );
-          const tabulatorStyles = webview.asWebviewUri(Utils.joinPath(
+        );
+        const tabulatorStyles = webview.asWebviewUri(Utils.joinPath(
             this._extensionUri,
             "media",
             "tabulator.css"
@@ -132,7 +153,8 @@ export class ScanOverview {
             "vscode.css"
         ));
         const nonce = getNonce();
-        return `<!DOCTYPE html>
+        return `
+        <!DOCTYPE html>
 			<html lang="en">
 			<head>
 				<meta charset="UTF-8">
