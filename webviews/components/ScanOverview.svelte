@@ -5,7 +5,6 @@
     import NavigationBanner from "./NavigationBanner.svelte";
     import Select from "svelte-select";
     import Spinner from "./Spinner.svelte";
-
     onMount(() => {
         tsvscode.postMessage({ type: "init-view" });
     });
@@ -25,7 +24,7 @@
                 scanResult.resultCount = scanResult.ruleResults.reduce(
                     (total, rule) => {
                         let selectedValues = value.map((val) => val.value);
-                        if (selectedValues.includes(rule.ruleName)) {
+                        if (rule.occurs && selectedValues.includes(rule.ruleName)) {
                             total = total + rule.details.length;
                         }
                         return total;

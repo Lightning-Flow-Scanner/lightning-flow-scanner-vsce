@@ -17,7 +17,7 @@
     $: {
         let details = [];
         if (scanResults) {
-            if(scanResults.length > 1){
+            if (scanResults.length > 1) {
                 showFlowName = true;
             } else {
                 showFlowName = false;
@@ -41,41 +41,44 @@
                         ruleLabel,
                         flowName,
                     };
-                    for (let detail of ruleResult.details) {
-                        name = detail.name ? detail.name : "";
-                        type = detail.type;
-                        metaType = detail.metaType;
-                        if (detail.details) {
-                            if (detail.details.dataType) {
-                                dataType = detail.details.dataType;
+                    if (ruleResult.occurs) {
+                        for (let detail of ruleResult.details) {
+                            name = detail.name ? detail.name : "";
+                            type = detail.type;
+                            metaType = detail.metaType;
+                            if (detail.details) {
+                                if (detail.details.dataType) {
+                                    dataType = detail.details.dataType;
+                                }
+                                if (detail.details.locationX) {
+                                    locationX = detail.details.locationX;
+                                }
+                                if (detail.details.locationY) {
+                                    locationY = detail.details.locationY;
+                                }
+                                if (detail.details.connectsTo) {
+                                    connectsTo =
+                                        detail.details.connectsTo.join();
+                                }
+                                if (detail.details.expression) {
+                                    expression = detail.details.expression;
+                                }
                             }
-                            if (detail.details.locationX) {
-                                locationX = detail.details.locationX;
-                            }
-                            if (detail.details.locationY) {
-                                locationY = detail.details.locationY;
-                            }
-                            if (detail.details.connectsTo) {
-                                connectsTo = detail.details.connectsTo.join();
-                            }
-                            if (detail.details.expression) {
-                                expression = detail.details.expression;
-                            }
+                            const detailObj = Object.assign(
+                                structuredClone(initobj),
+                                {
+                                    name,
+                                    type,
+                                    metaType,
+                                    dataType,
+                                    locationX,
+                                    locationY,
+                                    connectsTo,
+                                    expression,
+                                }
+                            );
+                            details.push(detailObj);
                         }
-                        const detailObj = Object.assign(
-                            structuredClone(initobj),
-                            {
-                                name,
-                                type,
-                                metaType,
-                                dataType,
-                                locationX,
-                                locationY,
-                                connectsTo,
-                                expression,
-                            }
-                        );
-                        details.push(detailObj);
                     }
                 }
             }
@@ -100,11 +103,15 @@
                 return;
         }
     }
-
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner currentPage="viewAll" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => results.download()}/>
+<NavigationBanner
+    currentPage="viewAll"
+    bind:this={banner}
+    on:navigate={(e) => banner.navigate(e, scanResults)}
+    on:download={() => results.download()}
+/>
 {#if allResults && allResults.length > 0}
     {#if showFlowName}
         <ViolationTableFull bind:this={results} bind:allResults />
