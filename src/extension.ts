@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
   let viewRulesCommand = new ViewFlowRulesCommand(context);
 
   context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.createflowdata', () => createTestDataCommand.execute())
+    vscode.commands.registerCommand('lightningflowscanner.parse', () => createTestDataCommand.execute())
   ]); 
 
   context.subscriptions.concat([
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
   ]);
 
   context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.refresh', () => {
+    vscode.commands.registerCommand('lightningflowscanner.debug', () => {
       
       // RuleOverview.kill();
       // RuleOverview.createOrShow(context.extensionUri);

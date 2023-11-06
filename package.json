@@ -16,13 +16,6 @@
 		"Linters",
 		"Other"
 	],
-	"activationEvents": [
-		"onCommand:lightningflowscanner.createtestdata",
-		"onCommand:lightningflowscanner.fix",
-		"onCommand:lightningflowscanner.scan",
-		"onCommand:lightningflowscanner.viewrules",
-		"onCommand:lightningflowscanner.refresh"
-	],
 	"main": "./dist/extension",
 	"contributes": {
 		"configuration": {
@@ -52,8 +45,8 @@
 		},
 		"commands": [
 			{
-				"command": "lightningflowscanner.createtestdata",
-				"title": "Create Test Data(Flow Scanner)"
+				"command": "lightningflowscanner.parse",
+				"title": "Parse Flow Data to JSON"
 			},
 			{
 				"command": "lightningflowscanner.fix",
@@ -68,8 +61,8 @@
 				"title": "View Default Flow Rules"
 			},
 			{
-				"command": "lightningflowscanner.refresh",
-				"title": "Refresh Web Views"
+				"command": "lightningflowscanner.debug",
+				"title": "Debug Web Views"
 			}
 		]
 	},
@@ -115,7 +108,7 @@
 		"@types/vscode": "1.47",
 		"convert-array-to-csv": "^2.0.0",
 		"css": "^3.0.0",
-		"lightning-flow-scanner-core": "2.23.0",
+		"lightning-flow-scanner-core": "2.24",
 		"mz": "^2.7.0",
 		"node-sass": "6.0.1",
 		"os": "^0.1.2",
