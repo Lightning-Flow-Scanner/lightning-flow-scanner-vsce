@@ -16,6 +16,13 @@
 		"Linters",
 		"Other"
 	],
+	"activationEvents": [
+		"onCommand:lightningflowscanner.parse",
+		"onCommand:lightningflowscanner.fix",
+		"onCommand:lightningflowscanner.scan",
+		"onCommand:lightningflowscanner.viewrules",
+		"onCommand:lightningflowscanner.debug"
+	],
 	"main": "./dist/extension",
 	"contributes": {
 		"configuration": {
@@ -62,7 +69,7 @@
 			},
 			{
 				"command": "lightningflowscanner.debug",
-				"title": "Debug Web Views"
+				"title": "Refresh Web Views"
 			}
 		]
 	},
