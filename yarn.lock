@@ -2530,10 +2530,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lightning-flow-scanner-core@2.23.0:
-  version "2.23.0"
-  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-2.23.0.tgz#c48aacf593ce1a25964d2353db76e1ae473bfcb5"
-  integrity sha512-JIb6eI8GIvrutVOeu4hghJ2fPIwiqrGccVc7aMUApAyzjxW3FsQ2NjLF7XaFGWD+JHMtoieseBOP3D+RlcTJPA==
+lightning-flow-scanner-core@2.24:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/lightning-flow-scanner-core/-/lightning-flow-scanner-core-2.24.0.tgz#2effcd281de99039410cfad6a20dc2c0a979c8c7"
+  integrity sha512-aHWZkfi7W6K2yZtyThvse5gaOlA85rIRgl9i3qMhNJiiS0qoEs2P7LHiCLvhH+yaJpPp2mRMNyugtX5Iy7Feug==
   dependencies:
     "@types/chai" "^4.2.21"
     "@types/node" "^20.4.5"
