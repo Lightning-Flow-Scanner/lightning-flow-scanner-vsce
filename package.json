@@ -7,7 +7,7 @@
 	"publisher": "ForceConfigControl",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Force-Config-Control/lightning-flow-scanner-vsce"
+		"url": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce"
 	},
 	"engines": {
 		"vscode": "^1.47.0"

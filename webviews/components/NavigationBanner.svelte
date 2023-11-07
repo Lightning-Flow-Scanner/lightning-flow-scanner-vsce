@@ -44,9 +44,9 @@
     {/if}
     <div class="banner-container">
         <div class="banner">
-            <a href="https://github.com/Force-Config-Control">
+            <a href="https://github.com/Lightning-Flow-Scanner">
                 <img
-                    src="https://github.com/Force-Config-Control/.github/raw/main/docs/images/bannerslim.png"
+                    src="https://github.com/Lightning-Flow-Scanner/.github/raw/main/docs/images/bannerslim.png"
                     alt="Lightning Flow Scanner banner"
                 />
             </a>
