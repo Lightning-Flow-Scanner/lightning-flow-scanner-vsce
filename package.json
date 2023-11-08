@@ -5,6 +5,7 @@
 	"version": "2.15.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceConfigControl",
+	"license": "AGPL-3.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce"
