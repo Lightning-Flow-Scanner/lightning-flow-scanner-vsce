@@ -2,7 +2,7 @@
 	"name": "lightningflowscanner",
 	"displayName": "Lightning Flow Scanner",
 	"description": "Identify potential issues and improvements in Salesforce Flows",
-	"version": "2.15.0",
+	"version": "2.16.0",
 	"icon": "resources/images/lightningflow.png",
 	"publisher": "ForceConfigControl",
 	"license": "AGPL-3.0",
