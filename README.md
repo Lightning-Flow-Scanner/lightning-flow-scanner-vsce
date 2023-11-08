@@ -2,11 +2,7 @@
 
 __*Identify potential issues and improvements in Salesforce Flows*__
 
-
-
-<!-- [![Demo Image Overview](docs/overview.png)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)
-
-[![Demo Image Details](docs/details.png)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce) -->
+ [![Flow Overview](docs/unresolved.png)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)
 
 **Also available as [SFDX Plugin](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx)*
 
