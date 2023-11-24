@@ -116,7 +116,7 @@
 		"@types/vscode": "1.47",
 		"convert-array-to-csv": "^2.0.0",
 		"css": "^3.0.0",
-		"lightning-flow-scanner-core": "2.25.0",
+		"lightning-flow-scanner-core": "2.26",
 		"mz": "^2.7.0",
 		"node-sass": "6.0.1",
 		"os": "^0.1.2",
