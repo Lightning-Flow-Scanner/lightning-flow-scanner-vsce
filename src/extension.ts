@@ -6,7 +6,7 @@ import {ViewFlowRulesCommand} from "./main/commands/ViewFlowRulesCommand";
 import { ScanOverview } from "./main/panels/ScanOverview";
 import { RuleOverview } from "./main/panels/RuleOverview";
 import { ViolationOverview } from "./main/panels/ViolationOverview";
-import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export function activate(context: vscode.ExtensionContext) {
   let fixFlowsCommand = new FixFlowsCommand(context);
