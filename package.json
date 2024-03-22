@@ -75,7 +75,7 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run package",
+		"vscode:prepublish": "npm run package",
 		"compile": "rollup -c && webpack --mode production",
 		"webpack": "webpack --mode development",
 		"webpack-dev": "webpack --mode development --watch",
