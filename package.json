@@ -121,7 +121,7 @@
 		"@types/vscode": "1.47",
 		"convert-array-to-csv": "^2.0.0",
 		"css": "^3.0.0",
-		"lightning-flow-scanner-core": "2.26",
+		"lightning-flow-scanner-core": "2.30",
 		"mz": "^2.7.0",
 		"os": "^0.1.2",
 		"reflect-metadata": "^0.1.13",

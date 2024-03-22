@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { getNonce } from "../libs/getNonce";
 import { URI, Utils } from 'vscode-uri';
-import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
 import { ScanOverview } from "./ScanOverview";
 import * as fs from "mz/fs";
 import { convertArrayToCSV } from "convert-array-to-csv";

@@ -1,41 +1,37 @@
 import * as vscode from "vscode";
 import * as child from "child_process";
-import {isWindows} from "./CheckOS";
+import { isWindows } from "./CheckOS";
 
-export function RunSFDXCommand(commandString : string): Promise<any> {
+export function RunSFDXCommand(commandString: string): Promise<any> {
 
-  return new Promise<any>(resolve => {
+  return new Promise<any>((resolve, reject) => {
 
-    if(isWindows()){
+    if (isWindows()) {
       commandString = 'cmd /c ' + commandString;
     }
 
     let workspacePath = vscode.workspace.workspaceFolders;
-    let foo: child.ChildProcess = child.exec(commandString,{
+    let foo: child.ChildProcess = child.exec(commandString, {
       maxBuffer: 1024 * 1024 * 6,
-      cwd: workspacePath?workspacePath[0].uri.fsPath:""
+      cwd: workspacePath ? workspacePath[0].uri.fsPath : ""
     });
 
-    let bufferOutData='';
-    foo.stdout.on("data",(dataArg : any)=> {
-      bufferOutData+=dataArg;
+    let bufferOutData = '';
+    foo.stdout.on("data", (dataArg: any) => {
+      bufferOutData += dataArg;
     });
 
-    foo.stderr.on("data",(data : any)=> {
+    foo.stderr.on("data", (data: any) => {
       vscode.window.showErrorMessage(data);
-      resolve();
     });
 
-    foo.stdin.on("data",(data : any)=> {
-      vscode.window.showErrorMessage(data);
-      resolve();
+    foo.on('exit', (code, signal) => {
+      if (code === 0) {
+        let data = JSON.parse(bufferOutData);
+        resolve(data);
+      } else {
+        reject(new Error(`Command execution failed with code ${code}.`));
+      }
     });
-
-    foo.on('exit',(code,signal)=>{
-      let data = JSON.parse(bufferOutData);
-      resolve(data);
-    });
-
-
   });
 }

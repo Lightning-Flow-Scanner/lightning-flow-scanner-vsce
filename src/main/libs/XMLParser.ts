@@ -1,6 +1,6 @@
 import {Parser} from 'xml2js';
 const xml2js = require("xml2js");
-import { Flow } from 'lightning-flow-scanner-core/out/main/models/Flow';
+import Flow from 'lightning-flow-scanner-core/out/main/models/Flow';
 
 export class XMLParser{
 

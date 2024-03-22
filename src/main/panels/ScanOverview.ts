@@ -4,7 +4,7 @@ import { convertArrayToCSV } from "convert-array-to-csv";
 import { getNonce } from "../libs/getNonce";
 import { URI, Utils } from 'vscode-uri';
 import { ViolationOverview } from "./ViolationOverview";
-import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
 
 export class ScanOverview {
 

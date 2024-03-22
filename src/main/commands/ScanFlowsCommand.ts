@@ -4,8 +4,8 @@ import { SelectFlows } from "../libs/SelectFlows";
 import { ParseFlows } from "../libs/ParseFlows";
 import { ScanOverview } from "../panels/ScanOverview";
 import * as core from 'lightning-flow-scanner-core/out';
-import { Flow } from "lightning-flow-scanner-core/out/main/models/Flow";
-import { ScanResult } from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import Flow from "lightning-flow-scanner-core/out/main/models/Flow";
+import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
 import { FindFlowCoverage } from "../libs/FindFlowCoverage";
 
 export class ScanFlowsCommand extends BaseCommand {
