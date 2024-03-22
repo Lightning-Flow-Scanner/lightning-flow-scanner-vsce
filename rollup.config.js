@@ -26,6 +26,9 @@ export default fs
                 if (message.code !== 'EVAL'){
                     throw new Error(message);
                 }
+                if (message.filepath?.includes('EVAL')){
+                    throw new Error(message);
+                }
             },
             plugins: [
                 svelte({
