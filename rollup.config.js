@@ -32,7 +32,6 @@ export default fs
             },
             plugins: [
                 svelte({
-                    // enable run-time checks when not in production
                     dev: !production,
                     // we'll extract any component CSS out into
                     // a separate file - better for performance
@@ -42,16 +41,12 @@ export default fs
                     preprocess: sveltePreprocess({ sourceMap: !production })
                 }),
                 json(),
-
-                // If you have external dependencies installed from
-                // npm, you'll most likely need these plugins. In
-                // some cases you'll need additional configuration -
-                // consult the documentation for details:
-                // https://github.com/rollup/plugins/tree/master/packages/commonjs
                 resolve({
                     browser: true,
                     dedupe: ["svelte"],
+                    preferBuiltins: false,
                 }),
+                // https://github.com/rollup/plugins/tree/master/packages/commonjs
                 commonjs(),
                 typescript({
                     tsconfig: "webviews/tsconfig.json",

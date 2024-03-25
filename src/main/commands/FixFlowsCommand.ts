@@ -1,11 +1,10 @@
 import * as vscode from "vscode";
 import {BaseCommand} from "./BaseCommand";
 import {SaveFlow} from "../libs/SaveFlow";
-import Flow from "lightning-flow-scanner-core/out/main/models/Flow";
+import {Flow, ScanResult} from "lightning-flow-scanner-core/out/index";
 import {SelectFlows} from "../libs/SelectFlows";
 import {ParseFlows} from "../libs/ParseFlows";
 import * as core from "lightning-flow-scanner-core/out";
-import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
 import {ScanOverview} from "../panels/ScanOverview";
 
 export class FixFlowsCommand extends BaseCommand {

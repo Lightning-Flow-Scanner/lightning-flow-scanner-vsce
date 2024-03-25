@@ -1,6 +1,6 @@
 <script lang="typescript">
     import { onMount } from "svelte";
-    import * as core from "lightning-flow-scanner-core/out";
+    import * as core from "lightning-flow-scanner-core/out/index";
     import ScanResultTable from "./ScanResultTable.svelte";
     import NavigationBanner from "./NavigationBanner.svelte";
     import Select from "svelte-select";

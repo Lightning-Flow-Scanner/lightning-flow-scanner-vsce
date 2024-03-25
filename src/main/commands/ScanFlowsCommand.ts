@@ -3,9 +3,7 @@ import * as vscode from "vscode";
 import { SelectFlows } from "../libs/SelectFlows";
 import { ParseFlows } from "../libs/ParseFlows";
 import { ScanOverview } from "../panels/ScanOverview";
-import * as core from 'lightning-flow-scanner-core/out';
-import Flow from "lightning-flow-scanner-core/out/main/models/Flow";
-import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import * as core from 'lightning-flow-scanner-core/out/index';
 import { FindFlowCoverage } from "../libs/FindFlowCoverage";
 
 export class ScanFlowsCommand extends BaseCommand {
@@ -19,9 +17,9 @@ export class ScanFlowsCommand extends BaseCommand {
     const selectedUris: vscode.Uri[] = await new SelectFlows(this.rootPath, 'Select a root folder:').execute(this.rootPath);
     if (selectedUris.length > 0) {
 
-      let results: ScanResult[];
+      let results: core.ScanResult[];
       ScanOverview.createOrShow(this.context.extensionUri, results);
-      const flows: Flow[] = await new ParseFlows().execute(selectedUris);
+      const flows: core.Flow[] = await new ParseFlows().execute(selectedUris);
       const allRules = core.getRules();
       const ruleConfig = {rules: {}};
       for (const rule of allRules){
