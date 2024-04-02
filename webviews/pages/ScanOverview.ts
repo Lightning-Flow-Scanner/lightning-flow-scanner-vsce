@@ -1,6 +1,7 @@
-import App from "../components/ScanOverview.svelte"
+// @ts-ignore
+import Component from "../components/ScanOverview.svelte";
 
-const ScanOverview = new App({
+const ScanOverview = new Component({
     target: document.body,
 });
 

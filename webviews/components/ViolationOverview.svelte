@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import NavigationBanner from "./NavigationBanner.svelte";
+    import NavigationBanner from "./Navigation.svelte";
     import ViolationTable from "./ViolationTable.svelte";
     import ViolationTableFull from "./ViolationTableFull.svelte";
 
@@ -108,6 +108,7 @@
 <svelte:window on:message={windowMessage} />
 <NavigationBanner
     currentPage="viewAll"
+    showDownload
     bind:this={banner}
     on:navigate={(e) => banner.navigate(e, scanResults)}
     on:download={() => results.download()}

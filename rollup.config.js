@@ -4,9 +4,12 @@ import commonjs from "@rollup/plugin-commonjs";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
-import path from "path";
-import fs from "fs";
 import json from "@rollup/plugin-json";
+import { svelteSVG } from 'rollup-plugin-svelte-svg';
+import builtins from 'rollup-plugin-node-builtins';
+import path from 'path';
+import fs from 'fs';
+import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -21,54 +24,47 @@ export default fs
                 format: "iife",
                 name: "app",
                 file: "out/compiled/" + name + ".js",
+                assetFileNames: name + '.css',
             },
             onwarn: function (message) {
                 if (message.code !== 'EVAL'){
+                    console.log(JSON.stringify(message));
                     throw new Error(message);
-                }
-                if (message.filepath?.includes('EVAL')){
-                    throw new Error(message);
-                }
+                } 
             },
             plugins: [
                 svelte({
-                    // enable run-time checks when not in production
-                    dev: !production,
-                    // we'll extract any component CSS out into
-                    // a separate file - better for performance
-                    css: (css) => {
-                        css.write(name + ".css");
-                    },
-                    preprocess: sveltePreprocess({ sourceMap: !production })
+                    compilerOptions: {
+                        // enable run-time checks when not in production
+                        dev: !production,
+                      },
+                    preprocess: sveltePreprocess({ 
+                        sourceMap: !production,
+                        postcss: {
+                            plugins: [require('tailwindcss'), require('autoprefixer')],
+                          },
+                    }),
+                    emitCss: production,
                 }),
+                css(),
                 json(),
-
-                // If you have external dependencies installed from
-                // npm, you'll most likely need these plugins. In
-                // some cases you'll need additional configuration -
-                // consult the documentation for details:
-                // https://github.com/rollup/plugins/tree/master/packages/commonjs
                 resolve({
                     browser: true,
                     dedupe: ["svelte"],
+                    preferBuiltins: false
                 }),
                 commonjs(),
+                builtins(),
                 typescript({
                     tsconfig: "webviews/tsconfig.json",
                     sourceMap: !production,
                     inlineSources: !production,
                 }),
-
-                // In dev mode, call `npm run start` once
-                // the bundle has been generated
-                // !production && serve(),
-
-                // Watch the `public` directory and refresh the
-                // browser on changes when not in production
-                // !production && livereload("public"),
-
-                // If we're building for production (npm run build
-                // instead of npm run dev), minify
+                svelteSVG({
+                    // optional SVGO options
+                    // pass empty object to enable defaults
+                    svgo: {},
+                  }),
                 production && terser(),
             ],
             watch: {

@@ -17,7 +17,8 @@
         "semi": "off"
     },
     "ignorePatterns": [
-        "**/*.d.ts",
-        "**/*ts"
+        "out",
+        "dist",
+        "**/*.d.ts"
     ]
 }

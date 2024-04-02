@@ -1,16 +1,9 @@
 .vscode/**
 .vscode-test/**
-out/test/**
-test/**
 src/**
-docs/**
-**/*.map
+webviews/**
 .gitignore
-tsconfig.json
-eslintrc.json
 vsc-extension-quickstart.md
-azure-pipelines.yml
-.yarnrc
 **/tsconfig.json
 **/.eslintrc.json
 **/*.map

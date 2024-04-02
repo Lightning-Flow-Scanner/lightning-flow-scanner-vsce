@@ -1,49 +1,71 @@
-[![Lightning Flow Scanner Banner](docs/banner.png)](https://github.com/Lightning-Flow-Scanner)
+# lightning-flow-scanner README
 
-__*Identify potential issues and improvements in Salesforce Flows*__
+This is the README for your extension "lightning-flow-scanner". After writing up a brief description, we recommend including the following sections.
 
- [![Flow Overview](docs/unresolved.png)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)
+## Features
 
-**Also available as [SFDX Plugin](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx)*
+Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-## Using the commands
+For example if there is an image subfolder under your extension project workspace:
 
-Open the **Command Palette** and type `Flow` to see the list of all available commands.
+\!\[feature X\]\(images/feature-x.png\)
 
-### Scan Flows
+> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-Use the `Scan Flows` command by choosing either a directory or a selection of flows to run the analysis on.
+## Requirements
 
-### Fix Flows
+If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
-Use the `Fix Flows` command to apply available fixes automatically.  
+## Extension Settings
 
-### View Default Flow Rules
+Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
 
-The `View Default Flow Rules` command can be used to view more details on the rules that are applied to Flows in the scans. 
+For example:
 
-## Rule Overview
+This extension contributes the following settings:
 
-| Rule       | Description |
-|--------------|:-----------|
-| **Outdated API Version** | Introducing newer API components may lead to unexpected issues with older versions of Flows, as they might not align with the underlying mechanics. Starting from API version 50.0, the 'Api Version' attribute has been readily available on the Flow Object. To ensure smooth operation and reduce discrepancies between API versions, it is strongly advised to regularly update and maintain them. |
-| **Copy API Name** | Maintaining multiple elements with a similar name, like 'Copy_X_Of_Element,' can diminish the overall readability of your Flow. When copying and pasting these elements, it's crucial to remember to update the API name of the newly created copy. |
-| **DML Statement In A Loop** |  To prevent exceeding Apex governor limits, it is advisable to consolidate all your database operations, including record creation, updates, or deletions, at the conclusion of the flow. |
-| **Duplicate DML Operation** |   When the flow executes database changes or actions between two screens, it's important to prevent users from navigating back between screens. Failure to do so may result in duplicate database operations being performed within the flow. |
-| **Hardcoded Id** |  Avoid hard-coding IDs as they are org-specific. Instead, pass them into variables at the start of the flow. You can achieve this by utilizing merge fields in URL parameters or employing a Get Records element. |
-| **Flow Naming Convention** |  The readability of a flow is of utmost importance. Establishing a naming convention for the Flow Name significantly enhances findability, searchability, and maintains overall consistency. It is advisable to include at least a domain and a brief description of the actions carried out in the flow, for instance, 'Service_OrderFulfillment'. |
-| **Missing Flow Description** |   Descriptions play a vital role in documentation. We highly recommend including details about where they are used and their intended purpose. |
-| **Missing Fault Path** |  At times, a flow may fail to execute a configured operation as intended. By default, the flow displays an error message to the user and notifies the admin who created the flow via email. However, you can customize this behavior by incorporating a Fault Path. |
-| **Missing Null Handler**      |   When a Get Records operation doesn't find any data, it returns null. To ensure data validation, utilize a decision element on the operation result variable to check for a non-null result. |
-| **SOQL Query In A Loop** |  To prevent exceeding Apex governor limits, it is advisable to consolidate all your SOQL queries at the conclusion of the flow. |
-| **Unconnected Element** |  Unconnected elements which are not being used by the Flow should be avoided to keep Flows efficient and maintainable. |
-| **Unused Variable**      |  To maintain the efficiency and manageability of your Flow, it's advisable to avoid including unconnected variables that are not in use. |
+* `myExtension.enable`: Enable/disable this extension.
+* `myExtension.thing`: Set to `blah` to do something.
 
-**More information on the rules can be found in the [lfs-core module documentation](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-core).*
+## Known Issues
 
-## Settings
- Name        | Description | Type | Default value | 
-|--------------|:-----------|--------------|:-----------|
-| SpecifyFlows | Specify flow file paths instead of a root directory. | boolean | false | 
-| NamingConvention | Specify a REGEX expression to use as Flow Naming convention. | string | [A-Za-z0-9]+_[A-Za-z0-9]+ | 
-| APIVersion | Specify an expression to validate the API version, i.e. '===50'(use at least 50). | string | >50 | 
+Calling out known issues can help limit users opening duplicate issues against your extension.
+
+## Release Notes
+
+Users appreciate release notes as you update your extension.
+
+### 1.0.0
+
+Initial release of ...
+
+### 1.0.1
+
+Fixed issue #.
+
+### 1.1.0
+
+Added features X, Y, and Z.
+
+---
+
+## Following extension guidelines
+
+Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+
+* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+
+## Working with Markdown
+
+You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+
+* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
+* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
+* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+
+## For more information
+
+* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+
+**Enjoy!**
