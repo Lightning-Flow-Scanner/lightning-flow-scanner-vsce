@@ -60,11 +60,11 @@
       },
       {
         "command": "lightningflowscanner.calculateFlowTestCoverage",
-        "title": "Calculate Flow Test Coverage"
+        "title": "Calculate Flow Coverage"
       },
       {
         "command": "lightningflowscanner.configRules",
-        "title": "Configurate Flow Scanner"
+        "title": "Configurate Flow Rules"
       }
     ],
     "viewsContainers": {
