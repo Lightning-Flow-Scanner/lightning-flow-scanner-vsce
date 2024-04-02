@@ -10,6 +10,7 @@
 		],
 		"experimentalDecorators": true,
 		"sourceMap": true,
+		"skipLibCheck": true,
 		"rootDir": "src",
 		"strict": false,   /* enable all strict type-checking options */
 		/* Additional Checks */

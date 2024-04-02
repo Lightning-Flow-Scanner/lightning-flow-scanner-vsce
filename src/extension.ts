@@ -1,49 +1,25 @@
-import * as vscode from "vscode";
-import { FixFlowsCommand } from "./main/commands/FixFlowsCommand";
-import {CreateTestDataCommand} from "./main/commands/CreateTestDataCommand";
-import {ScanFlowsCommand} from "./main/commands/ScanFlowsCommand";
-import {ViewFlowRulesCommand} from "./main/commands/ViewFlowRulesCommand";
-import { ScanOverview } from "./main/panels/ScanOverview";
-import { RuleOverview } from "./main/panels/RuleOverview";
-import { ViolationOverview } from "./main/panels/ViolationOverview";
-import ScanResult from "lightning-flow-scanner-core/out/main/models/ScanResult";
+import * as vscode from 'vscode';
+import { Sidebar } from './panels/SidebarPanel';
+import Commands from './commands/handlers';
+import { CacheProvider } from './providers/cache-provider';
 
-export function activate(context: vscode.ExtensionContext) {
-  let fixFlowsCommand = new FixFlowsCommand(context);
-  let lintFlowsCommand = new ScanFlowsCommand(context);
-  let createTestDataCommand = new CreateTestDataCommand(context);
-  let viewRulesCommand = new ViewFlowRulesCommand(context);
+export async function activate(context: vscode.ExtensionContext) {
 
-  context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.parse', () => createTestDataCommand.execute())
-  ]); 
+	CacheProvider.init(context, {'results' : [], 'ruleconfig': {}});
 
-  context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.fix', () => fixFlowsCommand.execute())
-  ]);
+	const sidebarPanel = new Sidebar(context.extensionUri);
+	const commands = new Commands(context);
+	context.subscriptions.push(
+		vscode.window.registerWebviewViewProvider(
+			'lfs-sb',
+			sidebarPanel
+		)
+	);
 
-  context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.scan', () => lintFlowsCommand.execute())
-  ]);
+	commands.handlers.forEach(([cmd, fn]) =>
+		context.subscriptions.push(vscode.commands.registerCommand(cmd, fn))
+	);
 
-  context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.viewrules', () => viewRulesCommand.execute())
-  ]);
-
-  context.subscriptions.concat([
-    vscode.commands.registerCommand('lightningflowscanner.debug', () => {
-      
-      // RuleOverview.kill();
-      // RuleOverview.createOrShow(context.extensionUri);
-      // ScanOverview.kill();
-      // ScanOverview.createOrShow(context.extensionUri, data as [], "Scan");
-      // ViolationOverview.kill();
-      // ViolationOverview.create(context.extensionUri,  singleresult as unknown as ScanResult);
-      setTimeout(() => {
-        vscode.commands.executeCommand("workbench.action.webview.openDeveloperTools");
-      }, 500);
-    })
-  ]);
 }
 
-export function deactivate() {}
+export function deactivate() { }

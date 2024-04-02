@@ -1,10 +1,10 @@
-[![Lightning Flow Scanner Banner](docs/banner.png)](https://github.com/Lightning-Flow-Scanner)
+ [![Lightning Flow Scanner Banner](media/bannerslim.png)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)
 
-__*Identify potential issues and improvements in Salesforce Flows*__
+__*Analyze Salesforce Flows for optimization and ensure adherence to Industry Best Practices.*__
 
- [![Flow Overview](docs/unresolved.png)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)
+ [![Flow Overview](media/overview.jpg)](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce)
 
-**Also available as [SFDX Plugin](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx)*
+**Also available as [Salesforce CLI Plugin](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx)*
 
 ## Using the commands
 
@@ -14,13 +14,22 @@ Open the **Command Palette** and type `Flow` to see the list of all available co
 
 Use the `Scan Flows` command by choosing either a directory or a selection of flows to run the analysis on.
 
+### Configure Scanner
+
+Use the `Configurate Flow Rules` command to configure the rules executed during scanning.
+
 ### Fix Flows
 
 Use the `Fix Flows` command to apply available fixes automatically.  
 
 ### View Default Flow Rules
 
-The `View Default Flow Rules` command can be used to view more details on the rules that are applied to Flows in the scans. 
+The `Default Flow Rules` command can be used to view more details on the rules that are applied to Flows in the scans. 
+
+### Calculate Flow Test Coverage
+
+The `Calculate Flow Coverage` command calculates Flow Test coverage percentages by running the apex tests in your default connectedOrg.
+
 
 ## Rule Overview
 

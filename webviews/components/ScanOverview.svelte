@@ -1,20 +1,15 @@
 <script lang="typescript">
     import { onMount } from "svelte";
-    import * as core from "lightning-flow-scanner-core/out";
     import ScanResultTable from "./ScanResultTable.svelte";
-    import NavigationBanner from "./NavigationBanner.svelte";
-    import Select from "svelte-select";
-    import Spinner from "./Spinner.svelte";
+    import NavigationBanner from "./Navigation.svelte";
+    import Spinner from "./Spinner.svelte"
+
     onMount(() => {
         tsvscode.postMessage({ type: "init-view" });
     });
     let sortByColumn = "label";
     let sortByAscending = false;
     let scanResults;
-    let items = core.getRules().map((rule) => {
-        return { label: rule.label, value: rule.name };
-    });
-    let value = [...items];
     let banner;
     let overview;
 
@@ -23,8 +18,7 @@
             scanResults.forEach((scanResult) => {
                 scanResult.resultCount = scanResult.ruleResults.reduce(
                     (total, rule) => {
-                        let selectedValues = value.map((val) => val.value);
-                        if (rule.occurs && selectedValues.includes(rule.ruleName)) {
+                        if (rule.occurs) {
                             total = total + rule.details.length;
                         }
                         return total;
@@ -35,7 +29,6 @@
                 scanResult.type = scanResult.flow.type[0];
             });
             scanResults = scanResults;
-            // sort(scanResults, );
         }
     }
 
@@ -72,11 +65,10 @@
 </script>
 
 <svelte:window on:message={windowMessage} />
-<NavigationBanner currentPage="overview" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => overview.download()}/>
-{#if !scanResults}
-    <Spinner />
-{/if}
+<NavigationBanner showDownload currentPage="overview" bind:this={banner} on:navigate={e => banner.navigate(e, scanResults)} on:download={() => overview.download()}/>
+
 {#if scanResults && scanResults.length > 0}
-    <Select {items} multiple={true} bind:value />
     <ScanResultTable bind:this={overview} bind:scanResults />
+{:else} 
+    <Spinner />
 {/if}

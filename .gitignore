@@ -1,10 +1,7 @@
-.vscode-test
-node_modules/
-/dist
 out
-.idea
-vscode-test.iml
-/dist/
-salesforce-flow-control-2.0.0.vsix
-/lightningflowscan-vsce.iml
-/lightning-flow-scanner-vsce.iml
+dist
+node_modules
+.vscode-test/
+*.vsix
+.DS_Store
+yarn-error.logs

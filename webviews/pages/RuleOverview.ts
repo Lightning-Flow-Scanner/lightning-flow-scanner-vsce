@@ -1,7 +1,8 @@
-import App from "../components/RuleOverview.svelte"
+// @ts-ignore
+import Component from "../components/RuleOverview.svelte";
 
-const RuleOverview = new App({
-  target: document.body,
+const Overview = new Component({
+    target: document.body,
 });
 
-export default RuleOverview;
+export default Overview;

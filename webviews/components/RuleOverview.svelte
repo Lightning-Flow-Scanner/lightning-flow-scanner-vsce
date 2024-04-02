@@ -1,18 +1,14 @@
 <script lang="ts">
     import * as core from "lightning-flow-scanner-core/out";
     import RuleCard from "./RuleCard.svelte";
-    import NavigationBanner from "./NavigationBanner.svelte";
 
     const allRules = core.getRules();
 </script>
 
-<NavigationBanner currentPage="ruleOverview" />
 {#if !allRules}
-    <div class="centered">
-        <div class="loader" />
-    </div>
-{/if}
+<p> no rules </p>
 
+{/if}
 {#if allRules}
     <div id="main">
         <h2>Default Rules</h2>
