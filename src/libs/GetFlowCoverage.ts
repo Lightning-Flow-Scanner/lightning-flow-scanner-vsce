@@ -24,6 +24,6 @@ export class GetFlowCoverage {
   public async getFlowCoverage(username): Promise<CoverageResult> {
 
     return await RunSFDXCommand('sfdx force:data:soql:query -q \"SELECT Id, ApexTestClassId, ' +
-      'TestMethodName, FlowVersionId, NumElementsCovered, NumElementsNotCovered FROM FlowTestCoverage\"'  + ' -u ' + username + ' -t --json') as Promise<CoverageResult>;
+      'TestMethodName, FlowVersionId, NumElementsCovered, NumElementsNotCovered FROM FlowTestCoverage\"'  + ' -o ' + username + ' -t --json') as Promise<CoverageResult>;
   }
 }

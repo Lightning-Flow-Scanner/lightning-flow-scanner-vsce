@@ -27,6 +27,6 @@ export class GetFlowDefinitionViews {
   public async getFlowDefinitionViews(username): Promise<FlowDefinitionViewResult> {
 
     return await RunSFDXCommand('sfdx force:data:soql:query -q \"SELECT ApiName, InstalledPackageName, ' +
-      'ActiveVersionId, Label FROM FlowDefinitionView WHERE IsActive =true\"' + ' -u ' + username + ' --json') as Promise<FlowDefinitionViewResult>;
+      'ActiveVersionId, Label FROM FlowDefinitionView WHERE IsActive =true\"' + ' -o ' + username + ' --json') as Promise<FlowDefinitionViewResult>;
   }
 }
