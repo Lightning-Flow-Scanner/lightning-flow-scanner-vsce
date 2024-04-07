@@ -140,11 +140,10 @@
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
-    "lightning-flow-scanner-core": "3.5.0",
+    "lightning-flow-scanner-core": "^3.7.0",
     "mz": "^2.7.0",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
     "tabulator-tables": "^6.2.0",
     "uuid": "^9.0.1",
     "xml2js": "^0.6.2"

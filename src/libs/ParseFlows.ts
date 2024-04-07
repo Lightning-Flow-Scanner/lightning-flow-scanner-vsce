@@ -20,13 +20,7 @@ export class ParseFlows {
                 const parsedContent: { Flow: Flow } = await new XMLParser().execute(await fs.readFile(path.normalize(uri.fsPath ? uri.fsPath : uri.path)));
                 parsedFlows.push(new Flow(
                     {
-                        interviewLabel: parsedContent.Flow.interviewLabel,
-                        label: parsedContent.Flow.label,
-                        processMetadataValues: parsedContent.Flow.processMetadataValues,
-                        processType: parsedContent.Flow.processType,
-                        start: parsedContent.Flow.start,
-                        status: parsedContent.Flow.status,
-                        uri: uri,
+                        path: uri.fsPath,
                         xmldata: parsedContent
                     }));
             } catch (e) {
