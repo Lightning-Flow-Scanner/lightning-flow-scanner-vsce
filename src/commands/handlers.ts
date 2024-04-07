@@ -109,7 +109,7 @@ export default class Commands {
       ScanOverview.createOrShow(this.context.extensionUri, []);
       const newResults: core.ScanResult[] = core.fix(storedResults);
       for (const newResult of newResults) {
-        await new SaveFlow().execute(newResult.flow);
+        await new SaveFlow().execute(newResult.flow, newResult.flow.uri);
       }
       await CacheProvider.instance.set("results", newResults);
       ScanOverview.createOrShow(this.context.extensionUri, newResults);
