@@ -1,7 +1,7 @@
 {
   "name": "lightningflowscanner",
   "displayName": "Lightning Flow Scanner",
-  "author": "Ruben Halman",
+  "author": "Nicolas Vuillamy",
   "publisher": "ForceConfigControl",
   "license": "AGPL-3.0",
   "repository": {
