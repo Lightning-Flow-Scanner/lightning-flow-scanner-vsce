@@ -10,7 +10,7 @@
   },
   "icon": "media/lightningflow.png",
   "description": "A VSCode Extension that can perform static analysis on Salesforce Flows and identify violations of industry best practices.",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "engines": {
     "vscode": "^1.83.1"
   },
