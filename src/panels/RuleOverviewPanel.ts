@@ -36,27 +36,15 @@ export class RuleOverview {
     RuleOverview.currentPanel?.dispose();
     RuleOverview.currentPanel = undefined;
   }
-  // public static revive(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-  //     RuleOverview.currentPanel = new RuleOverview(panel, extensionUri);
-  // }
+
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
     this._panel = panel;
     this._extensionUri = extensionUri;
     this._update();
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
-    // // Handle messages from the webview
-    // this._panel.webview.onDidReceiveMessage(
-    //   (message) => {
-    //     switch (message.command) {
-    //       case "alert":
-    //         vscode.window.showErrorMessage(message.text);
-    //         return;
-    //     }
-    //   },
-    //   null,
-    //   this._disposables
-    // );
+
   }
+  
   public dispose() {
     RuleOverview.currentPanel = undefined;
     this._panel.dispose();

@@ -7,6 +7,8 @@ import { ScanOverview } from "../panels/ScanOverviewPanel";
 import * as core from 'lightning-flow-scanner-core/out';
 import { findFlowCoverage } from '../libs/FindFlowCoverage';
 import { CacheProvider } from '../providers/cache-provider';
+import { testdata } from '../store/testdata';
+
 
 export default class Commands {
 
@@ -17,6 +19,7 @@ export default class Commands {
     return Object.entries({
       'lightningflowscanner.viewDefaulFlowRules': () => this.viewDefaulFlowRules(),
       'lightningflowscanner.configRules': () => this.configRules(),
+      'lightningflowscanner.debugView': () => this.debugView(),
       'lightningflowscanner.scanFlows': () => this.scanFlows(),
       'lightningflowscanner.fixFlows': () => this.fixFlows(),
       'lightningflowscanner.calculateFlowTestCoverage': () => this.calculateFlowTestCoverage()
@@ -56,6 +59,14 @@ export default class Commands {
       await vscode.workspace.getConfiguration().update('lightningFlowScanner.APIVersion', apiVersionEvalExpressionString, true);
     }
     await CacheProvider.instance.set("ruleconfig", ruleConfig);
+  }
+
+  private async debugView() {
+
+    let results  = testdata as unknown as core.ScanResult[];
+    // await CacheProvider.instance.set("results", results);
+    ScanOverview.createOrShow(this.context.extensionUri, results);
+    await vscode.commands.executeCommand('workbench.action.webview.openDeveloperTools');
   }
 
   private async calculateFlowTestCoverage() {
