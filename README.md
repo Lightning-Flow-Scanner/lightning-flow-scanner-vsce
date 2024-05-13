@@ -1,7 +1,7 @@
  [![Lightning Flow Scanner Banner](media/bannerslim.png)](https://github.com/Lightning-Flow-Scanner)
 __*Analyze Salesforce Flows for optimization and ensure adherence to Industry Best Practices.*__
 
- [![Flow Overview](media/overview.jpg)](https://github.com/Lightning-Flow-Scanner)
+ [![Flow Overview](media/demo.gif)](https://github.com/Lightning-Flow-Scanner)
 
 **Also available as [Salesforce CLI Plugin](https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-sfdx)*
 
