@@ -1,12 +1,13 @@
 import * as vscode from 'vscode';
 import { RuleOverview } from '../panels/RuleOverviewPanel';
 import { SelectFlows } from "../libs/SelectFlows";
-import { ParseFlows } from "../libs/ParseFlows";
 import { SaveFlow } from '../libs/SaveFlow';
 import { ScanOverview } from "../panels/ScanOverviewPanel";
 import * as core from 'lightning-flow-scanner-core/out';
 import { findFlowCoverage } from '../libs/FindFlowCoverage';
 import { CacheProvider } from '../providers/cache-provider';
+import { testdata } from '../store/testdata';
+
 
 export default class Commands {
 
@@ -17,6 +18,7 @@ export default class Commands {
     return Object.entries({
       'lightningflowscanner.viewDefaulFlowRules': () => this.viewDefaulFlowRules(),
       'lightningflowscanner.configRules': () => this.configRules(),
+      'lightningflowscanner.debugView': () => this.debugView(),
       'lightningflowscanner.scanFlows': () => this.scanFlows(),
       'lightningflowscanner.fixFlows': () => this.fixFlows(),
       'lightningflowscanner.calculateFlowTestCoverage': () => this.calculateFlowTestCoverage()
@@ -58,6 +60,14 @@ export default class Commands {
     await CacheProvider.instance.set("ruleconfig", ruleConfig);
   }
 
+  private async debugView() {
+
+    let results  = testdata as unknown as core.ScanResult[];
+    await CacheProvider.instance.set("results", results);
+    ScanOverview.createOrShow(this.context.extensionUri, results);
+    await vscode.commands.executeCommand('workbench.action.webview.openDeveloperTools');
+  }
+
   private async calculateFlowTestCoverage() {
     const results = CacheProvider.instance.get('results');
     ScanOverview.createOrShow(this.context.extensionUri, []);
@@ -89,13 +99,16 @@ export default class Commands {
 
       let results: core.ScanResult[] = [];
       const panel = ScanOverview.createOrShow(this.context.extensionUri, results);
-      const flows: core.Flow[] = await new ParseFlows().execute(selectedUris);
+      let selected = [];
+      for(let uri of selectedUris){
+        selected.push(uri.path);
+      }
       let configReset: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('lightningFlowScanner').get("Reset") ?? undefined;
       if (configReset) {
         await this.configRules();
       }
       const ruleConfig = CacheProvider.instance.get('ruleconfig');
-      results = core.scan(flows, ruleConfig);
+      results = core.scan(await core.parse(selected), ruleConfig);
       await CacheProvider.instance.set("results", results );
       ScanOverview.createOrShow(this.context.extensionUri, results);
     } else {

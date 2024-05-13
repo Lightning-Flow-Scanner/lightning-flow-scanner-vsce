@@ -10,7 +10,7 @@
   },
   "icon": "media/lightningflow.png",
   "description": "A VSCode Extension that can perform static analysis on Salesforce Flows and identify violations of industry best practices.",
-  "version": "3.7.0",
+  "version": "3.9.0",
   "engines": {
     "vscode": "^1.83.1"
   },
@@ -23,11 +23,6 @@
     "configuration": {
       "title": "Lightning Flow Scanner",
       "properties": {
-        "lightningFlowScanner.SpecifyFlows": {
-          "type": "boolean",
-          "default": false,
-          "description": "Make a selection of flow files instead of selecting a root folder."
-        },
         "lightningFlowScanner.NamingConvention": {
           "type": "string",
           "default": "[A-Za-z0-9]+_[A-Za-z0-9]+",
@@ -53,6 +48,10 @@
       {
         "command": "lightningflowscanner.scanFlows",
         "title": "Scan Flows"
+      },
+      {
+        "command": "lightningflowscanner.debugView",
+        "title": "Debug Flow Scanner View"
       },
       {
         "command": "lightningflowscanner.fixFlows",
@@ -140,11 +139,11 @@
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
-    "lightning-flow-scanner-core": "3.10",
+    "lightning-flow-scanner-core": "^3.12.0",
     "mz": "^2.7.0",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
-    "tabulator-tables": "^6.2.0",
+    "tabulator-tables": "^5.5.1",
     "uuid": "^9.0.1",
     "xml2js": "^0.6.2"
   }
