@@ -1,7 +1,6 @@
 {
   "name": "lightningflowscanner",
   "displayName": "Lightning Flow Scanner",
-  "author": "Nicolas Vuillamy",
   "publisher": "ForceConfigControl",
   "license": "AGPL-3.0",
   "repository": {
@@ -9,7 +8,7 @@
     "url": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce"
   },
   "icon": "media/lightningflow.png",
-  "description": "A VSCode Extension that can perform static analysis on Salesforce Flows and identify violations of industry best practices.",
+  "description": "A VSCode Extension designed to pinpoint deviations from Industry Best Practices in Salesforce Flows, ensuring standards of business automation excellence.",
   "version": "3.9.0",
   "engines": {
     "vscode": "^1.83.1"
