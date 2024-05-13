@@ -23,6 +23,5 @@ The `Calculate Flow Coverage` command calculates Flow Test coverage percentages 
 ## Settings
  Name        | Description | Type | Default value | 
 |--------------|:-----------|--------------|:-----------|
-| SpecifyFlows | Specify flow file paths instead of a root directory. | boolean | false | 
 | NamingConvention | Specify a REGEX expression to use as Flow Naming convention. | string | [A-Za-z0-9]+_[A-Za-z0-9]+ | 
 | APIVersion | Specify an expression to validate the API version, i.e. '===50'(use at least 50). | string | >50 | 

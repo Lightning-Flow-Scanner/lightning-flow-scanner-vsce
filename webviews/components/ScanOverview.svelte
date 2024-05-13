@@ -25,8 +25,8 @@
                     },
                     0
                 );
-                scanResult.label = scanResult.flow.label[0];
-                scanResult.type = scanResult.flow.type[0];
+                scanResult.label = scanResult.flow.label;
+                scanResult.type = scanResult.flow.type;
             });
             scanResults = scanResults;
         }

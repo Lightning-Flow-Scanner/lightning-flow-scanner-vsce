@@ -23,11 +23,6 @@
     "configuration": {
       "title": "Lightning Flow Scanner",
       "properties": {
-        "lightningFlowScanner.SpecifyFlows": {
-          "type": "boolean",
-          "default": false,
-          "description": "Make a selection of flow files instead of selecting a root folder."
-        },
         "lightningFlowScanner.NamingConvention": {
           "type": "string",
           "default": "[A-Za-z0-9]+_[A-Za-z0-9]+",
