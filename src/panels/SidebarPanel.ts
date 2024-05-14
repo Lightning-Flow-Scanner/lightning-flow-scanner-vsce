@@ -35,13 +35,12 @@ export class Sidebar implements vscode.WebviewViewProvider {
     const styleVSCodeUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, "media", "vscode.css")
     );
-
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "out", "compiled", "Sidebar.js")
-    );
-    const styleMainUri = webview.asWebviewUri(
-      vscode.Uri.joinPath(this._extensionUri, "out", "compiled", "Sidebar.css")
-    );
+      vscode.Uri.joinPath(this._extensionUri, "out/compiled", "sidebar.js")
+  );
+  const styleMainUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this._extensionUri, "out/compiled", "sidebar.css")
+  );
     const nonce = uuid.v4();
     return `<!DOCTYPE html>
 			<html lang="en">
