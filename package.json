@@ -1,7 +1,6 @@
 {
   "name": "lightningflowscanner",
   "displayName": "Lightning Flow Scanner",
-  "author": "Nicolas Vuillamy",
   "publisher": "ForceConfigControl",
   "license": "AGPL-3.0",
   "repository": {
@@ -9,8 +8,8 @@
     "url": "https://github.com/Lightning-Flow-Scanner/lightning-flow-scanner-vsce"
   },
   "icon": "media/lightningflow.png",
-  "description": "A VSCode Extension that can perform static analysis on Salesforce Flows and identify violations of industry best practices.",
-  "version": "3.8.0",
+  "description": "A VSCode Extension designed to pinpoint deviations from Industry Best Practices in Salesforce Flows, ensuring standards of business automation excellence.",
+  "version": "3.10.0",
   "engines": {
     "vscode": "^1.83.1"
   },
@@ -53,6 +52,10 @@
       {
         "command": "lightningflowscanner.scanFlows",
         "title": "Scan Flows"
+      },
+      {
+        "command": "lightningflowscanner.debugView",
+        "title": "Debug Flow Scanner View"
       },
       {
         "command": "lightningflowscanner.fixFlows",
@@ -140,11 +143,11 @@
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
-    "lightning-flow-scanner-core": "3.10",
+    "lightning-flow-scanner-core": "^3.12.0",
     "mz": "^2.7.0",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
-    "tabulator-tables": "^6.2.0",
+    "tabulator-tables": "^5.5.1",
     "uuid": "^9.0.1",
     "xml2js": "^0.6.2"
   }

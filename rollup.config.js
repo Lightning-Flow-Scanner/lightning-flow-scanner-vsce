@@ -55,17 +55,17 @@ export default fs
                 }),
                 commonjs(),
                 builtins(),
-                typescript({
-                    tsconfig: "webviews/tsconfig.json",
-                    sourceMap: !production,
-                    inlineSources: !production,
-                }),
                 svelteSVG({
                     // optional SVGO options
                     // pass empty object to enable defaults
                     svgo: {},
                   }),
                 production && terser(),
+                typescript({
+                    tsconfig: "webviews/tsconfig.json",
+                    sourceMap: !production,
+                    inlineSources: !production,
+                }),
             ],
             watch: {
                 clearScreen: false,

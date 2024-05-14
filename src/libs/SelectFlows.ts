@@ -32,5 +32,6 @@ export class SelectFlows {
         return FindFlows(uris[0]);
       }
     }
+    return [];
   }
 }
