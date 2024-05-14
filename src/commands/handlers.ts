@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { RuleOverview } from '../panels/RuleOverviewPanel';
 import { SelectFlows } from "../libs/SelectFlows";
-import { ParseFlows } from "../libs/ParseFlows";
 import { SaveFlow } from '../libs/SaveFlow';
 import { ScanOverview } from "../panels/ScanOverviewPanel";
 import * as core from 'lightning-flow-scanner-core/out';
@@ -84,18 +83,17 @@ export default class Commands {
   private async scanFlows() {
 
     const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri;
-    const selectedUris: vscode.Uri[] = await new SelectFlows(rootPath, 'Select a root folder:').execute(rootPath);
+    const selectedUris = await new SelectFlows(rootPath, 'Select a root folder:').execute(rootPath);
     if (selectedUris.length > 0) {
 
       let results: core.ScanResult[] = [];
       const panel = ScanOverview.createOrShow(this.context.extensionUri, results);
-      const flows: core.Flow[] = await new ParseFlows().execute(selectedUris);
       let configReset: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('lightningFlowScanner').get("Reset") ?? undefined;
       if (configReset) {
         await this.configRules();
       }
       const ruleConfig = CacheProvider.instance.get('ruleconfig');
-      results = core.scan(flows, ruleConfig);
+      results = core.scan(await core.parse(selectedUris), ruleConfig);
       await CacheProvider.instance.set("results", results );
       ScanOverview.createOrShow(this.context.extensionUri, results);
     } else {
