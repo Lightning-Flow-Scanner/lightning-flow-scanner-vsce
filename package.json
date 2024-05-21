@@ -143,7 +143,7 @@
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
-    "lightning-flow-scanner-core": "3.12.0",
+    "lightning-flow-scanner-core": "3.16.0",
     "mz": "^2.7.0",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
