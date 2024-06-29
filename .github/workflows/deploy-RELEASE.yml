@@ -35,6 +35,6 @@ jobs:
       - name: Setup Dependencies
         run: |
           npm ci
-          npm install -g @vscode/cli
+          npm install -g @vscode/vsce
       - name: Publish
         run: vscode publish --pat ${{ secrets.VSCE_PAT }}
