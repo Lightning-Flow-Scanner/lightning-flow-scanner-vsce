@@ -85,8 +85,6 @@ export default class Commands {
     } else {
       vscode.window.showInformationMessage('No results found. Please make sure to complete a scan before calculating coverage.');
     }
-    
-
   }
 
 
@@ -121,9 +119,13 @@ export default class Commands {
         const uri = vscode.Uri.file(newResult.flow.fsPath);
         await new SaveFlow().execute(newResult.flow, uri);
       }
-      await CacheProvider.instance.set("results", newResults);
-      ScanOverview.createOrShow(this.context.extensionUri, newResults);
+      if (newResults && newResults.length > 0){
+        await CacheProvider.instance.set("results", newResults);
+        await ScanOverview.createOrShow(this.context.extensionUri, newResults);
+      } else {
+        await ScanOverview.createOrShow(this.context.extensionUri, storedResults);
+        await vscode.window.showWarningMessage('Fix Flows: UnusedVariable and UnconnectedElement rules are currently supported, stay tuned for more rules.');
+      }
     }
-
   }
 }

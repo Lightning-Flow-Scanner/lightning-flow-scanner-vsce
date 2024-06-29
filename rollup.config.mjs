@@ -1,7 +1,7 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import json from "@rollup/plugin-json";
@@ -10,8 +10,16 @@ import builtins from 'rollup-plugin-node-builtins';
 import path from 'path';
 import fs from 'fs';
 import css from 'rollup-plugin-css-only';
+import {fileURLToPath} from 'url';
+
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
 const production = !process.env.ROLLUP_WATCH;
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 export default fs
     .readdirSync(path.join(__dirname, "webviews", "pages"))
@@ -41,7 +49,7 @@ export default fs
                     preprocess: sveltePreprocess({ 
                         sourceMap: !production,
                         postcss: {
-                            plugins: [require('tailwindcss'), require('autoprefixer')],
+                            plugins: [tailwindcss, autoprefixer],
                           },
                     }),
                     emitCss: production,

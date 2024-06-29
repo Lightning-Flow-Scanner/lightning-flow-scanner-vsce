@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import * as fs from "mz/fs";
 import * as uuid from 'uuid';
 import { convertArrayToCSV } from "convert-array-to-csv";
 import { ViolationOverview } from "./ViolationOverviewPanel";
@@ -108,22 +107,14 @@ export class ScanOverview {
                     return;
                 }
                 case 'download': {
-                    if (!this.isDownloading && data.value) {
-                        this.isDownloading = true;
-                        let saveResult;
-                        do {
-                            saveResult = await vscode.window.showSaveDialog({
-                                defaultUri: vscode.Uri.file(vscode.workspace.workspaceFolders[0].uri.fsPath),
-                                filters: {
-                                    'csv': ['.csv']
-                                }
-                            });
-                        } while (!saveResult);
-                        const csv = convertArrayToCSV(data.value);
-                        await fs.writeFile(saveResult.fsPath, csv);
-                        vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
-                        this.isDownloading = false;
-                    }
+                    let saveResult = await vscode.window.showSaveDialog({
+                        filters: {
+                            'csv': ['.csv']
+                        }
+                    });
+                    const csv = convertArrayToCSV(data.value);
+                    await vscode.workspace.fs.writeFile(saveResult, Buffer.from(csv));
+                    await vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
                 }
             }
         });
