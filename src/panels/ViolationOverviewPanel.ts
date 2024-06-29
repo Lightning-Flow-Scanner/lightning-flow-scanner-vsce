@@ -1,6 +1,5 @@
 import { ScanOverview } from "./ScanOverviewPanel";
 import * as vscode from "vscode";
-import * as fs from "mz/fs";
 import * as uuid from 'uuid';
 import { convertArrayToCSV } from "convert-array-to-csv";
 import {ScanResult} from "lightning-flow-scanner-core/out/index";
@@ -93,22 +92,18 @@ export class ViolationOverview {
                     return;
                 }
                 case 'download': {
-                    if (!this.isDownloading && data.value) {
-                        this.isDownloading = true;
-                        let saveResult;
-                        do {
-                            saveResult = await vscode.window.showSaveDialog({
-                                defaultUri: vscode.Uri.file(vscode.workspace.workspaceFolders[0].uri.fsPath),
-                                filters: {
-                                    'csv': ['.csv']
-                                }
-                            });
-                        } while (!saveResult);
-                        const csv = convertArrayToCSV(data.value);
-                        await fs.writeFile(saveResult.fsPath, csv);
-                        vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
-                        this.isDownloading = false;
+                    if (!data.value) {
+                        await vscode.window.showInformationMessage('No results found. Please make sure to complete a scan before calculating coverage.');
+                        return;
                     }
+                    let saveResult = await vscode.window.showSaveDialog({
+                        filters: {
+                            'csv': ['.csv']
+                        }
+                    });
+                    const csv = convertArrayToCSV(data.value);
+                    await vscode.workspace.fs.writeFile(saveResult, Buffer.from(csv));
+                    await vscode.window.showInformationMessage('Downloaded file: ' + saveResult.fsPath);
                 }
             }
         });
