@@ -35,6 +35,8 @@ jobs:
       - name: Setup Dependencies
         run: |
           npm ci
-          npm install -g @vscode/vsce
-      - name: Publish
+          npm install -g @vscode/vsce ovsx
+      - name: Publish VSCE Marketplace
         run: vsce publish --pat ${{ secrets.VSCE_PAT }}
+      - name: Publish OpenVSX Registry
+        run: ovsx publish --pat ${{ secrets.OVSX_PAT }} 
