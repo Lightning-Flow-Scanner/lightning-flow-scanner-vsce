@@ -105,8 +105,9 @@
     "test-watch": "tsc -watch -p ./",
     "pretest": "npm run test-compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "wdio": "wdio run ./wdio.conf.ts",
+    "wdio-test": "npm run build && wdio run ./wdio.conf.ts"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
@@ -125,6 +126,11 @@
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
     "@vscode/vsce": "^2.29.0",
+    "@wdio/cli": "^8.39.0",
+    "@wdio/globals": "^8.39.0",
+    "@wdio/local-runner": "^8.39.0",
+    "@wdio/mocha-framework": "^8.39.0",
+    "@wdio/spec-reporter": "^8.39.0",
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "eslint": "8.57.0",
@@ -141,7 +147,8 @@
     "ts-loader": "^9.5.1",
     "typescript": "^5.5.3",
     "webpack": "^5.92.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "wdio-vscode-service": "^6.1.0"
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",

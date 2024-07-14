@@ -20,11 +20,21 @@
 		"baseUrl": ".",
 		"paths": {
 			"vscode": ["node_modules/@types/vscode/"]
-		}
+		},
+		"types": [
+            "node",
+			"@wdio/globals/types",
+            "@wdio/mocha-framework",
+            "expect-webdriverio",
+            "wdio-vscode-service"
+        ],
+		"esModuleInterop": true
 	},
 	"exclude": [
 		"node_modules",
 		".vscode-test",
-		"webviews"
+		"webviews",
+		"test",
+		"wdio.conf.ts"
 	]
 }
