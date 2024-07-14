@@ -145,7 +145,7 @@
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
-    "lightning-flow-scanner-core": "3.19.0",
+    "lightning-flow-scanner-core": "3.20.0",
     "tabulator-tables": "6.2.1",
     "uuid": "^10.0.0",
     "xml2js": "^0.6.2"
