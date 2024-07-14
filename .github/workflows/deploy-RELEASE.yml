@@ -36,6 +36,8 @@ jobs:
         run: |
           npm ci
           npm install -g @vscode/vsce ovsx
+      - name: Compile VSIX
+        run: npm run build
       - name: Publish VSCE Marketplace
         run: vsce publish --pat ${{ secrets.VSCE_PAT }} -i $(ls -all | grep "lightningflowscanner" | awk '{print $9}')
       - name: Publish OpenVSX Registry
