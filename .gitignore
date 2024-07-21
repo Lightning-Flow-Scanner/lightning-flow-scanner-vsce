@@ -5,6 +5,4 @@ node_modules
 *.vsix
 .DS_Store
 yarn-error.logs
-
-# files exceed max size and are probably supposed to be initialized locally.
 .wdio-vscode-service
