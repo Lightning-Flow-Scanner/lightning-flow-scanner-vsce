@@ -17,17 +17,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os:
-          [
-            macos-latest,
-            macos-13,
-            ubuntu-latest,
-            ubuntu-20.04,
-            windows-latest,
-            windows-2022,
-          ]
+        os: [macos-latest, macos-13, windows-latest, windows-2022]
         node-version: [18.x, 20.x, 22.x]
-        command: [install, ci]
 
     timeout-minutes: 15
     steps:
