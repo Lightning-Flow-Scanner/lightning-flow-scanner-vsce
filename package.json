@@ -121,7 +121,7 @@
     "@types/node": "22.5.0",
     "@types/uuid": "^10.0.0",
     "@types/vscode": "1.92.0",
-    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.2.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
