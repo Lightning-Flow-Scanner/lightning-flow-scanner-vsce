@@ -23,9 +23,8 @@
 		},
 		"types": [
             "node",
-			"@wdio/globals/types",
+						"@wdio/globals/types",
             "@wdio/mocha-framework",
-            "expect-webdriverio",
             "wdio-vscode-service"
         ],
 		"esModuleInterop": true
