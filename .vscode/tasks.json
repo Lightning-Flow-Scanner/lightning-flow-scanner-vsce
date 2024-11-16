@@ -35,6 +35,14 @@
 				"npm: watch-tests"
 			],
 			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "compile",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: compile",
+			"detail": "webpack --config ./build/node-extension.webpack.config.js"
 		}
 	]
 }
