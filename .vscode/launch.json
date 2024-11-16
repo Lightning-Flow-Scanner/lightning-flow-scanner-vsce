@@ -9,6 +9,18 @@
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}"
 			],
+			"name": "Launch Extension VSCE",
+			"outFiles": [
+				"${workspaceFolder}/out/**/*.js"
+			],
+			"preLaunchTask": "npm: compile",
+			"request": "launch",
+			"type": "extensionHost"
+		},
+		{
+			"args": [
+				"--extensionDevelopmentPath=${workspaceFolder}"
+			],
 			"name": "Launch Extension",
 			"outFiles": [
 				"${workspaceFolder}/dist/**/*.js"
