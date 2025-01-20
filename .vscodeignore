@@ -11,3 +11,12 @@ vsc-extension-quickstart.md
 node_modules
 .wdio-vscode-service
 **.vsix
+
+__mocks__
+test
+coverage
+*.log
+*.config.mjs
+*.config.js
+*.conf.ts
+.github

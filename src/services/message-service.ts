@@ -4,42 +4,50 @@ import * as vscode from 'vscode';
 export default class MessageService {
   constructor(private webview: vscode.Webview) {}
 
-  onInfo(query: any) {
-    if (!query.value) {
+  onInfo(query: object) {
+    if (!('value' in query)) {
       return;
     }
-    vscode.window.showInformationMessage(query.value);
+    vscode.window.showInformationMessage(query.value as string);
   }
 
-  onError(query: any) {
-    if (!query.value) {
+  onError(query: object) {
+    if (!('value' in query)) {
       return;
     }
-    vscode.window.showErrorMessage(query.value);
+    vscode.window.showErrorMessage(query.value as string);
   }
 
-  viewRules(query: any) {
-    vscode.commands.executeCommand("lightningflowscanner.viewDefaulFlowRules");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  viewRules(query: unknown) {
+    vscode.commands.executeCommand('lightningflowscanner.viewDefaulFlowRules');
   }
 
-  scanFlows(query: any) {
-    vscode.commands.executeCommand("lightningflowscanner.scanFlows");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  scanFlows(query: unknown) {
+    vscode.commands.executeCommand('lightningflowscanner.scanFlows');
   }
 
-  fixFlows(query: any) {
-    vscode.commands.executeCommand("lightningflowscanner.fixFlows");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  fixFlows(query: unknown) {
+    vscode.commands.executeCommand('lightningflowscanner.fixFlows');
   }
 
-  runTests(query: any) {
-    vscode.commands.executeCommand("lightningflowscanner.calculateFlowTestCoverage");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  runTests(query: unknown) {
+    vscode.commands.executeCommand(
+      'lightningflowscanner.calculateFlowTestCoverage'
+    );
   }
- 
-  configRules(query: any) {
-    vscode.commands.executeCommand("lightningflowscanner.configRules");
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  configRules(query: unknown) {
+    vscode.commands.executeCommand('lightningflowscanner.configRules');
   }
 
   // Todo implement Cache in Front end components
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getCache(query: any) {
     const { nonce, key } = query;
     this.sendResponse(
@@ -48,6 +56,7 @@ export default class MessageService {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setCache(query: any) {
     const { nonce, key, value } = query;
     this.sendResponse(
@@ -56,7 +65,7 @@ export default class MessageService {
     );
   }
 
-  private async sendResponse(fetchData: Function, nonce: string) {
+  private async sendResponse(fetchData: () => unknown, nonce: string) {
     try {
       const result = await fetchData();
       this.webview.postMessage({
@@ -64,7 +73,7 @@ export default class MessageService {
         data: result,
         nonce,
       });
-    } catch (e: any) {
+    } catch (e) {
       this.webview.postMessage({
         ok: false,
         error: e?.message || 'generic_error',
@@ -73,9 +82,11 @@ export default class MessageService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onVsMessage(data: any) {
     const { type, ...query } = data;
     if (type in this) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (this as any)[type](query);
     } else {
       this.sendResponse(() => Promise.reject('method not found'), query.nonce);

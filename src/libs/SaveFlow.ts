@@ -1,5 +1,4 @@
 import { create } from 'xmlbuilder2';
-// import * as xml2js from 'xml2js';
 import * as vscode from 'vscode';
 import { Flow } from 'lightning-flow-scanner-core';
 import { XMLBuilder } from 'xmlbuilder2/lib/interfaces';
@@ -14,14 +13,11 @@ export class SaveFlow {
   }
 
   private async writeFlow(flow: Flow, pathToWrite: vscode.Uri) {
-    // const xml = new xml2js.Builder({
-    //   rootName: 'Flow',
-    //   xmldec: { version: '1.0', encoding: 'UTF-8' },
-    // }).buildObject(flow.xmldata);
     const flowXmlNamespace = 'http://soap.sforce.com/2006/04/metadata';
     this.doc = create(
       {
         encoding: 'UTF-8',
+        version: '1.0',
       },
       {
         Flow: flow.xmldata,

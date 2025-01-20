@@ -10,6 +10,10 @@ export default [
       'node_modules/*',
       '.wdio-vscode-service',
       'build/*',
+      'tailwind.config.js',
+      'test/specs/test.e2e.ts',
+      'webpack.config.js',
+      'webviews/globals.d.ts',
     ],
   },
   {
