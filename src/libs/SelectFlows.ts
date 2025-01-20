@@ -14,7 +14,7 @@ export class SelectFlows {
       .getConfiguration("lightningFlowScanner")
       .get("SpecifyFiles") as boolean;
 
-    let selectedFlows = await vscode.window.showOpenDialog({
+    const selectedFlows = await vscode.window.showOpenDialog({
       canSelectFiles: specifyFiles,
       canSelectFolders: !specifyFiles,
       canSelectMany: specifyFiles,
@@ -22,8 +22,8 @@ export class SelectFlows {
     });
 
     if(selectedFlows){
-      let uris: string[] = [];
-      for (let selectedFlow of selectedFlows){
+      const uris: string[] = [];
+      for (const selectedFlow of selectedFlows){
         uris.push(selectedFlow.fsPath);
       }
       if(specifyFiles){

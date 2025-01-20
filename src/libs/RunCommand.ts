@@ -10,8 +10,8 @@ export function RunSFDXCommand(commandString: string): Promise<any> {
       commandString = 'cmd /c ' + commandString;
     }
 
-    let workspacePath = vscode.workspace.workspaceFolders;
-    let foo: child.ChildProcess = child.exec(commandString, {
+    const workspacePath = vscode.workspace.workspaceFolders;
+    const foo: child.ChildProcess = child.exec(commandString, {
       maxBuffer: 1024 * 1024 * 6,
       cwd: workspacePath ? workspacePath[0].uri.fsPath : ""
     });
@@ -36,7 +36,7 @@ export function RunSFDXCommand(commandString: string): Promise<any> {
 
     foo.on('exit', (code, signal) => {
       if (code === 0) {
-        let data = JSON.parse(bufferOutData);
+        const data = JSON.parse(bufferOutData);
         resolve(data);
       } else {
         // Reject the promise with an error message

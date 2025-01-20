@@ -13,7 +13,7 @@ export default class Commands {
   constructor(private context: vscode.ExtensionContext) {}
 
   get handlers() {
-    /* eslint-disable @typescript-eslint/naming-convention */
+     
     return Object.entries({
       'lightningflowscanner.viewDefaulFlowRules': () =>
         this.viewDefaulFlowRules(),
@@ -34,7 +34,7 @@ export default class Commands {
     const allRules = core.getRules();
     const ruleConfig = { rules: {} };
 
-    let items = allRules.map((rule) => {
+    const items = allRules.map((rule) => {
       return { label: rule.label, value: rule.name };
     });
     items.forEach((item) => {
@@ -92,7 +92,7 @@ export default class Commands {
   }
 
   private async debugView() {
-    let results = testdata as unknown as core.ScanResult[];
+    const results = testdata as unknown as core.ScanResult[];
     await CacheProvider.instance.set('results', results);
     ScanOverview.createOrShow(this.context.extensionUri, results);
     await vscode.commands.executeCommand(
@@ -106,8 +106,8 @@ export default class Commands {
     if (results && results.length > 0) {
       const coverageMap = await findFlowCoverage(results);
       const newResults = [];
-      for (let result of results) {
-        let flowName = result.flow.name;
+      for (const result of results) {
+        const flowName = result.flow.name;
         const coverage = coverageMap.get(flowName);
         result['coverage'] = coverage;
         newResults.push(result);
@@ -138,7 +138,7 @@ export default class Commands {
         results
       );
       OutputChannel.getInstance().logChannel.trace('create panel');
-      let configReset: vscode.WorkspaceConfiguration =
+      const configReset: vscode.WorkspaceConfiguration =
         vscode.workspace
           .getConfiguration('lightningFlowScanner')
           .get('Reset') ?? undefined;
