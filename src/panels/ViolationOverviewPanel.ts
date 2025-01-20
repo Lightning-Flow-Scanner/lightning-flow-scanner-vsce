@@ -21,7 +21,7 @@ export class ViolationOverview {
       ? vscode.window.activeTextEditor.viewColumn
       : undefined;
 
-    let title = tab ? "Results " + tab : "All Results";
+    const title = tab ? "Results " + tab : "All Results";
     if (
       ViolationOverview.currentPanel &&
       ViolationOverview.currentPanel._panel.title === title
@@ -112,7 +112,7 @@ export class ViolationOverview {
             );
             return;
           }
-          let saveResult = await vscode.window.showSaveDialog({
+          const saveResult = await vscode.window.showSaveDialog({
             filters: {
               csv: [".csv"],
             },

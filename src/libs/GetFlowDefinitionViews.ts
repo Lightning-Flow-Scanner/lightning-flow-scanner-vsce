@@ -1,7 +1,4 @@
-import * as vscode from 'vscode';
-import * as child from 'child_process';
 import { RunSFDXCommand } from './RunCommand';
-import { SFDX } from './GetOrgInfo';
 
 export interface FlowDefinitionViewResult {
   status: number;

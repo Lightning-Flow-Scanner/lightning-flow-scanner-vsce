@@ -11,15 +11,7 @@ concurrency:
 jobs:
   test:
     name: Test
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, windows-latest]
-        node-version: [20.x, 22.x]
-
+    runs-on: macos-latest
     timeout-minutes: 15
     steps:
       - name: Checkout Code
@@ -27,10 +19,10 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v4.0.2
         with:
-          node-version: 20.x
+          node-version: 22.x
       - name: Install dependencies and link
         run: npm ci
       - name: Package
         run: npm run build
-      # - name: Run tests
-      #   run: npm run wdio-test
+      - name: Run tests
+        run: npm run test:cov
