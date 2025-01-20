@@ -34,6 +34,9 @@
 		".vscode-test",
 		"webviews",
 		"test",
-		"wdio.conf.ts"
+		"wdio.conf.ts",
+		"__mocks__",
+		"jest.config.js",
+		"eslint.config.mjs"
 	]
 }
