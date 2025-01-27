@@ -1,4 +1,4 @@
-export const testdata = [
+export let testdata = [
     {
       flow: {
         flowVariables: [

@@ -121,7 +121,7 @@ export class ScanOverview {
           return;
         }
         case "download": {
-          const saveResult = await vscode.window.showSaveDialog({
+          let saveResult = await vscode.window.showSaveDialog({
             filters: {
               csv: [".csv"],
             },

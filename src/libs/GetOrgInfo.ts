@@ -17,7 +17,6 @@ export class GetOrgInfo {
   public getOrgInfo(): Promise<SFDX> {
     try {
       return RunSFDXCommand('sf org display --json') as Promise<SFDX>;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {}
   }
 }
