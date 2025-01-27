@@ -9,7 +9,7 @@
   },
   "icon": "media/lightningflow.png",
   "description": "A VSCode Extension designed to pinpoint deviations from Industry Best Practices in Salesforce Flows, ensuring standards of business automation excellence.",
-  "version": "3.31.0",
+  "version": "3.30.0",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -104,23 +104,17 @@
     "test-compile": "tsc -p ./",
     "test-watch": "tsc -watch -p ./",
     "pretest": "npm run test-compile && npm run lint",
-    "test": "npm run jest",
-    "lint": "eslint",
+    "lint": "eslint src --ext ts",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "wdio": "wdio run ./wdio.conf.ts",
-    "wdio-test": "npm run build && npm run wdio",
-    "jest": "jest",
-    "test:cov": "jest --coverage"
+    "wdio-test": "npm run build && npm run wdio"
   },
   "devDependencies": {
-    "@jest/types": "^29.6.3",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@swc/core": "^1.10.8",
-    "@swc/jest": "^0.2.37",
     "@tsconfig/svelte": "^5.0.4",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.10",
@@ -141,11 +135,9 @@
     "concurrently": "^9.1.2",
     "eslint": "^9.18.0",
     "glob": "^11.0.1",
-    "jest": "^29.7.0",
-    "jest-mock-vscode": "^4.0.5",
     "mocha": "^11.0.1",
     "postcss": "^8.5.1",
-    "rollup": "^4.31.0",
+    "rollup": "^4.30.1",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-svelte": "^7.2.2",
@@ -154,7 +146,6 @@
     "tailwindcss": "^3.4.17",
     "ts-loader": "^9.5.2",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.20.0",
     "wdio-vscode-service": "^6.1.2",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1"
@@ -162,9 +153,8 @@
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
     "lightning-flow-scanner-core": "4.10.0",
-    "tabulator-tables": "6.3.1",
+    "tabulator-tables": "6.3.0",
     "uuid": "^11.0.5",
-    "xml2js": "^0.6.2",
-    "xmlbuilder2": "^3.1.1"
+    "xml2js": "^0.6.2"
   }
 }
