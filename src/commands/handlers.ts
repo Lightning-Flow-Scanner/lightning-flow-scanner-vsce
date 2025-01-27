@@ -13,7 +13,6 @@ export default class Commands {
   constructor(private context: vscode.ExtensionContext) {}
 
   get handlers() {
-    /* eslint-disable @typescript-eslint/naming-convention */
     return Object.entries({
       'lightningflowscanner.viewDefaulFlowRules': () =>
         this.viewDefaulFlowRules(),
