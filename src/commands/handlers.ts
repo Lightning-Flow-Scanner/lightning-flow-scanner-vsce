@@ -40,10 +40,9 @@ export default class Commands {
       item['picked'] = true;
     });
 
-    const selectedRules: { label: string; value: string }[] =
-      await vscode.window.showQuickPick(items, {
-        canPickMany: true,
-      });
+    const selectedRules = (await vscode.window.showQuickPick(items, {
+      canPickMany: true,
+    })) as { label: string; value: string }[];
 
     for (const rule of allRules) {
       if (selectedRules.map((r) => r.value).includes(rule.name)) {
