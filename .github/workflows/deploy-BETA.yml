@@ -7,7 +7,7 @@
 #######################################
 # Start the job on all push to master #
 #######################################
-name: 'Build & Deploy - RELEASE'
+name: 'Build & Deploy - BETA'
 on:
   push:
     branches:
