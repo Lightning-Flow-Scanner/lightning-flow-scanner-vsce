@@ -30,7 +30,7 @@ export default class Commands {
   }
 
   private async configRules() {
-    const allRules = core.getRules();
+    const allRules: core.IRuleDefinition[] = core.getRules();
     const ruleConfig = { rules: {} };
 
     let items = allRules.map((rule) => {
