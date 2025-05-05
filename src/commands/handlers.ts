@@ -30,14 +30,14 @@ export default class Commands {
   }
 
   private async configRules() {
-    const allRules: core.IRuleDefinition[] = core.getRules();
+    const allRules: core.IRuleDefinition[] = [
+      ...core.getBetaRules(),
+      ...core.getRules(),
+    ];
     const ruleConfig = { rules: {} };
 
     let items = allRules.map((rule) => {
-      return { label: rule.label, value: rule.name };
-    });
-    items.forEach((item) => {
-      item['picked'] = true;
+      return { label: rule.label, value: rule.name, picked: true };
     });
 
     const selectedRules = (await vscode.window.showQuickPick(items, {
@@ -88,6 +88,10 @@ export default class Commands {
         );
     }
     await CacheProvider.instance.set('ruleconfig', ruleConfig);
+    OutputChannel.getInstance().logChannel.debug(
+      'Stored rule configurations',
+      ruleConfig
+    );
   }
 
   private async debugView() {
@@ -149,6 +153,10 @@ export default class Commands {
         await this.configRules();
       }
       const ruleConfig = CacheProvider.instance.get('ruleconfig');
+      OutputChannel.getInstance().logChannel.debug(
+        'load stored rule configurations',
+        ruleConfig
+      );
       results = core.scan(await core.parse(selectedUris), ruleConfig);
       OutputChannel.getInstance().logChannel.debug('Scan Results', ...results);
       await CacheProvider.instance.set('results', results);

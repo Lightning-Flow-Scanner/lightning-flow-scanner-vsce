@@ -14,7 +14,8 @@
 {#if betaRules}
     <div id="beta">
         <h2>Beta Rules</h2>
-        <h3>Modify your .flow-scanner configuration file to take advantage of the beta rules</h3>
+        <h3>Visit the documentation button for more details on beta rules</h3>
+        <h4>Use Configure Rules button to opt on rules</h4>
         {#each betaRules as rule, i}
             <RuleCard>
                 <span slot="label">{i + 1}. {rule.label}</span>
