@@ -11,7 +11,7 @@
   "description": "A VSCode Extension designed to pinpoint deviations from Industry Best Practices in Salesforce Flows, ensuring standards of business automation excellence.",
   "version": "3.46.0",
   "engines": {
-    "vscode": "^1.92.0"
+    "vscode": "^1.99.1"
   },
   "categories": [
     "Other"
@@ -91,7 +91,7 @@
       ]
     }
   },
-  "scripts": {
+  "scripts:old": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack --config ./build/node-extension.webpack.config.js",
     "watch": "concurrently \"rollup -c -w\" \"webpack --watch --config ./build/node-extension.webpack.config.js\"",
@@ -110,6 +110,12 @@
     "wdio": "wdio run ./wdio.conf.ts",
     "wdio-test": "npm run build && npm run wdio"
   },
+  "scripts": {
+    "build": "tsup --env.NODE_ENV production --treeshake",
+    "dev": "tsup --watch ./src --env.NODE_ENV development",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "pnpm run build"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-json": "^6.1.0",
@@ -121,7 +127,7 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.0",
     "@types/uuid": "^10.0.0",
-    "@types/vscode": "1.92.0",
+    "@types/vscode": "1.99.1",
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
     "@vscode/test-cli": "^0.0.10",
@@ -138,6 +144,7 @@
     "glob": "^11.0.1",
     "mocha": "^11.1.0",
     "postcss": "^8.5.1",
+    "reactive-vscode": "^0.2.14",
     "rollup": "^4.34.0",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
@@ -146,6 +153,7 @@
     "svelte-preprocess": "^6.0.3",
     "tailwindcss": "^3.4.17",
     "ts-loader": "^9.5.2",
+    "tsup": "^8.4.0",
     "typescript": "^5.7.3",
     "wdio-vscode-service": "^6.1.2",
     "webpack": "^5.97.1",
