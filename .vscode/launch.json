@@ -54,7 +54,7 @@
 				"${workspaceFolder}/out/test/**/*.js"
 			]
 		},
-		{
+    {
       "name": "ReactiveVSCE Run Extension",
       "type": "extensionHost",
       "request": "launch",
@@ -65,6 +65,5 @@
         "${workspaceFolder}/dist/**/*.js"
       ]
     }
-
-	]
+  ]
 }
