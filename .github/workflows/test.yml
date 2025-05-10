@@ -12,13 +12,15 @@ jobs:
   test:
     name: Test
 
-    runs-on: ${{ matrix.os }}
+    # runs-on: ${{ matrix.os }}
 
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, windows-latest]
-        node-version: [22.x]
+    # strategy:
+    #   fail-fast: false
+    #   matrix:
+    #     os: [macos-latest, windows-latest]
+    #     node-version: [22.x]
+
+    runs-on: ubuntu-latest
 
     timeout-minutes: 15
     steps:
