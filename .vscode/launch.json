@@ -53,6 +53,18 @@
 			"outFiles": [
 				"${workspaceFolder}/out/test/**/*.js"
 			]
-		}
+		},
+		{
+      "name": "ReactiveVSCE Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ]
+    }
+
 	]
 }

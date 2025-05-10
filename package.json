@@ -91,7 +91,7 @@
       ]
     }
   },
-  "scripts:old": {
+  "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack --config ./build/node-extension.webpack.config.js",
     "watch": "concurrently \"rollup -c -w\" \"webpack --watch --config ./build/node-extension.webpack.config.js\"",
@@ -108,13 +108,12 @@
     "lint": "eslint src --ext ts",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "wdio": "wdio run ./wdio.conf.ts",
-    "wdio-test": "npm run build && npm run wdio"
-  },
-  "scripts": {
-    "build": "tsup --env.NODE_ENV production --treeshake",
-    "dev": "tsup --watch ./src --env.NODE_ENV development",
-    "typecheck": "tsc --noEmit",
-    "vscode:prepublish": "pnpm run build"
+    "wdio-test": "npm run build && npm run wdio",
+    "________": "scripts for reactive-vscode",
+    "build:reactive": "tsup --env.NODE_ENV production --treeshake",
+    "dev:reactive": "tsup --watch ./src --env.NODE_ENV development",
+    "typecheck:reactive": "tsc --noEmit -p reactive-vscode.tsconfig.json",
+    "vscode:prepublish:reactive": "pnpm run build"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.2",
@@ -144,7 +143,7 @@
     "glob": "^11.0.1",
     "mocha": "^11.1.0",
     "postcss": "^8.5.1",
-    "reactive-vscode": "^0.2.14",
+    "reactive-vscode": "^0.2.16",
     "rollup": "^4.34.0",
     "rollup-plugin-css-only": "^4.5.2",
     "rollup-plugin-node-builtins": "^2.1.2",
