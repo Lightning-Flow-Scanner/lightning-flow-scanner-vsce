@@ -34,5 +34,5 @@ jobs:
         run: npm ci
       - name: Package
         run: npm run build
-      # - name: Run tests
-      #   run: npm run wdio-test
+      - name: Run tests
+        run: npm run test:reactive
