@@ -1,31 +1,30 @@
-import { browser, expect } from "@wdio/globals";
+import { browser, expect } from '@wdio/globals';
 import { Workbench } from 'wdio-vscode-service';
 
-describe("LFS VSCE Side Bar Smoke Tests", () => {
-
+describe('LFS VSCE Side Bar Smoke Tests', () => {
   let workbench: Workbench;
 
   beforeEach(async () => {
     workbench = await browser.getWorkbench();
   });
 
-  it("Extension is accessible in the Side Bar", async () => {
+  it('Extension is accessible in the Side Bar', async () => {
     // Verify if Lightning Flow Scanner is in the side bar
     const viewControls = await workbench.getActivityBar().getViewControls();
     expect(
       await Promise.all(viewControls.map((vc) => vc.getTitle()))
-    ).toContain("Lightning Flow Scanner");
+    ).toContain('Lightning Flow Scanner');
 
     // Verify if Lightning Flow Scanner can be opened in the side bar
     const lfsViewContainer = await workbench
       .getActivityBar()
-      .getViewControl("Lightning Flow Scanner");
+      .getViewControl('Lightning Flow Scanner');
     await lfsViewContainer?.wait();
     await lfsViewContainer?.openView();
     const selectedView = await workbench
       .getActivityBar()
       .getSelectedViewAction();
-    expect(await selectedView.getTitle()).toBe("Lightning Flow Scanner");
+    expect(await selectedView.getTitle()).toBe('Lightning Flow Scanner');
 
     // // TODO Verify some content of the Lightning Flow Scanner side bar
     /*  
@@ -38,16 +37,14 @@ describe("LFS VSCE Side Bar Smoke Tests", () => {
     */
   });
 
-  it("The Get Rules command results in opening the Flow Rules view", async () => {
-
+  it('The Get Rules command results in opening the Flow Rules view', async () => {
     // Run the View Default Flow Rules via the Command Prompt
     const commandInput = await workbench.openCommandPrompt();
-    await workbench.executeCommand("lightningflowscanner.viewDefaulFlowRules");
+    await workbench.executeCommand('lightningflowscanner.viewDefaultFlowRules');
     const editorView = workbench.getEditorView();
     const activeTab = await editorView.getActiveTab();
     const title = await activeTab?.getTitle();
     console.log('title = ', title);
     expect(title).toBe('Flow Rules');
   });
-
 });

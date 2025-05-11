@@ -63,7 +63,10 @@
       ],
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
-      ]
+      ],
+			"env": {
+				"LFS_USE_REACTIVE_VSCE": "true"
+			}
     }
   ]
 }
