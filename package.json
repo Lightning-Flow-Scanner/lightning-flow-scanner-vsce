@@ -46,7 +46,7 @@
     },
     "commands": [
       {
-        "command": "lightningflowscanner.viewDefaulFlowRules",
+        "command": "lightningflowscanner.viewDefaultFlowRules",
         "title": "Default Flow Rules"
       },
       {
