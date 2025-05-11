@@ -3,57 +3,57 @@
 // Hover to view descriptions of existing attributes.
 // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"name": "Launch Extension VSCE",
-			"outFiles": [
-				"${workspaceFolder}/out/**/*.js"
-			],
-			"preLaunchTask": "npm: compile",
-			"request": "launch",
-			"type": "extensionHost"
-		},
-		{
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"name": "Launch Extension",
-			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
-			],
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"type": "pwa-extensionHost"
-		},
-		{
-			"name": "Run Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
-			]
-		},
-		{
-			"name": "Extension Tests",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--disable-extensions",
-				"--extensionDevelopmentPath=${workspaceFolder}",
-				"--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
-			],
-			"outFiles": [
-				"${workspaceFolder}/out/test/**/*.js"
-			]
-		},
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "name": "Launch Extension VSCE",
+      "outFiles": [
+        "${workspaceFolder}/out/**/*.js"
+      ],
+      "preLaunchTask": "npm: compile",
+      "request": "launch",
+      "type": "extensionHost"
+    },
+    {
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "name": "Launch Extension",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "type": "pwa-extensionHost"
+    },
+    {
+      "name": "Run Extension",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ]
+    },
+    {
+      "name": "Extension Tests",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--disable-extensions",
+        "--extensionDevelopmentPath=${workspaceFolder}",
+        "--extensionTestsPath=${workspaceFolder}/out/test/suite/index"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/out/test/**/*.js"
+      ]
+    },
     {
       "name": "ReactiveVSCE Run Extension",
       "type": "extensionHost",
@@ -64,9 +64,9 @@
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
       ],
-			"env": {
-				"LFS_USE_REACTIVE_VSCE": "true"
-			}
+      "env": {
+        "LFS_USE_REACTIVE_VSCE": "true"
+      },
     }
   ]
 }
