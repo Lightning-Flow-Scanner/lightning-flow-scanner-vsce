@@ -35,6 +35,8 @@
 		"webviews",
 		"test",
 		"wdio.conf.ts",
-		"tsup.config.ts"
+		"tsup.config.ts",
+		"jest.config.ts",
+		"tests"
 	]
 }

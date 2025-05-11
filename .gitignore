@@ -9,3 +9,4 @@ yarn-error.logs
 
 *.log
 *.vsix
+coverage
