@@ -11,7 +11,7 @@
   // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
   "typescript.tsc.autoDetect": "off",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "jest.jestCommandLine": "npm run test:reactive --",
+  "jest.jestCommandLine": "npm run v:test:reactive --",
   "jest.runMode": "on-demand",
 
    "emeraldwalk.runonsave": {
