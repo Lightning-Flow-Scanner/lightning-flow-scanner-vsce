@@ -8,5 +8,6 @@
     "strict": true,
     "strictNullChecks": true,
     "esModuleInterop": true
-  }
+  },
+  "include": ["src/**/*.ts", "beta-webview/**/*.ts"]
 }
