@@ -37,6 +37,8 @@
 		"wdio.conf.ts",
 		"tsup.config.ts",
 		"jest.config.ts",
-		"tests"
+		"tests",
+		"vite.config.ts",
+		"beta-webview"
 	]
 }

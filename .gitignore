@@ -14,3 +14,5 @@ coverage
 .config
 
 src/generated
+
+src/vscode.d.ts

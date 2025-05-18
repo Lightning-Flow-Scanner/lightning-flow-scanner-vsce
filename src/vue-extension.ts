@@ -1,10 +1,4 @@
-import {
-  defineExtension,
-  useCommand,
-  useIsDarkTheme,
-  useLogger,
-  watchEffect,
-} from 'reactive-vscode';
+import { defineExtension, useLogger } from 'reactive-vscode';
 import { window } from 'vscode';
 import { useSidebarView } from './webviews/views/sidebar';
 
