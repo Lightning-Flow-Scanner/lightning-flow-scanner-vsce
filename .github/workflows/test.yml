@@ -35,4 +35,4 @@ jobs:
       - name: Package
         run: npm run build
       - name: Run tests
-        run: npm run test:reactive
+        run: npm run v:test:reactive
