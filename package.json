@@ -96,7 +96,7 @@
     "compile": "webpack --config ./build/node-extension.webpack.config.js",
     "watch": "concurrently \"rollup -c -w\" \"webpack --watch --config ./build/node-extension.webpack.config.js\"",
     "build-webapp": "rollup -c",
-    "build": "rollup -c && vsce package",
+    "build": "npm run v:update && rollup -c && vsce package",
     "build:beta": "rollup -c && vsce package --pre-release",
     "deploy:minor": "vsce publish minor",
     "deploy:major": "vsce publish major",
