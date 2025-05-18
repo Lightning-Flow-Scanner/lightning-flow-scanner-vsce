@@ -44,7 +44,7 @@
 			"label": "npm: compile",
 			"detail": "webpack --config ./build/node-extension.webpack.config.js"
 		},
-		{
+    { 
       "type": "npm",
       "script": "v:dev",
       "isBackground": true,
