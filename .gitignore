@@ -10,3 +10,7 @@ yarn-error.logs
 *.log
 *.vsix
 coverage
+
+.config
+
+src/generated
