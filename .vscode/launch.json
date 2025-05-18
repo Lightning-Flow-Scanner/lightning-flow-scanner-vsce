@@ -67,6 +67,21 @@
       "env": {
         "LFS_USE_REACTIVE_VSCE": "true"
       },
+    },
+    {
+      "name": "VSCE New Ext",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "env": {
+        "LFS_USE_REACTIVE_VSCE": "true"
+      },
+      "preLaunchTask": "npm: v:dev",
     }
   ]
 }

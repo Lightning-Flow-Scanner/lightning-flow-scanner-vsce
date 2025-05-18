@@ -43,6 +43,25 @@
 			"problemMatcher": [],
 			"label": "npm: compile",
 			"detail": "webpack --config ./build/node-extension.webpack.config.js"
-		}
+		},
+		{
+      "type": "npm",
+      "script": "v:dev",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": [
+        {
+          "base": "$ts-webpack-watch",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "Build start",
+            "endsPattern": "Build success"
+          }
+        }
+      ],
+      "group": "build"
+    }
 	]
 }
