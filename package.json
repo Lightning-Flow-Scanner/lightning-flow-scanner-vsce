@@ -138,6 +138,7 @@
     "@typescript-eslint/eslint-plugin": "^8.22.0",
     "@typescript-eslint/parser": "^8.22.0",
     "@vitejs/plugin-vue": "^5.2.4",
+    "@vscode-elements/elements": "^1.16.0",
     "@vscode-elements/webview-playground": "^1.7.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.5.2",
@@ -173,15 +174,15 @@
     "vite-plugin-vue-devtools": "^7.7.6",
     "vitest": "^3.1.3",
     "vscode-ext-gen": "^1.0.2",
-    "vue-tsc": "^2.2.10",
+    "vue": "3.5.14",
+    "vue-tsc": "2.2.10",
     "wdio-vscode-service": "^6.1.2",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
-    "@vscode-elements/elements": "^1.16.0",
     "convert-array-to-csv": "^2.0.0",
-    "lightning-flow-scanner-core": "4.36.0",
+    "lightning-flow-scanner-core": "4.37.0",
     "tabulator-tables": "^6.3.1",
     "uuid": "^11.0.5",
     "xml2js": "^0.6.2"
