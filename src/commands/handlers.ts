@@ -9,6 +9,8 @@ import { CacheProvider } from '../providers/cache-provider';
 import { testdata } from '../store/testdata';
 import { OutputChannel } from '../providers/outputChannel';
 
+const { USE_NEW_CONFIG: isUseNewConfig } = process.env;
+
 export default class Commands {
   constructor(private context: vscode.ExtensionContext) {}
 
@@ -30,6 +32,10 @@ export default class Commands {
   }
 
   private async configRules() {
+    if (isUseNewConfig) {
+      await this.ruleConfiguration();
+      return;
+    }
     const allRules: core.IRuleDefinition[] = [
       ...core.getBetaRules(),
       ...core.getRules(),
@@ -93,6 +99,8 @@ export default class Commands {
       ruleConfig
     );
   }
+
+  private async ruleConfiguration() {}
 
   private async debugView() {
     let results = testdata as unknown as core.ScanResult[];
