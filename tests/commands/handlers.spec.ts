@@ -52,7 +52,7 @@ describe('Commands', () => {
       CacheProvider.instance = instanceMock as any;
 
       const outputMock = { logChannel: { debug: jest.fn() } };
-      const outputSpy = jest.spyOn(OutputChannel, 'getInstance'); //.getInstance = outputMock as any;
+      const outputSpy = jest.spyOn(OutputChannel, 'getInstance');
       outputSpy.mockReturnValue(outputMock as any);
 
       const extensionContext = jest.fn();
@@ -60,11 +60,17 @@ describe('Commands', () => {
         extensionContext as unknown as ExtensionContext
       );
 
-      await command['configRules']();
+      await expect(async () => await command['configRules']()).not.toThrow();
     });
 
-    it('should read from configuration', async () => {});
+    it('should read from configuration', async () => {
+      const command = new cmd.default({} as any);
+      await expect(command['ruleConfiguration']()).resolves.not.toThrow();
+    });
 
-    it('should write to configuration', async () => {});
+    it('should write to configuration', async () => {
+      const command = new cmd.default({} as any);
+      await expect(command['ruleConfiguration']()).resolves.not.toThrow();
+    });
   });
 });
