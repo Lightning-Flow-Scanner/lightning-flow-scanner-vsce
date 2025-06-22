@@ -20,6 +20,9 @@ The `Default Flow Rules` command can be used to view more details on the rules t
 
 The `Calculate Flow Coverage` command calculates Flow Test coverage percentages by running the apex tests in your default connectedOrg.
 
+<!-- commands --><!-- commands -->
+
+<!-- configs --><!-- configs -->
 ## Settings
  Name        | Description | Type | Default value | 
 |--------------|:-----------|--------------|:-----------|
