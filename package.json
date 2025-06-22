@@ -94,7 +94,7 @@
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "webpack --config ./build/node-extension.webpack.config.js",
-    "watch": "concurrently \"rollup -c -w\" \"webpack --watch --config ./build/node-extension.webpack.config.js\"",
+    "watch": "npm run v:update && concurrently \"rollup -c -w\" \"webpack --watch --config ./build/node-extension.webpack.config.js\"",
     "build-webapp": "rollup -c",
     "build": "npm run v:update && rollup -c && vsce package",
     "build:beta": "npm run v:update && rollup -c && vsce package --pre-release",
@@ -182,10 +182,10 @@
   },
   "dependencies": {
     "convert-array-to-csv": "^2.0.0",
-    "cosmiconfig": "^9.0.0",
     "lightning-flow-scanner-core": "4.48.0",
     "tabulator-tables": "^6.3.1",
     "uuid": "^11.0.5",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "yaml": "^2.8.0"
   }
 }
