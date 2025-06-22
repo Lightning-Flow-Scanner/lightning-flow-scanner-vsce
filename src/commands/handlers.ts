@@ -9,7 +9,6 @@ import { CacheProvider } from '../providers/cache-provider';
 import { testdata } from '../store/testdata';
 import { OutputChannel } from '../providers/outputChannel';
 import { ConfigProvider } from '../providers/config-provider';
-import { inspect } from 'util';
 
 const { USE_NEW_CONFIG: isUseNewConfig } = process.env;
 
@@ -174,7 +173,7 @@ export default class Commands {
         'load stored rule configurations',
         ruleConfig
       );
-      if (isUseNewConfig) {
+      if (isUseNewConfig === 'true') {
         // load and use config
         const configProvider = new ConfigProvider();
         ruleConfig = await configProvider.loadConfig(rootPath.fsPath);
