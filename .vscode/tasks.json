@@ -42,7 +42,7 @@
 			"group": "build",
 			"problemMatcher": [],
 			"label": "npm: compile",
-			"detail": "webpack --config ./build/node-extension.webpack.config.js"
+			"detail": "npm run build"
 		},
     { 
       "type": "npm",

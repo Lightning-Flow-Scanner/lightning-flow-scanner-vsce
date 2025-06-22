@@ -8,6 +8,8 @@ import { findFlowCoverage } from '../libs/FindFlowCoverage';
 import { CacheProvider } from '../providers/cache-provider';
 import { testdata } from '../store/testdata';
 import { OutputChannel } from '../providers/outputChannel';
+import { ConfigProvider } from '../providers/config-provider';
+import { inspect } from 'util';
 
 const { USE_NEW_CONFIG: isUseNewConfig } = process.env;
 
@@ -32,7 +34,7 @@ export default class Commands {
   }
 
   private async configRules() {
-    if (isUseNewConfig) {
+    if (isUseNewConfig === 'true') {
       await this.ruleConfiguration();
       return;
     }
@@ -100,7 +102,14 @@ export default class Commands {
     );
   }
 
-  private async ruleConfiguration() {}
+  private async ruleConfiguration() {
+    const configProvider = new ConfigProvider();
+    const config = await configProvider.discover(
+      vscode.workspace.workspaceFolders?.[0].uri.path
+    );
+    const document = await vscode.workspace.openTextDocument(config.fspath);
+    await vscode.window.showTextDocument(document);
+  }
 
   private async debugView() {
     let results = testdata as unknown as core.ScanResult[];
@@ -160,11 +169,16 @@ export default class Commands {
         OutputChannel.getInstance().logChannel.trace('reset configurations');
         await this.configRules();
       }
-      const ruleConfig = CacheProvider.instance.get('ruleconfig');
+      let ruleConfig = CacheProvider.instance.get('ruleconfig');
       OutputChannel.getInstance().logChannel.debug(
         'load stored rule configurations',
         ruleConfig
       );
+      if (isUseNewConfig) {
+        // load and use config
+        const configProvider = new ConfigProvider();
+        ruleConfig = await configProvider.loadConfig(rootPath.fsPath);
+      }
       results = core.scan(await core.parse(selectedUris), ruleConfig);
       OutputChannel.getInstance().logChannel.debug('Scan Results', ...results);
       await CacheProvider.instance.set('results', results);

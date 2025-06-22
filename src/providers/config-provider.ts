@@ -1,28 +1,117 @@
-import { cosmiconfig, CosmiconfigResult } from 'cosmiconfig';
-import { IRulesConfig } from 'lightning-flow-scanner-core';
+import {
+  IRulesConfig,
+  getRules,
+  getBetaRules,
+  IRuleDefinition,
+} from 'lightning-flow-scanner-core';
+import * as vsce from 'vscode';
+
+import { Document, parse } from 'yaml';
+
+type Configuration = {
+  fspath: string;
+  config: unknown;
+};
 
 export class ConfigProvider {
-  public async loadConfig(configPath?: string): Promise<IRulesConfig> {
-    const moduleName = 'flow-scanner';
-    const searchPlaces = [
-      'package.json',
-      `.${moduleName}.yaml`,
-      `.${moduleName}.yml`,
-      `.${moduleName}.json`,
-      `config/.${moduleName}.yaml`,
-      `config/.${moduleName}.yml`,
-      `.flow-scanner`,
+  public async discover(configPath: string): Promise<{
+    fspath: string;
+    config: unknown;
+  }> {
+    const configurationName = 'flow-scanner';
+
+    const findInJson = [`.${configPath}.json`, `${configurationName}.json`];
+
+    const findInYml = [
+      `.${configurationName}.yml`,
+      `.${configurationName}.yaml`,
+      `${configurationName}.yaml`,
+      `${configurationName}.yml`,
+      configurationName,
     ];
-    const explorer = cosmiconfig(moduleName, {
-      searchPlaces,
-    });
-    let explorerResults: CosmiconfigResult;
-    if (configPath) {
-      // Forced config file name
-      explorerResults = await explorer.load(configPath);
+
+    let configFile = await this.attemptToReadConfig(
+      configPath,
+      findInJson,
+      JSON.parse
+    );
+
+    if (!configFile) {
+      configFile = await this.attemptToReadConfig(configPath, findInYml, parse);
     }
-    // Let cosmiconfig look for a config file
-    explorerResults = explorerResults ?? (await explorer.search());
+
+    if (!configFile) {
+      // if at this point there's still nothing. create a new file
+      configFile = await this.writeConfigFile(configurationName, configPath);
+    }
+
+    return configFile;
+  }
+
+  private async writeConfigFile(
+    configurationName: string,
+    configPath: string
+  ): Promise<{
+    fspath: string;
+    config: unknown;
+  }> {
+    const allRules: Record<string, { severity: string }> = [
+      ...getRules(),
+      ...getBetaRules(),
+    ].reduce(
+      (acc, rule: IRuleDefinition) => {
+        acc[rule.name] = { severity: 'error' };
+        return acc;
+      },
+      {} as Record<string, { severity: string }>
+    );
+
+    const config = {
+      rules: allRules,
+    };
+
+    const configFile = {
+      fspath: `${configPath}/.${configurationName}.yml`,
+      config,
+    };
+
+    await vsce.workspace.fs.writeFile(
+      vsce.Uri.file(configFile.fspath),
+      new TextEncoder().encode(String(new Document(config)))
+    );
+
+    return configFile;
+  }
+
+  private async attemptToReadConfig(
+    basePath: string,
+    potentialFileNames: string[],
+    parser: Function
+  ): Promise<{ fspath: string; config: unknown } | null> {
+    let foundConfig: { fspath: string; config: unknown };
+    await Promise.all(
+      potentialFileNames.map(async (fileName) => {
+        if (foundConfig) return;
+        const file = vsce.Uri.file(`${basePath}/${fileName}`);
+        try {
+          const doesFileExist = await vsce.workspace.fs.stat(file);
+          if (doesFileExist) {
+            foundConfig = { fspath: file.fsPath, config: undefined };
+            const fileContent = Buffer.from(
+              await vsce.workspace.fs.readFile(file)
+            ).toString();
+            foundConfig.config = parser(fileContent);
+          }
+        } catch (e) {
+          // File does not exist, ignore
+        }
+      })
+    );
+    return foundConfig;
+  }
+
+  public async loadConfig(configPath?: string): Promise<IRulesConfig> {
+    const explorerResults = await this.discover(configPath);
     return explorerResults?.config ?? {};
   }
 }

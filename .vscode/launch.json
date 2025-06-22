@@ -6,22 +6,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}"
-      ],
-      "name": "Launch Extension VSCE",
-      "outFiles": [
-        "${workspaceFolder}/out/**/*.js"
-      ],
-      "preLaunchTask": "npm: compile",
+      "name": "Launch Extension",
+      "type": "extensionHost",
       "request": "launch",
-      "type": "extensionHost"
+      "runtimeExecutable": "${execPath}",
+      "args": ["--extensionDevelopmentPath=${workspaceRoot}" ],
+      "stopOnEntry": false,
+      "sourceMaps": true,
+      "outFiles": ["${workspaceRoot}/out/src/**/*.js"],
+      "preLaunchTask": "npm: watch",
+      "env": {
+        "USE_NEW_CONFIG": "true"
+      },
     },
     {
       "args": [
         "--extensionDevelopmentPath=${workspaceFolder}"
       ],
-      "name": "Launch Extension",
+      "name": "Launch Extension xxxxx",
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
       ],
@@ -38,7 +40,10 @@
       ],
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
-      ]
+      ],
+      "env": {
+        "USE_NEW_CONFIG": "true"
+      },
     },
     {
       "name": "Extension Tests",
