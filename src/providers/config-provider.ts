@@ -5,7 +5,6 @@ import {
   IRuleDefinition,
 } from 'lightning-flow-scanner-core';
 import * as vsce from 'vscode';
-
 import { Document, parse } from 'yaml';
 
 type Configuration = {
@@ -14,10 +13,7 @@ type Configuration = {
 };
 
 export class ConfigProvider {
-  public async discover(configPath: string): Promise<{
-    fspath: string;
-    config: unknown;
-  }> {
+  public async discover(configPath: string): Promise<Configuration> {
     const configurationName = 'flow-scanner';
 
     const findInJson = [`.${configPath}.json`, `${configurationName}.json`];
@@ -51,10 +47,7 @@ export class ConfigProvider {
   private async writeConfigFile(
     configurationName: string,
     configPath: string
-  ): Promise<{
-    fspath: string;
-    config: unknown;
-  }> {
+  ): Promise<Configuration> {
     const allRules: Record<string, { severity: string }> = [
       ...getRules(),
       ...getBetaRules(),
@@ -87,8 +80,8 @@ export class ConfigProvider {
     basePath: string,
     potentialFileNames: string[],
     parser: Function
-  ): Promise<{ fspath: string; config: unknown } | null> {
-    let foundConfig: { fspath: string; config: unknown };
+  ): Promise<Configuration | null> {
+    let foundConfig: Configuration;
     await Promise.all(
       potentialFileNames.map(async (fileName) => {
         if (foundConfig) return;
