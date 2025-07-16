@@ -34,6 +34,7 @@
                     title: "Label",
                     field: "label",
                     formatter: "link",
+                    minWidth: 150,
                     cellClick: function (e, cell) {
                         tsvscode.postMessage({
                             type: "goToFile",
@@ -41,7 +42,12 @@
                         });
                     },
                 },
-                { title: "Flow Type", field: "type", formatter: "plaintext" },
+                { 
+                    title: "Flow Type", 
+                    field: "type", 
+                    formatter: "plaintext", 
+                    minWidth: 120 
+                },
                 {
                     title: "% Test Coverage",
                     field: "coverage",

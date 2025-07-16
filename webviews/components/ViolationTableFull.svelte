@@ -49,6 +49,7 @@
                     title: "Name",
                     field: "name",
                     formatter: "textarea",
+                    minWidth: 150,
                 },
                 {
                     title: "Type",
@@ -60,6 +61,7 @@
                     title: "Flow name",
                     field: "flowName",
                     formatter: "textarea",
+                    minWidth: 150,
                 },
                 {
                     title: "DataType",
@@ -81,11 +83,13 @@
                     title: "Connects to",
                     field: "connectsTo",
                     formatter: "textarea",
+                    minWidth: 150,
                 },
                 {
                     title: "Expression",
                     field: "expression",
                     formatter: "textarea",
+                    minWidth: 150,
                 },
             ],
         });
