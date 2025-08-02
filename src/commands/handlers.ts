@@ -37,7 +37,7 @@ export default class Commands {
       await this.ruleConfiguration();
       return;
     }
-    const allRules: core.IRuleDefinition[] = [
+    const allRules: core.AdvancedRule[] = [
       ...core.getBetaRules(),
       ...core.getRules(),
     ];
