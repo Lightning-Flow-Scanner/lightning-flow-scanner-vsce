@@ -2,7 +2,7 @@ import {
   IRulesConfig,
   getRules,
   getBetaRules,
-  IRuleDefinition,
+  AdvancedRule,
 } from 'lightning-flow-scanner-core';
 import * as vsce from 'vscode';
 import { Document, parse } from 'yaml';
@@ -52,7 +52,7 @@ export class ConfigProvider {
       ...getRules(),
       ...getBetaRules(),
     ].reduce(
-      (acc, rule: IRuleDefinition) => {
+      (acc, rule: AdvancedRule) => {
         acc[rule.name] = { severity: 'error' };
         return acc;
       },
